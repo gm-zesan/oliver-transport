@@ -3,7 +3,10 @@
         <div class="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-4">
             <!-- Brand & Corridor Intro -->
             <div class="space-y-4">
-                <x-brand-logo size="md" :inverted="true" :showSubtitle="true" />
+                <x-brand-logo size="md" :inverted="true" />
+                <p class="text-[11px] font-bold uppercase tracking-[0.2em] text-[#22C55E]">
+                    Montreal • Toronto • Montreal
+                </p>
                 <p class="text-sm text-slate-400 leading-relaxed">
                     Daily scheduled intercity passenger shuttle connecting Montreal and Toronto with guaranteed reserved cabin seating.
                 </p>

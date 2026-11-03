@@ -2,7 +2,7 @@
     <div class="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8 py-3">
         <!-- Brand Logo Area -->
         <a href="{{ route('home') }}" class="group flex items-center min-h-[44px] min-w-[44px] py-1 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-green" aria-label="Oliver Transport Homepage">
-            <x-brand-logo size="md" :showSubtitle="true" />
+            <x-brand-logo size="md" />
         </a>
 
         <!-- Desktop Navigation Links -->

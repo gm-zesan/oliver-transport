@@ -96,9 +96,9 @@ The public frontend architecture is organized into a modular layout and partials
 2. **Frontend Partials (`resources/views/frontend/partials/`)**:
    * [`favicon.blade.php`](file:///Users/zesan/Desktop/My-Work/oliver-transport/resources/views/frontend/partials/favicon.blade.php) — Favicon and apple touch icon links.
    * [`styles.blade.php`](file:///Users/zesan/Desktop/My-Work/oliver-transport/resources/views/frontend/partials/styles.blade.php) — Fonts preconnect, Instrument Sans stylesheet, Vite asset bundle, and `@stack('styles')`.
-   * [`header.blade.php`](file:///Users/zesan/Desktop/My-Work/oliver-transport/resources/views/frontend/partials/header.blade.php) — Sticky glassmorphic navigation header with Oliver Transport brand mark, anchor links, phone support pill (`647-655-1884`), guest auth CTAs, authenticated dashboard links, and mobile menu drawer.
-   * [`footer.blade.php`](file:///Users/zesan/Desktop/My-Work/oliver-transport/resources/views/frontend/partials/footer.blade.php) — Dark charcoal site footer with inverted brand mark, corridor timetables, confirmed support channels (`647-655-1884`, Facebook `Oliver Transport`), and copyright notices.
-   * [`script.blade.php`](file:///Users/zesan/Desktop/My-Work/oliver-transport/resources/views/frontend/partials/script.blade.php) — Mobile menu toggle logic, interactive hero route switcher (`switchHeroRoute`), and `@stack('scripts')`.
+   * [`header.blade.php`](file:///Users/zesan/Desktop/My-Work/oliver-transport/resources/views/frontend/partials/header.blade.php) — Dynamic navigation header sitting seamlessly transparent and hero-aligned at initial load, transitioning smoothly into a floating frosted glass pill capsule on scroll with vertical Oliver Transport brand mark, anchor navigation links (`Home`, `Services`, `Fleet`, `FAQ`, `Contact`), quick search capsule input, guest auth CTAs ("Sign In" and "Book Now"), circular user profile avatar shortcut, and accessible mobile menu drawer.
+   * [`footer.blade.php`](file:///Users/zesan/Desktop/My-Work/oliver-transport/resources/views/frontend/partials/footer.blade.php) — 2-section modern footer comprising a vehicle feature promo card ($65 CAD / Trip) and a dark curved global footer with newsletter pill, station directory, intercity routes, support channels (`647-655-1884`), and social links.
+   * [`script.blade.php`](file:///Users/zesan/Desktop/My-Work/oliver-transport/resources/views/frontend/partials/script.blade.php) — Mobile menu toggle logic, dynamic header scroll state transition (`updateHeaderStyles`), interactive hero route switcher (`switchHeroRoute`), Uber-style floating label dropdown selectors (`selectHeroDropdownOption`), and auth prompt modal dialog handlers (`openAuthModal`, `closeAuthModal`).
 3. **Frontend Page (`resources/views/frontend/index.blade.php`)**:
    * Uses `@extends('frontend.layout.app')` and `@section('content')`.
    * Contains Hero, Interactive Route & Timetable switcher, Transparent Fares, 3-Step How It Works, Why Choose Us, and Final Booking CTA.
@@ -109,11 +109,12 @@ The public frontend architecture is organized into a modular layout and partials
 
 The public homepage is rendered via `App\Http\Controllers\Frontend\HomeController@index` at `GET /` (`resources/views/frontend/index.blade.php`):
 
-1. **Header & Navigation:** Sticky glassmorphic top bar with brand logo, smooth scroll anchor links (`#routes`, `#fares`, `#how-it-works`, `#why-us`, `#contact`), direct call support button, and responsive mobile drawer.
+1. **Header & Navigation:** Floating pill capsule navigation bar positioned over the hero section with vertical brand mark, anchor links (`Home`, `Services`, `Fleet`, `FAQ`, `Contact`), search capsule input, Book Now / Sign In CTAs, and circular user profile icon.
 2. **Hero Section:**
-   * Value Proposition: "Montreal to Toronto. Scheduled. Reserved. Direct."
-   * Interactive Trip Intent Widget: Tabbed direction selector (`Montreal → Toronto` vs `Toronto → Montreal`) allowing passengers to inspect scheduled departure and drop-off stations with immediate fare display.
-   * Executive Fleet & Visual Cabin Layout Preview: Features the Silver Honda Odyssey (Ontario RAJIA) alongside an interactive 6-passenger cabin layout diagram showing Seat S1, S2–S3 captain chairs, and S4–S6 rear seating, communicating Oliver Transport's visual seat selection model.
+   * **Cinematic Video Ride Loop:** Ambient daylight passenger ride loop playing behind the hero text and booking form.
+   * **Spacious Left Column:** Brand messaging ("Your Journey, Our Priority.", "Travel in Comfort. Arrive in Style."), concise value proposition, and corridor summary badges.
+   * **Frosted Glass Booking Card:** Right-side card allowing background video to subtly show through backdrop blur (`bg-white/55 backdrop-blur-2xl`), featuring Route A / Route B toggle tabs, Uber-style custom dropdown selectors with animated floating labels (Pickup address, Destination address, Travel date, Fixed departure times), and high-conversion "Find Your Ride" / "Book Your Seat" button.
+   * **Guest Login Modal:** Clean modal appearing if an unauthenticated user submits the booking form, guiding them to sign in or register before selecting seats.
 3. **Route Information (`#routes`):**
    * Visual timeline cards for Route A and Route B with scheduled times and transfer connections.
 4. **Transparent Fares (`#fares`):**
@@ -122,10 +123,8 @@ The public homepage is rendered via `App\Http\Controllers\Frontend\HomeControlle
    * 3-step walkthrough: 1. Select Trip & Seat → 2. Instant Reservation → 3. Board & Pay Cash.
 6. **Why Choose Oliver Transport (`#why-us`):**
    * Communicates strictly confirmed service features: Fixed daily schedule, manual visual seat choice, commercial minivan comfort, cash settlement on boarding, central station connectivity, and multi-seat reservation support.
-7. **Final Booking Call-to-Action:**
-   * High-contrast conversion banner directing passengers to secure their seats in advance, with direct telephone inquiry channels (`647-655-1884`).
-8. **Footer (`#contact`):**
-   * Inverted brand mark, daily corridor timetables, confirmed contact details, and copyright.
+7. **2-Section Modern Footer (`#fleet` & `#contact`):**
+   * Vehicle Feature Promo Card for Honda Odyssey ($65 CAD / Trip) with 2-column checkmark specifications and Reserve Now CTA, alongside a Dark Curved Global Footer with station directory, intercity routes, newsletter pill, bottom legal links, and social icons.
 
 ---
 

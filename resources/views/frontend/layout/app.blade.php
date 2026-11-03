@@ -14,19 +14,21 @@
     @include('frontend.partials.header')
 
     <!-- Flash Status Messages -->
-    <div class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 mt-4">
-        @if (session('status'))
-            <div class="mb-4 rounded-xl border border-brand-green/30 bg-brand-green-subtle p-4 text-sm font-semibold text-brand-green" role="alert">
-                {{ session('status') }}
-            </div>
-        @endif
+    @if (session('status') || session('error'))
+        <div class="relative z-50 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 pt-24">
+            @if (session('status'))
+                <div class="mb-4 rounded-xl border border-brand-green/30 bg-brand-green-subtle p-4 text-sm font-semibold text-brand-green" role="alert">
+                    {{ session('status') }}
+                </div>
+            @endif
 
-        @if (session('error'))
-            <div class="mb-4 rounded-xl border border-brand-red/30 bg-brand-red-light p-4 text-sm font-semibold text-brand-red" role="alert">
-                {{ session('error') }}
-            </div>
-        @endif
-    </div>
+            @if (session('error'))
+                <div class="mb-4 rounded-xl border border-brand-red/30 bg-brand-red-light p-4 text-sm font-semibold text-brand-red" role="alert">
+                    {{ session('error') }}
+                </div>
+            @endif
+        </div>
+    @endif
 
     <!-- Main Page Content -->
     <main class="flex-1">

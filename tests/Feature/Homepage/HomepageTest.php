@@ -83,7 +83,12 @@ test('homepage renders guest authentication call to actions for guests', functio
         ->assertSee(route('login'))
         ->assertSee(route('register'))
         ->assertSee('Sign In')
-        ->assertSee('Book Your Seat');
+        ->assertSee('Book Your Seat')
+        ->assertSee('id="auth-booking-modal"', false)
+        ->assertSee('Sign In to Book Your Seat')
+        ->assertSee('id="label-pickup"', false)
+        ->assertSee('id="label-destination"', false)
+        ->assertSee('id="label-travel-date"', false);
 });
 
 test('homepage displays role-specific dashboard link for authenticated passenger', function () {

@@ -6,29 +6,22 @@
 
 @php
     $sizeClasses = match($size) {
-        'sm' => ['title' => 'text-xl', 'badge' => 'text-[10px] tracking-widest', 'sub' => 'text-[9px]'],
-        'lg' => ['title' => 'text-3xl sm:text-4xl', 'badge' => 'text-xs tracking-widest', 'sub' => 'text-[11px]'],
-        default => ['title' => 'text-2xl', 'badge' => 'text-[11px] tracking-widest', 'sub' => 'text-[10px]'],
+        'sm' => ['title' => 'text-lg sm:text-xl', 'badge' => 'text-[8px] tracking-[0.28em]'],
+        'lg' => ['title' => 'text-3xl sm:text-4xl', 'badge' => 'text-xs sm:text-[12px] tracking-[0.35em]'],
+        default => ['title' => 'text-2xl sm:text-[26px]', 'badge' => 'text-[9px] sm:text-[10px] tracking-[0.32em]'],
     };
 
-    $olColor = $inverted ? 'text-white' : 'text-brand-charcoal';
-    $transportColor = $inverted ? 'text-slate-300' : 'text-brand-charcoal';
-    $subtitleColor = $inverted ? 'text-slate-400' : 'text-content-muted';
+    $olColor = $inverted ? 'text-white' : 'text-slate-900';
+    $transportColor = $inverted ? 'text-emerald-400' : 'text-slate-500';
 @endphp
 
-<div {{ $attributes->merge(['class' => 'inline-flex flex-col leading-none select-none']) }}>
-    <div class="flex items-baseline gap-1.5">
-        <span class="{{ $sizeClasses['title'] }} font-black tracking-tight {{ $olColor }}">
-            Ol<span class="text-brand-green">iver</span>
+<div {{ $attributes->merge(['class' => 'inline-flex items-center select-none leading-none']) }}>
+    <div class="flex flex-col items-start leading-none">
+        <span class="{{ $sizeClasses['title'] }} font-black tracking-tight font-heading {{ $olColor }} leading-none">
+            Ol<span class="text-[#22C55E]">iver</span>
         </span>
-        <span class="font-extrabold uppercase {{ $sizeClasses['badge'] }} {{ $transportColor }}">
+        <span class="font-extrabold uppercase {{ $sizeClasses['badge'] }} {{ $transportColor }} transition-colors mt-1 leading-none">
             Transport
         </span>
     </div>
-    @if ($showSubtitle)
-        <span class="mt-1 font-bold uppercase tracking-wider {{ $sizeClasses['sub'] }} {{ $subtitleColor }}">
-            Montreal • Toronto • Montreal
-        </span>
-    @endif
 </div>
-
