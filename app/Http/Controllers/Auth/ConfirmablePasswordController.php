@@ -39,4 +39,3 @@ class ConfirmablePasswordController extends Controller
         return redirect()->intended($authService->redirectPathFor($request->user()));
     }
 }
-

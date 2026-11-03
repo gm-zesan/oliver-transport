@@ -5,6 +5,7 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -85,5 +86,55 @@ class User extends Authenticatable
         }
 
         return $this->role === $roles;
+    }
+
+    /**
+     * Bookings made by this user as a passenger.
+     *
+     * @return HasMany<Booking, $this>
+     */
+    public function bookings(): HasMany
+    {
+        return $this->hasMany(Booking::class);
+    }
+
+    /**
+     * Trips assigned to this user as a rider/driver.
+     *
+     * @return HasMany<Trip, $this>
+     */
+    public function assignedTrips(): HasMany
+    {
+        return $this->hasMany(Trip::class, 'rider_id');
+    }
+
+    /**
+     * Cash payments collected by this user as a rider.
+     *
+     * @return HasMany<Payment, $this>
+     */
+    public function collectedPayments(): HasMany
+    {
+        return $this->hasMany(Payment::class, 'collected_by');
+    }
+
+    /**
+     * Coupon redemption audit records for this user.
+     *
+     * @return HasMany<CouponUsage, $this>
+     */
+    public function couponUsages(): HasMany
+    {
+        return $this->hasMany(CouponUsage::class);
+    }
+
+    /**
+     * Bookings cancelled by this user.
+     *
+     * @return HasMany<Booking, $this>
+     */
+    public function cancelledBookings(): HasMany
+    {
+        return $this->hasMany(Booking::class, 'cancelled_by');
     }
 }

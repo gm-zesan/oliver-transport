@@ -28,4 +28,3 @@ class VerifyEmailController extends Controller
         return redirect()->intended($redirectUrl);
     }
 }
-

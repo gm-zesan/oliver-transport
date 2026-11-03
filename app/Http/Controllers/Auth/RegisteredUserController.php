@@ -41,4 +41,3 @@ class RegisteredUserController extends Controller
             ->with('status', 'Welcome to Oliver Transport! Your passenger account has been created.');
     }
 }
-
