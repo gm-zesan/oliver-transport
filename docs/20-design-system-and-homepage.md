@@ -96,12 +96,18 @@ The public frontend architecture is organized into a modular layout and partials
 2. **Frontend Partials (`resources/views/frontend/partials/`)**:
    * [`favicon.blade.php`](file:///Users/zesan/Desktop/My-Work/oliver-transport/resources/views/frontend/partials/favicon.blade.php) — Favicon and apple touch icon links.
    * [`styles.blade.php`](file:///Users/zesan/Desktop/My-Work/oliver-transport/resources/views/frontend/partials/styles.blade.php) — Fonts preconnect, Instrument Sans stylesheet, Vite asset bundle, and `@stack('styles')`.
-   * [`header.blade.php`](file:///Users/zesan/Desktop/My-Work/oliver-transport/resources/views/frontend/partials/header.blade.php) — Dynamic navigation header sitting seamlessly transparent and hero-aligned at initial load, transitioning smoothly into a floating frosted glass pill capsule on scroll with vertical Oliver Transport brand mark, anchor navigation links (`Home`, `Services`, `Fleet`, `FAQ`, `Contact`), quick search capsule input, guest auth CTAs ("Sign In" and "Book Now"), circular user profile avatar shortcut, and accessible mobile menu drawer.
-   * [`footer.blade.php`](file:///Users/zesan/Desktop/My-Work/oliver-transport/resources/views/frontend/partials/footer.blade.php) — 2-section modern footer comprising a vehicle feature promo card ($65 CAD / Trip) and a dark curved global footer with newsletter pill, station directory, intercity routes, support channels (`647-655-1884`), and social links.
-   * [`script.blade.php`](file:///Users/zesan/Desktop/My-Work/oliver-transport/resources/views/frontend/partials/script.blade.php) — Mobile menu toggle logic, dynamic header scroll state transition (`updateHeaderStyles`), interactive hero route switcher (`switchHeroRoute`), Uber-style floating label dropdown selectors (`selectHeroDropdownOption`), and auth prompt modal dialog handlers (`openAuthModal`, `closeAuthModal`).
+   * [`header.blade.php`](file:///Users/zesan/Desktop/My-Work/oliver-transport/resources/views/frontend/partials/header.blade.php) — Dynamic navigation header sitting transparent and hero-aligned at initial load with white text over the luminous cinematic video, transitioning smoothly into a floating frosted glass pill capsule on scroll, featuring the Oliver Transport automotive motion logo, navigation links (`Home`, `Services`, `About`, `Contact`), clean guest auth CTAs ("Sign In" and "Book Now"), and responsive mobile drawer.
+   * [`footer.blade.php`](file:///Users/zesan/Desktop/My-Work/oliver-transport/resources/views/frontend/partials/footer.blade.php) — Premium Dark Charcoal (`#111827`) 4-column footer featuring inverted automotive motion brand mark with "Montreal • Toronto • Montreal", Quick Links (`Home`, `Services`, `About`, `Contact`), Contact Us directory (`647-655-1884`, `info@olivertransport.ca`, Montreal/Toronto hubs), green CTA booking panel, copyright, and legal links.
+   * [`script.blade.php`](file:///Users/zesan/Desktop/My-Work/oliver-transport/resources/views/frontend/partials/script.blade.php) — Mobile menu toggle logic, dynamic header scroll state transition (`updateHeaderStyles`), interactive hero route switcher (`switchHeroRoute`), Uber-style floating label dropdown selectors (`selectPickup`, `selectDestination`), and auth prompt modal dialog handlers (`openAuthModal`, `closeAuthModal`).
 3. **Frontend Page (`resources/views/frontend/index.blade.php`)**:
    * Uses `@extends('frontend.layout.app')` and `@section('content')`.
-   * Contains Hero, Interactive Route & Timetable switcher, Transparent Fares, 3-Step How It Works, Why Choose Us, and Final Booking CTA.
+   * Follows the 6-section hybrid design architecture:
+     1. **Hero:** Full-width luminous cinematic video background with refined gradient overlays (avoiding excessive darkness), high-impact typography with green accent bars, and dark translucent glass booking form without unnecessary pill capsule clutter.
+     2. **Our Services:** Pure white background (`#FFFFFF`) with 4 clean service cards (Airport Transfer, Corporate Transportation, Private Chauffeur, Special Events).
+     3. **Why Choose Us:** Soft green-tinted background (`#F0FDF4`) with 4 horizontal benefit items and thin separators.
+     4. **About Oliver Transport:** Clean white background (`#FFFFFF`) 2-column layout with authentic vehicle photograph and narrative.
+     5. **Contact Us:** Light background (`#F8FAFC`) with verified contact cards, station details, and inquiry form.
+     6. **Footer:** Dark charcoal background (`#111827`) 4-column footer with green CTA card.
 
 ---
 
@@ -109,22 +115,22 @@ The public frontend architecture is organized into a modular layout and partials
 
 The public homepage is rendered via `App\Http\Controllers\Frontend\HomeController@index` at `GET /` (`resources/views/frontend/index.blade.php`):
 
-1. **Header & Navigation:** Floating pill capsule navigation bar positioned over the hero section with vertical brand mark, anchor links (`Home`, `Services`, `Fleet`, `FAQ`, `Contact`), search capsule input, Book Now / Sign In CTAs, and circular user profile icon.
+1. **Header & Navigation:** Dynamic floating pill capsule navbar positioned over the dark hero section, transitioning from transparent to frosted white on scroll.
 2. **Hero Section:**
-   * **Cinematic Video Ride Loop:** Ambient daylight passenger ride loop playing behind the hero text and booking form.
-   * **Spacious Left Column:** Brand messaging ("Your Journey, Our Priority.", "Travel in Comfort. Arrive in Style."), concise value proposition, and corridor summary badges.
-   * **Frosted Glass Booking Card:** Right-side card allowing background video to subtly show through backdrop blur (`bg-white/55 backdrop-blur-2xl`), featuring Route A / Route B toggle tabs, Uber-style custom dropdown selectors with animated floating labels (Pickup address, Destination address, Travel date, Fixed departure times), and high-conversion "Find Your Ride" / "Book Your Seat" button.
-   * **Guest Login Modal:** Clean modal appearing if an unauthenticated user submits the booking form, guiding them to sign in or register before selecting seats.
-3. **Route Information (`#routes`):**
-   * Visual timeline cards for Route A and Route B with scheduled times and transfer connections.
-4. **Transparent Fares (`#fares`):**
-   * Authoritative CAD $65 regular fare display. Clarifies cash-on-boarding settlement model without inventing unconfirmed promotional dates.
-5. **How It Works (`#how-it-works`):**
-   * 3-step walkthrough: 1. Select Trip & Seat → 2. Instant Reservation → 3. Board & Pay Cash.
-6. **Why Choose Oliver Transport (`#why-us`):**
-   * Communicates strictly confirmed service features: Fixed daily schedule, manual visual seat choice, commercial minivan comfort, cash settlement on boarding, central station connectivity, and multi-seat reservation support.
-7. **2-Section Modern Footer (`#fleet` & `#contact`):**
-   * Vehicle Feature Promo Card for Honda Odyssey ($65 CAD / Trip) with 2-column checkmark specifications and Reserve Now CTA, alongside a Dark Curved Global Footer with station directory, intercity routes, newsletter pill, bottom legal links, and social icons.
+   * **Cinematic Video Ride Loop:** Ambient video ride loop playing with dark gradient overlays (`from-[#111827]/95 via-[#111827]/85 to-[#111827]/60`).
+   * **Left Column:** Styled directly from visual reference: horizontal green accent bar followed by "PREMIUM TRANSPORTATION SERVICE", dominant two-line headline ("Your Journey," in white, "Our Priority." in vivid `#22C55E`), bold subtitle ("Travel in Comfort. Arrive in Style."), and two-line description bounded by an authentic vertical green accent line.
+   * **Translucent Glass Booking Panel:** Dark semi-transparent glass panel (`bg-[#111827]/75 backdrop-blur-2xl border border-white/15`), Route A / Route B toggle tabs, Uber-style custom dropdown selectors with animated floating labels, and high-conversion green CTA button.
+   * **Guest Login Modal:** Clean modal appearing if an unauthenticated user submits the booking form.
+3. **Our Services Section (`#services`):**
+   * Two-column header ("Services" headline on left, invitation text on right) with a 2x2 grid of horizontal cards (`bg-[#F1F3F7]`) featuring professional photography on the left, service narrative, and dark slate "Read More" CTA buttons.
+4. **Why Choose Us Section (`#why-us`):**
+   * Soft green-tinted section (`#F0FDF4`) presenting 4 core benefits with green outline icons and horizontal separators.
+5. **About Oliver Transport Section (`#about`):**
+   * Spacious 2-column layout with verified Honda Odyssey minivan photograph (plate RAJIA, 6 Passenger Seats) and "Learn More" green CTA.
+6. **Contact Us Section (`#contact`):**
+   * Light background (`#F8FAFC`) with phone `647-655-1884`, email `info@olivertransport.ca`, Montreal & Toronto station hubs, and contact inquiry form.
+7. **Footer:**
+   * Dark charcoal (`#111827`) 4-column footer with brand logo, quick links, contact channels, and a green CTA panel.
 
 ---
 

@@ -1,7 +1,7 @@
 <!-- Interactive Frontend Scripts -->
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        // Dynamic Header Scroll Transition (Normal at top, floating pill capsule on scroll)
+        // Dynamic Header Scroll Transition (Transparent over dark hero at top, floating frosted pill on scroll)
         const siteHeader = document.getElementById('site-header');
         const headerInner = document.getElementById('header-inner');
         const toggleBtn = document.getElementById('mobile-menu-toggle');
@@ -14,13 +14,48 @@
         const updateHeaderStyles = (scrolled) => {
             if (!siteHeader || !headerInner) return;
             const isMenuOpen = menu && !menu.classList.contains('hidden');
+            const navLinks = document.querySelectorAll('.header-nav-link');
+            const signinLink = document.getElementById('header-signin-link');
+            const brandTitle = document.querySelector('#header-brand-logo .font-heading') || document.querySelector('#header-inner .font-heading');
 
             if (scrolled || isMenuOpen) {
                 siteHeader.className = 'fixed top-0 left-0 right-0 z-50 px-4 sm:px-6 lg:px-8 pointer-events-none transition-all duration-300 ease-out pt-2.5 sm:pt-3.5';
                 headerInner.className = 'mx-auto max-w-7xl rounded-full transition-all duration-300 ease-out pointer-events-auto flex items-center justify-between py-2.5 px-4 sm:px-6 bg-white/95 backdrop-blur-xl border border-slate-200/80 shadow-lg shadow-slate-900/5';
+
+                navLinks.forEach(link => {
+                    link.classList.remove('text-white/90');
+                    link.classList.add('text-slate-700');
+                });
+                if (brandTitle) {
+                    brandTitle.classList.remove('text-white');
+                    brandTitle.classList.add('text-[#111827]');
+                }
+                if (signinLink) {
+                    signinLink.classList.remove('text-white/90');
+                    signinLink.classList.add('text-slate-700');
+                }
+                if (toggleBtn) {
+                    toggleBtn.className = 'inline-flex min-h-[40px] min-w-[40px] items-center justify-center rounded-full border border-slate-200 bg-white text-slate-800 hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-[#22C55E] transition';
+                }
             } else {
                 siteHeader.className = 'fixed top-0 left-0 right-0 z-50 px-4 sm:px-6 lg:px-8 pointer-events-none transition-all duration-300 ease-out pt-4 sm:pt-6';
-                headerInner.className = 'mx-auto max-w-7xl rounded-full transition-all duration-300 ease-out pointer-events-auto flex items-center justify-between py-2.5 px-3 sm:px-4 bg-white/0 backdrop-blur-none border border-slate-200/0 shadow-none';
+                headerInner.className = 'mx-auto max-w-7xl rounded-full transition-all duration-300 ease-out pointer-events-auto flex items-center justify-between py-2.5 px-3 sm:px-4 bg-white/0 backdrop-blur-none border border-transparent shadow-none';
+
+                navLinks.forEach(link => {
+                    link.classList.remove('text-slate-700');
+                    link.classList.add('text-white/90');
+                });
+                if (brandTitle) {
+                    brandTitle.classList.remove('text-[#111827]');
+                    brandTitle.classList.add('text-white');
+                }
+                if (signinLink) {
+                    signinLink.classList.remove('text-slate-700');
+                    signinLink.classList.add('text-white/90');
+                }
+                if (toggleBtn) {
+                    toggleBtn.className = 'inline-flex min-h-[40px] min-w-[40px] items-center justify-center rounded-full border border-white/20 bg-white/10 text-white hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-[#22C55E] transition';
+                }
             }
         };
 
@@ -91,8 +126,8 @@
     }
 
     function toggleDestDropdown() {
-        const destMenu = document.getElementById('dest-dropdown-menu');
         const pickupMenu = document.getElementById('pickup-dropdown-menu');
+        const destMenu = document.getElementById('dest-dropdown-menu');
         if (pickupMenu) pickupMenu.classList.add('hidden');
         if (destMenu) destMenu.classList.toggle('hidden');
     }
@@ -118,13 +153,17 @@
 
         if (route === 'route-a' || val === 'namur') {
             setRouteTabStyles('route-a');
-            if (destInput) destInput.value = 'toronto';
-            if (destText) destText.textContent = 'Yorkdale Mall & Yonge Station (Toronto)';
+            if (destInput && destInput.value !== 'toronto') {
+                destInput.value = 'toronto';
+                if (destText) destText.textContent = 'Yorkdale Mall & Yonge Station (Toronto)';
+            }
             if (scheduleText) scheduleText.textContent = '6:30 AM Daily';
         } else {
             setRouteTabStyles('route-b');
-            if (destInput) destInput.value = 'montreal';
-            if (destText) destText.textContent = 'Station Métro Namur (Montreal)';
+            if (destInput && destInput.value !== 'montreal') {
+                destInput.value = 'montreal';
+                if (destText) destText.textContent = 'Station Métro Namur (Montreal)';
+            }
             if (scheduleText) scheduleText.textContent = '12:15 PM & 1:15 PM Daily';
         }
     }
@@ -193,13 +232,13 @@
             btnA.className = 'route-tab-btn flex-1 py-2.5 px-3.5 rounded-xl text-xs sm:text-sm font-bold transition bg-[#22C55E] text-white shadow-xs cursor-pointer text-center';
             btnA.setAttribute('aria-selected', 'true');
 
-            btnB.className = 'route-tab-btn flex-1 py-2.5 px-3.5 rounded-xl text-xs sm:text-sm font-semibold transition text-slate-700 hover:text-slate-900 bg-white/80 hover:bg-white border border-slate-200/60 cursor-pointer text-center';
+            btnB.className = 'route-tab-btn flex-1 py-2.5 px-3.5 rounded-xl text-xs sm:text-sm font-semibold transition text-slate-300 hover:text-white bg-white/10 hover:bg-white/15 border border-white/10 cursor-pointer text-center';
             btnB.setAttribute('aria-selected', 'false');
         } else {
             btnB.className = 'route-tab-btn flex-1 py-2.5 px-3.5 rounded-xl text-xs sm:text-sm font-bold transition bg-[#22C55E] text-white shadow-xs cursor-pointer text-center';
             btnB.setAttribute('aria-selected', 'true');
 
-            btnA.className = 'route-tab-btn flex-1 py-2.5 px-3.5 rounded-xl text-xs sm:text-sm font-semibold transition text-slate-700 hover:text-slate-900 bg-white/80 hover:bg-white border border-slate-200/60 cursor-pointer text-center';
+            btnA.className = 'route-tab-btn flex-1 py-2.5 px-3.5 rounded-xl text-xs sm:text-sm font-semibold transition text-slate-300 hover:text-white bg-white/10 hover:bg-white/15 border border-white/10 cursor-pointer text-center';
             btnA.setAttribute('aria-selected', 'false');
         }
     }
