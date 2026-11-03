@@ -147,6 +147,7 @@ Oliver Transport is architected as a **Service-Oriented Pragmatic Layered Larave
 | | [`17-deployment-guide.md`](./17-deployment-guide.md) | Production infrastructure setup, environment configurations, scheduled tasks, and operations. | Audited |
 | | [`18-notification-strategy.md`](./18-notification-strategy.md) | Transactional notifications via Laravel native channels (Database, Log/Email). | Audited |
 | | [`19-future-roadmap.md`](./19-future-roadmap.md) | Detailed roadmap for Phases 2, 3, and 4 (Admin Panel, Online Payments, Fleet Scaling, GPS). | Audited |
+| | [`20-design-system-and-homepage.md`](./20-design-system-and-homepage.md) | Design system tokens, Blade components, vehicle branding analysis, and homepage implementation. | Implemented |
 | **Architecture Records**| [`decisions/README.md`](./decisions/README.md) | Architectural Decision Records (ADR) index and summary. | Audited |
 | | [`decisions/ADR-001-segment-based-seat-allocation.md`](./decisions/ADR-001-segment-based-seat-allocation.md) | ADR: Segment-Based Seat Allocation vs. Simplistic Trip Boolean. | Accepted |
 | | [`decisions/ADR-002-cash-only-payment-lifecycle.md`](./decisions/ADR-002-cash-only-payment-lifecycle.md) | ADR: Cash-Only Settlement & Independent Payment Lifecycle. | Accepted |

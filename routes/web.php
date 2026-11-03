@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Operator\DashboardController as OperatorDashboardController;
 use App\Http\Controllers\Passenger\DashboardController as PassengerDashboardController;
 use App\Http\Controllers\ProfileController;
@@ -17,10 +18,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Public Marketing & Information Routes
-Route::get('/', function () {
-    return view('welcome');
-})->name('home');
+// Public Frontend Marketing & Information Routes
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 // Role-Protected Dashboard Portals
 Route::middleware(['auth', 'role:passenger'])->prefix('passenger')->name('passenger.')->group(function () {
