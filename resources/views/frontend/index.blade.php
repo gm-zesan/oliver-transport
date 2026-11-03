@@ -15,7 +15,7 @@
                 <source src="{{ asset('videos/hero-highway-loop.mp4') }}" type="video/mp4">
             </video>
             <!-- Refined Lighter Cinematic Overlay for Maximum Luminous Visibility & Clarity -->
-            <div class="absolute inset-0 bg-gradient-to-r from-[#111827]/65 via-[#111827]/40 to-black/20"></div>
+            <div class="absolute inset-0 bg-gradient-to-r from-[#111827]/70 via-[#111827]/50 to-black/20"></div>
             <div class="absolute inset-0 bg-gradient-to-t from-[#111827]/70 via-transparent to-black/20"></div>
         </div>
 
@@ -57,8 +57,8 @@
 
                 <!-- RIGHT SIDE: Translucent Glass Booking Form -->
                 <div class="lg:w-[46%] w-full flex justify-center lg:justify-end">
-                    <div
-                        class="w-full max-w-md rounded-3xl p-6 sm:p-7 shadow-2xl shadow-black/50 border border-white/15 bg-[#111827]/75 backdrop-blur-2xl transition duration-200">
+                    <div id="booking-panel"
+                        class="w-full max-w-md rounded-3xl p-6 sm:p-7 shadow-2xl shadow-black/50 border border-white/15 bg-[#111827]/50 backdrop-blur-2xl transition duration-200">
 
                         <!-- Top Route Tabs Navigation -->
                         <div class="flex items-center gap-2.5 pb-4 border-b border-white/10" role="tablist">
@@ -371,130 +371,183 @@
         </div>
     </section>
 
-    <!-- 2. OUR SERVICES SECTION: Layout Matching Reference Image 2 (2x2 Horizontal Cards) -->
+    <!-- 2. OUR SERVICES SECTION: Realistic 3-Location Intercity Ride-Share Services (Route A & Route B) -->
     <section id="services" class="py-20 lg:py-28 bg-white border-b border-slate-200/80">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 
-            <!-- Section Header: 2 Columns Matching Reference Image 2 -->
+            <!-- Section Header: 2 Columns with justify-evenly on desktop -->
             <div class="flex flex-col md:flex-row md:items-end md:justify-evenly gap-6 mb-12 sm:mb-16">
                 <div>
                     <h2 class="text-4xl sm:text-5xl lg:text-6xl font-black text-[#111827] tracking-tight font-heading">
                         Services
                     </h2>
                 </div>
-                <p class="text-sm sm:text-base text-[#64748B] max-w-md leading-relaxed md:text-right">
-                    We invite you to try our services, and we personally guarantee that you will be completely satisfied.
+                <p class="text-sm sm:text-base text-[#64748B] max-w-md leading-relaxed md:text-right font-medium">
+                    Fixed-schedule daily passenger ride-share connecting our 3 primary hubs across Montreal and Toronto.
                 </p>
             </div>
 
-            <!-- 2x2 Grid of Horizontal Cards Matching Reference Image 2 -->
+            <!-- 2 Core Services Grid: Route A & Route B (Realistic 3-Location Ride-Share) -->
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
 
-                <!-- Card 1: Airport transfers -->
+                <!-- Service 1: Route A — Montreal to Toronto -->
                 <div
-                    class="rounded-[2rem] bg-[#F1F3F7] p-5 sm:p-6 flex flex-col sm:flex-row items-stretch gap-5 sm:gap-6 border border-slate-200/60 shadow-xs hover:shadow-xl hover:border-[#22C55E]/40 transition-all duration-300">
-                    <div class="w-full sm:w-[48%] h-48 sm:h-auto min-h-[180px] rounded-2xl overflow-hidden flex-shrink-0">
-                        <img src="{{ asset('images/service-airport.jpg') }}" alt="Oliver Transport Airport Transfer Service"
-                            class="w-full h-full object-cover rounded-2xl" />
-                    </div>
-                    <div class="w-full sm:w-[52%] flex flex-col justify-between py-1">
-                        <div>
-                            <h3 class="text-xl sm:text-2xl font-black text-[#111827] tracking-tight font-heading">
-                                Airport transfers
-                            </h3>
-                            <p class="mt-2.5 text-xs sm:text-sm text-[#64748B] leading-relaxed">
-                                With additional wait time and flight tracking in case of delays, our service is optimized to
-                                make every airport transfer a breeze.
-                            </p>
-                        </div>
-                        <div class="mt-5">
-                            <a href="#contact"
-                                class="inline-flex items-center justify-center rounded-xl bg-slate-900 hover:bg-[#22C55E] text-white px-6 py-2.5 text-xs font-bold transition duration-200 shadow-xs">
-                                Read More
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Card 2: Intercity trips -->
-                <div
-                    class="rounded-[2rem] bg-[#F1F3F7] p-5 sm:p-6 flex flex-col sm:flex-row items-stretch gap-5 sm:gap-6 border border-slate-200/60 shadow-xs hover:shadow-xl hover:border-[#22C55E]/40 transition-all duration-300">
-                    <div class="w-full sm:w-[48%] h-48 sm:h-auto min-h-[180px] rounded-2xl overflow-hidden flex-shrink-0">
+                    class="group relative rounded-3xl bg-[#F8FAFC] p-6 sm:p-7 flex flex-col sm:flex-row items-stretch gap-6 border border-slate-200/90 shadow-xs hover:bg-white hover:border-[#22C55E]/50 transition-all duration-300">
+                    <div
+                        class="w-full sm:w-[46%] h-56 sm:h-auto min-h-[220px] rounded-2xl overflow-hidden flex-shrink-0 bg-slate-900">
                         <img src="{{ asset('images/service-intercity.jpg') }}"
-                            alt="Oliver Transport Intercity Trips Montreal to Toronto"
-                            class="w-full h-full object-cover rounded-2xl" />
+                            alt="Oliver Transport Route A: Montreal to Toronto Shuttle"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out" />
                     </div>
-                    <div class="w-full sm:w-[52%] flex flex-col justify-between py-1">
+                    <div class="w-full sm:w-[54%] flex flex-col justify-between py-1">
                         <div>
-                            <h3 class="text-xl sm:text-2xl font-black text-[#111827] tracking-tight font-heading">
-                                Intercity trips
+                            <div class="flex items-baseline justify-between gap-3 mb-2">
+                                <span class="text-xs font-bold uppercase tracking-wider text-[#16A34A]">
+                                    Route A • Daily Service
+                                </span>
+                                <span class="text-sm font-black text-slate-900 font-mono">
+                                    <span class="text-xs font-semibold text-slate-500">CAD</span>
+                                </span>
+                            </div>
+
+                            <h3
+                                class="text-2xl font-black text-[#111827] tracking-tight font-heading group-hover:text-[#16A34A] transition-colors">
+                                Montreal → Toronto
                             </h3>
-                            <p class="mt-2.5 text-xs sm:text-sm text-[#64748B] leading-relaxed">
-                                Your stressfree solution for traveling between Montreal and Toronto with guaranteed reserved
-                                seating, daily schedules, and professional chauffeurs.
+
+                            <p class="mt-2 text-sm text-[#64748B] leading-relaxed">
+                                Daily morning passenger ride-share connecting Montreal directly to Toronto. Board at Station
+                                Métro Namur with drop-offs at Yorkdale Mall and Yonge Station.
                             </p>
+
+                            <div class="mt-4 space-y-2 text-xs sm:text-sm text-slate-700">
+                                <div class="flex items-center gap-2.5">
+                                    <span
+                                        class="flex h-5 w-5 items-center justify-center rounded-full bg-[#22C55E]/15 text-[#16A34A] flex-shrink-0">
+                                        <svg class="h-3 w-3" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd"
+                                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                                clip-rule="evenodd" />
+                                        </svg>
+                                    </span>
+                                    <span><strong>Pickup:</strong> Station Métro Namur at 6:30 AM</span>
+                                </div>
+                                <div class="flex items-center gap-2.5">
+                                    <span
+                                        class="flex h-5 w-5 items-center justify-center rounded-full bg-[#22C55E]/15 text-[#16A34A] flex-shrink-0">
+                                        <svg class="h-3 w-3" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd"
+                                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                                clip-rule="evenodd" />
+                                        </svg>
+                                    </span>
+                                    <span><strong>Drop-offs:</strong> Yorkdale Mall &amp; Yonge Station</span>
+                                </div>
+                                <div class="flex items-center gap-2.5">
+                                    <span
+                                        class="flex h-5 w-5 items-center justify-center rounded-full bg-[#22C55E]/15 text-[#16A34A] flex-shrink-0">
+                                        <svg class="h-3 w-3" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd"
+                                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                                clip-rule="evenodd" />
+                                        </svg>
+                                    </span>
+                                    <span>Cash payment upon boarding with driver ( CAD)</span>
+                                </div>
+                            </div>
                         </div>
-                        <div class="mt-5">
-                            <a href="#contact"
-                                class="inline-flex items-center justify-center rounded-xl bg-slate-900 hover:bg-[#22C55E] text-white px-6 py-2.5 text-xs font-bold transition duration-200 shadow-xs">
-                                Read More
+
+                        <div class="mt-6 pt-4 border-t border-slate-200/70 flex items-center justify-between">
+                            <a href="#booking-panel" onclick="switchHeroRoute('route-a')"
+                                class="inline-flex items-center gap-2 rounded-xl bg-slate-900 hover:bg-[#22C55E] text-white px-5 py-2.5 text-xs font-bold transition duration-200 shadow-xs">
+                                <span>Book Route A</span>
+                                <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                                        d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                                </svg>
                             </a>
+                            <span class="text-xs font-semibold text-slate-500">6 Passenger Seats</span>
                         </div>
                     </div>
                 </div>
 
-                <!-- Card 3: Wedding events -->
+                <!-- Service 2: Route B — Toronto to Montreal -->
                 <div
-                    class="rounded-[2rem] bg-[#F1F3F7] p-5 sm:p-6 flex flex-col sm:flex-row items-stretch gap-5 sm:gap-6 border border-slate-200/60 shadow-xs hover:shadow-xl hover:border-[#22C55E]/40 transition-all duration-300">
-                    <div class="w-full sm:w-[48%] h-48 sm:h-auto min-h-[180px] rounded-2xl overflow-hidden flex-shrink-0">
-                        <img src="{{ asset('images/service-special-events.jpg') }}"
-                            alt="Oliver Transport Wedding &amp; Special Events Chauffeur"
-                            class="w-full h-full object-cover rounded-2xl" />
-                    </div>
-                    <div class="w-full sm:w-[52%] flex flex-col justify-between py-1">
-                        <div>
-                            <h3 class="text-xl sm:text-2xl font-black text-[#111827] tracking-tight font-heading">
-                                Wedding events
-                            </h3>
-                            <p class="mt-2.5 text-xs sm:text-sm text-[#64748B] leading-relaxed">
-                                Our friendly, and attentive service combined with thorough attention to detail ensure you
-                                can
-                                truly relax and enjoy your special day.
-                            </p>
-                        </div>
-                        <div class="mt-5">
-                            <a href="#contact"
-                                class="inline-flex items-center justify-center rounded-xl bg-slate-900 hover:bg-[#22C55E] text-white px-6 py-2.5 text-xs font-bold transition duration-200 shadow-xs">
-                                Read More
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Card 4: Business Meeting -->
-                <div
-                    class="rounded-[2rem] bg-[#F1F3F7] p-5 sm:p-6 flex flex-col sm:flex-row items-stretch gap-5 sm:gap-6 border border-slate-200/60 shadow-xs hover:shadow-xl hover:border-[#22C55E]/40 transition-all duration-300">
-                    <div class="w-full sm:w-[48%] h-48 sm:h-auto min-h-[180px] rounded-2xl overflow-hidden flex-shrink-0">
+                    class="group relative rounded-3xl bg-[#F8FAFC] p-6 sm:p-7 flex flex-col sm:flex-row items-stretch gap-6 border border-slate-200/90 shadow-xs hover:bg-white hover:border-[#22C55E]/50 transition-all duration-300">
+                    <div
+                        class="w-full sm:w-[46%] h-56 sm:h-auto min-h-[220px] rounded-2xl overflow-hidden flex-shrink-0 bg-slate-900">
                         <img src="{{ asset('images/service-corporate.jpg') }}"
-                            alt="Oliver Transport Business Meeting Corporate Travel"
-                            class="w-full h-full object-cover rounded-2xl" />
+                            alt="Oliver Transport Route B: Toronto to Montreal Shuttle"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out" />
                     </div>
-                    <div class="w-full sm:w-[52%] flex flex-col justify-between py-1">
+                    <div class="w-full sm:w-[54%] flex flex-col justify-between py-1">
                         <div>
-                            <h3 class="text-xl sm:text-2xl font-black text-[#111827] tracking-tight font-heading">
-                                Business Meeting
+                            <div class="flex items-baseline justify-between gap-3 mb-2">
+                                <span class="text-xs font-bold uppercase tracking-wider text-[#16A34A]">
+                                    Route B • Daily Service
+                                </span>
+                                <span class="text-sm font-black text-slate-900 font-mono">
+                                    <span class="text-xs font-semibold text-slate-500">CAD</span>
+                                </span>
+                            </div>
+
+                            <h3
+                                class="text-2xl font-black text-[#111827] tracking-tight font-heading group-hover:text-[#16A34A] transition-colors">
+                                Toronto → Montreal
                             </h3>
-                            <p class="mt-2.5 text-xs sm:text-sm text-[#64748B] leading-relaxed">
-                                Focus on your meeting with your partners, forget about the road and the car, which will
-                                distract
-                                your thoughts. We handle everything.
+
+                            <p class="mt-2 text-sm text-[#64748B] leading-relaxed">
+                                Daily afternoon return passenger ride-share connecting Toronto to Montreal. Board at
+                                Yorkdale Mall or Yonge Station with final drop-off at Station Métro Namur.
                             </p>
+
+                            <div class="mt-4 space-y-2 text-xs sm:text-sm text-slate-700">
+                                <div class="flex items-center gap-2.5">
+                                    <span
+                                        class="flex h-5 w-5 items-center justify-center rounded-full bg-[#22C55E]/15 text-[#16A34A] flex-shrink-0">
+                                        <svg class="h-3 w-3" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd"
+                                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                                clip-rule="evenodd" />
+                                        </svg>
+                                    </span>
+                                    <span><strong>Pickups:</strong> Yorkdale (12:15 PM) &amp; Yonge (1:15 PM)</span>
+                                </div>
+                                <div class="flex items-center gap-2.5">
+                                    <span
+                                        class="flex h-5 w-5 items-center justify-center rounded-full bg-[#22C55E]/15 text-[#16A34A] flex-shrink-0">
+                                        <svg class="h-3 w-3" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd"
+                                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                                clip-rule="evenodd" />
+                                        </svg>
+                                    </span>
+                                    <span><strong>Drop-off:</strong> Station Métro Namur (~7:15 PM EST)</span>
+                                </div>
+                                <div class="flex items-center gap-2.5">
+                                    <span
+                                        class="flex h-5 w-5 items-center justify-center rounded-full bg-[#22C55E]/15 text-[#16A34A] flex-shrink-0">
+                                        <svg class="h-3 w-3" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd"
+                                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                                clip-rule="evenodd" />
+                                        </svg>
+                                    </span>
+                                    <span>Cash payment upon boarding with driver ( CAD)</span>
+                                </div>
+                            </div>
                         </div>
-                        <div class="mt-5">
-                            <a href="#contact"
-                                class="inline-flex items-center justify-center rounded-xl bg-slate-900 hover:bg-[#22C55E] text-white px-6 py-2.5 text-xs font-bold transition duration-200 shadow-xs">
-                                Read More
+
+                        <div class="mt-6 pt-4 border-t border-slate-200/70 flex items-center justify-between">
+                            <a href="#booking-panel" onclick="switchHeroRoute('route-b')"
+                                class="inline-flex items-center gap-2 rounded-xl bg-slate-900 hover:bg-[#22C55E] text-white px-5 py-2.5 text-xs font-bold transition duration-200 shadow-xs">
+                                <span>Book Route B</span>
+                                <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                                        d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                                </svg>
                             </a>
+                            <span class="text-xs font-semibold text-slate-500">6 Passenger Seats</span>
                         </div>
                     </div>
                 </div>
@@ -503,316 +556,336 @@
         </div>
     </section>
 
-    <!-- 3. WHY CHOOSE US SECTION: Soft Green-Tinted (#F0FDF4) Background with 4 Benefits -->
+    <!-- 3. WHY CHOOSE US SECTION: Premium Two-Part Layout (Left Intro + Right 2x2 Benefits Grid) -->
     <section id="why-us" class="py-20 lg:py-28 bg-[#F0FDF4] border-b border-[#22C55E]/15">
-        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-
-            <!-- Section Heading & Description -->
-            <div class="text-center max-w-3xl mx-auto mb-16 sm:mb-20">
-                <span class="inline-block text-xs font-black tracking-widest text-[#16A34A] uppercase mb-3">
-                    WHY CHOOSE US
-                </span>
-                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black text-[#111827] tracking-tight font-heading">
-                    Travel with Confidence
-                </h2>
-                <p class="mt-4 text-base sm:text-lg text-[#64748B] leading-relaxed">
-                    At Oliver Transport, we are committed to delivering exceptional transportation services with
-                    professionalism, reliability and comfort.
-                </p>
-            </div>
-
-            <!-- 4 Benefit Items Arranged Horizontally with Thin Separators -->
-            <div class="rounded-3xl bg-white border border-[#22C55E]/20 p-8 sm:p-12 shadow-sm">
-                <div
-                    class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-0 lg:divide-x lg:divide-slate-200/80">
-
-                    <!-- Benefit 1: Professional Drivers -->
-                    <div class="lg:px-8 flex flex-col items-center text-center">
-                        <div
-                            class="h-12 w-12 rounded-2xl bg-[#F0FDF4] text-[#22C55E] flex items-center justify-center mb-4 border border-[#22C55E]/25">
-                            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                            </svg>
-                        </div>
-                        <h3 class="text-lg font-bold text-[#1F2937] font-heading">Professional Drivers</h3>
-                        <p class="mt-2 text-sm text-[#64748B] leading-relaxed">
-                            Experienced and courteous drivers.
-                        </p>
-                    </div>
-
-                    <!-- Benefit 2: Premium Vehicles -->
-                    <div class="lg:px-8 flex flex-col items-center text-center">
-                        <div
-                            class="h-12 w-12 rounded-2xl bg-[#F0FDF4] text-[#22C55E] flex items-center justify-center mb-4 border border-[#22C55E]/25">
-                            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                            </svg>
-                        </div>
-                        <h3 class="text-lg font-bold text-[#1F2937] font-heading">Premium Vehicles</h3>
-                        <p class="mt-2 text-sm text-[#64748B] leading-relaxed">
-                            Well-maintained luxury cars.
-                        </p>
-                    </div>
-
-                    <!-- Benefit 3: On-Time Service -->
-                    <div class="lg:px-8 flex flex-col items-center text-center">
-                        <div
-                            class="h-12 w-12 rounded-2xl bg-[#F0FDF4] text-[#22C55E] flex items-center justify-center mb-4 border border-[#22C55E]/25">
-                            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                        </div>
-                        <h3 class="text-lg font-bold text-[#1F2937] font-heading">On-Time Service</h3>
-                        <p class="mt-2 text-sm text-[#64748B] leading-relaxed">
-                            Always on schedule.
-                        </p>
-                    </div>
-
-                    <!-- Benefit 4: Reliable Service -->
-                    <div class="lg:px-8 flex flex-col items-center text-center">
-                        <div
-                            class="h-12 w-12 rounded-2xl bg-[#F0FDF4] text-[#22C55E] flex items-center justify-center mb-4 border border-[#22C55E]/25">
-                            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                            </svg>
-                        </div>
-                        <h3 class="text-lg font-bold text-[#1F2937] font-heading">Reliable Service</h3>
-                        <p class="mt-2 text-sm text-[#64748B] leading-relaxed">
-                            Your trust, our priority.
-                        </p>
-                    </div>
-
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- 4. ABOUT OLIVER TRANSPORT SECTION: Clean White (#FFFFFF) 2-Column Layout -->
-    <section id="about" class="py-20 lg:py-28 bg-white border-b border-slate-200/80">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
 
-                <!-- Left Column: Authentic Vehicle Image & Fleet Badge -->
-                <div class="lg:col-span-6 relative">
-                    <div class="relative rounded-3xl overflow-hidden shadow-2xl border border-slate-100">
-                        <img src="{{ asset('images/oliver-transport-van.jpg') }}"
-                            alt="Oliver Transport Commercial Silver Honda Odyssey Chauffeur Minivan"
-                            class="w-full h-full object-cover aspect-[4/3]" />
-
-                        <!-- Verified Fleet Overlay Badge -->
-                        <div
-                            class="absolute bottom-4 left-4 right-4 rounded-2xl bg-[#111827]/85 backdrop-blur-md p-4 border border-white/10 text-white">
-                            <div class="flex items-center justify-between">
-                                <div>
-                                    <span
-                                        class="text-[10px] font-black uppercase tracking-wider text-[#22C55E] block">Operating
-                                        Fleet</span>
-                                    <h4 class="text-sm sm:text-base font-bold text-white">Honda Odyssey</h4>
-                                </div>
-                                <div class="text-right">
-                                    <span class="text-[10px] font-bold text-slate-400 block">Ontario Commercial</span>
-                                    <span
-                                        class="font-mono text-xs font-black text-[#22C55E] bg-white/10 px-2 py-0.5 rounded-md">RAJIA</span>
-                                </div>
-                            </div>
-                            <div
-                                class="mt-2 pt-2 border-t border-white/10 flex items-center justify-between text-xs text-slate-300">
-                                <span>6 Passenger Seats</span>
-                                <span>Montreal ↔ Toronto Corridor</span>
-                            </div>
-                        </div>
+                <!-- LEFT SIDE – Introduction (5 cols) -->
+                <div class="lg:col-span-5 space-y-6 text-left">
+                    <div class="flex items-center gap-3">
+                        <span class="w-8 h-1 bg-[#22C55E] rounded-full inline-block"></span>
+                        <span class="text-xs font-black tracking-widest text-[#16A34A] uppercase">
+                            WHY CHOOSE US
+                        </span>
                     </div>
-                </div>
 
-                <!-- Right Column: Narrative & Learn More CTA -->
-                <div class="lg:col-span-6 space-y-6">
-                    <span class="inline-block text-xs font-black tracking-widest text-[#22C55E] uppercase">
-                        ABOUT OLIVER TRANSPORT
-                    </span>
-
-                    <h2
-                        class="text-3xl sm:text-4xl lg:text-5xl font-black text-[#111827] tracking-tight font-heading leading-tight">
-                        More Than Just a Ride
+                    <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black text-[#111827] tracking-tight font-heading leading-tight">
+                        Travel with Confidence
                     </h2>
 
-                    <p class="text-base sm:text-lg text-[#64748B] leading-relaxed">
-                        We provide premium transportation solutions designed around your comfort, convenience and peace of
-                        mind.
-                    </p>
-
-                    <p class="text-sm sm:text-base text-[#1F2937] leading-relaxed">
-                        Oliver Transport operates daily scheduled intercity passenger transportation connecting Montreal and
-                        Toronto. With fixed departure timetables, individual seat selection on an interactive vehicle map,
-                        and cash settlement upon boarding, we deliver straightforward, reliable chauffeur journeys for
-                        business, leisure, and personal travel.
+                    <p class="text-base sm:text-lg text-[#64748B] leading-relaxed max-w-md">
+                        At Oliver Transport, we believe every journey should be comfortable, reliable, and stress-free. Our commitment to professional service ensures you enjoy a better travel experience every time.
                     </p>
 
                     <div class="pt-2">
-                        <a href="#contact"
-                            class="inline-flex min-h-[48px] items-center justify-center rounded-2xl bg-[#22C55E] hover:bg-[#16A34A] text-white px-8 py-3.5 text-sm sm:text-base font-bold shadow-md hover:shadow-lg transition focus:outline-none focus:ring-2 focus:ring-[#22C55E]">
-                            Learn More
+                        <a href="#booking-panel"
+                            class="inline-flex items-center gap-2 text-sm sm:text-base font-bold text-[#111827] hover:text-[#16A34A] transition group">
+                            <span>Learn More</span>
+                            <span class="group-hover:translate-x-1 transition-transform">→</span>
                         </a>
                     </div>
                 </div>
 
+                <!-- RIGHT SIDE – Four Key Benefits: Clean 2x2 Grid with Subtle Dividers (7 cols) -->
+                <div class="lg:col-span-7">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-px bg-slate-200/80 rounded-3xl overflow-hidden border border-slate-200/80 shadow-xs">
+
+                        <!-- Benefit 1: Professional Drivers -->
+                        <div class="group bg-white p-7 sm:p-8 hover:bg-[#F8FAFC] transition-colors duration-200 flex flex-col justify-between">
+                            <div>
+                                <div class="h-12 w-12 rounded-2xl bg-[#F0FDF4] text-[#22C55E] flex items-center justify-center mb-5 border border-[#22C55E]/20 group-hover:scale-105 transition-transform">
+                                    <!-- Steering Wheel Icon -->
+                                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75">
+                                        <circle cx="12" cy="12" r="9" stroke-linecap="round" stroke-linejoin="round" />
+                                        <circle cx="12" cy="12" r="2.5" stroke-linecap="round" stroke-linejoin="round" />
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 14.5V21M9.5 12H3M21 12h-6.5" />
+                                    </svg>
+                                </div>
+                                <h3 class="text-lg sm:text-xl font-black text-[#111827] font-heading tracking-tight group-hover:text-[#16A34A] transition-colors">
+                                    Professional Drivers
+                                </h3>
+                                <p class="mt-2.5 text-xs sm:text-sm text-[#64748B] leading-relaxed">
+                                    Experienced, courteous, and dedicated drivers who put your comfort first.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Benefit 2: Premium Comfort -->
+                        <div class="group bg-white p-7 sm:p-8 hover:bg-[#F8FAFC] transition-colors duration-200 flex flex-col justify-between">
+                            <div>
+                                <div class="h-12 w-12 rounded-2xl bg-[#F0FDF4] text-[#22C55E] flex items-center justify-center mb-5 border border-[#22C55E]/20 group-hover:scale-105 transition-transform">
+                                    <!-- Premium Comfort / Armchair Icon -->
+                                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 11V7a3 3 0 013-3h8a3 3 0 013 3v4" />
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 11a2 2 0 012-2h14a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6z" />
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 19v2M18 19v2" />
+                                    </svg>
+                                </div>
+                                <h3 class="text-lg sm:text-xl font-black text-[#111827] font-heading tracking-tight group-hover:text-[#16A34A] transition-colors">
+                                    Premium Comfort
+                                </h3>
+                                <p class="mt-2.5 text-xs sm:text-sm text-[#64748B] leading-relaxed">
+                                    Enjoy a comfortable journey with carefully maintained vehicles.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Benefit 3: Always On Time -->
+                        <div class="group bg-white p-7 sm:p-8 hover:bg-[#F8FAFC] transition-colors duration-200 flex flex-col justify-between">
+                            <div>
+                                <div class="h-12 w-12 rounded-2xl bg-[#F0FDF4] text-[#22C55E] flex items-center justify-center mb-5 border border-[#22C55E]/20 group-hover:scale-105 transition-transform">
+                                    <!-- Clock / Punctuality Icon -->
+                                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75">
+                                        <circle cx="12" cy="12" r="9" stroke-linecap="round" stroke-linejoin="round" />
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 7v5l3 2" />
+                                    </svg>
+                                </div>
+                                <h3 class="text-lg sm:text-xl font-black text-[#111827] font-heading tracking-tight group-hover:text-[#16A34A] transition-colors">
+                                    Always On Time
+                                </h3>
+                                <p class="mt-2.5 text-xs sm:text-sm text-[#64748B] leading-relaxed">
+                                    We value your time and aim to make every journey punctual and smooth.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Benefit 4: Reliable Service -->
+                        <div class="group bg-white p-7 sm:p-8 hover:bg-[#F8FAFC] transition-colors duration-200 flex flex-col justify-between">
+                            <div>
+                                <div class="h-12 w-12 rounded-2xl bg-[#F0FDF4] text-[#22C55E] flex items-center justify-center mb-5 border border-[#22C55E]/20 group-hover:scale-105 transition-transform">
+                                    <!-- Shield Check Icon -->
+                                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                                    </svg>
+                                </div>
+                                <h3 class="text-lg sm:text-xl font-black text-[#111827] font-heading tracking-tight group-hover:text-[#16A34A] transition-colors">
+                                    Reliable Service
+                                </h3>
+                                <p class="mt-2.5 text-xs sm:text-sm text-[#64748B] leading-relaxed">
+                                    Dependable transportation with a focus on safety and customer satisfaction.
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
 
-    <!-- 5. CONTACT US SECTION: Light Background (#F8FAFC) with Cards & Form -->
-    <section id="contact" class="py-20 lg:py-28 bg-[#F8FAFC] border-b border-slate-200/80">
+    <!-- 3. VEHICLE SHOWCASE SECTION: Inspired by Reference Image 87756ac6.jpg (Wide Vehicle Spec Card) -->
+    <section id="about" class="py-20 lg:py-28 bg-[#F8FAFC] border-b border-slate-200/80">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 
-            <!-- Section Heading -->
-            <div class="text-center max-w-3xl mx-auto mb-16 sm:mb-20">
-                <span class="inline-block text-xs font-black tracking-widest text-[#22C55E] uppercase mb-3">
-                    CONTACT US
-                </span>
-                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black text-[#111827] tracking-tight font-heading">
-                    Get in Touch
+            <!-- Section Header -->
+            <div class="text-center max-w-3xl mx-auto mb-14 sm:mb-16">
+                <h2 class="text-4xl sm:text-5xl lg:text-6xl font-black text-[#111827] tracking-tight font-heading">
+                    Only  / seat
                 </h2>
-                <p class="mt-4 text-base sm:text-lg text-[#64748B] leading-relaxed">
-                    Have a question or need help planning your journey? Contact our team.
+                <p class="mt-3.5 text-base sm:text-lg text-[#64748B] leading-relaxed">
+                    Enjoy guaranteed reserved seating, generous luggage space, and smooth highway comfort in our executive minivan.
+                </p>
+                <div class="mt-4">
+                    <a href="#booking-panel"
+                        class="inline-flex items-center justify-center rounded-xl bg-slate-900 hover:bg-[#22C55E] text-white px-6 py-2.5 text-xs font-bold transition duration-200 shadow-xs">
+                        Open Fleet
+                    </a>
+                </div>
+            </div>
+
+            <!-- Wide Vehicle Feature Card Matching Reference Image 87756ac6.jpg -->
+            <div class="rounded-3xl bg-white border border-slate-200/90 p-8 sm:p-12 shadow-sm">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+
+                    <!-- Left: Vehicle Name, Specs Checklist, and Reserve CTA (6 cols) -->
+                    <div class="lg:col-span-6 space-y-6">
+                        <div>
+                            <span class="text-xs font-extrabold uppercase tracking-widest text-[#16A34A] block mb-1">
+                                Operating Fleet Profile
+                            </span>
+                            <h3 class="text-3xl sm:text-4xl font-black text-[#111827] tracking-tight font-heading">
+                                Honda Odyssey
+                            </h3>
+                            <p class="text-xs text-slate-500 font-medium mt-1">
+                                Silver Minivan • Commercial Ontario Plate: <strong class="font-mono text-slate-900 font-black">RAJIA</strong>
+                            </p>
+                        </div>
+
+                        <!-- 2-Column Feature Checklist Matching Reference Image -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs sm:text-sm text-slate-700">
+                            <div class="flex items-center gap-2.5">
+                                <svg class="h-4 w-4 text-[#22C55E] flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                                </svg>
+                                <span>6 Passenger Seats</span>
+                            </div>
+                            <div class="flex items-center gap-2.5">
+                                <svg class="h-4 w-4 text-[#22C55E] flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                                </svg>
+                                <span>Clean Tinted Windows</span>
+                            </div>
+                            <div class="flex items-center gap-2.5">
+                                <svg class="h-4 w-4 text-[#22C55E] flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                                </svg>
+                                <span>Tri-Zone Climate Control</span>
+                            </div>
+                            <div class="flex items-center gap-2.5">
+                                <svg class="h-4 w-4 text-[#22C55E] flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                                </svg>
+                                <span>USB Charging Ports</span>
+                            </div>
+                            <div class="flex items-center gap-2.5">
+                                <svg class="h-4 w-4 text-[#22C55E] flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                                </svg>
+                                <span>Generous Luggage Allowance</span>
+                            </div>
+                            <div class="flex items-center gap-2.5">
+                                <svg class="h-4 w-4 text-[#22C55E] flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                                </svg>
+                                <span>Cash Payment Upon Boarding</span>
+                            </div>
+                        </div>
+
+                        <!-- Price and Cash Payment Banner -->
+                        <div class="rounded-2xl bg-[#F0FDF4] border border-[#22C55E]/30 p-4 text-xs text-slate-800 leading-relaxed">
+                            Pay the driver directly in cash when boarding ( CAD flat fare). Zero upfront electronic deposit or prepayment needed.
+                        </div>
+
+                        <!-- Action Button -->
+                        <div class="pt-2">
+                            <a href="#booking-panel"
+                                class="inline-flex min-h-[48px] items-center justify-center rounded-xl bg-slate-900 hover:bg-[#22C55E] text-white px-8 py-3 text-sm font-bold shadow-sm transition duration-200 cursor-pointer">
+                                Reserve Now
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Right: Authentic Vehicle Showcase Image (6 cols) -->
+                    <div class="lg:col-span-6 relative">
+                        <div class="relative rounded-2xl overflow-hidden shadow-lg border border-slate-100 bg-slate-100">
+                            <img src="{{ asset('images/oliver-transport-van.jpg') }}"
+                                alt="Oliver Transport Commercial Silver Honda Odyssey Chauffeur Minivan Plate RAJIA"
+                                class="w-full h-full object-cover aspect-[4/3]" />
+
+                            <!-- Bottom Floating Strip -->
+                            <div class="absolute bottom-3 left-3 right-3 rounded-xl bg-slate-950/85 backdrop-blur-md px-4 py-2.5 text-white flex items-center justify-between text-xs">
+                                <div>
+                                    <span class="text-[10px] text-slate-400 uppercase tracking-wider block">License Plate</span>
+                                    <span class="font-mono font-black text-[#22C55E]">RAJIA</span>
+                                </div>
+                                <div class="text-right">
+                                    <span class="text-[10px] text-slate-400 uppercase tracking-wider block">Fixed Corridor</span>
+                                    <span class="font-semibold text-white">Montreal ↔ Toronto</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 4. FAQ / CORRIDOR GUIDELINES SECTION: Inspired by Reference Image 304beb44.jpg -->
+    <section id="faq" class="py-20 lg:py-28 bg-white border-b border-slate-200/80">
+        <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+
+            <!-- Section Heading -->
+            <div class="text-center max-w-2xl mx-auto mb-14 sm:mb-16">
+                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black text-[#111827] tracking-tight font-heading">
+                    Frequently Asked Questions
+                </h2>
+                <p class="mt-3.5 text-sm sm:text-base text-[#64748B] leading-relaxed">
+                    Everything you need to know about our daily Montreal ↔ Toronto passenger shuttle.
                 </p>
             </div>
 
-            <!-- Two-Column Grid: Contact Information & Inquiry Form -->
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
+            <!-- FAQ Accordion List -->
+            <div class="space-y-4">
 
-                <!-- Left Column: Verified Contact Cards (5 cols) -->
-                <div class="lg:col-span-5 space-y-5">
-
-                    <!-- Phone Card -->
-                    <div class="rounded-3xl border border-slate-200/80 bg-white p-6 shadow-xs flex items-start gap-4">
-                        <div
-                            class="h-12 w-12 rounded-2xl bg-[#F0FDF4] text-[#22C55E] flex items-center justify-center flex-shrink-0">
-                            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                <!-- FAQ 1 -->
+                <details class="group rounded-2xl border border-slate-200/80 bg-[#F8FAFC] p-6 open:bg-white open:border-[#22C55E]/40 open:shadow-md transition-all duration-200">
+                    <summary class="flex cursor-pointer items-center justify-between text-base sm:text-lg font-bold text-[#111827] select-none">
+                        <span>How do I pay for my trip?</span>
+                        <span class="ml-4 flex h-7 w-7 items-center justify-center rounded-full bg-slate-200/70 text-slate-700 group-open:bg-[#22C55E] group-open:text-white transition">
+                            <svg class="h-4 w-4 transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7" />
                             </svg>
-                        </div>
-                        <div>
-                            <span class="text-xs font-bold uppercase tracking-wider text-[#64748B] block">Direct Telephone /
-                                SMS</span>
-                            <a href="tel:6476551884"
-                                class="text-lg font-bold text-[#1F2937] hover:text-[#22C55E] transition mt-0.5 block font-mono">
-                                647-655-1884
-                            </a>
-                            <span class="text-xs text-[#64748B] mt-0.5 block">Call, Text, or WhatsApp available
-                                daily.</span>
-                        </div>
-                    </div>
+                        </span>
+                    </summary>
+                    <p class="mt-4 text-xs sm:text-sm text-[#64748B] leading-relaxed">
+                        Payment is simple and cash-only ( CAD flat fare). You pay the driver directly upon boarding the vehicle. No online payment or upfront credit card deposit is needed.
+                    </p>
+                </details>
 
-                    <!-- Email Card -->
-                    <div class="rounded-3xl border border-slate-200/80 bg-white p-6 shadow-xs flex items-start gap-4">
-                        <div
-                            class="h-12 w-12 rounded-2xl bg-[#F0FDF4] text-[#22C55E] flex items-center justify-center flex-shrink-0">
-                            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                <!-- FAQ 2 -->
+                <details class="group rounded-2xl border border-slate-200/80 bg-[#F8FAFC] p-6 open:bg-white open:border-[#22C55E]/40 open:shadow-md transition-all duration-200">
+                    <summary class="flex cursor-pointer items-center justify-between text-base sm:text-lg font-bold text-[#111827] select-none">
+                        <span>Where are the exact pickup and drop-off stations?</span>
+                        <span class="ml-4 flex h-7 w-7 items-center justify-center rounded-full bg-slate-200/70 text-slate-700 group-open:bg-[#22C55E] group-open:text-white transition">
+                            <svg class="h-4 w-4 transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7" />
                             </svg>
-                        </div>
-                        <div>
-                            <span class="text-xs font-bold uppercase tracking-wider text-[#64748B] block">Email
-                                Support</span>
-                            <a href="mailto:info@olivertransport.ca"
-                                class="text-base font-bold text-[#1F2937] hover:text-[#22C55E] transition mt-0.5 block">
-                                info@olivertransport.ca
-                            </a>
-                            <span class="text-xs text-[#64748B] mt-0.5 block">Booking confirmations and passenger
-                                inquiries.</span>
-                        </div>
-                    </div>
+                        </span>
+                    </summary>
+                    <p class="mt-4 text-xs sm:text-sm text-[#64748B] leading-relaxed">
+                        We operate strictly between 3 predefined transit hubs: <strong>Station Métro Namur</strong> in Montreal, and <strong>Yorkdale Mall</strong> and <strong>Yonge Station</strong> in Toronto. All locations provide seamless connections to subway lines and major highways.
+                    </p>
+                </details>
 
-                    <!-- Stations Card -->
-                    <div class="rounded-3xl border border-slate-200/80 bg-white p-6 shadow-xs flex items-start gap-4">
-                        <div
-                            class="h-12 w-12 rounded-2xl bg-[#F0FDF4] text-[#22C55E] flex items-center justify-center flex-shrink-0">
-                            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                <!-- FAQ 3 -->
+                <details class="group rounded-2xl border border-slate-200/80 bg-[#F8FAFC] p-6 open:bg-white open:border-[#22C55E]/40 open:shadow-md transition-all duration-200">
+                    <summary class="flex cursor-pointer items-center justify-between text-base sm:text-lg font-bold text-[#111827] select-none">
+                        <span>What are the daily departure times?</span>
+                        <span class="ml-4 flex h-7 w-7 items-center justify-center rounded-full bg-slate-200/70 text-slate-700 group-open:bg-[#22C55E] group-open:text-white transition">
+                            <svg class="h-4 w-4 transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7" />
                             </svg>
-                        </div>
-                        <div class="text-sm">
-                            <span class="text-xs font-bold uppercase tracking-wider text-[#64748B] block">Predefined
-                                Corridor Stations</span>
-                            <h4 class="font-bold text-[#1F2937] mt-1">Station Métro Namur</h4>
-                            <p class="text-xs text-[#64748B]">Montreal, QC • Route A (Montreal → Toronto • 6:30 AM)</p>
-                            <h4 class="font-bold text-[#1F2937] mt-3">Yorkdale Mall &amp; Yonge Station</h4>
-                            <p class="text-xs text-[#64748B]">Toronto, ON • Route B (Toronto → Montreal • 12:15 PM &amp;
-                                1:15 PM)</p>
-                        </div>
-                    </div>
+                        </span>
+                    </summary>
+                    <p class="mt-4 text-xs sm:text-sm text-[#64748B] leading-relaxed">
+                        <strong>Route A (Montreal → Toronto):</strong> Departs Station Métro Namur at 6:30 AM EST daily.<br />
+                        <strong>Route B (Toronto → Montreal):</strong> Pickups at Yorkdale Mall at 12:15 PM EST and Yonge Station at 1:15 PM EST, arriving in Montreal around 7:15 PM EST.
+                    </p>
+                </details>
 
-                    <!-- Cash Settlement Note -->
-                    <div class="rounded-2xl bg-[#F0FDF4] border border-[#22C55E]/30 p-4 text-xs text-[#1F2937]">
-                        <span class="font-bold text-[#16A34A] block mb-0.5">Cash Payment Upon Boarding</span>
-                        Pay the driver directly in cash when boarding ($65 CAD flat fare). Zero upfront electronic credit
-                        card payment required.
-                    </div>
+                <!-- FAQ 4 -->
+                <details class="group rounded-2xl border border-slate-200/80 bg-[#F8FAFC] p-6 open:bg-white open:border-[#22C55E]/40 open:shadow-md transition-all duration-200">
+                    <summary class="flex cursor-pointer items-center justify-between text-base sm:text-lg font-bold text-[#111827] select-none">
+                        <span>Can I book multiple seats or choose my seat?</span>
+                        <span class="ml-4 flex h-7 w-7 items-center justify-center rounded-full bg-slate-200/70 text-slate-700 group-open:bg-[#22C55E] group-open:text-white transition">
+                            <svg class="h-4 w-4 transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </span>
+                    </summary>
+                    <p class="mt-4 text-xs sm:text-sm text-[#64748B] leading-relaxed">
+                        Yes! You can reserve from 1 to 6 seats in our Honda Odyssey. Our system provides visual seat selection so you and your companions sit together.
+                    </p>
+                </details>
 
-                </div>
-
-                <!-- Right Column: Contact Inquiry Form (7 cols) -->
-                <div class="lg:col-span-7">
-                    <div class="rounded-3xl border border-slate-200/80 bg-white p-7 sm:p-10 shadow-xs">
-                        <h3 class="text-2xl font-black text-[#111827] font-heading mb-2">Send an Inquiry</h3>
-                        <p class="text-sm text-[#64748B] mb-8">Leave us a message regarding private trips, route schedules,
-                            or group bookings.</p>
-
-                        <form action="#" method="POST"
-                            onsubmit="event.preventDefault(); alert('Thank you for reaching out to Oliver Transport. We will contact you promptly at your provided details.');"
-                            class="space-y-4">
-                            @csrf
-                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                <div>
-                                    <label for="contact-name"
-                                        class="block text-xs font-bold uppercase tracking-wider text-[#64748B] mb-1.5">Full
-                                        Name</label>
-                                    <input id="contact-name" type="text" required placeholder="Your full name"
-                                        class="w-full rounded-2xl border border-slate-200 bg-[#F8FAFC] px-4 py-3 text-base text-[#1F2937] placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#22C55E] focus:bg-white transition" />
-                                </div>
-                                <div>
-                                    <label for="contact-phone"
-                                        class="block text-xs font-bold uppercase tracking-wider text-[#64748B] mb-1.5">Phone
-                                        Number</label>
-                                    <input id="contact-phone" type="tel" required placeholder="647-xxx-xxxx"
-                                        class="w-full rounded-2xl border border-slate-200 bg-[#F8FAFC] px-4 py-3 text-base text-[#1F2937] placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#22C55E] focus:bg-white transition" />
-                                </div>
-                            </div>
-
-                            <div>
-                                <label for="contact-email"
-                                    class="block text-xs font-bold uppercase tracking-wider text-[#64748B] mb-1.5">Email
-                                    Address</label>
-                                <input id="contact-email" type="email" required placeholder="your.email@example.com"
-                                    class="w-full rounded-2xl border border-slate-200 bg-[#F8FAFC] px-4 py-3 text-base text-[#1F2937] placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#22C55E] focus:bg-white transition" />
-                            </div>
-
-                            <div>
-                                <label for="contact-message"
-                                    class="block text-xs font-bold uppercase tracking-wider text-[#64748B] mb-1.5">Your
-                                    Message</label>
-                                <textarea id="contact-message" rows="4" required
-                                    placeholder="Tell us about your journey plans or inquiry..."
-                                    class="w-full rounded-2xl border border-slate-200 bg-[#F8FAFC] px-4 py-3 text-base text-[#1F2937] placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#22C55E] focus:bg-white transition"></textarea>
-                            </div>
-
-                            <div class="pt-2">
-                                <button type="submit"
-                                    class="inline-flex min-h-[48px] w-full sm:w-auto items-center justify-center rounded-2xl bg-[#22C55E] hover:bg-[#16A34A] text-white px-8 py-3.5 text-base font-bold shadow-md hover:shadow-lg transition cursor-pointer">
-                                    Send Inquiry
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
+                <!-- FAQ 5 -->
+                <details class="group rounded-2xl border border-slate-200/80 bg-[#F8FAFC] p-6 open:bg-white open:border-[#22C55E]/40 open:shadow-md transition-all duration-200">
+                    <summary class="flex cursor-pointer items-center justify-between text-base sm:text-lg font-bold text-[#111827] select-none">
+                        <span>How can I reach customer support?</span>
+                        <span class="ml-4 flex h-7 w-7 items-center justify-center rounded-full bg-slate-200/70 text-slate-700 group-open:bg-[#22C55E] group-open:text-white transition">
+                            <svg class="h-4 w-4 transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </span>
+                    </summary>
+                    <p class="mt-4 text-xs sm:text-sm text-[#64748B] leading-relaxed">
+                        You can reach us directly via telephone, SMS, or WhatsApp at <strong class="font-mono text-slate-900 font-bold">647-655-1884</strong> or visit our dedicated <a href="{{ route('contact') }}" class="text-[#16A34A] underline font-bold hover:text-[#15803D]">Contact Page</a>.
+                    </p>
+                </details>
 
             </div>
 

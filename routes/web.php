@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Frontend\ContactController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Operator\DashboardController as OperatorDashboardController;
 use App\Http\Controllers\Passenger\DashboardController as PassengerDashboardController;
@@ -20,6 +21,7 @@ use Illuminate\Support\Facades\Route;
 
 // Public Frontend Marketing & Information Routes
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/contact', [ContactController::class, 'index'])->name('contact');
 
 // Role-Protected Dashboard Portals
 Route::middleware(['auth', 'role:passenger'])->prefix('passenger')->name('passenger.')->group(function () {

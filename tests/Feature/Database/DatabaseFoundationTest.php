@@ -316,4 +316,9 @@ test('database seeder populates deterministic static configuration', function ()
 
     // Schedules: 2 daily recurring runs
     expect(Schedule::count())->toBe(2);
+
+    // Users: 3 default accounts for operator, rider, passenger
+    expect(User::where('role', 'operator')->count())->toBe(1)
+        ->and(User::where('role', 'rider')->count())->toBe(1)
+        ->and(User::where('role', 'passenger')->count())->toBe(1);
 });

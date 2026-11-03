@@ -15,10 +15,10 @@
             <a href="#services" class="header-nav-link text-white/90 hover:text-[#22C55E] transition py-1 focus:outline-none focus:ring-2 focus:ring-[#22C55E] rounded-md">
                 Services
             </a>
-            <a href="#about" class="header-nav-link text-white/90 hover:text-[#22C55E] transition py-1 focus:outline-none focus:ring-2 focus:ring-[#22C55E] rounded-md">
+            <a href="{{ route('home') }}#about" class="header-nav-link text-white/90 hover:text-[#22C55E] transition py-1 focus:outline-none focus:ring-2 focus:ring-[#22C55E] rounded-md">
                 About
             </a>
-            <a href="#contact" class="header-nav-link text-white/90 hover:text-[#22C55E] transition py-1 focus:outline-none focus:ring-2 focus:ring-[#22C55E] rounded-md">
+            <a href="{{ route('contact') }}" class="header-nav-link text-white/90 hover:text-[#22C55E] transition py-1 focus:outline-none focus:ring-2 focus:ring-[#22C55E] rounded-md">
                 Contact
             </a>
         </nav>
@@ -81,10 +81,10 @@
             <a href="#services" class="mobile-nav-link flex items-center min-h-[44px] px-3 rounded-xl hover:bg-white/10 hover:text-[#22C55E] transition">
                 Services
             </a>
-            <a href="#about" class="mobile-nav-link flex items-center min-h-[44px] px-3 rounded-xl hover:bg-white/10 hover:text-[#22C55E] transition">
+            <a href="{{ route('home') }}#about" class="mobile-nav-link flex items-center min-h-[44px] px-3 rounded-xl hover:bg-white/10 hover:text-[#22C55E] transition">
                 About
             </a>
-            <a href="#contact" class="mobile-nav-link flex items-center min-h-[44px] px-3 rounded-xl hover:bg-white/10 hover:text-[#22C55E] transition">
+            <a href="{{ route('contact') }}" class="mobile-nav-link flex items-center min-h-[44px] px-3 rounded-xl hover:bg-white/10 hover:text-[#22C55E] transition">
                 Contact
             </a>
         </nav>

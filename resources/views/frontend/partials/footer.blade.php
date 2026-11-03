@@ -30,9 +30,9 @@
                 <h4 class="text-sm font-bold text-white tracking-wider uppercase font-heading">Quick Links</h4>
                 <ul class="space-y-2.5 text-xs sm:text-sm text-slate-400">
                     <li><a href="{{ route('home') }}" class="hover:text-[#22C55E] transition">Home</a></li>
-                    <li><a href="#services" class="hover:text-[#22C55E] transition">Services</a></li>
-                    <li><a href="#about" class="hover:text-[#22C55E] transition">About</a></li>
-                    <li><a href="#contact" class="hover:text-[#22C55E] transition">Contact</a></li>
+                    <li><a href="{{ route('home') }}#services" class="hover:text-[#22C55E] transition">Services</a></li>
+                    <li><a href="{{ route('home') }}#about" class="hover:text-[#22C55E] transition">About</a></li>
+                    <li><a href="{{ route('contact') }}" class="hover:text-[#22C55E] transition">Contact</a></li>
                     <li><a href="{{ route('login') }}" class="hover:text-[#22C55E] transition">Sign In</a></li>
                 </ul>
             </div>

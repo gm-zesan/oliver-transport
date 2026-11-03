@@ -102,12 +102,13 @@ The public frontend architecture is organized into a modular layout and partials
 3. **Frontend Page (`resources/views/frontend/index.blade.php`)**:
    * Uses `@extends('frontend.layout.app')` and `@section('content')`.
    * Follows the 6-section hybrid design architecture:
-     1. **Hero:** Full-width luminous cinematic video background with refined gradient overlays (avoiding excessive darkness), high-impact typography with green accent bars, and dark translucent glass booking form without unnecessary pill capsule clutter.
-     2. **Our Services:** Pure white background (`#FFFFFF`) with 4 clean service cards (Airport Transfer, Corporate Transportation, Private Chauffeur, Special Events).
+     1. **Hero:** Full-width luminous cinematic video background with refined gradient overlays, high-impact typography with green accent bar, and dark translucent glass booking form.
+     2. **Our Services:** Pure white background (`#FFFFFF`) with 2 realistic corridor service cards tailored strictly to Oliver Transport's 3-location passenger ride-share service (Route A & Route B), featuring \$65 CAD flat fare, cash settlement on boarding, and direct booking actions.
      3. **Why Choose Us:** Soft green-tinted background (`#F0FDF4`) with 4 horizontal benefit items and thin separators.
-     4. **About Oliver Transport:** Clean white background (`#FFFFFF`) 2-column layout with authentic vehicle photograph and narrative.
-     5. **Contact Us:** Light background (`#F8FAFC`) with verified contact cards, station details, and inquiry form.
+     4. **Vehicle Showcase:** Wide vehicle showcase card (inspired by reference image) highlighting the Silver Honda Odyssey (Plate: RAJIA), 6 passenger seats, features checklist, and \$65 flat fare notice.
+     5. **Corridor FAQ Accordion:** Clean accordion answering passenger questions on payment, luggage, pickup hubs, and schedules.
      6. **Footer:** Dark charcoal background (`#111827`) 4-column footer with green CTA card.
+     7. **Separate Contact Page (`/contact`):** Dedicated page featuring verified phone, email, corridor stations, and interactive inquiry form.
 
 ---
 
