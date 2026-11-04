@@ -118,3 +118,13 @@ test('passenger can view list of reservations', function () {
         ->assertSee('OT-2026-TEST')
         ->assertSee('Station Métro Namur');
 });
+
+test('passenger dashboard renders recent bookings with allocated seats without errors', function () {
+    $response = $this->actingAs($this->passengerA)
+        ->get(route('passenger.dashboard'));
+
+    $response->assertOk()
+        ->assertSee('OT-2026-TEST')
+        ->assertSee('Station Métro Namur')
+        ->assertSee('S1');
+});

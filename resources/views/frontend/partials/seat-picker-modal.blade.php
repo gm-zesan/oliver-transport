@@ -110,19 +110,7 @@
         <div id="wizard-step-1" class="wizard-step flex-1 overflow-y-auto p-4 sm:p-6 space-y-5">
 
             <div class="rounded-2xl bg-slate-50/80 border border-slate-200/90 p-4 space-y-4">
-                <div class="flex items-center justify-between">
-                    <div>
-                        <span class="text-xs font-bold uppercase tracking-wider text-[#16A34A] block">Step 1: Stations
-                            &amp; Date</span>
-                        <p class="text-xs text-slate-600">Select where you board and your destination</p>
-                    </div>
-                    <span
-                        class="px-2.5 py-1 rounded-full text-xs font-mono font-bold bg-[#F0FDF4] text-[#16A34A] border border-[#22C55E]/30"
-                        id="step1-rate-indicator">
-                        $65.00 CAD Base
-                    </span>
-                </div>
-
+              
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                     <!-- Pickup Address -->
                     <div>
@@ -132,9 +120,9 @@
                         <select id="modal-pickup-select" onchange="onModalPickupChange()"
                             class="w-full rounded-xl bg-white border border-slate-200 shadow-xs px-3.5 py-2.5 text-xs sm:text-sm font-bold text-slate-900 focus:outline-none focus:ring-2 focus:ring-[#22C55E] cursor-pointer">
                             <option value="" disabled selected>Choose Pickup Station...</option>
-                            <option value="namur">Station Métro Namur (Montreal) • 6:30 AM</option>
-                            <option value="yorkdale">Yorkdale Mall (Toronto) • 12:15 PM</option>
-                            <option value="yonge">Yonge Station (Toronto) • 1:15 PM</option>
+                            <option value="namur">Station Métro Namur (Montreal)</option>
+                            <option value="yorkdale">Yorkdale Mall (Toronto)</option>
+                            <option value="yonge">Yonge Station (Toronto)</option>
                         </select>
                     </div>
 
@@ -202,25 +190,6 @@
         <!-- ================================================================= -->
         <div id="wizard-step-2" class="wizard-step hidden flex-1 overflow-y-auto p-4 sm:p-6 space-y-4">
 
-            <!-- Vehicle & Seat Hold Countdown Banner -->
-            <div
-                class="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 rounded-2xl bg-slate-50 border border-slate-200/90 p-3.5 text-xs">
-                <div>
-                    <span class="font-bold text-slate-900 block">Honda Odyssey Cabin Seating</span>
-                    <span class="text-slate-500 text-[11px]">Tap up to 6 passenger seats (S1 to S6)</span>
-                </div>
-
-                <!-- 5-Minute Seat Hold Timer -->
-                <div id="seat-hold-timer-container"
-                    class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-amber-50 border border-amber-200 text-amber-800 font-mono text-xs font-bold">
-                    <svg class="h-4 w-4 animate-spin text-amber-600" fill="none" viewBox="0 0 24 24"
-                        stroke="currentColor">
-                        <circle cx="12" cy="12" r="10" stroke-width="2" class="opacity-25" />
-                        <path stroke-linecap="round" stroke-width="2" d="M12 6v6l4 2" />
-                    </svg>
-                    <span>Seats Held: <strong id="seat-hold-timer-display" class="text-amber-900 font-black">05:00</strong></span>
-                </div>
-            </div>
 
             <!-- Interactive Minivan Cabin Shell -->
             <div class="max-w-sm mx-auto rounded-3xl border-2 border-slate-200 bg-slate-50/90 p-4 shadow-sm">
@@ -329,19 +298,6 @@
                 <div class="flex items-center gap-1.5">
                     <span class="h-3 w-3 rounded-md bg-slate-200 border border-slate-300 opacity-60"></span>
                     <span class="font-medium">Occupied</span>
-                </div>
-            </div>
-
-            <!-- Live Summary Box -->
-            <div
-                class="rounded-2xl bg-slate-50 border border-slate-200/90 p-3.5 flex items-center justify-between text-xs">
-                <div>
-                    <span class="text-slate-500 block text-[11px] font-medium">Selected Seats:</span>
-                    <strong class="text-slate-900 text-sm" id="step2-live-seats-summary">None selected</strong>
-                </div>
-                <div class="text-right">
-                    <span class="text-slate-500 block text-[11px] font-medium">Gross Subtotal:</span>
-                    <strong class="text-[#16A34A] text-sm font-mono font-black" id="step2-live-gross-summary">$0.00 CAD</strong>
                 </div>
             </div>
 

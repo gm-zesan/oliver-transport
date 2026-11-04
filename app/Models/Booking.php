@@ -113,6 +113,16 @@ class Booking extends Model
     }
 
     /**
+     * Semantic alias for physical seat segments allocated to this reservation.
+     *
+     * @return HasMany<BookingSeat, $this>
+     */
+    public function seats(): HasMany
+    {
+        return $this->bookingSeats();
+    }
+
+    /**
      * The cash payment transaction linked to this booking.
      *
      * @return HasOne<Payment, $this>

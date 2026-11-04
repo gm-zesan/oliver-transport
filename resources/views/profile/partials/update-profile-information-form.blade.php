@@ -1,11 +1,11 @@
 <section>
-    <header>
-        <h2 class="text-lg font-bold text-white">
+    <header class="border-b border-slate-100 pb-3 mb-5">
+        <h2 class="text-lg font-black text-slate-900 font-heading">
             {{ __('Profile Information') }}
         </h2>
 
-        <p class="mt-1 text-sm text-provisional-muted">
-            {{ __("Update your account's name, email address, and direct telephone contact.") }}
+        <p class="mt-1 text-xs text-slate-500">
+            {{ __("Update your account's full name, email address, and direct phone contact.") }}
         </p>
     </header>
 
@@ -13,33 +13,33 @@
         @csrf
     </form>
 
-    <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-5">
+    <form method="post" action="{{ route('profile.update') }}" class="space-y-4">
         @csrf
         @method('patch')
 
         <div>
             <x-input-label for="name" :value="__('Full Name')" />
-            <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name', $user->name)" required autofocus autocomplete="name" />
-            <x-input-error class="mt-2" :messages="$errors->get('name')" />
+            <x-text-input id="name" name="name" type="text" class="block w-full" :value="old('name', $user->name)" required autofocus autocomplete="name" />
+            <x-input-error class="mt-1.5" :messages="$errors->get('name')" />
         </div>
 
         <div>
             <x-input-label for="email" :value="__('Email Address')" />
-            <x-text-input id="email" name="email" type="email" class="mt-1 block w-full" :value="old('email', $user->email)" required autocomplete="username" />
-            <x-input-error class="mt-2" :messages="$errors->get('email')" />
+            <x-text-input id="email" name="email" type="email" class="block w-full" :value="old('email', $user->email)" required autocomplete="username" />
+            <x-input-error class="mt-1.5" :messages="$errors->get('email')" />
 
             @if ($user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && ! $user->hasVerifiedEmail())
-                <div>
-                    <p class="text-sm mt-2 text-white">
+                <div class="mt-2 text-xs">
+                    <p class="text-slate-600">
                         {{ __('Your email address is unverified.') }}
 
-                        <button form="send-verification" class="underline text-sm text-provisional-accent hover:underline rounded-md focus:outline-none focus:ring-2 focus:ring-provisional-accent">
+                        <button form="send-verification" class="underline text-[#16A34A] font-bold hover:underline focus:outline-none focus:ring-2 focus:ring-[#22C55E]">
                             {{ __('Click here to re-send the verification email.') }}
                         </button>
                     </p>
 
                     @if (session('status') === 'verification-link-sent')
-                        <p class="mt-2 font-medium text-sm text-provisional-accent">
+                        <p class="mt-2 font-bold text-xs text-[#16A34A]">
                             {{ __('A new verification link has been sent to your email address.') }}
                         </p>
                     @endif
@@ -49,8 +49,8 @@
 
         <div>
             <x-input-label for="phone" :value="__('Phone Number')" />
-            <x-text-input id="phone" name="phone" type="tel" class="mt-1 block w-full" :value="old('phone', $user->phone)" required autocomplete="tel" />
-            <x-input-error class="mt-2" :messages="$errors->get('phone')" />
+            <x-text-input id="phone" name="phone" type="tel" class="block w-full" :value="old('phone', $user->phone)" required autocomplete="tel" />
+            <x-input-error class="mt-1.5" :messages="$errors->get('phone')" />
         </div>
 
         <div class="flex items-center gap-4 pt-2">
@@ -62,10 +62,14 @@
                     x-show="show"
                     x-transition
                     x-init="setTimeout(() => show = false, 2500)"
-                    class="text-sm font-semibold text-provisional-accent"
-                >{{ __('Saved successfully.') }}</p>
+                    class="text-xs font-bold text-[#16A34A] flex items-center gap-1.5"
+                >
+                    <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span>{{ __('Saved successfully.') }}</span>
+                </p>
             @endif
         </div>
     </form>
 </section>
-

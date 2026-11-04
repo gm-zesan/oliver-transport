@@ -112,9 +112,9 @@
                                 Book Now
                             </button>
                             <div class="mt-2 text-center">
-                                <a href="{{ route('login') }}" class="text-xs text-slate-400 hover:text-white transition">
-                                    Book Your Seat
-                                </a>
+                                <button type="button" onclick="handleGlobalBookNow()" class="text-xs text-slate-400 hover:text-[#22C55E] underline cursor-pointer">
+                                    Select Seats &amp; Reserve
+                                </button>
                             </div>
                         @endauth
                     </div>

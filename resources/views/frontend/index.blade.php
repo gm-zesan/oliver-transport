@@ -359,9 +359,9 @@
                                         </a>
                                     @endif
                                 @else
-                                    <button type="button" onclick="openAuthModal()"
+                                    <button type="button" onclick="handleGlobalBookNow()"
                                         class="inline-flex min-h-[50px] w-full items-center justify-center gap-2 rounded-2xl bg-[#22C55E] hover:bg-[#16A34A] text-white px-6 py-3.5 text-base font-bold shadow-lg shadow-[#22C55E]/20 transition duration-200 focus:outline-none focus:ring-2 focus:ring-[#22C55E] text-center cursor-pointer">
-                                        <span>Reserve Now</span>
+                                        <span>Select Seats &amp; Reserve</span>
                                         <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
                                                 d="M14 5l7 7m0 0l-7 7m7-7H3" />

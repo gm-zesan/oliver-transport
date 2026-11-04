@@ -949,7 +949,11 @@
         if (count === 0) {
             if (step2SeatsSummary) step2SeatsSummary.textContent = 'None selected';
             if (step2GrossSummary) step2GrossSummary.textContent = '$0.00 CAD';
-            if (step2ConfirmBtn) step2ConfirmBtn.disabled = true;
+            if (step2ConfirmBtn) {
+                step2ConfirmBtn.disabled = true;
+                const span = step2ConfirmBtn.querySelector('span');
+                if (span) span.textContent = 'Confirm Seats';
+            }
         } else {
             if (step2SeatsSummary) {
                 step2SeatsSummary.textContent = `${sortedSeats.join(', ')} (${count} ${count === 1 ? 'seat' : 'seats'})`;
@@ -958,7 +962,11 @@
             if (step2GrossSummary) {
                 step2GrossSummary.textContent = `$${gross.toFixed(2)} CAD`;
             }
-            if (step2ConfirmBtn) step2ConfirmBtn.disabled = false;
+            if (step2ConfirmBtn) {
+                step2ConfirmBtn.disabled = false;
+                const span = step2ConfirmBtn.querySelector('span');
+                if (span) span.textContent = `Confirm ${count} ${count === 1 ? 'Seat' : 'Seats'} ($${gross.toFixed(0)} CAD)`;
+            }
         }
 
         // Step 1 rate indicator

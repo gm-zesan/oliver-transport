@@ -42,7 +42,7 @@
     <!-- Company Name & Subtext -->
     <div class="flex flex-col items-start leading-none">
         <span class="{{ $sizeConfig['title'] }} font-black tracking-wider uppercase font-heading {{ $nameColor }} leading-none">
-            Ol<span class="text-inherit">iver</span>
+            Ol<span class="text-[#22C55E]">iver</span>
         </span>
         <span class="font-extrabold uppercase {{ $sizeConfig['badge'] }} text-[#22C55E] tracking-[0.30em] mt-1 leading-none">
             Transport

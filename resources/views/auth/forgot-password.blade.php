@@ -2,10 +2,10 @@
     <x-slot:title>Forgot Password — Oliver Transport</x-slot:title>
 
     <div class="mb-6 text-center">
-        <h2 class="text-xl font-bold tracking-tight text-white">
-            Reset Your Password
+        <h2 class="text-2xl font-black tracking-tight text-slate-900 font-heading">
+            Reset Password
         </h2>
-        <p class="mt-2 text-xs text-provisional-muted">
+        <p class="mt-1 text-xs sm:text-sm text-slate-500">
             Enter your account email address and we will send you a password reset link.
         </p>
     </div>
@@ -19,21 +19,20 @@
         <!-- Email Address -->
         <div>
             <x-input-label for="email" :value="__('Email Address')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus placeholder="passenger@example.com" />
+            <x-text-input id="email" class="block w-full" type="email" name="email" :value="old('email')" required autofocus placeholder="passenger@example.com" />
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
 
-        <div>
+        <div class="pt-2">
             <x-primary-button class="w-full">
                 {{ __('Email Password Reset Link') }}
             </x-primary-button>
         </div>
     </form>
 
-    <div class="mt-6 border-t border-provisional-border pt-4 text-center">
-        <a href="{{ route('login') }}" class="inline-flex min-h-[44px] items-center text-sm font-semibold text-provisional-muted hover:text-white transition">
+    <div class="mt-6 border-t border-slate-200/80 pt-4 text-center">
+        <a href="{{ route('login') }}" class="font-bold text-xs sm:text-sm text-[#16A34A] hover:underline">
             ← Back to Sign In
         </a>
     </div>
 </x-layouts.guest>
-

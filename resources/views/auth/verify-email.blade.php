@@ -2,16 +2,16 @@
     <x-slot:title>Verify Email — Oliver Transport</x-slot:title>
 
     <div class="mb-6 text-center">
-        <h2 class="text-xl font-bold tracking-tight text-white">
+        <h2 class="text-xl font-bold tracking-tight text-slate-900 font-heading">
             Verify Email Address
         </h2>
-        <p class="mt-2 text-xs text-provisional-muted">
+        <p class="mt-2 text-xs text-slate-500">
             Thanks for signing up with Oliver Transport! Please click the verification link we sent to your email to activate all passenger features.
         </p>
     </div>
 
     @if (session('status') == 'verification-link-sent')
-        <div class="mb-4 rounded-lg border border-provisional-accent/30 bg-provisional-accent/10 p-3.5 text-sm text-provisional-accent">
+        <div class="mb-4 rounded-xl border border-emerald-200 bg-[#F0FDF4] p-3.5 text-xs text-[#16A34A] font-medium">
             {{ __('A new verification link has been sent to the email address you provided during registration.') }}
         </div>
     @endif
@@ -28,7 +28,7 @@
         <form method="POST" action="{{ route('logout') }}" class="text-center">
             @csrf
 
-            <button type="submit" class="inline-flex min-h-[44px] items-center text-sm font-semibold text-provisional-muted hover:text-white transition">
+            <button type="submit" class="inline-flex min-h-[44px] items-center text-sm font-semibold text-slate-500 hover:text-slate-900 transition">
                 {{ __('Sign Out') }}
             </button>
         </form>

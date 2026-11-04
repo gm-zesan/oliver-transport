@@ -29,6 +29,23 @@ test('new passenger can register and is redirected to passenger dashboard', func
     $response->assertRedirect(route('passenger.dashboard'));
 });
 
+test('new passenger can register without phone number', function () {
+    $response = $this->post(route('register.store'), [
+        'name' => 'Alice No Phone',
+        'email' => 'alice.nophone@example.com',
+        'password' => 'secret1234',
+        'password_confirmation' => 'secret1234',
+    ]);
+
+    $this->assertAuthenticated();
+    $user = User::where('email', 'alice.nophone@example.com')->first();
+    expect($user)->not->toBeNull();
+    expect($user->role)->toBe('passenger');
+    expect($user->name)->toBe('Alice No Phone');
+
+    $response->assertRedirect(route('passenger.dashboard'));
+});
+
 test('passenger registration fails when email is already registered', function () {
     User::factory()->create(['email' => 'existing@example.com']);
 

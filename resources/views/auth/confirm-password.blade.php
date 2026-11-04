@@ -2,10 +2,10 @@
     <x-slot:title>Confirm Password — Oliver Transport</x-slot:title>
 
     <div class="mb-6 text-center">
-        <h2 class="text-xl font-bold tracking-tight text-white">
+        <h2 class="text-xl font-bold tracking-tight text-slate-900 font-heading">
             Security Confirmation
         </h2>
-        <p class="mt-2 text-xs text-provisional-muted">
+        <p class="mt-2 text-xs text-slate-500">
             This is a secure action. Please confirm your account password before proceeding.
         </p>
     </div>
