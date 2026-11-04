@@ -7,12 +7,14 @@
     --color-brand-green-dark: #15803D;
     --color-brand-green-subtle: #F0FDF4;
 
-    --color-surface-charcoal: #0B0F17;
+    --color-surface-charcoal: #111827;
+    --color-surface-obsidian: #0B0F17;
     --color-surface-slate: #111827;
     --color-surface-subtle: #F8FAFC;
     --color-surface-card: #FFFFFF;
 
-    --color-content-primary: #111827;
+    --color-content-primary: #1F2937;
+    --color-content-heading: #111827;
     --color-content-secondary: #4B5563;
     --color-content-muted: #64748B;
     --color-content-inverted: #FFFFFF;

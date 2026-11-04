@@ -32,23 +32,23 @@
                         : (auth()->user()->isOperator() ? route('operator.dashboard') : route('passenger.dashboard'));
                 @endphp
                 <a href="{{ $dashboardRoute }}" 
-                   class="inline-flex min-h-[38px] items-center justify-center rounded-full bg-[#22C55E] hover:bg-[#16A34A] px-4 py-2 text-xs font-bold text-white shadow-xs transition focus:outline-none focus:ring-2 focus:ring-[#22C55E]">
+                   class="inline-flex min-h-[44px] items-center justify-center rounded-full bg-[#22C55E] hover:bg-[#16A34A] px-5 py-2 text-xs sm:text-sm font-bold text-white shadow-xs transition focus:outline-none focus:ring-2 focus:ring-[#22C55E]">
                     Dashboard
                 </a>
                 <form method="POST" action="{{ route('logout') }}" class="inline">
                     @csrf
                     <button type="submit" 
-                            class="header-signin-link inline-flex min-h-[38px] items-center justify-center text-xs font-semibold text-white/80 hover:text-white transition px-2 py-1">
+                            class="header-signin-link inline-flex min-h-[44px] items-center justify-center text-xs sm:text-sm font-semibold text-white/80 hover:text-white transition px-3 py-1 cursor-pointer">
                         Sign Out
                     </button>
                 </form>
             @else
                 <a id="header-signin-link" href="{{ route('login') }}" 
-                   class="header-signin-link inline-flex min-h-[38px] items-center justify-center text-xs sm:text-sm font-semibold text-white/90 hover:text-[#22C55E] transition px-2.5 py-1">
+                   class="header-signin-link inline-flex min-h-[44px] items-center justify-center text-xs sm:text-sm font-semibold text-white/90 hover:text-[#22C55E] transition px-3 py-1">
                     Sign In
                 </a>
                 <a href="{{ route('login') }}" 
-                   class="inline-flex min-h-[38px] items-center justify-center rounded-full bg-[#22C55E] hover:bg-[#16A34A] px-5 py-2 text-xs sm:text-sm font-bold text-white shadow-xs transition focus:outline-none focus:ring-2 focus:ring-[#22C55E]">
+                   class="inline-flex min-h-[44px] items-center justify-center rounded-full bg-[#22C55E] hover:bg-[#16A34A] px-5 py-2 text-xs sm:text-sm font-bold text-white shadow-xs transition focus:outline-none focus:ring-2 focus:ring-[#22C55E]">
                     Book Now
                 </a>
             @endauth

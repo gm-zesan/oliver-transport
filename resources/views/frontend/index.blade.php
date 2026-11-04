@@ -164,7 +164,7 @@
                                                     class="font-bold text-white text-sm sm:text-base leading-tight">Yorkdale
                                                     Mall</span>
                                                 <span
-                                                    class="text-[10px] font-black uppercase tracking-wider text-sky-400 bg-sky-950/60 px-2 py-0.5 rounded-full border border-sky-800/60">Route
+                                                    class="text-[10px] font-black uppercase tracking-wider text-[#22C55E] bg-[#22C55E]/15 px-2 py-0.5 rounded-full border border-[#22C55E]/30">Route
                                                     B</span>
                                             </div>
                                             <span class="text-xs text-slate-400 block mt-0.5">Toronto • Route B 1st Pickup
@@ -189,7 +189,7 @@
                                                 <span class="font-bold text-white text-sm sm:text-base leading-tight">Yonge
                                                     Station</span>
                                                 <span
-                                                    class="text-[10px] font-black uppercase tracking-wider text-sky-400 bg-sky-950/60 px-2 py-0.5 rounded-full border border-sky-800/60">Route
+                                                    class="text-[10px] font-black uppercase tracking-wider text-[#22C55E] bg-[#22C55E]/15 px-2 py-0.5 rounded-full border border-[#22C55E]/30">Route
                                                     B</span>
                                             </div>
                                             <span class="text-xs text-slate-400 block mt-0.5">Toronto • Route B 2nd Pickup
@@ -413,21 +413,16 @@
                                     Route A • Daily Service
                                 </span>
                                 <span class="text-sm font-black text-slate-900 font-mono">
-                                    <span class="text-xs font-semibold text-slate-500">CAD</span>
+                                    $65 <span class="text-xs font-semibold text-slate-500">CAD</span>
                                 </span>
                             </div>
 
                             <h3
-                                class="text-2xl font-black text-[#111827] tracking-tight font-heading group-hover:text-[#16A34A] transition-colors">
+                                class="text-2xl font-bold text-[#111827] tracking-tight font-heading group-hover:text-[#16A34A] transition-colors">
                                 Montreal → Toronto
                             </h3>
 
-                            <p class="mt-2 text-sm text-[#64748B] leading-relaxed">
-                                Daily morning passenger ride-share connecting Montreal directly to Toronto. Board at Station
-                                Métro Namur with drop-offs at Yorkdale Mall and Yonge Station.
-                            </p>
-
-                            <div class="mt-4 space-y-2 text-xs sm:text-sm text-slate-700">
+                            <div class="mt-4 space-y-2.5 text-xs sm:text-sm text-slate-700">
                                 <div class="flex items-center gap-2.5">
                                     <span
                                         class="flex h-5 w-5 items-center justify-center rounded-full bg-[#22C55E]/15 text-[#16A34A] flex-shrink-0">
@@ -466,7 +461,7 @@
 
                         <div class="mt-6 pt-4 border-t border-slate-200/70 flex items-center justify-between">
                             <a href="#booking-panel" onclick="switchHeroRoute('route-a')"
-                                class="inline-flex items-center gap-2 rounded-xl bg-slate-900 hover:bg-[#22C55E] text-white px-5 py-2.5 text-xs font-bold transition duration-200 shadow-xs">
+                                class="inline-flex min-h-[44px] items-center gap-2 rounded-xl bg-[#22C55E] hover:bg-[#16A34A] text-white px-5 py-2.5 text-xs sm:text-sm font-bold transition duration-200 shadow-sm hover:shadow-md cursor-pointer">
                                 <span>Book Route A</span>
                                 <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
@@ -494,21 +489,16 @@
                                     Route B • Daily Service
                                 </span>
                                 <span class="text-sm font-black text-slate-900 font-mono">
-                                    <span class="text-xs font-semibold text-slate-500">CAD</span>
+                                    $65 <span class="text-xs font-semibold text-slate-500">CAD</span>
                                 </span>
                             </div>
 
                             <h3
-                                class="text-2xl font-black text-[#111827] tracking-tight font-heading group-hover:text-[#16A34A] transition-colors">
+                                class="text-2xl font-bold text-[#111827] tracking-tight font-heading group-hover:text-[#16A34A] transition-colors">
                                 Toronto → Montreal
                             </h3>
 
-                            <p class="mt-2 text-sm text-[#64748B] leading-relaxed">
-                                Daily afternoon return passenger ride-share connecting Toronto to Montreal. Board at
-                                Yorkdale Mall or Yonge Station with final drop-off at Station Métro Namur.
-                            </p>
-
-                            <div class="mt-4 space-y-2 text-xs sm:text-sm text-slate-700">
+                            <div class="mt-4 space-y-2.5 text-xs sm:text-sm text-slate-700">
                                 <div class="flex items-center gap-2.5">
                                     <span
                                         class="flex h-5 w-5 items-center justify-center rounded-full bg-[#22C55E]/15 text-[#16A34A] flex-shrink-0">
@@ -547,7 +537,7 @@
 
                         <div class="mt-6 pt-4 border-t border-slate-200/70 flex items-center justify-between">
                             <a href="#booking-panel" onclick="switchHeroRoute('route-b')"
-                                class="inline-flex items-center gap-2 rounded-xl bg-slate-900 hover:bg-[#22C55E] text-white px-5 py-2.5 text-xs font-bold transition duration-200 shadow-xs">
+                                class="inline-flex min-h-[44px] items-center gap-2 rounded-xl bg-[#22C55E] hover:bg-[#16A34A] text-white px-5 py-2.5 text-xs sm:text-sm font-bold transition duration-200 shadow-sm hover:shadow-md cursor-pointer">
                                 <span>Book Route B</span>
                                 <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
@@ -620,7 +610,7 @@
                     </div>
 
                     <!-- Image Frame -->
-                    <div class="w-full h-72 sm:h-80 overflow-hidden shadow-md bg-slate-900 relative">
+                    <div class="w-full h-64 sm:h-72 rounded-2xl overflow-hidden shadow-md bg-slate-900 relative">
                         <img src="{{ asset('images/service-intercity.jpg') }}"
                             alt="Select route and date for Oliver Transport shuttle"
                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out" />
@@ -630,12 +620,12 @@
 
                     <!-- Overlapping White Floating Card (Matching Reference Image) -->
                     <div
-                        class="-mt-14 w-[88%] sm:w-[84%] bg-white p-6 sm:p-7 shadow-xl shadow-slate-900/5 border border-slate-200/80 text-center relative z-10 group-hover:border-[#22C55E]/50 group-hover:shadow-2xl group-hover:shadow-[#22C55E]/10 transition-all duration-300">
+                        class="-mt-12 w-[88%] sm:w-[84%] rounded-2xl bg-white p-6 sm:p-7 shadow-xl shadow-slate-900/5 border border-slate-200/80 text-center relative z-10 group-hover:border-[#22C55E]/50 group-hover:shadow-2xl group-hover:shadow-[#22C55E]/10 transition-all duration-300">
                         <h3
-                            class="text-lg sm:text-xl font-black text-[#111827] font-heading tracking-tight group-hover:text-[#16A34A] transition-colors">
+                            class="text-lg sm:text-xl font-bold text-[#111827] font-heading tracking-tight group-hover:text-[#16A34A] transition-colors">
                             Choose Your Route
                         </h3>
-                        <p class="mt-2.5 text-xs sm:text-sm text-[#64748B] leading-relaxed">
+                        <p class="mt-2 text-xs sm:text-sm text-[#64748B] leading-relaxed">
                             Select Route A (Montreal → Toronto) or Route B (Toronto → Montreal) and pick your travel
                             date.
                         </p>
@@ -650,7 +640,7 @@
                     </div>
 
                     <!-- Image Frame -->
-                    <div class="w-full h-72 sm:h-80 overflow-hidden shadow-md bg-slate-900 relative">
+                    <div class="w-full h-64 sm:h-72 rounded-2xl overflow-hidden shadow-md bg-slate-900 relative">
                         <img src="{{ asset('images/service-airport.jpg') }}"
                             alt="Reserve your seat with interactive cabin diagram"
                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out" />
@@ -660,12 +650,12 @@
 
                     <!-- Overlapping White Floating Card (Matching Reference Image) -->
                     <div
-                        class="-mt-14 w-[88%] sm:w-[84%] bg-white p-6 sm:p-7 shadow-xl shadow-slate-900/5 border border-slate-200/80 text-center relative z-10 group-hover:border-[#22C55E]/50 group-hover:shadow-2xl group-hover:shadow-[#22C55E]/10 transition-all duration-300">
+                        class="-mt-12 w-[88%] sm:w-[84%] rounded-2xl bg-white p-6 sm:p-7 shadow-xl shadow-slate-900/5 border border-slate-200/80 text-center relative z-10 group-hover:border-[#22C55E]/50 group-hover:shadow-2xl group-hover:shadow-[#22C55E]/10 transition-all duration-300">
                         <h3
-                            class="text-lg sm:text-xl font-black text-[#111827] font-heading tracking-tight group-hover:text-[#16A34A] transition-colors">
+                            class="text-lg sm:text-xl font-bold text-[#111827] font-heading tracking-tight group-hover:text-[#16A34A] transition-colors">
                             Book with Ease
                         </h3>
-                        <p class="mt-2.5 text-xs sm:text-sm text-[#64748B] leading-relaxed">
+                        <p class="mt-2 text-xs sm:text-sm text-[#64748B] leading-relaxed">
                             Pick your exact seat (S1–S6) on our visual cabin diagram and receive instant booking
                             confirmation.
                         </p>
@@ -680,7 +670,7 @@
                     </div>
 
                     <!-- Image Frame -->
-                    <div class="w-full h-72 sm:h-80 overflow-hidden shadow-md bg-slate-900 relative">
+                    <div class="w-full h-64 sm:h-72 rounded-2xl overflow-hidden shadow-md bg-slate-900 relative">
                         <img src="{{ asset('images/service-corporate.jpg') }}"
                             alt="Travel comfortably in Honda Odyssey with cash on boarding"
                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out" />
@@ -690,13 +680,13 @@
 
                     <!-- Overlapping White Floating Card (Matching Reference Image) -->
                     <div
-                        class="-mt-14 w-[88%] sm:w-[84%] bg-white p-6 sm:p-7 shadow-xl shadow-slate-900/5 border border-slate-200/80 text-center relative z-10 group-hover:border-[#22C55E]/50 group-hover:shadow-2xl group-hover:shadow-[#22C55E]/10 transition-all duration-300">
+                        class="-mt-12 w-[88%] sm:w-[84%] rounded-2xl bg-white p-6 sm:p-7 shadow-xl shadow-slate-900/5 border border-slate-200/80 text-center relative z-10 group-hover:border-[#22C55E]/50 group-hover:shadow-2xl group-hover:shadow-[#22C55E]/10 transition-all duration-300">
                         <h3
-                            class="text-lg sm:text-xl font-black text-[#111827] font-heading tracking-tight group-hover:text-[#16A34A] transition-colors">
+                            class="text-lg sm:text-xl font-bold text-[#111827] font-heading tracking-tight group-hover:text-[#16A34A] transition-colors">
                             Ride &amp; Pay Cash
                         </h3>
-                        <p class="mt-2.5 text-xs sm:text-sm text-[#64748B] leading-relaxed">
-                            Board at your predefined transit hub, pay the driver directly in cash ( CAD), and enjoy
+                        <p class="mt-2 text-xs sm:text-sm text-[#64748B] leading-relaxed">
+                            Board at your predefined transit hub, pay the driver directly in cash ($65 CAD), and enjoy
                             the journey.
                         </p>
                     </div>
@@ -1029,7 +1019,8 @@
                         </svg>
                     </div>
                     <span class="text-xs sm:text-sm font-bold text-slate-900 block">Cash Payment Upon Boarding</span>
-                    <span class="text-[11px] text-slate-500 block mt-0.5">$65 CAD Flat Fare</span>
+                    <span class="text-[11px] text-slate-500 block mt-0.5">$65 CAD • Pay the driver directly in cash when
+                        boarding</span>
                 </div>
 
             </div>
@@ -1078,12 +1069,10 @@
                             </svg>
                         </span>
                     </summary>
-                    <p class="mt-4 text-xs sm:text-sm text-[#64748B] leading-relaxed">
+                    <p class="mt-4 text-sm sm:text-base text-[#64748B] leading-relaxed">
                         Payment is simple and cash-only ($65 CAD flat fare). You pay
-                        the driver
-                        directly upon boarding the vehicle. No online payment or
-                        upfront credit card
-                        deposit is needed.
+                        the driver directly upon boarding the vehicle. No online payment or upfront credit card deposit is
+                        needed.
                     </p>
                 </details>
 
@@ -1092,8 +1081,7 @@
                     class="group rounded-2xl border border-slate-200/80 bg-white p-6 open:border-[#22C55E]/50 open:shadow-lg open:shadow-[#22C55E]/5 hover:border-[#22C55E]/40 hover:shadow-sm transition-all duration-200">
                     <summary
                         class="flex cursor-pointer items-center justify-between text-base sm:text-lg font-bold text-[#111827] select-none">
-                        <span>Where are the exact pickup and drop-off
-                            stations?</span>
+                        <span>Where are the exact pickup and drop-off stations?</span>
                         <span
                             class="ml-4 flex h-7 w-7 items-center justify-center rounded-full bg-slate-200/70 text-slate-700 group-open:bg-[#22C55E] group-open:text-white transition">
                             <svg class="h-4 w-4 transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24"
@@ -1103,14 +1091,12 @@
                             </svg>
                         </span>
                     </summary>
-                    <p class="mt-4 text-xs sm:text-sm text-[#64748B] leading-relaxed">
+                    <p class="mt-4 text-sm sm:text-base text-[#64748B] leading-relaxed">
                         We operate strictly between 3 predefined transit hubs:
-                        <strong>Station Métro
-                            Namur</strong> in Montreal, and <strong>Yorkdale
-                            Mall</strong> and
-                        <strong>Yonge Station</strong> in Toronto. All locations
-                        provide seamless
-                        connections to subway lines and major highways.
+                        <strong class="text-slate-900 font-semibold">Station Métro Namur</strong> in Montreal, and <strong
+                            class="text-slate-900 font-semibold">Yorkdale Mall</strong> and
+                        <strong class="text-slate-900 font-semibold">Yonge Station</strong> in Toronto. All locations
+                        provide seamless connections to subway lines and major highways.
                     </p>
                 </details>
 
@@ -1129,15 +1115,12 @@
                             </svg>
                         </span>
                     </summary>
-                    <p class="mt-4 text-xs sm:text-sm text-[#64748B] leading-relaxed">
-                        <strong>Route A (Montreal → Toronto):</strong> Departs
-                        Station Métro Namur
-                        at 6:30 AM EST daily.<br />
-                        <strong>Route B (Toronto → Montreal):</strong> Pickups at
-                        Yorkdale Mall at
-                        12:15 PM EST and Yonge Station at 1:15 PM EST, arriving in
-                        Montreal around
-                        7:15 PM EST.
+                    <p class="mt-4 text-sm sm:text-base text-[#64748B] leading-relaxed">
+                        <strong class="text-slate-900 font-semibold">Route A (Montreal → Toronto):</strong> Departs Station
+                        Métro Namur at 6:30 AM EST daily.<br />
+                        <strong class="text-slate-900 font-semibold">Route B (Toronto → Montreal):</strong> Pickups at
+                        Yorkdale Mall at 12:15 PM EST and Yonge Station at 1:15 PM EST, arriving in Montreal around 7:15 PM
+                        EST.
                     </p>
                 </details>
 
@@ -1156,11 +1139,9 @@
                             </svg>
                         </span>
                     </summary>
-                    <p class="mt-4 text-xs sm:text-sm text-[#64748B] leading-relaxed">
-                        Yes! You can reserve from 1 to 6 seats in our Honda Odyssey.
-                        Our system
-                        provides visual seat selection so you and your companions
-                        sit together.
+                    <p class="mt-4 text-sm sm:text-base text-[#64748B] leading-relaxed">
+                        Yes! You can reserve from 1 to 6 seats in our Honda Odyssey. Our system provides visual seat
+                        selection so you and your companions sit together.
                     </p>
                 </details>
 
@@ -1179,13 +1160,11 @@
                             </svg>
                         </span>
                     </summary>
-                    <p class="mt-4 text-xs sm:text-sm text-[#64748B] leading-relaxed">
+                    <p class="mt-4 text-sm sm:text-base text-[#64748B] leading-relaxed">
                         You can reach us directly via telephone, SMS, or WhatsApp at
-                        <strong class="font-mono text-slate-900 font-bold">647-655-1884</strong>
-                        or
-                        visit our dedicated <a href="{{ route('contact') }}"
-                            class="text-[#16A34A] underline font-bold hover:text-[#15803D]">Contact
-                            Page</a>.
+                        <strong class="font-mono text-slate-900 font-bold">647-655-1884</strong> or visit our dedicated <a
+                            href="{{ route('contact') }}"
+                            class="text-[#16A34A] underline font-bold hover:text-[#15803D]">Contact Page</a>.
                     </p>
                 </details>
 
