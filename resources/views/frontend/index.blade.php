@@ -370,7 +370,6 @@
         </div>
     </section>
 
-    <!-- 2. OUR SERVICES SECTION: Realistic 3-Location Intercity Ride-Share Services (Route A & Route B) -->
     <section id="services" class="relative py-24 lg:py-32 bg-white border-b border-slate-100 overflow-hidden">
         <!-- Luxury Ambient Radial Glow (Oliver Green aura) -->
         <div class="absolute top-0 right-1/4 w-96 h-96 bg-[#22C55E]/5 rounded-full blur-3xl pointer-events-none"
@@ -564,9 +563,6 @@
         </div>
     </section>
 
-    <!-- ========================================== -->
-    <!-- 3. HOW IT WORKS (Simple 3-Step Process) -->
-    <!-- ========================================== -->
     <section id="how-it-works" class="relative py-24 lg:py-32 bg-[#F8FAFC] border-b border-slate-200/80 overflow-hidden">
         <!-- Ambient Atmosphere Subtle Tint -->
         <div class="absolute top-1/2 left-1/4 w-96 h-96 bg-[#22C55E]/[0.03] blur-3xl pointer-events-none"
@@ -723,22 +719,15 @@
         </div>
     </section>
 
-    <!-- ========================================== -->
-    <!-- 4. WHY CHOOSE US (Luxury Frosted Dark Section) -->
-    <!-- ========================================== -->
-    <section id="why-us" class="relative py-28 lg:py-36 bg-[#0B0F17] overflow-hidden border-b border-slate-800 text-white">
+    <section id="why-us"
+        class="relative py-28 lg:py-36 bg-[#0B0F17] overflow-hidden border-b border-slate-800 text-white bg-cover bg-no-repeat bg-[center_left]"
+        style="background-image: url('{{ asset('images/why-us-luxury-transport-flipped.jpg') }}'); background-position: left center; background-size: cover;">
 
-        <!-- Vehicle Background Image: Left-visible, bright, crisp, cinematic showcase -->
-        <div class="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
-            <img src="{{ asset('images/hero-luxury-transport.jpg') }}"
-                alt="Oliver Transport Executive Luxury Minivan Shuttle"
-                class="w-full h-full object-cover object-[15%_center] -scale-x-100 filter brightness-105 contrast-110 opacity-90 lg:opacity-95" />
-            <!-- Soft directional gradient: crystal-clear on the left so car is fully visible, transitioning to dark behind the right card -->
-            <div class="absolute inset-0 bg-gradient-to-r from-transparent via-[#0B0F17]/40 to-[#0B0F17]/95">
-            </div>
-            <div class="absolute inset-0 bg-gradient-to-t from-[#0B0F17] via-transparent to-[#0B0F17]/60">
-            </div>
-        </div>
+        <!-- Dark Vignette Overlay: Crystal-clear on left so car front & headlights shine, deep dark backdrop on right behind card -->
+        <div class="absolute inset-0 bg-gradient-to-r from-transparent via-[#0B0F17]/50 to-[#0B0F17]/95 pointer-events-none"
+            aria-hidden="true"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-[#0B0F17] via-transparent to-[#0B0F17]/70 pointer-events-none"
+            aria-hidden="true"></div>
 
         <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 z-10">
             <div class="flex flex-col lg:flex-row items-center justify-end">
@@ -762,8 +751,7 @@
                             </h2>
 
                             <p class="text-sm text-slate-300 leading-relaxed">
-                                Premium comfort, guaranteed seating, and reliable daily intercity
-                                transit.
+                                Premium comfort, guaranteed seating, and reliable daily intercity transit.
                             </p>
                         </div>
 
@@ -785,8 +773,8 @@
                                     </svg>
                                 </summary>
                                 <div class="pl-7 pr-2 pt-1 pb-2.5 text-sm text-slate-300 leading-relaxed">
-                                    Guaranteed flat fare of CAD per passenger per trip with zero
-                                    hidden fees, zero surge pricing, and cash payment on boarding.
+                                    Guaranteed flat fare of $65 CAD per passenger per trip with zero hidden fees,
+                                    zero surge pricing, and cash payment on boarding.
                                 </div>
                             </details>
 
@@ -809,8 +797,8 @@
                                     </svg>
                                 </summary>
                                 <div class="pl-7 pr-2 pt-1 pb-2.5 text-sm text-slate-300 leading-relaxed">
-                                    Full commercial passenger insurance coverage on all trips with
-                                    courteous, experienced, and dedicated drivers.
+                                    Full commercial passenger insurance coverage on all trips with courteous,
+                                    experienced, and dedicated drivers.
                                 </div>
                             </details>
 
@@ -833,8 +821,8 @@
                                     </svg>
                                 </summary>
                                 <div class="pl-7 pr-2 pt-1 pb-2.5 text-sm text-slate-300 leading-relaxed">
-                                    Daily fixed departures 7 days a week, 365 days a year: 6:30 AM
-                                    from Montreal, 12:15 PM &amp; 1:15 PM from Toronto.
+                                    Daily fixed departures 7 days a week, 365 days a year: 6:30 AM from
+                                    Montreal, 12:15 PM &amp; 1:15 PM from Toronto.
                                 </div>
                             </details>
 
@@ -859,8 +847,8 @@
                                     </svg>
                                 </summary>
                                 <div class="pl-7 pr-2 pt-1 pb-2.5 text-sm text-slate-300 leading-relaxed">
-                                    Direct service connecting Station Métro Namur in Montreal with
-                                    Yorkdale Mall and Yonge Station in Toronto.
+                                    Direct service connecting Station Métro Namur in Montreal with Yorkdale Mall
+                                    and Yonge Station in Toronto.
                                 </div>
                             </details>
 
@@ -886,160 +874,169 @@
     </section>
 
     <!-- ========================================== -->
-    <!-- 5. DEDICATED FLEET (Honda Odyssey) -->
+    <!-- 5. DEDICATED FLEET (Executive Fleet - Honda Odyssey) -->
+    <!-- Option 2: Full-Width Cinematic Panoramic Stage -->
     <!-- ========================================== -->
-    <section id="about" class="relative py-24 lg:py-32 bg-white border-b border-slate-100 overflow-hidden">
-        <!-- Luxury Vehicle Aura Glow -->
-        <div class="absolute top-1/3 right-10 w-96 h-96 bg-[#22C55E]/5 rounded-full blur-3xl pointer-events-none"
+    <section id="about" class="relative py-24 lg:py-32 bg-[#F8FAFC] border-b border-slate-200/80 overflow-hidden">
+        <!-- Ambient Atmosphere Subtle Tint -->
+        <div class="absolute top-1/2 left-1/3 w-96 h-96 bg-[#22C55E]/[0.03] rounded-full blur-3xl pointer-events-none"
             aria-hidden="true"></div>
-        <div class="absolute bottom-10 left-1/4 w-80 h-80 bg-slate-100/80 rounded-full blur-2xl pointer-events-none"
-            aria-hidden="true"></div>
-        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 
-            <!-- Section Header: Standardized Centered with Eyebrow, Title & Subtitle -->
-            <div class="text-center max-w-3xl mx-auto mb-16 sm:mb-20 space-y-3">
-                <div>
-                    <span class="text-xs font-black tracking-widest text-[#16A34A] uppercase">
-                        EXECUTIVE FLEET
-                    </span>
-                </div>
+        <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 z-10">
+
+            <!-- Section Header: Centered on Top -->
+            <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-16 space-y-3">
+                <span class="text-xs font-black tracking-widest text-[#16A34A] uppercase">
+                    EXECUTIVE FLEET
+                </span>
+
                 <h2
                     class="text-3xl sm:text-4xl lg:text-5xl font-black text-[#111827] tracking-tight font-heading leading-tight">
                     Travel in the Honda Odyssey
                 </h2>
-                <p class="text-base sm:text-lg text-[#64748B] leading-relaxed max-w-2xl mx-auto">
-                    Only $65 CAD flat fare per seat. Enjoy guaranteed reserved seating, generous
-                    luggage space, and smooth highway comfort.
+
+                <p class="text-base sm:text-lg text-[#64748B] leading-relaxed max-w-2xl mx-auto font-normal">
+                    Daily scheduled shuttle connecting Montreal and Toronto. Enjoy guaranteed reserved seating, generous
+                    luggage space, and smooth highway comfort for only $65 CAD flat fare.
                 </p>
-                <div class="pt-2">
-                    <a href="#booking-panel"
-                        class="inline-flex items-center justify-center rounded-xl bg-slate-900 hover:bg-[#22C55E] text-white px-6 py-2.5 text-xs font-bold transition duration-200 shadow-xs">
-                        Open Fleet
-                    </a>
-                </div>
             </div>
 
-            <!-- Wide Vehicle Feature Card Matching Reference Image 87756ac6.jpg -->
-            <div
-                class="rounded-3xl bg-white border border-slate-200/80 p-8 sm:p-12 shadow-md hover:shadow-xl hover:shadow-slate-200/50 transition-all duration-300">
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+            <!-- Cinematic Panoramic Vehicle Stage -->
+            <div class="relative rounded-3xl overflow-hidden shadow-2xl border border-slate-200/80 bg-slate-950 group">
 
-                    <!-- Left: Vehicle Name, Specs Checklist, and Reserve CTA (6 cols) -->
-                    <div class="lg:col-span-6 space-y-6">
-                        <div>
-                            <span class="text-xs font-extrabold uppercase tracking-widest text-[#16A34A] block mb-1">
-                                Operating Fleet Profile
-                            </span>
-                            <h3 class="text-3xl sm:text-4xl font-black text-[#111827] tracking-tight font-heading">
-                                Honda Odyssey
+                <!-- High-Definition Panoramic Image -->
+                <div class="relative h-[340px] sm:h-[440px] lg:h-[520px] w-full overflow-hidden">
+                    <img src="{{ asset('images/honda-odyssey-fleet-raw.jpg') }}"
+                        alt="Oliver Transport Commercial Silver Honda Odyssey Minivan with Ontario Plate RAJIA and Toronto Skyline"
+                        class="w-full h-full object-cover object-[center_60%] group-hover:scale-[1.02] transition-transform duration-700 ease-out" />
+
+                    <!-- Cinematic Vignette Gradients for Legibility & Drama -->
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/30 to-transparent"></div>
+                    <div class="absolute inset-0 bg-gradient-to-r from-slate-950/40 via-transparent to-slate-950/40"></div>
+
+                    <!-- Bottom Floating Content Bar inside the Panoramic Stage -->
+                    <div
+                        class="absolute bottom-0 inset-x-0 p-6 sm:p-8 lg:p-10 flex flex-col md:flex-row md:items-end justify-between gap-6 z-10">
+                        <div class="space-y-2 text-white max-w-lg">
+                            <div
+                                class="inline-flex items-center gap-2 rounded-full bg-white/10 backdrop-blur-md px-3 py-1 text-xs font-bold text-white border border-white/20">
+                                <span>Commercial Plate: RAJIA</span>
+                            </div>
+                            <h3 class="text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight text-white font-heading">
+                                Silver Honda Odyssey Express
                             </h3>
-                            <p class="text-xs text-slate-500 font-medium mt-1">
-                                Silver Minivan • Commercial Ontario Plate: <strong
-                                    class="font-mono text-slate-900 font-black">RAJIA</strong>
+                            <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                                Daily intercity express transit between Montreal and Toronto. Professional chauffeur, quiet
+                                ride, and generous legroom.
                             </p>
                         </div>
 
-                        <!-- 2-Column Feature Checklist Matching Reference Image -->
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs sm:text-sm text-slate-700">
-                            <div class="flex items-center gap-2.5">
-                                <svg class="h-4 w-4 text-[#22C55E] flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd"
-                                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                        clip-rule="evenodd" />
-                                </svg>
-                                <span>6 Passenger Seats</span>
-                            </div>
-                            <div class="flex items-center gap-2.5">
-                                <svg class="h-4 w-4 text-[#22C55E] flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd"
-                                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                        clip-rule="evenodd" />
-                                </svg>
-                                <span>Clean Tinted Windows</span>
-                            </div>
-                            <div class="flex items-center gap-2.5">
-                                <svg class="h-4 w-4 text-[#22C55E] flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd"
-                                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                        clip-rule="evenodd" />
-                                </svg>
-                                <span>Tri-Zone Climate Control</span>
-                            </div>
-                            <div class="flex items-center gap-2.5">
-                                <svg class="h-4 w-4 text-[#22C55E] flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd"
-                                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                        clip-rule="evenodd" />
-                                </svg>
-                                <span>USB Charging Ports</span>
-                            </div>
-                            <div class="flex items-center gap-2.5">
-                                <svg class="h-4 w-4 text-[#22C55E] flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd"
-                                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                        clip-rule="evenodd" />
-                                </svg>
-                                <span>Generous Luggage Allowance</span>
-                            </div>
-                            <div class="flex items-center gap-2.5">
-                                <svg class="h-4 w-4 text-[#22C55E] flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd"
-                                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                        clip-rule="evenodd" />
-                                </svg>
-                                <span>Cash Payment Upon Boarding</span>
-                            </div>
-                        </div>
-
-                        <!-- Price and Cash Payment Banner -->
-                        <div
-                            class="rounded-2xl bg-[#F0FDF4] border border-[#22C55E]/30 p-4 text-xs text-slate-800 leading-relaxed">
-                            Pay the driver directly in cash when boarding ($65 CAD flat fare). Zero
-                            upfront electronic deposit or prepayment needed.
-                        </div>
-
-                        <!-- Action Button -->
-                        <div class="pt-2">
+                        <!-- CTA Button on Banner -->
+                        <div class="flex-shrink-0">
                             <a href="#booking-panel"
-                                class="inline-flex min-h-[48px] items-center justify-center rounded-xl bg-slate-900 hover:bg-[#22C55E] text-white px-8 py-3 text-sm font-bold shadow-sm transition duration-200 cursor-pointer">
-                                Reserve Now
+                                class="inline-flex min-h-[48px] items-center justify-center gap-2.5 rounded-xl bg-[#22C55E] hover:bg-[#16A34A] text-white px-8 py-3.5 text-sm sm:text-base font-bold shadow-lg shadow-[#22C55E]/30 transition cursor-pointer">
+                                <span>Reserve Your Seat Now</span>
+                                <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                                        d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                                </svg>
                             </a>
                         </div>
                     </div>
-
-                    <!-- Right: Authentic Vehicle Showcase Image (6 cols) -->
-                    <div class="lg:col-span-6 relative">
-                        <div class="relative rounded-2xl overflow-hidden shadow-lg border border-slate-100 bg-slate-100">
-                            <img src="{{ asset('images/oliver-transport-van.jpg') }}"
-                                alt="Oliver Transport Commercial Silver Honda Odyssey Chauffeur Minivan Plate RAJIA"
-                                class="w-full h-full object-cover aspect-[4/3]" />
-
-                            <!-- Bottom Floating Strip -->
-                            <div
-                                class="absolute bottom-3 left-3 right-3 rounded-xl bg-slate-950/85 backdrop-blur-md px-4 py-2.5 text-white flex items-center justify-between text-xs">
-                                <div>
-                                    <span class="text-[10px] text-slate-400 uppercase tracking-wider block">License
-                                        Plate</span>
-                                    <span class="font-mono font-black text-[#22C55E]">RAJIA</span>
-                                </div>
-                                <div class="text-right">
-                                    <span class="text-[10px] text-slate-400 uppercase tracking-wider block">Fixed
-                                        Corridor</span>
-                                    <span class="font-semibold text-white">Montreal ↔ Toronto</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
                 </div>
+
+            </div>
+
+            <!-- 6 Key Fleet Features Grid (Floating Clean White Cards Below Stage) -->
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4 mt-6">
+
+                <!-- Card 1 -->
+                <div
+                    class="rounded-2xl border border-slate-200/80 bg-white p-4 text-center shadow-xs hover:border-[#22C55E]/40 hover:shadow-md transition group">
+                    <div
+                        class="mx-auto h-10 w-10 rounded-full bg-[#F0FDF4] text-[#16A34A] flex items-center justify-center mb-2.5 group-hover:bg-[#22C55E] group-hover:text-white transition">
+                        <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
+                            <path
+                                d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z" />
+                        </svg>
+                    </div>
+                    <span class="text-xs sm:text-sm font-bold text-slate-900 block">6 Passenger Seats</span>
+                    <span class="text-[11px] text-slate-500 block mt-0.5">Individual Booking</span>
+                </div>
+
+                <!-- Card 2 -->
+                <div
+                    class="rounded-2xl border border-slate-200/80 bg-white p-4 text-center shadow-xs hover:border-[#22C55E]/40 hover:shadow-md transition group">
+                    <div
+                        class="mx-auto h-10 w-10 rounded-full bg-[#F0FDF4] text-[#16A34A] flex items-center justify-center mb-2.5 group-hover:bg-[#22C55E] group-hover:text-white transition">
+                        <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16m-7 6h7" />
+                        </svg>
+                    </div>
+                    <span class="text-xs sm:text-sm font-bold text-slate-900 block">Clean Tinted Windows</span>
+                    <span class="text-[11px] text-slate-500 block mt-0.5">Privacy &amp; Shade</span>
+                </div>
+
+                <!-- Card 3 -->
+                <div
+                    class="rounded-2xl border border-slate-200/80 bg-white p-4 text-center shadow-xs hover:border-[#22C55E]/40 hover:shadow-md transition group">
+                    <div
+                        class="mx-auto h-10 w-10 rounded-full bg-[#F0FDF4] text-[#16A34A] flex items-center justify-center mb-2.5 group-hover:bg-[#22C55E] group-hover:text-white transition">
+                        <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M12 3v18m9-9H3m15.364 6.364l-12.728-12.728m12.728 0L5.636 17.657" />
+                        </svg>
+                    </div>
+                    <span class="text-xs sm:text-sm font-bold text-slate-900 block">Tri-Zone Climate Control</span>
+                    <span class="text-[11px] text-slate-500 block mt-0.5">AC &amp; Heating</span>
+                </div>
+
+                <!-- Card 4 -->
+                <div
+                    class="rounded-2xl border border-slate-200/80 bg-white p-4 text-center shadow-xs hover:border-[#22C55E]/40 hover:shadow-md transition group">
+                    <div
+                        class="mx-auto h-10 w-10 rounded-full bg-[#F0FDF4] text-[#16A34A] flex items-center justify-center mb-2.5 group-hover:bg-[#22C55E] group-hover:text-white transition">
+                        <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                        </svg>
+                    </div>
+                    <span class="text-xs sm:text-sm font-bold text-slate-900 block">USB Charging Ports</span>
+                    <span class="text-[11px] text-slate-500 block mt-0.5">Fast Power Output</span>
+                </div>
+
+                <!-- Card 5 -->
+                <div
+                    class="rounded-2xl border border-slate-200/80 bg-white p-4 text-center shadow-xs hover:border-[#22C55E]/40 hover:shadow-md transition group">
+                    <div
+                        class="mx-auto h-10 w-10 rounded-full bg-[#F0FDF4] text-[#16A34A] flex items-center justify-center mb-2.5 group-hover:bg-[#22C55E] group-hover:text-white transition">
+                        <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                        </svg>
+                    </div>
+                    <span class="text-xs sm:text-sm font-bold text-slate-900 block">Generous Luggage Allowance</span>
+                    <span class="text-[11px] text-slate-500 block mt-0.5">1 Large + 1 Handbag</span>
+                </div>
+
+                <!-- Card 6 -->
+                <div
+                    class="rounded-2xl border border-slate-200/80 bg-white p-4 text-center shadow-xs hover:border-[#22C55E]/40 hover:shadow-md transition group">
+                    <div
+                        class="mx-auto h-10 w-10 rounded-full bg-[#F0FDF4] text-[#16A34A] flex items-center justify-center mb-2.5 group-hover:bg-[#22C55E] group-hover:text-white transition">
+                        <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+                        </svg>
+                    </div>
+                    <span class="text-xs sm:text-sm font-bold text-slate-900 block">Cash Payment Upon Boarding</span>
+                    <span class="text-[11px] text-slate-500 block mt-0.5">$65 CAD Flat Fare</span>
+                </div>
+
             </div>
 
         </div>
     </section>
 
-    <!-- ========================================== -->
-    <!-- 6. CORRIDOR FAQ -->
-    <!-- ========================================== -->
     <section id="faq" class="relative py-24 lg:py-32 bg-[#F8FAFC] border-b border-slate-200/70 overflow-hidden">
         <!-- Ambient FAQ Atmosphere -->
         <div class="absolute top-0 left-1/3 w-96 h-96 bg-[#22C55E]/[0.03] rounded-full blur-3xl pointer-events-none"
@@ -1058,14 +1055,14 @@
                     Frequently Asked Questions
                 </h2>
                 <p class="text-base sm:text-lg text-[#64748B] leading-relaxed max-w-2xl mx-auto">
-                    Everything you need to know about our daily Montreal ↔ Toronto passenger
+                    Everything you need to know about our daily Montreal ↔ Toronto
+                    passenger
                     shuttle, stations, and cash settlement.
                 </p>
             </div>
 
             <!-- FAQ Accordion List -->
             <div class="space-y-4">
-
                 <!-- FAQ 1 -->
                 <details
                     class="group rounded-2xl border border-slate-200/80 bg-white p-6 open:border-[#22C55E]/50 open:shadow-lg open:shadow-[#22C55E]/5 hover:border-[#22C55E]/40 hover:shadow-sm transition-all duration-200">
@@ -1082,8 +1079,10 @@
                         </span>
                     </summary>
                     <p class="mt-4 text-xs sm:text-sm text-[#64748B] leading-relaxed">
-                        Payment is simple and cash-only ($65 CAD flat fare). You pay the driver
-                        directly upon boarding the vehicle. No online payment or upfront credit card
+                        Payment is simple and cash-only ($65 CAD flat fare). You pay
+                        the driver
+                        directly upon boarding the vehicle. No online payment or
+                        upfront credit card
                         deposit is needed.
                     </p>
                 </details>
@@ -1093,7 +1092,8 @@
                     class="group rounded-2xl border border-slate-200/80 bg-white p-6 open:border-[#22C55E]/50 open:shadow-lg open:shadow-[#22C55E]/5 hover:border-[#22C55E]/40 hover:shadow-sm transition-all duration-200">
                     <summary
                         class="flex cursor-pointer items-center justify-between text-base sm:text-lg font-bold text-[#111827] select-none">
-                        <span>Where are the exact pickup and drop-off stations?</span>
+                        <span>Where are the exact pickup and drop-off
+                            stations?</span>
                         <span
                             class="ml-4 flex h-7 w-7 items-center justify-center rounded-full bg-slate-200/70 text-slate-700 group-open:bg-[#22C55E] group-open:text-white transition">
                             <svg class="h-4 w-4 transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24"
@@ -1104,9 +1104,12 @@
                         </span>
                     </summary>
                     <p class="mt-4 text-xs sm:text-sm text-[#64748B] leading-relaxed">
-                        We operate strictly between 3 predefined transit hubs: <strong>Station Métro
-                            Namur</strong> in Montreal, and <strong>Yorkdale Mall</strong> and
-                        <strong>Yonge Station</strong> in Toronto. All locations provide seamless
+                        We operate strictly between 3 predefined transit hubs:
+                        <strong>Station Métro
+                            Namur</strong> in Montreal, and <strong>Yorkdale
+                            Mall</strong> and
+                        <strong>Yonge Station</strong> in Toronto. All locations
+                        provide seamless
                         connections to subway lines and major highways.
                     </p>
                 </details>
@@ -1127,10 +1130,13 @@
                         </span>
                     </summary>
                     <p class="mt-4 text-xs sm:text-sm text-[#64748B] leading-relaxed">
-                        <strong>Route A (Montreal → Toronto):</strong> Departs Station Métro Namur
+                        <strong>Route A (Montreal → Toronto):</strong> Departs
+                        Station Métro Namur
                         at 6:30 AM EST daily.<br />
-                        <strong>Route B (Toronto → Montreal):</strong> Pickups at Yorkdale Mall at
-                        12:15 PM EST and Yonge Station at 1:15 PM EST, arriving in Montreal around
+                        <strong>Route B (Toronto → Montreal):</strong> Pickups at
+                        Yorkdale Mall at
+                        12:15 PM EST and Yonge Station at 1:15 PM EST, arriving in
+                        Montreal around
                         7:15 PM EST.
                     </p>
                 </details>
@@ -1151,8 +1157,10 @@
                         </span>
                     </summary>
                     <p class="mt-4 text-xs sm:text-sm text-[#64748B] leading-relaxed">
-                        Yes! You can reserve from 1 to 6 seats in our Honda Odyssey. Our system
-                        provides visual seat selection so you and your companions sit together.
+                        Yes! You can reserve from 1 to 6 seats in our Honda Odyssey.
+                        Our system
+                        provides visual seat selection so you and your companions
+                        sit together.
                     </p>
                 </details>
 
@@ -1172,8 +1180,9 @@
                         </span>
                     </summary>
                     <p class="mt-4 text-xs sm:text-sm text-[#64748B] leading-relaxed">
-                        You can reach us directly via telephone, SMS, or WhatsApp at <strong
-                            class="font-mono text-slate-900 font-bold">647-655-1884</strong> or
+                        You can reach us directly via telephone, SMS, or WhatsApp at
+                        <strong class="font-mono text-slate-900 font-bold">647-655-1884</strong>
+                        or
                         visit our dedicated <a href="{{ route('contact') }}"
                             class="text-[#16A34A] underline font-bold hover:text-[#15803D]">Contact
                             Page</a>.
@@ -1181,7 +1190,6 @@
                 </details>
 
             </div>
-
         </div>
     </section>
 
@@ -1191,7 +1199,8 @@
         role="dialog" aria-modal="true" aria-labelledby="auth-modal-title">
 
         <!-- Backdrop clickable area -->
-        <div class="fixed inset-0" onclick="closeAuthModal()" aria-hidden="true"></div>
+        <div class="fixed inset-0" onclick="closeAuthModal()" aria-hidden="true">
+        </div>
 
         <!-- Modal Card Container -->
         <div
@@ -1221,7 +1230,8 @@
                     Sign In to Book Your Seat
                 </h3>
                 <p class="mt-2.5 text-sm text-slate-600 leading-relaxed">
-                    Please sign in to your passenger account or register if you're new to select
+                    Please sign in to your passenger account or register if you're
+                    new to select
                     your seats on our
                     interactive Honda Odyssey cabin map and confirm your trip.
                 </p>
@@ -1247,7 +1257,8 @@
             <!-- Notice in Modal -->
             <div class="mt-6 pt-4 border-t border-slate-100 text-center">
                 <p class="text-xs text-slate-500">
-                    Pay directly in cash to the driver upon boarding ($65 CAD flat fare).
+                    Pay directly in cash to the driver upon boarding ($65 CAD flat
+                    fare).
                 </p>
             </div>
 

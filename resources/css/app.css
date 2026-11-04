@@ -1,71 +1,76 @@
 @import 'tailwindcss';
 
-@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
-@source '../../storage/framework/views/*.php';
-@source '../views/**/*.blade.php';
-
 @theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-
-    /*
-     * Oliver Transport Design Tokens
-     * Derived from authentic client vehicle decal & promotional photography:
-     * - Commercial Honda Odyssey (Ontario RAJIA)
-     * - Door decal: Dark Charcoal "Ol" + Vibrant Lime Green "iver"
-     */
-    --color-brand-green: #16A34A;
-    --color-brand-green-hover: #15803D;
-    --color-brand-green-light: #DCFCE7;
+    /* Brand Theme Colors */
+    --color-brand-green: #22C55E;
+    --color-brand-green-hover: #16A34A;
+    --color-brand-green-dark: #15803D;
     --color-brand-green-subtle: #F0FDF4;
 
-    --color-brand-charcoal: #111827;
-    --color-brand-charcoal-hover: #1F2937;
-    --color-brand-dark: #0F172A;
-
-    --color-brand-yellow: #EAB308;
-    --color-brand-yellow-light: #FEF9C3;
-    --color-brand-yellow-dark: #854D0E;
-
-    --color-brand-red: #DC2626;
-    --color-brand-red-light: #FEE2E2;
-    --color-brand-red-dark: #991B1B;
-
-    /* Light Theme Surfaces */
-    --color-surface-white: #FFFFFF;
+    --color-surface-charcoal: #0B0F17;
+    --color-surface-slate: #111827;
     --color-surface-subtle: #F8FAFC;
-    --color-surface-muted: #F1F5F9;
     --color-surface-card: #FFFFFF;
-    --color-surface-border: #E2E8F0;
-    --color-surface-border-strong: #CBD5E1;
 
-    /* High-Contrast Typography */
-    --color-content-primary: #0F172A;
-    --color-content-secondary: #334155;
+    --color-content-primary: #111827;
+    --color-content-secondary: #4B5563;
     --color-content-muted: #64748B;
-    --color-content-subtle: #94A3B8;
+    --color-content-inverted: #FFFFFF;
 
-    /* Backward Compatibility Aliases for Phase 1 Scaffolding & Existing Portals */
+    --color-border-subtle: #E2E8F0;
+    --color-border-card: #CBD5E1;
+
+    --color-brand-red: #EF4444;
+    --color-brand-red-light: #FEF2F2;
+    --color-brand-gold: #FBBF24;
+    --color-brand-gold-light: #FFFBEB;
+
+    /* Mobile UI / Provisional tokens */
     --color-provisional-bg: #0B0F17;
     --color-provisional-surface: #111827;
     --color-provisional-card: #1F2937;
     --color-provisional-border: #374151;
     --color-provisional-accent: #22C55E;
     --color-provisional-accent-hover: #16A34A;
-    --color-provisional-highlight: #FBBF24;
-    --color-provisional-alert: #EF4444;
-    --color-provisional-text: #FFFFFF;
+    --color-provisional-text: #F9FAFB;
     --color-provisional-muted: #9CA3AF;
+    --color-provisional-alert: #EF4444;
+
+    /* Fonts */
+    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif;
+    --font-heading: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif;
+    --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 }
 
-/* Mobile-First Ergonomics & iPhone Safari Safeguards */
+/* Custom Base layer rules */
 @layer base {
-    /* Prevent iOS Safari auto-zoom on input focus by enforcing 16px (1rem) minimum font size */
-    input, select, textarea {
-        font-size: 1rem !important; /* 16px */
+    /* Prevent double-tap zoom on buttons and links */
+    a, button {
+        touch-action: manipulation;
     }
 
-    /* Optimize touch actions on interactive elements */
+    /* Standard touch targets on interactive elements */
     button, a, input, select {
         touch-action: manipulation;
+    }
+}
+
+/* Executive Fleet Full-Right Bleed Organic Clip-Path Shape */
+@layer components {
+    .fleet-full-bleed-wrapper {
+        border-radius: 1.5rem;
+    }
+    
+    @media (min-width: 1024px) {
+        .fleet-full-bleed-wrapper {
+            border-radius: 0;
+            clip-path: ellipse(75% 65% at 75% 50%);
+            -webkit-clip-path: ellipse(75% 65% at 75% 50%);
+        }
+
+        .fleet-full-bleed-backdrop {
+            clip-path: ellipse(80% 70% at 76% 50%);
+            -webkit-clip-path: ellipse(80% 70% at 76% 50%);
+        }
     }
 }
