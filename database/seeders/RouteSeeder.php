@@ -29,13 +29,13 @@ class RouteSeeder extends Seeder
                     [
                         'location_name' => 'Yorkdale Mall',
                         'stop_sequence' => 1,
-                        'scheduled_time' => null,
+                        'scheduled_time' => '12:15:00',
                         'stop_type' => 'intermediate',
                     ],
                     [
                         'location_name' => 'Yonge Station',
                         'stop_sequence' => 2,
-                        'scheduled_time' => null,
+                        'scheduled_time' => '13:15:00',
                         'stop_type' => 'destination',
                     ],
                 ],
@@ -60,7 +60,7 @@ class RouteSeeder extends Seeder
                     [
                         'location_name' => 'Station Métro Namur',
                         'stop_sequence' => 2,
-                        'scheduled_time' => null,
+                        'scheduled_time' => '19:15:00',
                         'stop_type' => 'destination',
                     ],
                 ],

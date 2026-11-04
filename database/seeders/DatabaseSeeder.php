@@ -20,6 +20,8 @@ class DatabaseSeeder extends Seeder
             VehicleSeeder::class,
             RouteSeeder::class,
             ScheduleSeeder::class,
+            CouponSeeder::class,
+            PricingSettingSeeder::class,
         ]);
     }
 }

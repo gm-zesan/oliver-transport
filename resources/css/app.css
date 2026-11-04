@@ -75,4 +75,61 @@
             -webkit-clip-path: ellipse(80% 70% at 76% 50%);
         }
     }
+
+    /* Scrolled Header High-Contrast State */
+    #site-header.is-scrolled #user-profile-btn,
+    #header-inner.header-scrolled #user-profile-btn,
+    .is-scrolled #user-profile-btn,
+    .header-scrolled #user-profile-btn {
+        border-color: #CBD5E1 !important;
+        background-color: #F8FAFC !important;
+        color: #0F172A !important;
+    }
+    #site-header.is-scrolled #user-profile-btn:hover,
+    #header-inner.header-scrolled #user-profile-btn:hover,
+    .is-scrolled #user-profile-btn:hover,
+    .header-scrolled #user-profile-btn:hover {
+        background-color: #F1F5F9 !important;
+        border-color: #94A3B8 !important;
+    }
+    #site-header.is-scrolled #user-profile-name,
+    #header-inner.header-scrolled #user-profile-name,
+    .is-scrolled #user-profile-name,
+    .header-scrolled #user-profile-name,
+    #site-header.is-scrolled #user-profile-btn span#user-profile-name,
+    #header-inner.header-scrolled #user-profile-btn span#user-profile-name,
+    .is-scrolled #user-profile-btn span#user-profile-name,
+    .header-scrolled #user-profile-btn span#user-profile-name {
+        color: #0F172A !important;
+    }
+    #site-header.is-scrolled #user-profile-chevron,
+    #header-inner.header-scrolled #user-profile-chevron,
+    .is-scrolled #user-profile-chevron,
+    .header-scrolled #user-profile-chevron {
+        color: #475569 !important;
+        stroke: #475569 !important;
+    }
+    #site-header.is-scrolled #header-signin-link,
+    #header-inner.header-scrolled #header-signin-link,
+    .is-scrolled #header-signin-link,
+    .header-scrolled #header-signin-link {
+        color: #0F172A !important;
+    }
+    #site-header.is-scrolled #header-signin-link:hover,
+    #header-inner.header-scrolled #header-signin-link:hover,
+    .is-scrolled #header-signin-link:hover,
+    .header-scrolled #header-signin-link:hover {
+        color: #16A34A !important;
+    }
+}
+
+/* Global Print Mode Isolation */
+@media print {
+    #site-header,
+    header,
+    footer,
+    #ticket-hero-section,
+    .print\:hidden {
+        display: none !important;
+    }
 }

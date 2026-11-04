@@ -31,7 +31,7 @@
                 <ul class="space-y-3 text-sm text-slate-400">
                     <li><a href="{{ route('home') }}" class="hover:text-[#22C55E] transition">Home</a></li>
                     <li><a href="{{ route('home') }}#services" class="hover:text-[#22C55E] transition">Services</a></li>
-                    <li><a href="{{ route('home') }}#about" class="hover:text-[#22C55E] transition">About</a></li>
+                    <li><a href="{{ route('home') }}#promotions" class="hover:text-[#22C55E] transition">Promotions</a></li>
                     <li><a href="{{ route('contact') }}" class="hover:text-[#22C55E] transition">Contact</a></li>
                     <li><a href="{{ route('login') }}" class="hover:text-[#22C55E] transition">Sign In</a></li>
                 </ul>
@@ -90,20 +90,27 @@
 
                     <div class="mt-6 pt-2">
                         @auth
-                            @php
-                                $dashboardRoute = auth()->user()->isRider() 
-                                    ? route('rider.dashboard') 
-                                    : (auth()->user()->isOperator() ? route('operator.dashboard') : route('passenger.dashboard'));
-                            @endphp
-                            <a href="{{ $dashboardRoute }}" 
-                               class="inline-flex min-h-[48px] w-full items-center justify-center rounded-xl bg-[#22C55E] hover:bg-[#16A34A] text-white px-5 py-3 text-sm font-bold shadow-md hover:shadow-xl transition duration-200 text-center">
-                                Go to Dashboard
-                            </a>
+                            @if(auth()->user()->isPassenger())
+                                <button type="button" onclick="handleGlobalBookNow()"
+                                   class="inline-flex min-h-[48px] w-full items-center justify-center rounded-xl bg-[#22C55E] hover:bg-[#16A34A] text-white px-5 py-3 text-sm font-bold shadow-md hover:shadow-xl transition duration-200 text-center cursor-pointer">
+                                    Book Now
+                                </button>
+                            @else
+                                @php
+                                    $dashboardRoute = auth()->user()->isRider() 
+                                        ? route('rider.dashboard') 
+                                        : route('operator.dashboard');
+                                @endphp
+                                <a href="{{ $dashboardRoute }}" 
+                                   class="inline-flex min-h-[48px] w-full items-center justify-center rounded-xl bg-[#22C55E] hover:bg-[#16A34A] text-white px-5 py-3 text-sm font-bold shadow-md hover:shadow-xl transition duration-200 text-center">
+                                    Go to Dashboard
+                                </a>
+                            @endif
                         @else
-                            <a href="{{ route('login') }}" 
-                               class="inline-flex min-h-[48px] w-full items-center justify-center rounded-xl bg-[#22C55E] hover:bg-[#16A34A] text-white px-5 py-3 text-sm font-bold shadow-md hover:shadow-xl transition duration-200 text-center">
+                            <button type="button" onclick="handleGlobalBookNow()" 
+                               class="inline-flex min-h-[48px] w-full items-center justify-center rounded-xl bg-[#22C55E] hover:bg-[#16A34A] text-white px-5 py-3 text-sm font-bold shadow-md hover:shadow-xl transition duration-200 text-center cursor-pointer">
                                 Book Now
-                            </a>
+                            </button>
                             <div class="mt-2 text-center">
                                 <a href="{{ route('login') }}" class="text-xs text-slate-400 hover:text-white transition">
                                     Book Your Seat

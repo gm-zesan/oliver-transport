@@ -12,7 +12,6 @@
             <video autoplay muted loop playsinline poster="{{ asset('images/hero-video-poster.jpg') }}"
                 class="w-full h-full object-cover scale-105">
                 <source src="{{ asset('videos/hero-odyssey-loop.mp4') }}" type="video/mp4">
-                <source src="{{ asset('videos/hero-highway-loop.mp4') }}" type="video/mp4">
             </video>
             <!-- Refined Lighter Cinematic Overlay for Maximum Luminous Visibility & Clarity -->
             <div class="absolute inset-0 bg-gradient-to-r from-[#111827]/70 via-[#111827]/50 to-black/20"></div>
@@ -59,21 +58,21 @@
                     <div id="booking-panel"
                         class="w-full max-w-md rounded-3xl p-6 sm:p-7 shadow-2xl shadow-black/50 border border-white/15 bg-[#111827]/50 backdrop-blur-2xl transition duration-200">
 
-                        <!-- Top Route Tabs Navigation -->
-                        <div class="flex items-center gap-2.5 pb-4 border-b border-white/10" role="tablist">
-                            <!-- Route A Pill Tab -->
-                            <button id="tab-btn-route-a" type="button" role="tab" aria-selected="true"
-                                onclick="switchHeroRoute('route-a')"
-                                class="route-tab-btn flex-1 py-2.5 px-3.5 rounded-xl text-xs sm:text-sm font-bold transition bg-[#22C55E] text-white shadow-xs cursor-pointer text-center">
-                                <span>Route A: Montreal → Toronto</span>
-                            </button>
-
-                            <!-- Route B Tab -->
-                            <button id="tab-btn-route-b" type="button" role="tab" aria-selected="false"
-                                onclick="switchHeroRoute('route-b')"
-                                class="route-tab-btn flex-1 py-2.5 px-3.5 rounded-xl text-xs sm:text-sm font-semibold transition text-slate-300 hover:text-white bg-white/10 hover:bg-white/15 border border-white/10 cursor-pointer text-center">
-                                <span>Route B: Toronto → Montreal</span>
-                            </button>
+                        <!-- Top Auto-Detected Route & Scheduled Time Header -->
+                        <div class="flex items-center justify-between pb-3.5 border-b border-white/10">
+                            <div class="flex items-center gap-2">
+                                <span id="hero-route-badge" class="text-xs sm:text-sm font-bold text-white tracking-wide">
+                                    Montreal → Toronto
+                                </span>
+                            </div>
+                            <div class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 border border-white/10">
+                                <svg class="h-3.5 w-3.5 text-[#22C55E]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                <span id="hero-schedule-badge" class="text-xs font-black text-white">
+                                    6:30 AM Daily
+                                </span>
+                            </div>
                         </div>
 
                         <!-- Booking Form with Uber-Style Dropdowns -->
@@ -94,13 +93,13 @@
                                     <div class="flex-1 min-w-0">
                                         <span id="label-pickup"
                                             class="block text-[11px] font-bold uppercase tracking-wider text-slate-400 leading-none mb-1">
-                                            Pickup location
+                                            Pickup address
                                         </span>
                                         <span id="pickup-display-text"
-                                            class="block text-sm sm:text-base font-bold text-white truncate leading-snug">
-                                            Station Métro Namur (Montreal)
+                                            class="block text-sm sm:text-base font-medium text-slate-300 truncate leading-snug">
+                                            Select pickup location
                                         </span>
-                                        <input type="hidden" name="from" id="pickup_location" value="namur">
+                                        <input type="hidden" name="from" id="pickup_location" value="">
                                     </div>
 
                                     <!-- Right: Navigation Arrow -->
@@ -117,11 +116,11 @@
 
                                     <div
                                         class="px-4 py-2 bg-slate-900 text-[10px] font-black uppercase tracking-wider text-slate-400">
-                                        Corridor Departure Hubs
+                                        Select Pickup Address
                                     </div>
 
                                     <!-- Station 1: Montreal Namur -->
-                                    <div onclick="selectPickup('namur', 'Station Métro Namur (Montreal)', 'route-a')"
+                                    <div onclick="selectPickup('namur')"
                                         class="flex items-center gap-3.5 px-4 py-3 hover:bg-white/5 transition cursor-pointer">
                                         <div
                                             class="w-10 h-10 rounded-full bg-[#22C55E]/20 text-[#22C55E] flex items-center justify-center flex-shrink-0 shadow-xs">
@@ -134,20 +133,15 @@
                                         </div>
                                         <div class="flex-1 min-w-0">
                                             <div class="flex items-center justify-between">
-                                                <span
-                                                    class="font-bold text-white text-sm sm:text-base leading-tight">Station
-                                                    Métro Namur</span>
-                                                <span
-                                                    class="text-[10px] font-black uppercase tracking-wider text-[#22C55E] bg-[#22C55E]/15 px-2 py-0.5 rounded-full border border-[#22C55E]/30">Route
-                                                    A</span>
+                                                <span class="font-bold text-white text-sm sm:text-base leading-tight">Station Métro Namur</span>
+                                                <span class="text-[10px] font-black uppercase tracking-wider text-[#22C55E] bg-[#22C55E]/15 px-2 py-0.5 rounded-full border border-[#22C55E]/30">6:30 AM</span>
                                             </div>
-                                            <span class="text-xs text-slate-400 block mt-0.5">Montreal • Route A Departure
-                                                Hub (6:30 AM EST)</span>
+                                            <span class="text-xs text-slate-400 block mt-0.5">Montreal • Fixed Morning Departure</span>
                                         </div>
                                     </div>
 
                                     <!-- Station 2: Toronto Yorkdale -->
-                                    <div onclick="selectPickup('yorkdale', 'Yorkdale Mall (Toronto)', 'route-b')"
+                                    <div onclick="selectPickup('yorkdale')"
                                         class="flex items-center gap-3.5 px-4 py-3 hover:bg-white/5 transition cursor-pointer">
                                         <div
                                             class="w-10 h-10 rounded-full bg-slate-800 text-white flex items-center justify-center flex-shrink-0 shadow-xs">
@@ -160,20 +154,15 @@
                                         </div>
                                         <div class="flex-1 min-w-0">
                                             <div class="flex items-center justify-between">
-                                                <span
-                                                    class="font-bold text-white text-sm sm:text-base leading-tight">Yorkdale
-                                                    Mall</span>
-                                                <span
-                                                    class="text-[10px] font-black uppercase tracking-wider text-[#22C55E] bg-[#22C55E]/15 px-2 py-0.5 rounded-full border border-[#22C55E]/30">Route
-                                                    B</span>
+                                                <span class="font-bold text-white text-sm sm:text-base leading-tight">Yorkdale Mall</span>
+                                                <span class="text-[10px] font-black uppercase tracking-wider text-[#22C55E] bg-[#22C55E]/15 px-2 py-0.5 rounded-full border border-[#22C55E]/30">12:15 PM</span>
                                             </div>
-                                            <span class="text-xs text-slate-400 block mt-0.5">Toronto • Route B 1st Pickup
-                                                (12:15 PM EST)</span>
+                                            <span class="text-xs text-slate-400 block mt-0.5">Toronto • 1st Pickup (Hwy 401 &amp; TTC)</span>
                                         </div>
                                     </div>
 
                                     <!-- Station 3: Toronto Yonge -->
-                                    <div onclick="selectPickup('yonge', 'Yonge Station (Toronto)', 'route-b')"
+                                    <div onclick="selectPickup('yonge')"
                                         class="flex items-center gap-3.5 px-4 py-3 hover:bg-white/5 transition cursor-pointer">
                                         <div
                                             class="w-10 h-10 rounded-full bg-slate-800 text-white flex items-center justify-center flex-shrink-0 shadow-xs">
@@ -186,14 +175,10 @@
                                         </div>
                                         <div class="flex-1 min-w-0">
                                             <div class="flex items-center justify-between">
-                                                <span class="font-bold text-white text-sm sm:text-base leading-tight">Yonge
-                                                    Station</span>
-                                                <span
-                                                    class="text-[10px] font-black uppercase tracking-wider text-[#22C55E] bg-[#22C55E]/15 px-2 py-0.5 rounded-full border border-[#22C55E]/30">Route
-                                                    B</span>
+                                                <span class="font-bold text-white text-sm sm:text-base leading-tight">Yonge Station</span>
+                                                <span class="text-[10px] font-black uppercase tracking-wider text-[#22C55E] bg-[#22C55E]/15 px-2 py-0.5 rounded-full border border-[#22C55E]/30">1:15 PM</span>
                                             </div>
-                                            <span class="text-xs text-slate-400 block mt-0.5">Toronto • Route B 2nd Pickup
-                                                (1:15 PM EST)</span>
+                                            <span class="text-xs text-slate-400 block mt-0.5">Toronto • 2nd Pickup (Subway Terminal)</span>
                                         </div>
                                     </div>
 
@@ -214,13 +199,13 @@
                                     <div class="flex-1 min-w-0">
                                         <span id="label-destination"
                                             class="block text-[11px] font-bold uppercase tracking-wider text-slate-400 leading-none mb-1">
-                                            Drop-off location
+                                            Drop-off address
                                         </span>
                                         <span id="dest-display-text"
-                                            class="block text-sm sm:text-base font-bold text-white truncate leading-snug">
-                                            Yorkdale Mall &amp; Yonge Station (Toronto)
+                                            class="block text-sm sm:text-base font-medium text-slate-300 truncate leading-snug">
+                                            Select drop-off location
                                         </span>
-                                        <input type="hidden" name="to" id="destination_location" value="toronto">
+                                        <input type="hidden" name="to" id="destination_location" value="">
                                     </div>
 
                                     <!-- Right: Dropdown Chevron -->
@@ -238,48 +223,63 @@
 
                                     <div
                                         class="px-4 py-2 bg-slate-900 text-[10px] font-black uppercase tracking-wider text-slate-400">
-                                        Corridor Destination Hubs
+                                        Select Drop-off Address
                                     </div>
 
-                                    <!-- Toronto Dropoffs -->
-                                    <div onclick="selectDestination('toronto', 'Yorkdale Mall & Yonge Station (Toronto)', 'route-a')"
+                                    <!-- Option 1: Yorkdale Mall -->
+                                    <div id="hero-dest-opt-yorkdale" onclick="selectDestination('yorkdale')"
                                         class="flex items-center gap-3.5 px-4 py-3 hover:bg-white/5 transition cursor-pointer">
                                         <div
                                             class="w-10 h-10 rounded-full bg-[#22C55E]/20 text-[#22C55E] flex items-center justify-center flex-shrink-0 shadow-xs">
                                             <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                                     d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                                             </svg>
                                         </div>
                                         <div class="flex-1 min-w-0">
-                                            <span
-                                                class="font-bold text-white text-sm sm:text-base leading-tight block">Yorkdale
-                                                Mall &amp; Yonge Station</span>
-                                            <span class="text-xs text-slate-400 block mt-0.5">Toronto Drop-offs • Hwy 401
-                                                &amp; TTC Subway Interchange</span>
+                                            <div class="flex items-center justify-between">
+                                                <span class="font-bold text-white text-sm sm:text-base leading-tight">Yorkdale Mall</span>
+                                                <span class="text-[10px] font-black uppercase tracking-wider text-[#22C55E] bg-[#22C55E]/15 px-2 py-0.5 rounded-full border border-[#22C55E]/30">~12:15 PM</span>
+                                            </div>
+                                            <span class="text-xs text-slate-400 block mt-0.5">Toronto • 1st Drop-off</span>
                                         </div>
                                     </div>
 
-                                    <!-- Montreal Dropoff -->
-                                    <div onclick="selectDestination('montreal', 'Station Métro Namur (Montreal)', 'route-b')"
+                                    <!-- Option 2: Yonge Station -->
+                                    <div id="hero-dest-opt-yonge" onclick="selectDestination('yonge')"
                                         class="flex items-center gap-3.5 px-4 py-3 hover:bg-white/5 transition cursor-pointer">
+                                        <div
+                                            class="w-10 h-10 rounded-full bg-[#22C55E]/20 text-[#22C55E] flex items-center justify-center flex-shrink-0 shadow-xs">
+                                            <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                            </svg>
+                                        </div>
+                                        <div class="flex-1 min-w-0">
+                                            <div class="flex items-center justify-between">
+                                                <span class="font-bold text-white text-sm sm:text-base leading-tight">Yonge Station</span>
+                                                <span class="text-[10px] font-black uppercase tracking-wider text-[#22C55E] bg-[#22C55E]/15 px-2 py-0.5 rounded-full border border-[#22C55E]/30">~1:15 PM</span>
+                                            </div>
+                                            <span class="text-xs text-slate-400 block mt-0.5">Toronto • 2nd Drop-off</span>
+                                        </div>
+                                    </div>
+
+                                    <!-- Option 3: Station Métro Namur -->
+                                    <div id="hero-dest-opt-namur" onclick="selectDestination('namur')"
+                                        class="flex items-center gap-3.5 px-4 py-3 hover:bg-white/5 transition cursor-pointer hidden">
                                         <div
                                             class="w-10 h-10 rounded-full bg-slate-800 text-white flex items-center justify-center flex-shrink-0 shadow-xs">
                                             <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                                     d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                                             </svg>
                                         </div>
                                         <div class="flex-1 min-w-0">
-                                            <span
-                                                class="font-bold text-white text-sm sm:text-base leading-tight block">Station
-                                                Métro Namur</span>
-                                            <span class="text-xs text-slate-400 block mt-0.5">Montreal Final Drop-off (~7:15
-                                                PM EST)</span>
+                                            <div class="flex items-center justify-between">
+                                                <span class="font-bold text-white text-sm sm:text-base leading-tight">Station Métro Namur</span>
+                                                <span class="text-[10px] font-black uppercase tracking-wider text-[#22C55E] bg-[#22C55E]/15 px-2 py-0.5 rounded-full border border-[#22C55E]/30">~7:15 PM</span>
+                                            </div>
+                                            <span class="text-xs text-slate-400 block mt-0.5">Montreal • Final Drop-off</span>
                                         </div>
                                     </div>
 
@@ -317,18 +317,18 @@
                                         </svg>
                                     </div>
                                     <div>
-                                        <span
+                                        <span id="hero-schedule-label"
                                             class="block text-[10px] font-extrabold uppercase tracking-wider text-slate-400 leading-none mb-1">
                                             Fixed Departure Time
                                         </span>
                                         <span id="hero-schedule-display"
-                                            class="text-sm sm:text-base font-black text-white leading-snug">
-                                            <span id="hero-schedule-text">6:30 AM Daily</span>
+                                            class="text-sm sm:text-base font-bold text-slate-300 leading-snug">
+                                            <span id="hero-schedule-text">Select stations above</span>
                                         </span>
                                     </div>
                                 </div>
-                                <span
-                                    class="rounded-full bg-white/10 px-2.5 py-1 text-[11px] font-bold text-slate-300 border border-white/10">
+                                <span id="hero-route-tag"
+                                    class="rounded-full bg-[#22C55E]/15 text-[#22C55E] border border-[#22C55E]/30 px-2.5 py-1 text-[11px] font-extrabold uppercase tracking-wider">
                                     Fixed Schedule
                                 </span>
                             </div>
@@ -336,19 +336,28 @@
                             <!-- 5. Reserve Now Button -->
                             <div class="pt-2">
                                 @auth
-                                    @php
-                                        $dashboardLink = auth()->user()->isRider()
-                                            ? route('rider.dashboard')
-                                            : (auth()->user()->isOperator() ? route('operator.dashboard') : route('passenger.dashboard'));
-                                    @endphp
-                                    <a href="{{ $dashboardLink }}"
-                                        class="inline-flex min-h-[50px] w-full items-center justify-center gap-2 rounded-2xl bg-[#22C55E] hover:bg-[#16A34A] text-white px-6 py-3.5 text-base font-bold shadow-lg shadow-[#22C55E]/20 transition duration-200 focus:outline-none focus:ring-2 focus:ring-[#22C55E] text-center">
-                                        <span>Go to Dashboard</span>
-                                        <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
-                                                d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                                        </svg>
-                                    </a>
+                                    @if(auth()->user()->isPassenger())
+                                        <button type="button" onclick="openSeatPickerModal()"
+                                            class="inline-flex min-h-[50px] w-full items-center justify-center gap-2 rounded-2xl bg-[#22C55E] hover:bg-[#16A34A] text-white px-6 py-3.5 text-base font-bold shadow-lg shadow-[#22C55E]/20 transition duration-200 focus:outline-none focus:ring-2 focus:ring-[#22C55E] text-center cursor-pointer">
+                                            <span>Select Seats &amp; Reserve</span>
+                                            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                                                    d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                                            </svg>
+                                        </button>
+                                    @else
+                                        @php
+                                            $dashboardLink = auth()->user()->isRider() ? route('rider.dashboard') : route('operator.dashboard');
+                                        @endphp
+                                        <a href="{{ $dashboardLink }}"
+                                            class="inline-flex min-h-[50px] w-full items-center justify-center gap-2 rounded-2xl bg-[#22C55E] hover:bg-[#16A34A] text-white px-6 py-3.5 text-base font-bold shadow-lg shadow-[#22C55E]/20 transition duration-200 focus:outline-none focus:ring-2 focus:ring-[#22C55E] text-center">
+                                            <span>Go to Dashboard</span>
+                                            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                                                    d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                                            </svg>
+                                        </a>
+                                    @endif
                                 @else
                                     <button type="button" onclick="openAuthModal()"
                                         class="inline-flex min-h-[50px] w-full items-center justify-center gap-2 rounded-2xl bg-[#22C55E] hover:bg-[#16A34A] text-white px-6 py-3.5 text-base font-bold shadow-lg shadow-[#22C55E]/20 transition duration-200 focus:outline-none focus:ring-2 focus:ring-[#22C55E] text-center cursor-pointer">
@@ -460,7 +469,7 @@
                         </div>
 
                         <div class="mt-6 pt-4 border-t border-slate-200/70 flex items-center justify-between">
-                            <a href="#booking-panel" onclick="switchHeroRoute('route-a')"
+                            <a href="javascript:void(0)" onclick="handleGlobalBookNow('route-a')"
                                 class="inline-flex min-h-[44px] items-center gap-2 rounded-xl bg-[#22C55E] hover:bg-[#16A34A] text-white px-5 py-2.5 text-xs sm:text-sm font-bold transition duration-200 shadow-sm hover:shadow-md cursor-pointer">
                                 <span>Book Route A</span>
                                 <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -536,7 +545,7 @@
                         </div>
 
                         <div class="mt-6 pt-4 border-t border-slate-200/70 flex items-center justify-between">
-                            <a href="#booking-panel" onclick="switchHeroRoute('route-b')"
+                            <a href="javascript:void(0)" onclick="handleGlobalBookNow('route-b')"
                                 class="inline-flex min-h-[44px] items-center gap-2 rounded-xl bg-[#22C55E] hover:bg-[#16A34A] text-white px-5 py-2.5 text-xs sm:text-sm font-bold transition duration-200 shadow-sm hover:shadow-md cursor-pointer">
                                 <span>Book Route B</span>
                                 <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -546,6 +555,128 @@
                             </a>
                             <span class="text-xs font-semibold text-slate-500">6 Passenger Seats</span>
                         </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- 2.5 SPECIAL PROMOTIONS & COUPONS SECTION -->
+    <!-- ========================================== -->
+    <section id="promotions" class="relative py-20 lg:py-28 bg-[#0B0F17] text-white overflow-hidden border-b border-slate-800">
+        <!-- Ambient Green Aura Glow -->
+        <div class="absolute top-1/2 left-1/3 w-96 h-96 bg-[#22C55E]/10 rounded-full blur-3xl pointer-events-none" aria-hidden="true"></div>
+
+        <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 z-10">
+            <!-- Section Header -->
+            <div class="text-center max-w-3xl mx-auto mb-14 space-y-3">
+                <span class="text-xs font-black tracking-widest text-[#22C55E] uppercase">
+                    PROMOTIONS &amp; DISCOUNT CODES
+                </span>
+                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight font-heading leading-tight">
+                    Ride for Only $55 CAD with Promo Code
+                </h2>
+                <p class="text-sm sm:text-base text-slate-300 leading-relaxed max-w-2xl mx-auto">
+                    Our standard regular flat rate is $65.00 CAD. Apply active promotional coupon codes during booking to enjoy our introductory launch rate of only $55.00 CAD!
+                </p>
+            </div>
+
+            <!-- Promotion Cards Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+                
+                <!-- Promo Card 1: Launch Special ($10 OFF -> $55 CAD) -->
+                <div class="relative rounded-3xl border-2 border-[#22C55E]/40 bg-gradient-to-b from-slate-900/90 to-slate-950 p-6 sm:p-8 shadow-xl hover:border-[#22C55E] transition group flex flex-col justify-between">
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between gap-2">
+                            <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-black bg-[#22C55E]/15 text-[#22C55E] border border-[#22C55E]/30 uppercase tracking-wider">
+                                Active Promo Code
+                            </span>
+                            <span class="text-xs font-bold text-slate-400 font-mono">Save $10 CAD / Seat</span>
+                        </div>
+
+                        <div>
+                            <h3 class="text-2xl font-black text-white font-heading tracking-tight">
+                                Launch Special Rate: $55 CAD
+                            </h3>
+                            <p class="text-xs sm:text-sm text-slate-300 mt-1.5 leading-relaxed">
+                                Get $10.00 CAD off the regular $65.00 CAD fare on all daily departures. Applies to both Montreal → Toronto and Toronto → Montreal journeys.
+                            </p>
+                        </div>
+
+                        <!-- Ticket Code Box -->
+                        <div class="rounded-2xl border-2 border-dashed border-[#22C55E]/50 bg-slate-900/80 p-4 flex items-center justify-between gap-4">
+                            <div>
+                                <span class="text-[10px] uppercase font-bold text-slate-400 block tracking-wider">Coupon Code</span>
+                                <span class="font-mono text-2xl font-black text-[#22C55E] tracking-wider block">LAUNCH10</span>
+                            </div>
+                            <button type="button" id="copy-btn-launch10" onclick="copyPromoCode('LAUNCH10', 'copy-btn-launch10')"
+                                class="inline-flex min-h-[40px] items-center justify-center gap-1.5 rounded-xl bg-white/10 hover:bg-white/20 text-white px-4 py-2 text-xs font-bold transition border border-white/15 cursor-pointer">
+                                <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" />
+                                </svg>
+                                <span>Copy Code</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 pt-4 border-t border-slate-800 flex items-center justify-between gap-3">
+                        <span class="text-xs text-slate-400">Regular $65 CAD → <strong class="text-white">$55 CAD Final</strong></span>
+                        <button type="button" onclick="openSeatPickerWithCoupon('LAUNCH10')"
+                            class="inline-flex min-h-[44px] items-center gap-2 rounded-xl bg-[#22C55E] hover:bg-[#16A34A] text-white px-5 py-2 text-xs sm:text-sm font-bold transition shadow-xs cursor-pointer">
+                            <span>Apply &amp; Book</span>
+                            <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Promo Card 2: Companion & Group Discount (15% OFF) -->
+                <div class="relative rounded-3xl border border-slate-700/80 bg-gradient-to-b from-slate-900/90 to-slate-950 p-6 sm:p-8 shadow-xl hover:border-[#22C55E]/60 transition group flex flex-col justify-between">
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between gap-2">
+                            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-black bg-white/10 text-slate-200 border border-white/20 uppercase tracking-wider">
+                                Group Saver
+                            </span>
+                            <span class="text-xs font-bold text-[#22C55E] font-mono">15% Discount</span>
+                        </div>
+
+                        <div>
+                            <h3 class="text-2xl font-black text-white font-heading tracking-tight">
+                                Group &amp; Family Discount: 15% OFF
+                            </h3>
+                            <p class="text-xs sm:text-sm text-slate-300 mt-1.5 leading-relaxed">
+                                Save 15% on multi-seat reservations when booking for family, friends, or companions under a single passenger account.
+                            </p>
+                        </div>
+
+                        <!-- Ticket Code Box -->
+                        <div class="rounded-2xl border-2 border-dashed border-slate-700 bg-slate-900/80 p-4 flex items-center justify-between gap-4">
+                            <div>
+                                <span class="text-[10px] uppercase font-bold text-slate-400 block tracking-wider">Coupon Code</span>
+                                <span class="font-mono text-2xl font-black text-white tracking-wider block">OLIVER15</span>
+                            </div>
+                            <button type="button" id="copy-btn-oliver15" onclick="copyPromoCode('OLIVER15', 'copy-btn-oliver15')"
+                                class="inline-flex min-h-[40px] items-center justify-center gap-1.5 rounded-xl bg-white/10 hover:bg-white/20 text-white px-4 py-2 text-xs font-bold transition border border-white/15 cursor-pointer">
+                                <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" />
+                                </svg>
+                                <span>Copy Code</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 pt-4 border-t border-slate-800 flex items-center justify-between gap-3">
+                        <span class="text-xs text-slate-400">Multi-seat bookings • <strong class="text-white">Instant 15% Off</strong></span>
+                        <button type="button" onclick="openSeatPickerWithCoupon('OLIVER15')"
+                            class="inline-flex min-h-[44px] items-center gap-2 rounded-xl bg-[#22C55E] hover:bg-[#16A34A] text-white px-5 py-2 text-xs sm:text-sm font-bold transition shadow-xs cursor-pointer">
+                            <span>Apply &amp; Book</span>
+                            <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                            </svg>
+                        </button>
                     </div>
                 </div>
 
@@ -696,14 +827,14 @@
 
             <!-- Bottom Action CTA -->
             <div class="mt-16 text-center">
-                <a href="#booking-panel"
-                    class="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-xl bg-[#22C55E] hover:bg-[#16A34A] text-white px-8 py-3.5 text-sm sm:text-base font-bold shadow-md hover:shadow-lg transition focus:outline-none focus:ring-2 focus:ring-[#22C55E]">
+                <button type="button" onclick="handleGlobalBookNow()"
+                    class="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-xl bg-[#22C55E] hover:bg-[#16A34A] text-white px-8 py-3.5 text-sm sm:text-base font-bold shadow-md hover:shadow-lg transition focus:outline-none focus:ring-2 focus:ring-[#22C55E] cursor-pointer">
                     <span>Reserve Your Seat Now</span>
                     <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
                             d="M14 5l7 7m0 0l-7 7m7-7H3" />
                     </svg>
-                </a>
+                </button>
             </div>
 
         </div>
@@ -763,8 +894,7 @@
                                     </svg>
                                 </summary>
                                 <div class="pl-7 pr-2 pt-1 pb-2.5 text-sm text-slate-300 leading-relaxed">
-                                    Guaranteed flat fare of $65 CAD per passenger per trip with zero hidden fees,
-                                    zero surge pricing, and cash payment on boarding.
+                                    Guaranteed flat fare of $65 CAD per passenger per trip with zero hidden fees. Cash Payment Upon Boarding: Pay the driver directly in cash when boarding.
                                 </div>
                             </details>
 
@@ -842,18 +972,41 @@
                                 </div>
                             </details>
 
+                            <!-- Item 5: Fleet & Cabin Seating -->
+                            <details class="group pt-3.5">
+                                <summary
+                                    class="flex cursor-pointer items-center justify-between text-base sm:text-lg font-bold text-white select-none py-2 hover:text-[#22C55E] transition-colors">
+                                    <div class="flex items-center gap-3.5">
+                                        <svg class="h-5 w-5 text-[#22C55E] flex-shrink-0" fill="none" viewBox="0 0 24 24"
+                                            stroke="currentColor" stroke-width="2">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M8 7h8m-8 5h8m-8 5h8M5 3h14a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2z" />
+                                        </svg>
+                                        <span>Fleet &amp; Cabin Seating</span>
+                                    </div>
+                                    <svg class="h-4 w-4 text-slate-400 group-hover:text-white transition-transform duration-200 group-open:rotate-180 flex-shrink-0 ml-3"
+                                        fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M19 9l-7 7-7-7" />
+                                    </svg>
+                                </summary>
+                                <div class="pl-7 pr-2 pt-1 pb-2.5 text-sm text-slate-300 leading-relaxed">
+                                    Travel in our Honda Odyssey (Plate: RAJIA) featuring exactly 6 Passenger Seats, leather interior, and climate control for executive comfort.
+                                </div>
+                            </details>
+
                         </div>
 
                         <!-- CTA Button -->
                         <div class="mt-8 pt-6 border-t border-white/10">
-                            <a href="#booking-panel"
+                            <button type="button" onclick="handleGlobalBookNow()"
                                 class="inline-flex items-center justify-center gap-2 rounded-xl bg-[#22C55E] hover:bg-[#16A34A] text-white px-8 py-3.5 text-sm font-bold shadow-lg shadow-[#22C55E]/20 transition-all duration-200 cursor-pointer min-h-[48px]">
                                 <span>Reserve Your Seat</span>
                                 <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
                                         d="M14 5l7 7m0 0l-7 7m7-7H3" />
                                 </svg>
-                            </a>
+                            </button>
                         </div>
 
                     </div>
@@ -863,170 +1016,7 @@
         </div>
     </section>
 
-    <!-- ========================================== -->
-    <!-- 5. DEDICATED FLEET (Executive Fleet - Honda Odyssey) -->
-    <!-- Option 2: Full-Width Cinematic Panoramic Stage -->
-    <!-- ========================================== -->
-    <section id="about" class="relative py-24 lg:py-32 bg-[#F8FAFC] border-b border-slate-200/80 overflow-hidden">
-        <!-- Ambient Atmosphere Subtle Tint -->
-        <div class="absolute top-1/2 left-1/3 w-96 h-96 bg-[#22C55E]/[0.03] rounded-full blur-3xl pointer-events-none"
-            aria-hidden="true"></div>
 
-        <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 z-10">
-
-            <!-- Section Header: Centered on Top -->
-            <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-16 space-y-3">
-                <span class="text-xs font-black tracking-widest text-[#16A34A] uppercase">
-                    EXECUTIVE FLEET
-                </span>
-
-                <h2
-                    class="text-3xl sm:text-4xl lg:text-5xl font-black text-[#111827] tracking-tight font-heading leading-tight">
-                    Travel in the Honda Odyssey
-                </h2>
-
-                <p class="text-base sm:text-lg text-[#64748B] leading-relaxed max-w-2xl mx-auto font-normal">
-                    Daily scheduled shuttle connecting Montreal and Toronto. Enjoy guaranteed reserved seating, generous
-                    luggage space, and smooth highway comfort for only $65 CAD flat fare.
-                </p>
-            </div>
-
-            <!-- Cinematic Panoramic Vehicle Stage -->
-            <div class="relative rounded-3xl overflow-hidden shadow-2xl border border-slate-200/80 bg-slate-950 group">
-
-                <!-- High-Definition Panoramic Image -->
-                <div class="relative h-[340px] sm:h-[440px] lg:h-[520px] w-full overflow-hidden">
-                    <img src="{{ asset('images/honda-odyssey-fleet-raw.jpg') }}"
-                        alt="Oliver Transport Commercial Silver Honda Odyssey Minivan with Ontario Plate RAJIA and Toronto Skyline"
-                        class="w-full h-full object-cover object-[center_60%] group-hover:scale-[1.02] transition-transform duration-700 ease-out" />
-
-                    <!-- Cinematic Vignette Gradients for Legibility & Drama -->
-                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/30 to-transparent"></div>
-                    <div class="absolute inset-0 bg-gradient-to-r from-slate-950/40 via-transparent to-slate-950/40"></div>
-
-                    <!-- Bottom Floating Content Bar inside the Panoramic Stage -->
-                    <div
-                        class="absolute bottom-0 inset-x-0 p-6 sm:p-8 lg:p-10 flex flex-col md:flex-row md:items-end justify-between gap-6 z-10">
-                        <div class="space-y-2 text-white max-w-lg">
-                            <div
-                                class="inline-flex items-center gap-2 rounded-full bg-white/10 backdrop-blur-md px-3 py-1 text-xs font-bold text-white border border-white/20">
-                                <span>Commercial Plate: RAJIA</span>
-                            </div>
-                            <h3 class="text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight text-white font-heading">
-                                Silver Honda Odyssey Express
-                            </h3>
-                            <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
-                                Daily intercity express transit between Montreal and Toronto. Professional chauffeur, quiet
-                                ride, and generous legroom.
-                            </p>
-                        </div>
-
-                        <!-- CTA Button on Banner -->
-                        <div class="flex-shrink-0">
-                            <a href="#booking-panel"
-                                class="inline-flex min-h-[48px] items-center justify-center gap-2.5 rounded-xl bg-[#22C55E] hover:bg-[#16A34A] text-white px-8 py-3.5 text-sm sm:text-base font-bold shadow-lg shadow-[#22C55E]/30 transition cursor-pointer">
-                                <span>Reserve Your Seat Now</span>
-                                <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
-                                        d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                                </svg>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-            <!-- 6 Key Fleet Features Grid (Floating Clean White Cards Below Stage) -->
-            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4 mt-6">
-
-                <!-- Card 1 -->
-                <div
-                    class="rounded-2xl border border-slate-200/80 bg-white p-4 text-center shadow-xs hover:border-[#22C55E]/40 hover:shadow-md transition group">
-                    <div
-                        class="mx-auto h-10 w-10 rounded-full bg-[#F0FDF4] text-[#16A34A] flex items-center justify-center mb-2.5 group-hover:bg-[#22C55E] group-hover:text-white transition">
-                        <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
-                            <path
-                                d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z" />
-                        </svg>
-                    </div>
-                    <span class="text-xs sm:text-sm font-bold text-slate-900 block">6 Passenger Seats</span>
-                    <span class="text-[11px] text-slate-500 block mt-0.5">Individual Booking</span>
-                </div>
-
-                <!-- Card 2 -->
-                <div
-                    class="rounded-2xl border border-slate-200/80 bg-white p-4 text-center shadow-xs hover:border-[#22C55E]/40 hover:shadow-md transition group">
-                    <div
-                        class="mx-auto h-10 w-10 rounded-full bg-[#F0FDF4] text-[#16A34A] flex items-center justify-center mb-2.5 group-hover:bg-[#22C55E] group-hover:text-white transition">
-                        <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16m-7 6h7" />
-                        </svg>
-                    </div>
-                    <span class="text-xs sm:text-sm font-bold text-slate-900 block">Clean Tinted Windows</span>
-                    <span class="text-[11px] text-slate-500 block mt-0.5">Privacy &amp; Shade</span>
-                </div>
-
-                <!-- Card 3 -->
-                <div
-                    class="rounded-2xl border border-slate-200/80 bg-white p-4 text-center shadow-xs hover:border-[#22C55E]/40 hover:shadow-md transition group">
-                    <div
-                        class="mx-auto h-10 w-10 rounded-full bg-[#F0FDF4] text-[#16A34A] flex items-center justify-center mb-2.5 group-hover:bg-[#22C55E] group-hover:text-white transition">
-                        <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M12 3v18m9-9H3m15.364 6.364l-12.728-12.728m12.728 0L5.636 17.657" />
-                        </svg>
-                    </div>
-                    <span class="text-xs sm:text-sm font-bold text-slate-900 block">Tri-Zone Climate Control</span>
-                    <span class="text-[11px] text-slate-500 block mt-0.5">AC &amp; Heating</span>
-                </div>
-
-                <!-- Card 4 -->
-                <div
-                    class="rounded-2xl border border-slate-200/80 bg-white p-4 text-center shadow-xs hover:border-[#22C55E]/40 hover:shadow-md transition group">
-                    <div
-                        class="mx-auto h-10 w-10 rounded-full bg-[#F0FDF4] text-[#16A34A] flex items-center justify-center mb-2.5 group-hover:bg-[#22C55E] group-hover:text-white transition">
-                        <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
-                        </svg>
-                    </div>
-                    <span class="text-xs sm:text-sm font-bold text-slate-900 block">USB Charging Ports</span>
-                    <span class="text-[11px] text-slate-500 block mt-0.5">Fast Power Output</span>
-                </div>
-
-                <!-- Card 5 -->
-                <div
-                    class="rounded-2xl border border-slate-200/80 bg-white p-4 text-center shadow-xs hover:border-[#22C55E]/40 hover:shadow-md transition group">
-                    <div
-                        class="mx-auto h-10 w-10 rounded-full bg-[#F0FDF4] text-[#16A34A] flex items-center justify-center mb-2.5 group-hover:bg-[#22C55E] group-hover:text-white transition">
-                        <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-                        </svg>
-                    </div>
-                    <span class="text-xs sm:text-sm font-bold text-slate-900 block">Generous Luggage Allowance</span>
-                    <span class="text-[11px] text-slate-500 block mt-0.5">1 Large + 1 Handbag</span>
-                </div>
-
-                <!-- Card 6 -->
-                <div
-                    class="rounded-2xl border border-slate-200/80 bg-white p-4 text-center shadow-xs hover:border-[#22C55E]/40 hover:shadow-md transition group">
-                    <div
-                        class="mx-auto h-10 w-10 rounded-full bg-[#F0FDF4] text-[#16A34A] flex items-center justify-center mb-2.5 group-hover:bg-[#22C55E] group-hover:text-white transition">
-                        <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
-                        </svg>
-                    </div>
-                    <span class="text-xs sm:text-sm font-bold text-slate-900 block">Cash Payment Upon Boarding</span>
-                    <span class="text-[11px] text-slate-500 block mt-0.5">$65 CAD • Pay the driver directly in cash when
-                        boarding</span>
-                </div>
-
-            </div>
-
-        </div>
-    </section>
 
     <section id="faq" class="relative py-24 lg:py-32 bg-[#F8FAFC] border-b border-slate-200/70 overflow-hidden">
         <!-- Ambient FAQ Atmosphere -->
@@ -1174,7 +1164,7 @@
 
     <!-- Guest Authentication Required Modal -->
     <div id="auth-booking-modal"
-        class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/70 backdrop-blur-md hidden transition-opacity duration-200"
+        class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/45 backdrop-blur-md hidden transition-opacity duration-200"
         role="dialog" aria-modal="true" aria-labelledby="auth-modal-title">
 
         <!-- Backdrop clickable area -->
@@ -1208,19 +1198,30 @@
                 <h3 id="auth-modal-title" class="text-xl sm:text-2xl font-black text-slate-900 tracking-tight font-heading">
                     Sign In to Book Your Seat
                 </h3>
-                <p class="mt-2.5 text-sm text-slate-600 leading-relaxed">
-                    Please sign in to your passenger account or register if you're
-                    new to select
-                    your seats on our
-                    interactive Honda Odyssey cabin map and confirm your trip.
+                <p class="mt-2.5 text-sm text-slate-600 leading-relaxed" id="auth-modal-subtitle">
+                    Please sign in to your passenger account to finalize your reserved seats. Your journey and seat selections will be preserved.
                 </p>
             </div>
 
             <!-- Action CTAs -->
-            <div class="mt-7 space-y-3">
+            <div class="mt-6 space-y-3">
+                <!-- 1-Click Fast Passenger Test Login (Dev / Fast Testing) -->
+                <form method="POST" action="{{ route('login.store') }}" class="w-full">
+                    @csrf
+                    <input type="hidden" name="email" value="passenger@olivertransport.ca">
+                    <input type="hidden" name="password" value="password">
+                    <button type="submit"
+                        class="inline-flex min-h-[46px] w-full items-center justify-center gap-2 rounded-2xl bg-[#22C55E]/15 hover:bg-[#22C55E]/25 text-[#16A34A] border-2 border-[#22C55E]/40 px-4 py-2.5 text-xs sm:text-sm font-bold transition focus:outline-none focus:ring-2 focus:ring-[#22C55E] cursor-pointer">
+                        <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                        </svg>
+                        <span>1-Click Test Passenger Sign In</span>
+                    </button>
+                </form>
+
                 <a href="{{ route('login') }}"
-                    class="inline-flex min-h-[48px] w-full items-center justify-center gap-2 rounded-2xl bg-[#22C55E] hover:bg-[#16A34A] text-white px-6 py-3 text-base font-bold shadow-md hover:shadow-lg transition duration-200 focus:outline-none focus:ring-2 focus:ring-[#22C55E] text-center">
-                    <span>Sign In</span>
+                    class="inline-flex min-h-[46px] w-full items-center justify-center gap-2 rounded-2xl bg-[#22C55E] hover:bg-[#16A34A] text-white px-6 py-2.5 text-sm sm:text-base font-bold shadow-md hover:shadow-lg transition duration-200 focus:outline-none focus:ring-2 focus:ring-[#22C55E] text-center">
+                    <span>Sign In With Email</span>
                     <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
                             d="M14 5l7 7m0 0l-7 7m7-7H3" />
@@ -1228,8 +1229,8 @@
                 </a>
 
                 <a href="{{ route('register') }}"
-                    class="inline-flex min-h-[48px] w-full items-center justify-center gap-2 rounded-2xl bg-slate-100 hover:bg-slate-200 text-slate-800 px-6 py-3 text-sm sm:text-base font-bold border border-slate-200/80 transition duration-200 focus:outline-none focus:ring-2 focus:ring-slate-400 text-center">
-                    <span>Create an Account</span>
+                    class="inline-flex min-h-[46px] w-full items-center justify-center gap-2 rounded-2xl bg-slate-100 hover:bg-slate-200 text-slate-800 px-6 py-2.5 text-xs sm:text-sm font-bold border border-slate-200/80 transition duration-200 focus:outline-none focus:ring-2 focus:ring-slate-400 text-center">
+                    <span>Create New Account</span>
                 </a>
             </div>
 
@@ -1243,4 +1244,7 @@
 
         </div>
     </div>
+
+    <!-- Interactive Vehicle Cabin Seat Selection Modal -->
+    @include('frontend.partials.seat-picker-modal')
 @endsection

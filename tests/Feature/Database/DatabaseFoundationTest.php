@@ -6,6 +6,7 @@ use App\Models\Coupon;
 use App\Models\CouponUsage;
 use App\Models\Location;
 use App\Models\Payment;
+use App\Models\PricingSetting;
 use App\Models\Route;
 use App\Models\RouteStop;
 use App\Models\Schedule;
@@ -321,4 +322,10 @@ test('database seeder populates deterministic static configuration', function ()
     expect(User::where('role', 'operator')->count())->toBe(1)
         ->and(User::where('role', 'rider')->count())->toBe(1)
         ->and(User::where('role', 'passenger')->count())->toBe(1);
+
+    // Pricing Settings: Database-driven baseline fare
+    $pricing = PricingSetting::where('key', 'regular_fare')->first();
+    expect($pricing)->not->toBeNull()
+        ->and((float) $pricing->amount)->toBe(65.00)
+        ->and($pricing->currency)->toBe('CAD');
 });
