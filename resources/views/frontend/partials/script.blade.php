@@ -212,16 +212,24 @@
         }
     }
 
-    // Global Booking Trigger: opens login modal for guests, or booking modal for logged-in passengers
+    // Role Restriction Modal controls
+    function openRoleRestrictionModal() {
+        const modal = document.getElementById('role-restriction-modal');
+        if (modal) modal.classList.remove('hidden');
+    }
+
+    function closeRoleRestrictionModal() {
+        const modal = document.getElementById('role-restriction-modal');
+        if (modal) modal.classList.add('hidden');
+    }
+
+    // Global Booking Trigger: opens login modal for guests, booking modal for passengers, or role restriction modal for drivers
     function handleGlobalBookNow(preferredRoute = null, promoCode = null) {
         @auth
             @if(auth()->user()->isPassenger())
                 openSeatPickerModal(preferredRoute, promoCode);
             @else
-                @php
-                    $dashRoute = auth()->user()->isRider() ? route('rider.dashboard') : route('operator.dashboard');
-                @endphp
-                window.location.href = "{{ $dashRoute }}";
+                openRoleRestrictionModal();
             @endif
         @else
             openAuthModal();

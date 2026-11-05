@@ -47,4 +47,3 @@ test('route stop model automatically casts stop_type to StopType enum', function
     expect($stop->stop_type)->toBeInstanceOf(StopType::class)
         ->and($stop->stop_type)->toBe(StopType::Intermediate);
 });
-

@@ -8,6 +8,7 @@ use App\Models\Location;
 use App\Models\Route;
 use App\Models\Schedule;
 use App\Models\Trip;
+use App\Models\User;
 use App\Models\Vehicle;
 use Database\Seeders\LocationSeeder;
 use Database\Seeders\RouteSeeder;
@@ -98,6 +99,8 @@ class TripService
      */
     public function findOrCreateTripForScheduleAndDate(Schedule $schedule, string $date): Trip
     {
+        $riderId = User::where('role', 'rider')->value('id');
+
         /** @var Trip $trip */
         $trip = Trip::firstOrCreate(
             [
@@ -107,10 +110,15 @@ class TripService
             [
                 'route_id' => $schedule->route_id,
                 'vehicle_id' => $schedule->vehicle_id,
+                'rider_id' => $riderId,
                 'scheduled_departure_time' => $schedule->departure_time,
                 'status' => 'scheduled',
             ]
         );
+
+        if ($trip->rider_id === null && $riderId !== null) {
+            $trip->update(['rider_id' => $riderId]);
+        }
 
         return $trip->loadMissing([
             'route.stops.location',

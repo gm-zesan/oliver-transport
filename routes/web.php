@@ -10,6 +10,7 @@ use App\Http\Controllers\Passenger\BookingController as PassengerBookingControll
 use App\Http\Controllers\Passenger\DashboardController as PassengerDashboardController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Rider\DashboardController as RiderDashboardController;
+use App\Http\Controllers\Rider\ManifestController as RiderManifestController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -44,6 +45,10 @@ Route::middleware(['auth', 'role:passenger'])->prefix('passenger')->name('passen
 
 Route::middleware(['auth', 'role:rider'])->prefix('rider')->name('rider.')->group(function () {
     Route::get('/dashboard', [RiderDashboardController::class, 'index'])->name('dashboard');
+    Route::get('/trips/{trip}', [RiderManifestController::class, 'show'])->name('trips.manifest');
+    Route::patch('/trips/{trip}/status', [RiderManifestController::class, 'updateStatus'])->name('trips.status');
+    Route::post('/trips/{trip}/payments/{payment}/collect', [RiderManifestController::class, 'collectCash'])->name('trips.payments.collect');
+    Route::post('/trips/{trip}/bookings/{booking}/check-in', [RiderManifestController::class, 'checkIn'])->name('trips.bookings.check-in');
 });
 
 Route::middleware(['auth', 'role:operator'])->prefix('operator')->name('operator.')->group(function () {

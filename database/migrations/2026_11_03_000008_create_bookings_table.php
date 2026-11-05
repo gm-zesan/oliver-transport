@@ -24,6 +24,7 @@ return new class extends Migration
             $table->decimal('final_fare', 10, 2);
             $table->string('currency', 3)->default('CAD');
             $table->string('status', 20)->default('confirmed');
+            $table->dateTime('checked_in_at')->nullable();
             $table->dateTime('cancelled_at')->nullable();
             $table->foreignId('cancelled_by')->nullable()->constrained('users')->nullOnDelete();
             $table->timestamps();

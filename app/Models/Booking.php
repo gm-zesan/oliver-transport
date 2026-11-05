@@ -32,6 +32,7 @@ class Booking extends Model
         'final_fare',
         'currency',
         'status',
+        'checked_in_at',
         'cancelled_at',
         'cancelled_by',
     ];
@@ -48,6 +49,7 @@ class Booking extends Model
             'base_fare' => 'decimal:2',
             'discount_amount' => 'decimal:2',
             'final_fare' => 'decimal:2',
+            'checked_in_at' => 'datetime',
             'cancelled_at' => 'datetime',
         ];
     }
@@ -140,6 +142,22 @@ class Booking extends Model
     public function couponUsage(): HasOne
     {
         return $this->hasOne(CouponUsage::class);
+    }
+
+    /**
+     * Get the payment status attribute from the linked payment record.
+     */
+    public function getPaymentStatusAttribute(): string
+    {
+        return $this->payment?->status ?? 'unpaid';
+    }
+
+    /**
+     * Check if passenger has physically boarded / checked in.
+     */
+    public function isCheckedIn(): bool
+    {
+        return $this->checked_in_at !== null;
     }
 
     /**
