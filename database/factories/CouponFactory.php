@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Enums\DiscountType;
 use App\Models\Coupon;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -21,7 +22,7 @@ class CouponFactory extends Factory
     {
         return [
             'code' => strtoupper(fake()->unique()->bothify('PROMO##??')),
-            'discount_type' => 'percentage',
+            'discount_type' => DiscountType::Percentage,
             'discount_value' => 10.00,
             'min_booking_amount' => 0.00,
             'max_discount_amount' => null,
@@ -31,6 +32,7 @@ class CouponFactory extends Factory
             'starts_at' => now()->subDay(),
             'expires_at' => now()->addMonth(),
             'is_active' => true,
+            'is_show' => true,
         ];
     }
 
@@ -40,7 +42,7 @@ class CouponFactory extends Factory
     public function fixed(float $amount = 10.00): static
     {
         return $this->state(fn (array $attributes) => [
-            'discount_type' => 'fixed',
+            'discount_type' => DiscountType::Fixed,
             'discount_value' => $amount,
         ]);
     }
@@ -51,8 +53,18 @@ class CouponFactory extends Factory
     public function percentage(float $percent = 15.00): static
     {
         return $this->state(fn (array $attributes) => [
-            'discount_type' => 'percentage',
+            'discount_type' => DiscountType::Percentage,
             'discount_value' => $percent,
+        ]);
+    }
+
+    /**
+     * Indicate that the coupon is hidden from the public homepage.
+     */
+    public function hidden(): static
+    {
+        return $this->state(fn (array $attributes) => [
+            'is_show' => false,
         ]);
     }
 

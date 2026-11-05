@@ -33,8 +33,8 @@
                         Step 1 of 3 — Choose Your Journey
                     </h3>
                     <p class="text-[11px] text-slate-500 font-medium">
-                        Daily Montreal ↔ Toronto Shuttle • Honda Odyssey (<strong
-                            class="text-slate-800 font-mono">RAJIA</strong>)
+                        Daily Montreal ↔ Toronto Shuttle • {{ $vehicle?->model ?? 'Honda Odyssey' }} (<strong
+                            class="text-slate-800 font-mono">{{ $vehicle?->plate_number ?? 'RAJIA' }}</strong>)
                     </p>
                 </div>
             </div>
@@ -359,7 +359,7 @@
                 <div class="pt-2 border-t border-slate-200/70 flex items-center justify-between text-xs text-slate-500">
                     <span>Travel Date: <strong class="text-slate-900 font-mono" id="step3-date-text">November 10,
                             2026</strong></span>
-                    <span>Fleet: <strong class="text-slate-900 font-mono">Honda Odyssey (RAJIA)</strong></span>
+                    <span>Fleet: <strong class="text-slate-900 font-mono">{{ $vehicle?->model ?? 'Honda Odyssey' }} ({{ $vehicle?->plate_number ?? 'RAJIA' }})</strong></span>
                 </div>
             </div>
 
@@ -408,7 +408,7 @@
                 <div class="text-xs font-bold text-slate-800 uppercase tracking-wider mb-2">Price Breakdown</div>
 
                 <div class="flex items-center justify-between text-xs text-slate-600">
-                    <span id="step3-fare-calc-label">2 Seats × $65.00 CAD:</span>
+                    <span id="step3-fare-calc-label">2 Seats × ${{ number_format($regularFare ?? 65, 2) }} CAD:</span>
                     <span id="modal-gross-fare-text" class="font-mono text-slate-900 font-bold">$130.00 CAD</span>
                 </div>
 

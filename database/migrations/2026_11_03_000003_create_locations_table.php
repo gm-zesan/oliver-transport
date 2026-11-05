@@ -13,10 +13,13 @@ return new class extends Migration
     {
         Schema::create('locations', function (Blueprint $table) {
             $table->id();
+            $table->string('code', 50)->nullable()->unique();
             $table->string('name', 100);
             $table->string('city', 100);
             $table->string('province', 10);
             $table->string('address', 255)->nullable();
+            $table->string('subtitle', 255)->nullable();
+            $table->string('dropoff_subtitle', 255)->nullable();
             $table->timestamps();
         });
     }

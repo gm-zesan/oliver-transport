@@ -22,6 +22,9 @@ class Route extends Model
         'name',
         'direction_code',
         'is_active',
+        'service_label',
+        'image_path',
+        'btn_key',
     ];
 
     /**

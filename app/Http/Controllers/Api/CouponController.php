@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Api;
 
+use App\Enums\DiscountType;
 use App\Exceptions\InvalidCouponException;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Booking\ApplyCouponRequest;
@@ -53,7 +54,7 @@ class CouponController extends Controller
             return response()->json([
                 'is_valid' => true,
                 'code' => $coupon->code,
-                'discount_type' => $coupon->discount_type,
+                'discount_type' => $coupon->discount_type instanceof DiscountType ? $coupon->discount_type->value : (string) $coupon->discount_type,
                 'discount_value' => (float) $coupon->discount_value,
                 'discount_amount' => $discount,
                 'gross_fare' => $grossFare,

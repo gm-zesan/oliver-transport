@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Api;
 
+use App\Enums\StopType;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Booking\SearchTripRequest;
 use App\Models\Trip;
@@ -58,7 +59,7 @@ class TripSearchController extends Controller
                             'sequence' => $stop->stop_sequence,
                             'name' => $stop->location->name,
                             'city' => $stop->location->city,
-                            'stop_type' => $stop->stop_type,
+                            'stop_type' => $stop->stop_type instanceof StopType ? $stop->stop_type->value : (string) $stop->stop_type,
                             'scheduled_time' => $stop->scheduled_time,
                         ];
                     }),

@@ -86,10 +86,13 @@ erDiagram
 
     locations {
         bigint id PK
+        string code UK "namur | yorkdale | yonge"
         string name "Metro Namur | Yorkdale | Yonge"
         string city "Montreal | Toronto"
-        string address
         string province "QC | ON"
+        string address
+        string subtitle
+        string dropoff_subtitle
         timestamps timestamps
     }
 
@@ -97,6 +100,9 @@ erDiagram
         bigint id PK
         string name "Montreal to Toronto"
         string direction_code "MTL_TO_TOR | TOR_TO_MTL"
+        string service_label "Route A • Daily Service"
+        string image_path
+        string btn_key "route-a | route-b"
         boolean is_active
         timestamps timestamps
     }
@@ -164,6 +170,13 @@ erDiagram
     coupons {
         bigint id PK
         string code UK
+        string tab_label
+        string tag
+        string route_tag
+        string headline
+        text description
+        string terms
+        string accent_color
         string discount_type "percentage | fixed"
         decimal discount_value
         decimal min_booking_amount
@@ -174,6 +187,7 @@ erDiagram
         datetime starts_at
         datetime expires_at
         boolean is_active
+        boolean is_show "homepage display flag"
         timestamps timestamps
     }
 
@@ -265,10 +279,12 @@ erDiagram
 | Column | Type | Nullable | Default | Description & Constraints |
 |---|---|:---:|---|---|
 | `id` | `BIGINT UNSIGNED` | No | Auto Inc | Primary Key |
+| `code` | `VARCHAR(50)` | Yes | `NULL` | Station identifier slug (e.g. `'namur'`, `'yorkdale'`, `'yonge'`) (`UNIQUE`) |
 | `name` | `VARCHAR(100)` | No | | Station name (e.g., "Metro Namur") |
 | `city` | `VARCHAR(100)` | No | | "Montreal" or "Toronto" |
 | `province` | `VARCHAR(10)` | No | | "QC" or "ON" |
 | `address` | `VARCHAR(255)` | Yes | `NULL` | Specific street address or landmark |
+| `subtitle` | `VARCHAR(255)` | Yes | `NULL` | Marketing & timetable descriptor for booking UI |
 | `created_at` | `TIMESTAMP` | Yes | `NULL` | Standard timestamp |
 | `updated_at` | `TIMESTAMP` | Yes | `NULL` | Standard timestamp |
 
@@ -401,6 +417,13 @@ erDiagram
 |---|---|:---:|---|---|
 | `id` | `BIGINT UNSIGNED` | No | Auto Inc | Primary Key |
 | `code` | `VARCHAR(50)` | No | | Case-insensitive unique coupon code (`UNIQUE`) |
+| `tab_label` | `VARCHAR(100)` | Yes | `NULL` | Interactive tab label (e.g. "🔥 $10 OFF Launch Special") |
+| `tag` | `VARCHAR(100)` | Yes | `NULL` | Voucher category badge (e.g. "Active Launch Special") |
+| `route_tag` | `VARCHAR(150)` | Yes | `NULL` | Corridor eligibility tag (e.g. "Montreal ↔ Toronto Corridor") |
+| `headline` | `VARCHAR(255)` | Yes | `NULL` | Marketing headline |
+| `description` | `TEXT` | Yes | `NULL` | Marketing copy & promotion details |
+| `terms` | `VARCHAR(255)` | Yes | `NULL` | Redemption conditions and cash settlement note |
+| `accent_color` | `VARCHAR(20)` | Yes | `'#22C55E'` | Voucher brand accent hex color |
 | `discount_type` | `VARCHAR(20)` | No | | `'percentage'` (e.g., 10%) or `'fixed'` (e.g., $10.00 CAD) |
 | `discount_value`| `DECIMAL(10, 2)`| No | | Percentage rate (e.g., `10.00`) or CAD dollar amount |
 | `min_booking_amount`| `DECIMAL(10, 2)`| No | `0.00` | Minimum fare required to apply |

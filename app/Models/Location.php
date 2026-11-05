@@ -18,10 +18,13 @@ class Location extends Model
      * @var list<string>
      */
     protected $fillable = [
+        'code',
         'name',
         'city',
         'province',
         'address',
+        'subtitle',
+        'dropoff_subtitle',
     ];
 
     /**

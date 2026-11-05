@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Services\Coupon;
 
+use App\Enums\DiscountType;
 use App\Exceptions\InvalidCouponException;
 use App\Models\Coupon;
 use App\Models\CouponUsage;
@@ -83,7 +84,7 @@ class CouponService
     {
         $grossCents = (int) round($grossBaseFare * 100);
 
-        if ($coupon->discount_type === 'percentage') {
+        if ($coupon->discount_type === DiscountType::Percentage) {
             $discountPercent = (float) $coupon->discount_value;
             $discountCents = (int) round(($grossCents * $discountPercent) / 100);
 

@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Enums\StopType;
 use App\Models\Location;
 use App\Models\Route;
 use App\Models\RouteStop;
@@ -26,7 +27,7 @@ class RouteStopFactory extends Factory
             'location_id' => Location::factory(),
             'stop_sequence' => 0,
             'scheduled_time' => '06:30:00',
-            'stop_type' => 'origin',
+            'stop_type' => StopType::Origin,
         ];
     }
 
@@ -38,7 +39,7 @@ class RouteStopFactory extends Factory
         return $this->state(fn (array $attributes) => [
             'stop_sequence' => $sequence,
             'scheduled_time' => $time,
-            'stop_type' => 'intermediate',
+            'stop_type' => StopType::Intermediate,
         ]);
     }
 
@@ -50,7 +51,7 @@ class RouteStopFactory extends Factory
         return $this->state(fn (array $attributes) => [
             'stop_sequence' => $sequence,
             'scheduled_time' => $time,
-            'stop_type' => 'destination',
+            'stop_type' => StopType::Destination,
         ]);
     }
 }

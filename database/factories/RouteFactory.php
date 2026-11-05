@@ -22,6 +22,9 @@ class RouteFactory extends Factory
         return [
             'name' => 'Montreal to Toronto',
             'direction_code' => strtoupper(fake()->unique()->lexify('ROUTE_????')),
+            'service_label' => 'Daily Service',
+            'image_path' => 'images/service-intercity.jpg',
+            'btn_key' => 'route-a',
             'is_active' => true,
         ];
     }
@@ -34,6 +37,9 @@ class RouteFactory extends Factory
         return $this->state(fn (array $attributes) => [
             'name' => 'Montreal → Toronto',
             'direction_code' => 'MTL_TO_TOR',
+            'service_label' => 'Route A • Daily Service',
+            'image_path' => 'images/service-intercity.jpg',
+            'btn_key' => 'route-a',
             'is_active' => true,
         ]);
     }
@@ -46,6 +52,9 @@ class RouteFactory extends Factory
         return $this->state(fn (array $attributes) => [
             'name' => 'Toronto → Montreal',
             'direction_code' => 'TOR_TO_MTL',
+            'service_label' => 'Route B • Daily Service',
+            'image_path' => 'images/service-corporate.jpg',
+            'btn_key' => 'route-b',
             'is_active' => true,
         ]);
     }

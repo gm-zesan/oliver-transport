@@ -21,3 +21,12 @@ test('header and footer link to contact page', function () {
     $response->assertOk()
         ->assertSee(route('contact'));
 });
+
+test('contact page includes authentication modal and seat picker modal globally', function (): void {
+    $response = $this->get(route('contact'));
+
+    $response->assertOk()
+        ->assertSee('id="auth-booking-modal"', false)
+        ->assertSee('id="seat-picker-modal"', false)
+        ->assertSee('handleGlobalBookNow', false);
+});

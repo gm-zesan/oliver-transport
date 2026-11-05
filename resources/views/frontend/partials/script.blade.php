@@ -212,7 +212,7 @@
         }
     }
 
-    // Global Booking Trigger: opens 3-step wizard modal directly for passenger and guest
+    // Global Booking Trigger: opens login modal for guests, or booking modal for logged-in passengers
     function handleGlobalBookNow(preferredRoute = null, promoCode = null) {
         @auth
             @if(auth()->user()->isPassenger())
@@ -224,8 +224,7 @@
                 window.location.href = "{{ $dashRoute }}";
             @endif
         @else
-            // Deferred Auth: Guests can choose journey and seats first!
-            openSeatPickerModal(preferredRoute, promoCode);
+            openAuthModal();
         @endauth
     }
 
@@ -276,9 +275,9 @@
 
     // -------------------------------------------------------------
     // Oliver Transport Corridor Stations & Fixed Timetable Mapping
-    // (Based directly on Official Oliver Transport Passenger Schedule)
+    // (Loaded dynamically from database configuration or fallback)
     // -------------------------------------------------------------
-    const CORRIDOR_STATIONS = {
+    const DEFAULT_CORRIDOR_STATIONS = {
         namur: {
             code: 'namur',
             name: 'Station Métro Namur',
@@ -304,6 +303,7 @@
             label: 'Yonge Station (Toronto)',
         }
     };
+    const CORRIDOR_STATIONS = (window.OLIVER_CONFIG && window.OLIVER_CONFIG.stations) ? window.OLIVER_CONFIG.stations : DEFAULT_CORRIDOR_STATIONS;
 
     function getValidDropoffs(pickupCode) {
         if (pickupCode === 'namur') {
@@ -407,17 +407,21 @@
         const pickupStation = CORRIDOR_STATIONS[pickupVal] || CORRIDOR_STATIONS.namur;
 
         if (direction === 'MTL_TO_TOR') {
+            const departTime = pickupStation?.departTime || '6:30 AM';
+            const stationName = pickupStation?.name || 'Station Métro Namur';
             if (routeBadge) routeBadge.textContent = 'Montreal → Toronto';
-            if (scheduleBadge) scheduleBadge.textContent = '6:30 AM Daily';
+            if (scheduleBadge) scheduleBadge.textContent = `${departTime} Daily`;
             if (scheduleLabel) scheduleLabel.textContent = 'Fixed Departure Time';
-            if (scheduleText) scheduleText.textContent = '6:30 AM (Station Métro Namur)';
+            if (scheduleText) scheduleText.textContent = `${departTime} (${stationName})`;
             if (routeTag) routeTag.textContent = 'Montreal → Toronto';
         } else {
             if (routeBadge) routeBadge.textContent = 'Toronto → Montreal';
-            const departTime = pickupStation.departTime;
+            const defaultTime = pickupVal === 'yonge' ? '1:15 PM' : '12:15 PM';
+            const departTime = pickupStation?.departTime || defaultTime;
+            const stationName = pickupStation?.name || (pickupVal === 'yonge' ? 'Yonge Station' : 'Yorkdale Mall');
             if (scheduleBadge) scheduleBadge.textContent = `${departTime} Daily`;
             if (scheduleLabel) scheduleLabel.textContent = 'Fixed Pick-up Time';
-            if (scheduleText) scheduleText.textContent = `${departTime} (${pickupStation.name})`;
+            if (scheduleText) scheduleText.textContent = `${departTime} (${stationName})`;
             if (routeTag) routeTag.textContent = 'Toronto → Montreal';
         }
     }
@@ -458,7 +462,7 @@
     ];
     let selectedSeatNumbers = [];
     let seatMapData = [...DEFAULT_HONDA_ODYSSEY_SEATS];
-    let baseUnitFare = 65.00;
+    let baseUnitFare = (window.OLIVER_CONFIG && window.OLIVER_CONFIG.regularFare) ? parseFloat(window.OLIVER_CONFIG.regularFare) : 65.00;
     let appliedCoupon = null;
     let currentBoardingStopId = null;
     let currentDropoffStopId = null;
@@ -466,6 +470,11 @@
     let seatHoldSecondsLeft = 300; // 5-minute seat hold
 
     function openSeatPickerModal(preferredRoute = null, promoCode = null) {
+        @guest
+            openAuthModal();
+            return;
+        @endguest
+
         const modal = document.getElementById('seat-picker-modal');
         if (!modal) return;
 
@@ -789,7 +798,7 @@
 
                 clearSeatPickerError();
                 currentTrip = data.trips[0];
-                baseUnitFare = parseFloat(currentTrip.unit_fare || 65.00);
+                baseUnitFare = parseFloat(currentTrip.unit_fare || (window.OLIVER_CONFIG ? window.OLIVER_CONFIG.regularFare : 65.00));
 
                 const rateIndicator = document.getElementById('step1-rate-indicator') || document.getElementById('modal-current-rate-indicator');
                 if (rateIndicator) {

@@ -37,6 +37,8 @@
     </main>
 
     @include('frontend.partials.footer')
+    @include('frontend.partials.auth-modal')
+    @include('frontend.partials.seat-picker-modal')
     @include('frontend.partials.script')
 </body>
 </html>

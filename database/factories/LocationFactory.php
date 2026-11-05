@@ -24,6 +24,8 @@ class LocationFactory extends Factory
             'city' => 'Montreal',
             'province' => 'QC',
             'address' => fake()->streetAddress(),
+            'subtitle' => 'Montreal Hub',
+            'dropoff_subtitle' => 'Montreal Drop-off',
         ];
     }
 

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\DiscountType;
 use Database\Factories\CouponFactory;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -20,6 +21,13 @@ class Coupon extends Model
      */
     protected $fillable = [
         'code',
+        'tab_label',
+        'tag',
+        'route_tag',
+        'headline',
+        'description',
+        'terms',
+        'accent_color',
         'discount_type',
         'discount_value',
         'min_booking_amount',
@@ -30,6 +38,7 @@ class Coupon extends Model
         'starts_at',
         'expires_at',
         'is_active',
+        'is_show',
     ];
 
     /**
@@ -40,6 +49,7 @@ class Coupon extends Model
     protected function casts(): array
     {
         return [
+            'discount_type' => DiscountType::class,
             'discount_value' => 'decimal:2',
             'min_booking_amount' => 'decimal:2',
             'max_discount_amount' => 'decimal:2',
@@ -49,6 +59,7 @@ class Coupon extends Model
             'starts_at' => 'datetime',
             'expires_at' => 'datetime',
             'is_active' => 'boolean',
+            'is_show' => 'boolean',
         ];
     }
 

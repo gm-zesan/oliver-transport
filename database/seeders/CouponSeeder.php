@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Database\Seeders;
 
+use App\Enums\DiscountType;
 use App\Models\Coupon;
 use Illuminate\Database\Seeder;
 
@@ -14,11 +15,21 @@ class CouponSeeder extends Seeder
      */
     public function run(): void
     {
+        // Remove legacy secondary promo code if present
+        Coupon::where('code', 'OLIVER15')->delete();
+
         // 1. Primary Promotional Launch Coupon ($10 OFF -> $55 CAD flat promotional rate)
-        Coupon::firstOrCreate(
+        Coupon::updateOrCreate(
             ['code' => 'LAUNCH10'],
             [
-                'discount_type' => 'fixed',
+                'tab_label' => '🔥 $10 OFF Launch Special',
+                'tag' => 'Active Launch Special',
+                'route_tag' => 'Montreal ↔ Toronto Corridor',
+                'headline' => 'Ride for Only $55 CAD with Promo Code',
+                'description' => 'Get $10.00 CAD off the regular $65.00 CAD fare on all daily departures. Valid on both Route A (Montreal → Toronto) and Route B (Toronto → Montreal).',
+                'terms' => 'Valid on all daily departures • Min booking $50 CAD • Cash settlement on boarding',
+                'accent_color' => '#22C55E',
+                'discount_type' => DiscountType::Fixed,
                 'discount_value' => 10.00,
                 'min_booking_amount' => 50.00,
                 'max_discount_amount' => null,
@@ -28,23 +39,7 @@ class CouponSeeder extends Seeder
                 'starts_at' => now()->subDay(),
                 'expires_at' => now()->addYear(),
                 'is_active' => true,
-            ]
-        );
-
-        // 2. Percentage Launch Coupon (15% OFF)
-        Coupon::firstOrCreate(
-            ['code' => 'OLIVER15'],
-            [
-                'discount_type' => 'percentage',
-                'discount_value' => 15.00,
-                'min_booking_amount' => 50.00,
-                'max_discount_amount' => 50.00,
-                'max_total_uses' => 500,
-                'max_uses_per_user' => 2,
-                'current_uses' => 0,
-                'starts_at' => now()->subDay(),
-                'expires_at' => now()->addMonths(6),
-                'is_active' => true,
+                'is_show' => true,
             ]
         );
     }

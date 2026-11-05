@@ -15,6 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('name', 100);
             $table->string('direction_code', 20)->unique();
+            $table->string('service_label', 100)->nullable();
+            $table->string('image_path', 255)->nullable();
+            $table->string('btn_key', 50)->nullable();
             $table->boolean('is_active')->default(true);
             $table->timestamps();
         });

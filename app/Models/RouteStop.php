@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\StopType;
 use Database\Factories\RouteStopFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -35,6 +36,7 @@ class RouteStop extends Model
     {
         return [
             'stop_sequence' => 'integer',
+            'stop_type' => StopType::class,
         ];
     }
 

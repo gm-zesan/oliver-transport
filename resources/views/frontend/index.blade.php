@@ -3,6 +3,21 @@
 @section('title', 'Oliver Transport — Daily Montreal ↔ Toronto Passenger Shuttle')
 
 @section('content')
+    <script>
+        window.OLIVER_CONFIG = {
+            regularFare: {{ $regularFare }},
+            promotionalFare: {{ $promotionalFare }},
+            currency: 'CAD',
+            vehicle: {
+                model: @json($vehicleModel),
+                plate: @json($vehiclePlate),
+                capacity: {{ $passengerSeatsCount }}
+                },
+            stations: @json($clientStations),
+            routes: @json($clientRoutes)
+        };
+    </script>
+
     <!-- 1. HERO SECTION: Cinematic Video Background with Dark Gradient Overlay & Glass Booking Panel -->
     <section
         class="relative min-h-[92vh] flex items-center justify-center overflow-hidden bg-[#111827] pt-28 pb-16 sm:pt-32 sm:pb-20 lg:pt-36 lg:pb-24 border-b border-slate-800">
@@ -62,15 +77,18 @@
                         <div class="flex items-center justify-between pb-3.5 border-b border-white/10">
                             <div class="flex items-center gap-2">
                                 <span id="hero-route-badge" class="text-xs sm:text-sm font-bold text-white tracking-wide">
-                                    Montreal → Toronto
+                                    {{ $routeA?->name ?? 'Montreal → Toronto' }}
                                 </span>
                             </div>
-                            <div class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 border border-white/10">
-                                <svg class="h-3.5 w-3.5 text-[#22C55E]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            <div
+                                class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 border border-white/10">
+                                <svg class="h-3.5 w-3.5 text-[#22C55E]" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                                 </svg>
                                 <span id="hero-schedule-badge" class="text-xs font-black text-white">
-                                    6:30 AM Daily
+                                    {{ $routeATime }} Daily
                                 </span>
                             </div>
                         </div>
@@ -119,68 +137,30 @@
                                         Select Pickup Address
                                     </div>
 
-                                    <!-- Station 1: Montreal Namur -->
-                                    <div onclick="selectPickup('namur')"
-                                        class="flex items-center gap-3.5 px-4 py-3 hover:bg-white/5 transition cursor-pointer">
-                                        <div
-                                            class="w-10 h-10 rounded-full bg-[#22C55E]/20 text-[#22C55E] flex items-center justify-center flex-shrink-0 shadow-xs">
-                                            <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                                            </svg>
-                                        </div>
-                                        <div class="flex-1 min-w-0">
-                                            <div class="flex items-center justify-between">
-                                                <span class="font-bold text-white text-sm sm:text-base leading-tight">Station Métro Namur</span>
-                                                <span class="text-[10px] font-black uppercase tracking-wider text-[#22C55E] bg-[#22C55E]/15 px-2 py-0.5 rounded-full border border-[#22C55E]/30">6:30 AM</span>
+                                    @foreach($locations as $loc)
+                                        <div onclick="selectPickup('{{ $loc->code }}')"
+                                            class="flex items-center gap-3.5 px-4 py-3 hover:bg-white/5 transition cursor-pointer">
+                                            <div
+                                                class="w-10 h-10 rounded-full {{ $loc->code === 'namur' ? 'bg-[#22C55E]/20 text-[#22C55E]' : 'bg-slate-800 text-white' }} flex items-center justify-center flex-shrink-0 shadow-xs">
+                                                <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                        d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                        d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                                                </svg>
                                             </div>
-                                            <span class="text-xs text-slate-400 block mt-0.5">Montreal • Fixed Morning Departure</span>
-                                        </div>
-                                    </div>
-
-                                    <!-- Station 2: Toronto Yorkdale -->
-                                    <div onclick="selectPickup('yorkdale')"
-                                        class="flex items-center gap-3.5 px-4 py-3 hover:bg-white/5 transition cursor-pointer">
-                                        <div
-                                            class="w-10 h-10 rounded-full bg-slate-800 text-white flex items-center justify-center flex-shrink-0 shadow-xs">
-                                            <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                                            </svg>
-                                        </div>
-                                        <div class="flex-1 min-w-0">
-                                            <div class="flex items-center justify-between">
-                                                <span class="font-bold text-white text-sm sm:text-base leading-tight">Yorkdale Mall</span>
-                                                <span class="text-[10px] font-black uppercase tracking-wider text-[#22C55E] bg-[#22C55E]/15 px-2 py-0.5 rounded-full border border-[#22C55E]/30">12:15 PM</span>
+                                            <div class="flex-1 min-w-0">
+                                                <div class="flex items-center justify-between">
+                                                    <span
+                                                        class="font-bold text-white text-sm sm:text-base leading-tight">{{ $loc->name }}</span>
+                                                    <span
+                                                        class="text-[10px] font-black uppercase tracking-wider text-[#22C55E] bg-[#22C55E]/15 px-2 py-0.5 rounded-full border border-[#22C55E]/30">{{ $loc->pickup_time }}</span>
+                                                </div>
+                                                <span
+                                                    class="text-xs text-slate-400 block mt-0.5">{{ $loc->subtitle ?? "{$loc->city} • Station Hub" }}</span>
                                             </div>
-                                            <span class="text-xs text-slate-400 block mt-0.5">Toronto • 1st Pickup (Hwy 401 &amp; TTC)</span>
                                         </div>
-                                    </div>
-
-                                    <!-- Station 3: Toronto Yonge -->
-                                    <div onclick="selectPickup('yonge')"
-                                        class="flex items-center gap-3.5 px-4 py-3 hover:bg-white/5 transition cursor-pointer">
-                                        <div
-                                            class="w-10 h-10 rounded-full bg-slate-800 text-white flex items-center justify-center flex-shrink-0 shadow-xs">
-                                            <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                                            </svg>
-                                        </div>
-                                        <div class="flex-1 min-w-0">
-                                            <div class="flex items-center justify-between">
-                                                <span class="font-bold text-white text-sm sm:text-base leading-tight">Yonge Station</span>
-                                                <span class="text-[10px] font-black uppercase tracking-wider text-[#22C55E] bg-[#22C55E]/15 px-2 py-0.5 rounded-full border border-[#22C55E]/30">1:15 PM</span>
-                                            </div>
-                                            <span class="text-xs text-slate-400 block mt-0.5">Toronto • 2nd Pickup (Subway Terminal)</span>
-                                        </div>
-                                    </div>
+                                    @endforeach
 
                                 </div>
                             </div>
@@ -226,62 +206,28 @@
                                         Select Drop-off Address
                                     </div>
 
-                                    <!-- Option 1: Yorkdale Mall -->
-                                    <div id="hero-dest-opt-yorkdale" onclick="selectDestination('yorkdale')"
-                                        class="flex items-center gap-3.5 px-4 py-3 hover:bg-white/5 transition cursor-pointer">
-                                        <div
-                                            class="w-10 h-10 rounded-full bg-[#22C55E]/20 text-[#22C55E] flex items-center justify-center flex-shrink-0 shadow-xs">
-                                            <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                                            </svg>
-                                        </div>
-                                        <div class="flex-1 min-w-0">
-                                            <div class="flex items-center justify-between">
-                                                <span class="font-bold text-white text-sm sm:text-base leading-tight">Yorkdale Mall</span>
-                                                <span class="text-[10px] font-black uppercase tracking-wider text-[#22C55E] bg-[#22C55E]/15 px-2 py-0.5 rounded-full border border-[#22C55E]/30">~12:15 PM</span>
+                                    @foreach($locations as $loc)
+                                        <div id="hero-dest-opt-{{ $loc->code }}" onclick="selectDestination('{{ $loc->code }}')"
+                                            class="flex items-center gap-3.5 px-4 py-3 hover:bg-white/5 transition cursor-pointer {{ $loc->code === 'namur' ? 'hidden' : '' }}">
+                                            <div
+                                                class="w-10 h-10 rounded-full bg-[#22C55E]/20 text-[#22C55E] flex items-center justify-center flex-shrink-0 shadow-xs">
+                                                <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                        d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                                </svg>
                                             </div>
-                                            <span class="text-xs text-slate-400 block mt-0.5">Toronto • 1st Drop-off</span>
-                                        </div>
-                                    </div>
-
-                                    <!-- Option 2: Yonge Station -->
-                                    <div id="hero-dest-opt-yonge" onclick="selectDestination('yonge')"
-                                        class="flex items-center gap-3.5 px-4 py-3 hover:bg-white/5 transition cursor-pointer">
-                                        <div
-                                            class="w-10 h-10 rounded-full bg-[#22C55E]/20 text-[#22C55E] flex items-center justify-center flex-shrink-0 shadow-xs">
-                                            <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                                            </svg>
-                                        </div>
-                                        <div class="flex-1 min-w-0">
-                                            <div class="flex items-center justify-between">
-                                                <span class="font-bold text-white text-sm sm:text-base leading-tight">Yonge Station</span>
-                                                <span class="text-[10px] font-black uppercase tracking-wider text-[#22C55E] bg-[#22C55E]/15 px-2 py-0.5 rounded-full border border-[#22C55E]/30">~1:15 PM</span>
+                                            <div class="flex-1 min-w-0">
+                                                <div class="flex items-center justify-between">
+                                                    <span
+                                                        class="font-bold text-white text-sm sm:text-base leading-tight">{{ $loc->name }}</span>
+                                                    <span
+                                                        class="text-[10px] font-black uppercase tracking-wider text-[#22C55E] bg-[#22C55E]/15 px-2 py-0.5 rounded-full border border-[#22C55E]/30">{{ $loc->dropoff_time }}</span>
+                                                </div>
+                                                <span
+                                                    class="text-xs text-slate-400 block mt-0.5">{{ $loc->dropoff_subtitle }}</span>
                                             </div>
-                                            <span class="text-xs text-slate-400 block mt-0.5">Toronto • 2nd Drop-off</span>
                                         </div>
-                                    </div>
-
-                                    <!-- Option 3: Station Métro Namur -->
-                                    <div id="hero-dest-opt-namur" onclick="selectDestination('namur')"
-                                        class="flex items-center gap-3.5 px-4 py-3 hover:bg-white/5 transition cursor-pointer hidden">
-                                        <div
-                                            class="w-10 h-10 rounded-full bg-slate-800 text-white flex items-center justify-center flex-shrink-0 shadow-xs">
-                                            <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                                            </svg>
-                                        </div>
-                                        <div class="flex-1 min-w-0">
-                                            <div class="flex items-center justify-between">
-                                                <span class="font-bold text-white text-sm sm:text-base leading-tight">Station Métro Namur</span>
-                                                <span class="text-[10px] font-black uppercase tracking-wider text-[#22C55E] bg-[#22C55E]/15 px-2 py-0.5 rounded-full border border-[#22C55E]/30">~7:15 PM</span>
-                                            </div>
-                                            <span class="text-xs text-slate-400 block mt-0.5">Montreal • Final Drop-off</span>
-                                        </div>
-                                    </div>
+                                    @endforeach
 
                                 </div>
                             </div>
@@ -346,10 +292,7 @@
                                             </svg>
                                         </button>
                                     @else
-                                        @php
-                                            $dashboardLink = auth()->user()->isRider() ? route('rider.dashboard') : route('operator.dashboard');
-                                        @endphp
-                                        <a href="{{ $dashboardLink }}"
+                                        <a href="{{ auth()->user()->isRider() ? route('rider.dashboard') : route('operator.dashboard') }}"
                                             class="inline-flex min-h-[50px] w-full items-center justify-center gap-2 rounded-2xl bg-[#22C55E] hover:bg-[#16A34A] text-white px-6 py-3.5 text-base font-bold shadow-lg shadow-[#22C55E]/20 transition duration-200 focus:outline-none focus:ring-2 focus:ring-[#22C55E] text-center">
                                             <span>Go to Dashboard</span>
                                             <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -403,385 +346,282 @@
                 </p>
             </div>
 
-            <!-- 2 Core Services Grid: Route A & Route B (Realistic 3-Location Ride-Share) -->
+            <!-- 2 Core Services Grid: Route A & Route B (Dynamic from Database) -->
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
-
-                <!-- Service 1: Route A — Montreal to Toronto -->
-                <div
-                    class="group relative rounded-3xl bg-white p-6 sm:p-7 flex flex-col sm:flex-row items-stretch gap-6 border border-slate-200/80 shadow-sm hover:shadow-2xl hover:shadow-[#22C55E]/10 hover:border-[#22C55E]/50 transition-all duration-300">
+                @foreach($routesViewData as $routeItem)
                     <div
-                        class="w-full sm:w-[46%] h-56 sm:h-auto min-h-[220px] rounded-2xl overflow-hidden flex-shrink-0 bg-slate-900">
-                        <img src="{{ asset('images/service-intercity.jpg') }}"
-                            alt="Oliver Transport Route A: Montreal to Toronto Shuttle"
-                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out" />
-                    </div>
-                    <div class="w-full sm:w-[54%] flex flex-col justify-between py-1">
-                        <div>
-                            <div class="flex items-baseline justify-between gap-3 mb-2">
-                                <span class="text-xs font-bold uppercase tracking-wider text-[#16A34A]">
-                                    Route A • Daily Service
-                                </span>
-                                <span class="text-sm font-black text-slate-900 font-mono">
-                                    $65 <span class="text-xs font-semibold text-slate-500">CAD</span>
-                                </span>
-                            </div>
-
-                            <h3
-                                class="text-2xl font-bold text-[#111827] tracking-tight font-heading group-hover:text-[#16A34A] transition-colors">
-                                Montreal → Toronto
-                            </h3>
-
-                            <div class="mt-4 space-y-2.5 text-xs sm:text-sm text-slate-700">
-                                <div class="flex items-center gap-2.5">
-                                    <span
-                                        class="flex h-5 w-5 items-center justify-center rounded-full bg-[#22C55E]/15 text-[#16A34A] flex-shrink-0">
-                                        <svg class="h-3 w-3" fill="currentColor" viewBox="0 0 20 20">
-                                            <path fill-rule="evenodd"
-                                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                                clip-rule="evenodd" />
-                                        </svg>
-                                    </span>
-                                    <span><strong>Pickup:</strong> Station Métro Namur at 6:30 AM</span>
-                                </div>
-                                <div class="flex items-center gap-2.5">
-                                    <span
-                                        class="flex h-5 w-5 items-center justify-center rounded-full bg-[#22C55E]/15 text-[#16A34A] flex-shrink-0">
-                                        <svg class="h-3 w-3" fill="currentColor" viewBox="0 0 20 20">
-                                            <path fill-rule="evenodd"
-                                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                                clip-rule="evenodd" />
-                                        </svg>
-                                    </span>
-                                    <span><strong>Drop-offs:</strong> Yorkdale Mall &amp; Yonge Station</span>
-                                </div>
-                                <div class="flex items-center gap-2.5">
-                                    <span
-                                        class="flex h-5 w-5 items-center justify-center rounded-full bg-[#22C55E]/15 text-[#16A34A] flex-shrink-0">
-                                        <svg class="h-3 w-3" fill="currentColor" viewBox="0 0 20 20">
-                                            <path fill-rule="evenodd"
-                                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                                clip-rule="evenodd" />
-                                        </svg>
-                                    </span>
-                                    <span>Cash payment upon boarding with driver ($65 CAD)</span>
-                                </div>
-                            </div>
+                        class="group relative rounded-3xl bg-white p-6 sm:p-7 flex flex-col sm:flex-row items-stretch gap-6 border border-slate-200/80 shadow-sm hover:shadow-2xl hover:shadow-[#22C55E]/10 hover:border-[#22C55E]/50 transition-all duration-300">
+                        <div
+                            class="w-full sm:w-[46%] h-56 sm:h-auto min-h-[220px] rounded-2xl overflow-hidden flex-shrink-0 bg-slate-900">
+                            <img src="{{ $routeItem['image_path'] }}" alt="Oliver Transport {{ $routeItem['name'] }} Shuttle"
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out" />
                         </div>
-
-                        <div class="mt-6 pt-4 border-t border-slate-200/70 flex items-center justify-between">
-                            <a href="javascript:void(0)" onclick="handleGlobalBookNow('route-a')"
-                                class="inline-flex min-h-[44px] items-center gap-2 rounded-xl bg-[#22C55E] hover:bg-[#16A34A] text-white px-5 py-2.5 text-xs sm:text-sm font-bold transition duration-200 shadow-sm hover:shadow-md cursor-pointer">
-                                <span>Book Route A</span>
-                                <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
-                                        d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                                </svg>
-                            </a>
-                            <span class="text-xs font-semibold text-slate-500">6 Passenger Seats</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Service 2: Route B — Toronto to Montreal -->
-                <div
-                    class="group relative rounded-3xl bg-white p-6 sm:p-7 flex flex-col sm:flex-row items-stretch gap-6 border border-slate-200/80 shadow-sm hover:shadow-2xl hover:shadow-[#22C55E]/10 hover:border-[#22C55E]/50 transition-all duration-300">
-                    <div
-                        class="w-full sm:w-[46%] h-56 sm:h-auto min-h-[220px] rounded-2xl overflow-hidden flex-shrink-0 bg-slate-900">
-                        <img src="{{ asset('images/service-corporate.jpg') }}"
-                            alt="Oliver Transport Route B: Toronto to Montreal Shuttle"
-                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out" />
-                    </div>
-                    <div class="w-full sm:w-[54%] flex flex-col justify-between py-1">
-                        <div>
-                            <div class="flex items-baseline justify-between gap-3 mb-2">
-                                <span class="text-xs font-bold uppercase tracking-wider text-[#16A34A]">
-                                    Route B • Daily Service
-                                </span>
-                                <span class="text-sm font-black text-slate-900 font-mono">
-                                    $65 <span class="text-xs font-semibold text-slate-500">CAD</span>
-                                </span>
-                            </div>
-
-                            <h3
-                                class="text-2xl font-bold text-[#111827] tracking-tight font-heading group-hover:text-[#16A34A] transition-colors">
-                                Toronto → Montreal
-                            </h3>
-
-                            <div class="mt-4 space-y-2.5 text-xs sm:text-sm text-slate-700">
-                                <div class="flex items-center gap-2.5">
-                                    <span
-                                        class="flex h-5 w-5 items-center justify-center rounded-full bg-[#22C55E]/15 text-[#16A34A] flex-shrink-0">
-                                        <svg class="h-3 w-3" fill="currentColor" viewBox="0 0 20 20">
-                                            <path fill-rule="evenodd"
-                                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                                clip-rule="evenodd" />
-                                        </svg>
+                        <div class="w-full sm:w-[54%] flex flex-col justify-between py-1">
+                            <div>
+                                <div class="flex items-baseline justify-between gap-3 mb-2">
+                                    <span class="text-xs font-bold uppercase tracking-wider text-[#16A34A]">
+                                        {{ $routeItem['service_label'] }}
                                     </span>
-                                    <span><strong>Pickups:</strong> Yorkdale (12:15 PM) &amp; Yonge (1:15 PM)</span>
-                                </div>
-                                <div class="flex items-center gap-2.5">
-                                    <span
-                                        class="flex h-5 w-5 items-center justify-center rounded-full bg-[#22C55E]/15 text-[#16A34A] flex-shrink-0">
-                                        <svg class="h-3 w-3" fill="currentColor" viewBox="0 0 20 20">
-                                            <path fill-rule="evenodd"
-                                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                                clip-rule="evenodd" />
-                                        </svg>
+                                    <span class="text-sm font-black text-slate-900 font-mono">
+                                        ${{ number_format($routeItem['regular_fare'], 0) }} <span
+                                            class="text-xs font-semibold text-slate-500">CAD</span>
                                     </span>
-                                    <span><strong>Drop-off:</strong> Station Métro Namur (~7:15 PM EST)</span>
-                                </div>
-                                <div class="flex items-center gap-2.5">
-                                    <span
-                                        class="flex h-5 w-5 items-center justify-center rounded-full bg-[#22C55E]/15 text-[#16A34A] flex-shrink-0">
-                                        <svg class="h-3 w-3" fill="currentColor" viewBox="0 0 20 20">
-                                            <path fill-rule="evenodd"
-                                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                                clip-rule="evenodd" />
-                                        </svg>
-                                    </span>
-                                    <span>Cash payment upon boarding with driver ($65 CAD)</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="mt-6 pt-4 border-t border-slate-200/70 flex items-center justify-between">
-                            <a href="javascript:void(0)" onclick="handleGlobalBookNow('route-b')"
-                                class="inline-flex min-h-[44px] items-center gap-2 rounded-xl bg-[#22C55E] hover:bg-[#16A34A] text-white px-5 py-2.5 text-xs sm:text-sm font-bold transition duration-200 shadow-sm hover:shadow-md cursor-pointer">
-                                <span>Book Route B</span>
-                                <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
-                                        d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                                </svg>
-                            </a>
-                            <span class="text-xs font-semibold text-slate-500">6 Passenger Seats</span>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- ========================================== -->
-    <!-- 2.5 SPECIAL PROMOTIONS & COUPONS SECTION -->
-    <!-- ========================================== -->
-    @php
-        $promotionalCoupons = [
-            [
-                'code' => 'LAUNCH10',
-                'tab_label' => '🔥 $10 OFF Launch Special',
-                'tag' => 'Active Launch Special',
-                'route_tag' => 'Montreal ↔ Toronto Corridor',
-                'headline' => 'Ride for Only $55 CAD with Promo Code',
-                'description' => 'Get $10.00 CAD off the regular $65.00 CAD fare on all daily departures. Valid on both Route A (Montreal → Toronto) and Route B (Toronto → Montreal).',
-                'regular_fare' => '$65.00 CAD',
-                'promo_fare' => '$55.00 CAD',
-                'savings_badge' => 'Save $10 CAD / Seat',
-                'terms' => 'Valid on all daily departures • Min booking $50 CAD • Cash settlement on boarding',
-                'accent_color' => '#22C55E',
-            ],
-            [
-                'code' => 'OLIVER15',
-                'tab_label' => '👥 15% OFF Group Saver',
-                'tag' => 'Companion & Family Saver',
-                'route_tag' => 'Multi-Seat Booking Special',
-                'headline' => 'Group & Family Travel: 15% OFF',
-                'description' => 'Save 15% on multi-seat reservations when booking for family, friends, or companions under a single passenger account.',
-                'regular_fare' => '$65.00 CAD / seat',
-                'promo_fare' => 'From $55.25 CAD',
-                'savings_badge' => '15% Instant Savings',
-                'terms' => 'Applies to 2+ seats reserved together • Valid on Route A & Route B • Cash settlement on boarding',
-                'accent_color' => '#FBBF24',
-            ],
-        ];
-    @endphp
-
-    <section id="promotions" class="relative py-20 lg:py-28 bg-[#0B0F17] text-white overflow-hidden border-b border-slate-800 bg-cover bg-center"
-        style="background-image: linear-gradient(180deg, rgba(11, 15, 23, 0.94) 0%, rgba(11, 15, 23, 0.86) 50%, rgba(11, 15, 23, 0.96) 100%), url('{{ asset('images/honda-odyssey-fleet-raw.jpg') }}');">
-        
-        <!-- Ambient Atmospheric Glows for Luminous Glass Effect -->
-        <div class="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-[#22C55E]/12 rounded-full blur-[140px] pointer-events-none" aria-hidden="true"></div>
-        <div class="absolute bottom-1/4 right-1/4 w-[450px] h-[450px] bg-emerald-600/10 rounded-full blur-[120px] pointer-events-none" aria-hidden="true"></div>
-
-        <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 z-10">
-            <!-- Section Header -->
-            <div class="text-center max-w-3xl mx-auto mb-10 space-y-3">
-                <span class="text-xs font-black tracking-widest text-[#22C55E] uppercase">
-                    PROMOTIONS &amp; DISCOUNT CODES
-                </span>
-                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight font-heading leading-tight drop-shadow-sm">
-                    Exclusive Travel Deals &amp; Discounts
-                </h2>
-                <p class="text-sm sm:text-base text-slate-300 leading-relaxed max-w-2xl mx-auto">
-                    Our standard regular flat rate is $65.00 CAD. Apply active promotional coupon codes during booking to enjoy our introductory launch rate of only $55.00 CAD!
-                </p>
-            </div>
-
-            <!-- Multi-Coupon Interactive Switcher Tabs (Displays 1 coupon at a time) -->
-            @if(count($promotionalCoupons) > 1)
-                <div class="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-8 max-w-xl mx-auto">
-                    @foreach($promotionalCoupons as $idx => $coupon)
-                        <button type="button" onclick="switchCoupon({{ $idx }})" id="coupon-tab-btn-{{ $idx }}"
-                            class="coupon-tab-btn inline-flex min-h-[44px] items-center gap-2 px-4 sm:px-5 py-2.5 rounded-2xl text-xs sm:text-sm font-bold transition-all duration-200 border cursor-pointer {{ $idx === 0 ? 'bg-[#22C55E]/20 text-[#22C55E] border-[#22C55E]/50 shadow-lg shadow-[#22C55E]/10' : 'bg-white/[0.06] text-slate-300 border-white/15 hover:bg-white/[0.12] hover:text-white' }}">
-                            <span>{{ $coupon['tab_label'] }}</span>
-                            <span class="coupon-active-dot flex h-2 w-2 rounded-full bg-[#22C55E] animate-pulse {{ $idx === 0 ? '' : 'hidden' }}"></span>
-                        </button>
-                    @endforeach
-                </div>
-            @endif
-
-            <!-- Voucher Cards Container (Strictly 1 Active Card Rendered at a time) -->
-            <div class="max-w-4xl mx-auto">
-                @foreach($promotionalCoupons as $idx => $coupon)
-                    <div id="coupon-card-{{ $idx }}" class="coupon-deal-card {{ $idx === 0 ? 'block' : 'hidden' }} transition-opacity duration-300">
-                        <div class="relative rounded-3xl sm:rounded-[36px] border border-white/20 bg-white/[0.08] backdrop-blur-2xl shadow-2xl shadow-black/70 ring-1 ring-white/10 overflow-hidden flex flex-col lg:flex-row">
-                            <!-- Top Specular Highlight Edge -->
-                            <div class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/50 to-transparent pointer-events-none"></div>
-                            <!-- Soft Ambient Emerald Glow inside Card -->
-                            <div class="absolute -right-20 -top-20 w-56 h-56 bg-[#22C55E]/15 rounded-full blur-3xl pointer-events-none"></div>
-
-                            <!-- Left: Voucher Core Details (62% width on desktop) -->
-                            <div class="p-6 sm:p-8 lg:p-10 flex-1 flex flex-col justify-between relative z-10">
-                                <div>
-                                    <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
-                                        <div class="flex items-center gap-2">
-                                            <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-black bg-[#22C55E]/20 text-[#22C55E] border border-[#22C55E]/40 uppercase tracking-wider backdrop-blur-md">
-                                                {{ $coupon['tag'] }}
-                                            </span>
-                                            <span class="text-xs font-semibold text-slate-300 hidden sm:inline-block">
-                                                {{ $coupon['route_tag'] }}
-                                            </span>
-                                        </div>
-                                        <span class="text-xs font-bold text-slate-400 font-mono">
-                                            Deal {{ $idx + 1 }} of {{ count($promotionalCoupons) }}
-                                        </span>
-                                    </div>
-
-                                    <h3 class="text-2xl sm:text-3xl font-black text-white font-heading tracking-tight drop-shadow-xs">
-                                        {{ $coupon['headline'] }}
-                                    </h3>
-                                    <p class="text-xs sm:text-sm text-slate-200 mt-2 leading-relaxed">
-                                        {{ $coupon['description'] }}
-                                    </p>
-
-                                    <!-- Price Comparison Glass Box -->
-                                    <div class="mt-5 rounded-2xl bg-black/30 border border-white/15 p-4 flex flex-wrap items-center justify-between gap-3 shadow-inner">
-                                        <div>
-                                            <span class="text-[10px] uppercase font-bold text-slate-400 block tracking-wider">Regular Base Fare</span>
-                                            <del class="text-sm sm:text-base font-semibold text-slate-400 font-mono">{{ $coupon['regular_fare'] }}</del>
-                                        </div>
-                                        <div class="text-right">
-                                            <span class="text-[10px] uppercase font-bold text-slate-400 block tracking-wider">Promotional Rate</span>
-                                            <span class="text-xl sm:text-2xl font-black text-[#22C55E] font-mono tracking-tight">{{ $coupon['promo_fare'] }}</span>
-                                        </div>
-                                        <div class="w-full sm:w-auto pt-2 sm:pt-0 sm:border-l sm:border-white/15 sm:pl-4">
-                                            <span class="inline-flex items-center px-2.5 py-1 rounded-lg bg-[#22C55E]/20 text-[#22C55E] text-xs font-black font-mono border border-[#22C55E]/30">
-                                                {{ $coupon['savings_badge'] }}
-                                            </span>
-                                        </div>
-                                    </div>
                                 </div>
 
-                                <div class="mt-6 pt-4 border-t border-white/15 text-xs text-slate-300 flex items-center gap-2">
-                                    <svg class="h-4 w-4 text-[#22C55E] flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
-                                    </svg>
-                                    <span>{{ $coupon['terms'] }}</span>
-                                </div>
-                            </div>
+                                <h3
+                                    class="text-2xl font-bold text-[#111827] tracking-tight font-heading group-hover:text-[#16A34A] transition-colors">
+                                    {{ $routeItem['name'] }}
+                                </h3>
 
-                            <!-- Ticket Cutout Divider (Desktop: Vertical, Mobile: Horizontal) -->
-                            <div class="relative flex lg:flex-col items-center justify-center">
-                                <!-- Mobile Horizontal Perforated Line -->
-                                <div class="w-full lg:hidden border-b-2 border-dashed border-white/20 relative">
-                                    <div class="absolute -left-4 -top-3 w-6 h-6 rounded-full bg-[#0B0F17] border border-white/20"></div>
-                                    <div class="absolute -right-4 -top-3 w-6 h-6 rounded-full bg-[#0B0F17] border border-white/20"></div>
-                                </div>
-                                <!-- Desktop Vertical Perforated Line -->
-                                <div class="hidden lg:block h-full border-r-2 border-dashed border-white/20 relative py-6">
-                                    <div class="absolute -top-4 -left-3 w-6 h-6 rounded-full bg-[#0B0F17] border border-white/20"></div>
-                                    <div class="absolute -bottom-4 -left-3 w-6 h-6 rounded-full bg-[#0B0F17] border border-white/20"></div>
-                                </div>
-                            </div>
-
-                            <!-- Right: Voucher Redemption Action Stub (38% width on desktop) -->
-                            <div class="p-6 sm:p-8 lg:p-10 lg:w-[340px] flex flex-col justify-center gap-4 bg-white/[0.04] backdrop-blur-md relative z-10">
-                                <div>
-                                    <span class="text-[10px] uppercase font-bold text-slate-300 block tracking-wider mb-2">Promotional Coupon Code</span>
-                                    <div class="rounded-2xl border-2 border-dashed border-[#22C55E]/60 bg-black/40 backdrop-blur-md p-3.5 flex items-center justify-between gap-2 shadow-inner">
-                                        <span class="font-mono text-2xl font-black text-white tracking-widest pl-1">{{ $coupon['code'] }}</span>
-                                        <button type="button" id="copy-btn-{{ strtolower($coupon['code']) }}" onclick="copyPromoCode('{{ $coupon['code'] }}', 'copy-btn-{{ strtolower($coupon['code']) }}')"
-                                            class="inline-flex min-h-[38px] items-center justify-center gap-1.5 rounded-xl bg-white/15 hover:bg-white/25 text-white px-3 py-1.5 text-xs font-bold transition border border-white/20 backdrop-blur-md cursor-pointer shadow-xs">
-                                            <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" />
+                                <div class="mt-4 space-y-2.5 text-xs sm:text-sm text-slate-700">
+                                    <div class="flex items-center gap-2.5">
+                                        <span
+                                            class="flex h-5 w-5 items-center justify-center rounded-full bg-[#22C55E]/15 text-[#16A34A] flex-shrink-0">
+                                            <svg class="h-3 w-3" fill="currentColor" viewBox="0 0 20 20">
+                                                <path fill-rule="evenodd"
+                                                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                                    clip-rule="evenodd" />
                                             </svg>
-                                            <span>Copy Code</span>
-                                        </button>
+                                        </span>
+                                        <span><strong>{{ $routeItem['pickup_label'] }}</strong>
+                                            {{ $routeItem['pickup_text'] }}</span>
+                                    </div>
+                                    <div class="flex items-center gap-2.5">
+                                        <span
+                                            class="flex h-5 w-5 items-center justify-center rounded-full bg-[#22C55E]/15 text-[#16A34A] flex-shrink-0">
+                                            <svg class="h-3 w-3" fill="currentColor" viewBox="0 0 20 20">
+                                                <path fill-rule="evenodd"
+                                                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                                    clip-rule="evenodd" />
+                                            </svg>
+                                        </span>
+                                        <span><strong>{{ $routeItem['dropoff_label'] }}</strong>
+                                            {{ $routeItem['dropoff_text'] }}</span>
+                                    </div>
+                                    <div class="flex items-center gap-2.5">
+                                        <span
+                                            class="flex h-5 w-5 items-center justify-center rounded-full bg-[#22C55E]/15 text-[#16A34A] flex-shrink-0">
+                                            <svg class="h-3 w-3" fill="currentColor" viewBox="0 0 20 20">
+                                                <path fill-rule="evenodd"
+                                                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                                    clip-rule="evenodd" />
+                                            </svg>
+                                        </span>
+                                        <span>Cash payment upon boarding with driver
+                                            (${{ number_format($routeItem['regular_fare'], 0) }} CAD)</span>
                                     </div>
                                 </div>
+                            </div>
 
-                                <button type="button" onclick="openSeatPickerWithCoupon('{{ $coupon['code'] }}')"
-                                    class="w-full inline-flex min-h-[48px] items-center justify-center gap-2 rounded-xl bg-[#22C55E] hover:bg-[#16A34A] text-white px-5 py-3 text-sm font-black transition duration-200 shadow-lg shadow-[#22C55E]/30 cursor-pointer">
-                                    <span>Apply &amp; Book Seat</span>
-                                    <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                            <div class="mt-6 pt-4 border-t border-slate-200/70 flex items-center justify-between">
+                                <a href="javascript:void(0)" onclick="handleGlobalBookNow('{{ $routeItem['btn_key'] }}')"
+                                    class="inline-flex min-h-[44px] items-center gap-2 rounded-xl bg-[#22C55E] hover:bg-[#16A34A] text-white px-5 py-2.5 text-xs sm:text-sm font-bold transition duration-200 shadow-sm hover:shadow-md cursor-pointer">
+                                    <span>Book
+                                        {{ $routeItem['direction_code'] === 'MTL_TO_TOR' ? 'Route A' : 'Route B' }}</span>
+                                    <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                                            d="M14 5l7 7m0 0l-7 7m7-7H3" />
                                     </svg>
-                                </button>
-
-                                <div class="flex items-center justify-between text-[11px] text-slate-400 px-1">
-                                    <span>Cash on boarding</span>
-                                    <span>•</span>
-                                    <span>Instant confirmation</span>
-                                </div>
-
-                                <!-- Prev/Next switcher controls for convenience -->
-                                @if(count($promotionalCoupons) > 1)
-                                    <div class="flex items-center justify-between pt-3 border-t border-white/10 mt-1">
-                                        <button type="button" onclick="switchCoupon({{ ($idx - 1 + count($promotionalCoupons)) % count($promotionalCoupons) }})"
-                                            class="text-xs text-slate-400 hover:text-white transition flex items-center gap-1 cursor-pointer">
-                                            <span>← Previous Deal</span>
-                                        </button>
-                                        <button type="button" onclick="switchCoupon({{ ($idx + 1) % count($promotionalCoupons) }})"
-                                            class="text-xs text-[#22C55E] hover:text-emerald-400 font-bold transition flex items-center gap-1 cursor-pointer">
-                                            <span>Next Deal →</span>
-                                        </button>
-                                    </div>
-                                @endif
+                                </a>
+                                <span class="text-xs font-semibold text-slate-500">{{ $routeItem['seats_count'] }} Passenger
+                                    Seats</span>
                             </div>
                         </div>
                     </div>
                 @endforeach
             </div>
         </div>
-
-        <script>
-            function switchCoupon(targetIdx) {
-                const cards = document.querySelectorAll('.coupon-deal-card');
-                const buttons = document.querySelectorAll('.coupon-tab-btn');
-                cards.forEach((card, idx) => {
-                    if (idx === targetIdx) {
-                        card.classList.remove('hidden');
-                        card.classList.add('block');
-                    } else {
-                        card.classList.remove('block');
-                        card.classList.add('hidden');
-                    }
-                });
-                buttons.forEach((btn, idx) => {
-                    const dot = btn.querySelector('.coupon-active-dot');
-                    if (idx === targetIdx) {
-                        btn.classList.add('bg-[#22C55E]/20', 'text-[#22C55E]', 'border-[#22C55E]/50', 'shadow-lg', 'shadow-[#22C55E]/10');
-                        btn.classList.remove('bg-white/[0.06]', 'text-slate-300', 'border-white/15');
-                        if (dot) dot.classList.remove('hidden');
-                    } else {
-                        btn.classList.remove('bg-[#22C55E]/20', 'text-[#22C55E]', 'border-[#22C55E]/50', 'shadow-lg', 'shadow-[#22C55E]/10');
-                        btn.classList.add('bg-white/[0.06]', 'text-slate-300', 'border-white/15');
-                        if (dot) dot.classList.add('hidden');
-                    }
-                });
-            }
-        </script>
     </section>
+
+
+    <section id="why-us"
+        class="relative py-28 lg:py-36 bg-[#0B0F17] overflow-hidden border-b border-slate-800 text-white bg-cover bg-no-repeat bg-[center_left]"
+        style="background-image: url('{{ asset('images/why-us-luxury-transport-flipped.jpg') }}'); background-position: left center; background-size: cover;">
+
+        <!-- Luminous Vignette Overlay: Crystal-clear on left so vehicle shines, soft gradient on right allowing true glass translucency -->
+        <div class="absolute inset-0 bg-gradient-to-r from-transparent via-slate-950/35 to-slate-950/75 pointer-events-none"
+            aria-hidden="true"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-slate-950/60 pointer-events-none"
+            aria-hidden="true"></div>
+
+        <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 z-10">
+            <div class="flex flex-col lg:flex-row items-center justify-end">
+
+                <!-- RIGHT SIDE: Translucent Frosted Glass Card (Authentic Glass Pane with Low Opacity & Backdrop Blur) -->
+                <div class="w-full lg:w-[520px] xl:w-[560px]">
+                    <div
+                        class="rounded-[36px] bg-slate-950/45 sm:bg-slate-900/40 backdrop-blur-2xl lg:backdrop-blur-3xl border border-white/25 p-7 sm:p-10 lg:p-12 shadow-2xl shadow-black/80 ring-1 ring-white/10 relative overflow-hidden">
+
+                        <!-- Top Specular Highlight Edge -->
+                        <div
+                            class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/50 to-transparent pointer-events-none">
+                        </div>
+                        <!-- Soft Ambient Emerald Glow inside Card -->
+                        <div
+                            class="absolute -top-24 -right-24 w-52 h-52 bg-[#22C55E]/15 rounded-full blur-3xl pointer-events-none">
+                        </div>
+
+                        <!-- Pure Text Category Label (No Pill, No Badge, No Dot) -->
+                        <div class="space-y-3 mb-6 relative z-10">
+                            <div>
+                                <span class="text-xs font-black tracking-widest text-[#22C55E] uppercase">
+                                    WHY CHOOSE US
+                                </span>
+                            </div>
+
+                            <h2
+                                class="text-2xl sm:text-3xl lg:text-4xl font-black text-white tracking-tight font-heading leading-tight drop-shadow-sm">
+                                Why Select Us for Your Journey
+                            </h2>
+
+                            <p class="text-sm text-slate-200 leading-relaxed">
+                                Premium comfort, guaranteed seating, and reliable daily intercity transit.
+                            </p>
+                        </div>
+
+                        <!-- Clean Accordion List with Frosted Dividers -->
+                        <div class="mt-8 space-y-3.5 divide-y divide-white/15 relative z-10">
+
+                            <!-- Item 1: Best Rate Guarantee -->
+                            <details class="group pt-3.5 first:pt-0" open>
+                                <summary
+                                    class="flex cursor-pointer items-center justify-between text-base sm:text-lg font-bold text-white select-none py-2 hover:text-[#22C55E] transition-colors">
+                                    <div class="flex items-center gap-3.5">
+                                        <span class="text-[#22C55E] font-bold text-lg leading-none">$</span>
+                                        <span>Best Rate Guarantee</span>
+                                    </div>
+                                    <svg class="h-4 w-4 text-slate-400 group-hover:text-white transition-transform duration-200 group-open:rotate-180 flex-shrink-0 ml-3"
+                                        fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M19 9l-7 7-7-7" />
+                                    </svg>
+                                </summary>
+                                <div class="pl-7 pr-2 pt-1 pb-2.5 text-sm text-slate-300 leading-relaxed">
+                                    Guaranteed flat fare of ${{ number_format($regularFare, 0) }} CAD per passenger per trip with zero hidden fees. Cash Payment Upon Boarding: Pay the driver directly in cash when boarding.
+                                </div>
+                            </details>
+
+                            <!-- Item 2: Insurance Protected -->
+                            <details class="group pt-3.5">
+                                <summary
+                                    class="flex cursor-pointer items-center justify-between text-base sm:text-lg font-bold text-white select-none py-2 hover:text-[#22C55E] transition-colors">
+                                    <div class="flex items-center gap-3.5">
+                                        <svg class="h-5 w-5 text-[#22C55E] flex-shrink-0" fill="none" viewBox="0 0 24 24"
+                                            stroke="currentColor" stroke-width="2">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                                        </svg>
+                                        <span>Insurance Protected</span>
+                                    </div>
+                                    <svg class="h-4 w-4 text-slate-400 group-hover:text-white transition-transform duration-200 group-open:rotate-180 flex-shrink-0 ml-3"
+                                        fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M19 9l-7 7-7-7" />
+                                    </svg>
+                                </summary>
+                                <div class="pl-7 pr-2 pt-1 pb-2.5 text-sm text-slate-300 leading-relaxed">
+                                    Full commercial passenger insurance coverage on all trips with courteous,
+                                    experienced, and dedicated drivers.
+                                </div>
+                            </details>
+
+                            <!-- Item 3: Always Available -->
+                            <details class="group pt-3.5">
+                                <summary
+                                    class="flex cursor-pointer items-center justify-between text-base sm:text-lg font-bold text-white select-none py-2 hover:text-[#22C55E] transition-colors">
+                                    <div class="flex items-center gap-3.5">
+                                        <svg class="h-5 w-5 text-[#22C55E] flex-shrink-0" fill="none" viewBox="0 0 24 24"
+                                            stroke="currentColor" stroke-width="2">
+                                            <circle cx="12" cy="12" r="9" stroke-linecap="round" stroke-linejoin="round" />
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 7v5l3 2" />
+                                        </svg>
+                                        <span>Always Available</span>
+                                    </div>
+                                    <svg class="h-4 w-4 text-slate-400 group-hover:text-white transition-transform duration-200 group-open:rotate-180 flex-shrink-0 ml-3"
+                                        fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M19 9l-7 7-7-7" />
+                                    </svg>
+                                </summary>
+                                <div class="pl-7 pr-2 pt-1 pb-2.5 text-sm text-slate-300 leading-relaxed">
+                                    Daily fixed departures 7 days a week, 365 days a year: {{ $routeATime }} from
+                                    Montreal, 12:15 PM &amp; 1:15 PM from Toronto.
+                                </div>
+                            </details>
+
+                            <!-- Item 4: Montreal ↔ Toronto Hubs -->
+                            <details class="group pt-3.5">
+                                <summary
+                                    class="flex cursor-pointer items-center justify-between text-base sm:text-lg font-bold text-white select-none py-2 hover:text-[#22C55E] transition-colors">
+                                    <div class="flex items-center gap-3.5">
+                                        <svg class="h-5 w-5 text-[#22C55E] flex-shrink-0" fill="none" viewBox="0 0 24 24"
+                                            stroke="currentColor" stroke-width="2">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                                        </svg>
+                                        <span>Montreal ↔ Toronto Hubs</span>
+                                    </div>
+                                    <svg class="h-4 w-4 text-slate-400 group-hover:text-white transition-transform duration-200 group-open:rotate-180 flex-shrink-0 ml-3"
+                                        fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M19 9l-7 7-7-7" />
+                                    </svg>
+                                </summary>
+                                <div class="pl-7 pr-2 pt-1 pb-2.5 text-sm text-slate-300 leading-relaxed">
+                                    Direct service connecting {{ $namurLoc?->name ?? 'Station Métro Namur' }} in Montreal
+                                    with {{ $yorkdaleLoc?->name ?? 'Yorkdale Mall' }}
+                                    and {{ $yongeLoc?->name ?? 'Yonge Station' }} in Toronto.
+                                </div>
+                            </details>
+
+                            <!-- Item 5: Fleet & Cabin Seating -->
+                            <details class="group pt-3.5">
+                                <summary
+                                    class="flex cursor-pointer items-center justify-between text-base sm:text-lg font-bold text-white select-none py-2 hover:text-[#22C55E] transition-colors">
+                                    <div class="flex items-center gap-3.5">
+                                        <svg class="h-5 w-5 text-[#22C55E] flex-shrink-0" fill="none" viewBox="0 0 24 24"
+                                            stroke="currentColor" stroke-width="2">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M8 7h8m-8 5h8m-8 5h8M5 3h14a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2z" />
+                                        </svg>
+                                        <span>Fleet &amp; Cabin Seating</span>
+                                    </div>
+                                    <svg class="h-4 w-4 text-slate-400 group-hover:text-white transition-transform duration-200 group-open:rotate-180 flex-shrink-0 ml-3"
+                                        fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M19 9l-7 7-7-7" />
+                                    </svg>
+                                </summary>
+                                <div class="pl-7 pr-2 pt-1 pb-2.5 text-sm text-slate-300 leading-relaxed">
+                                    Travel in our {{ $vehicleModel }} (Plate: {{ $vehiclePlate }}) featuring exactly
+                                    {{ $passengerSeatsCount }} Passenger Seats, leather interior, and climate control for
+                                    executive comfort.
+                                </div>
+                            </details>
+
+                        </div>
+
+                        <!-- CTA Button -->
+                        <div class="mt-8 pt-6 border-t border-white/15 relative z-10">
+                            <button type="button" onclick="handleGlobalBookNow()"
+                                class="inline-flex items-center justify-center gap-2.5 rounded-2xl bg-[#22C55E] hover:bg-[#16A34A] text-white px-8 py-3.5 text-sm sm:text-base font-bold shadow-xl shadow-[#22C55E]/30 transition-all duration-200 hover:scale-[1.02] cursor-pointer min-h-[50px]">
+                                <span>Reserve Your Seat</span>
+                                <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                                        d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                                </svg>
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
 
     <section id="how-it-works" class="relative py-24 lg:py-32 bg-[#F8FAFC] border-b border-slate-200/80 overflow-hidden">
         <!-- Ambient Atmosphere Subtle Tint -->
@@ -856,7 +696,8 @@
                             Choose Your Route
                         </h3>
                         <p class="mt-2 text-xs sm:text-sm text-[#64748B] leading-relaxed">
-                            Select Route A (Montreal → Toronto) or Route B (Toronto → Montreal) and pick your travel
+                            Select Route A ({{ $routeA?->name ?? 'Montreal → Toronto' }}) or Route B
+                            ({{ $routeB?->name ?? 'Toronto → Montreal' }}) and pick your travel
                             date.
                         </p>
                     </div>
@@ -886,7 +727,8 @@
                             Book with Ease
                         </h3>
                         <p class="mt-2 text-xs sm:text-sm text-[#64748B] leading-relaxed">
-                            Pick your exact seat (S1–S6) on our visual cabin diagram and receive instant booking
+                            Pick your exact seat (S1–S{{ $passengerSeatsCount }}) on our visual cabin diagram and receive
+                            instant booking
                             confirmation.
                         </p>
                     </div>
@@ -916,7 +758,8 @@
                             Ride &amp; Pay Cash
                         </h3>
                         <p class="mt-2 text-xs sm:text-sm text-[#64748B] leading-relaxed">
-                            Board at your predefined transit hub, pay the driver directly in cash ($65 CAD), and enjoy
+                            Board at your predefined transit hub, pay the driver directly in cash
+                            (${{ number_format($regularFare, 0) }} CAD), and enjoy
                             the journey.
                         </p>
                     </div>
@@ -939,186 +782,241 @@
         </div>
     </section>
 
-    <section id="why-us"
-        class="relative py-28 lg:py-36 bg-[#0B0F17] overflow-hidden border-b border-slate-800 text-white bg-cover bg-no-repeat bg-[center_left]"
-        style="background-image: url('{{ asset('images/why-us-luxury-transport-flipped.jpg') }}'); background-position: left center; background-size: cover;">
 
-        <!-- Luminous Vignette Overlay: Crystal-clear on left so vehicle shines, soft gradient on right allowing true glass translucency -->
-        <div class="absolute inset-0 bg-gradient-to-r from-transparent via-slate-950/35 to-slate-950/75 pointer-events-none"
+    <!-- ========================================== -->
+    <!-- 2.5 SPECIAL PROMOTIONS & COUPONS SECTION -->
+    <!-- ========================================== -->
+
+    @if(!empty($promotionalCoupons))
+    <section id="promotions"
+        class="relative py-20 lg:py-28 bg-[#0B0F17] text-white overflow-hidden border-b border-slate-800 bg-cover bg-center"
+        style="background-image: linear-gradient(180deg, rgba(11, 15, 23, 0.94) 0%, rgba(11, 15, 23, 0.86) 50%, rgba(11, 15, 23, 0.96) 100%), url('{{ asset('images/honda-odyssey-fleet-raw.jpg') }}');">
+
+        <!-- Ambient Atmospheric Glows for Luminous Glass Effect -->
+        <div class="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-[#22C55E]/12 rounded-full blur-[140px] pointer-events-none"
             aria-hidden="true"></div>
-        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-slate-950/60 pointer-events-none"
+        <div class="absolute bottom-1/4 right-1/4 w-[450px] h-[450px] bg-emerald-600/10 rounded-full blur-[120px] pointer-events-none"
             aria-hidden="true"></div>
 
         <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 z-10">
-            <div class="flex flex-col lg:flex-row items-center justify-end">
+            <!-- Section Header -->
+            <div class="text-center max-w-3xl mx-auto mb-10 space-y-3">
+                <span class="text-xs font-black tracking-widest text-[#22C55E] uppercase">
+                    PROMOTIONS &amp; DISCOUNT CODES
+                </span>
+                <h2
+                    class="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight font-heading leading-tight drop-shadow-sm">
+                    Exclusive Travel Deals &amp; Discounts
+                </h2>
+                <p class="text-sm sm:text-base text-slate-300 leading-relaxed max-w-2xl mx-auto">
+                    Our standard regular flat rate is ${{ number_format($regularFare, 2) }} CAD. Apply active promotional
+                    coupon codes during booking to enjoy our introductory launch rate of only
+                    ${{ number_format($promotionalFare, 2) }} CAD!
+                </p>
+            </div>
 
-                <!-- RIGHT SIDE: Translucent Frosted Glass Card (Authentic Glass Pane with Low Opacity & Backdrop Blur) -->
-                <div class="w-full lg:w-[520px] xl:w-[560px]">
-                    <div
-                        class="rounded-[36px] bg-slate-950/45 sm:bg-slate-900/40 backdrop-blur-2xl lg:backdrop-blur-3xl border border-white/25 p-7 sm:p-10 lg:p-12 shadow-2xl shadow-black/80 ring-1 ring-white/10 relative overflow-hidden">
+            <!-- Multi-Coupon Interactive Switcher Tabs (Displays 1 coupon at a time) -->
+            @if(count($promotionalCoupons) > 1)
+                <div class="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-8 max-w-xl mx-auto">
+                    @foreach($promotionalCoupons as $idx => $coupon)
+                        <button type="button" onclick="switchCoupon({{ $idx }})" id="coupon-tab-btn-{{ $idx }}"
+                            class="coupon-tab-btn inline-flex min-h-[44px] items-center gap-2 px-4 sm:px-5 py-2.5 rounded-2xl text-xs sm:text-sm font-bold transition-all duration-200 border cursor-pointer {{ $idx === 0 ? 'bg-[#22C55E]/20 text-[#22C55E] border-[#22C55E]/50 shadow-lg shadow-[#22C55E]/10' : 'bg-white/[0.06] text-slate-300 border-white/15 hover:bg-white/[0.12] hover:text-white' }}">
+                            <span>{{ $coupon['tab_label'] }}</span>
+                            <span
+                                class="coupon-active-dot flex h-2 w-2 rounded-full bg-[#22C55E] {{ $idx === 0 ? '' : 'hidden' }}"></span>
+                        </button>
+                    @endforeach
+                </div>
+            @endif
 
-                        <!-- Top Specular Highlight Edge -->
-                        <div class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/50 to-transparent pointer-events-none"></div>
-                        <!-- Soft Ambient Emerald Glow inside Card -->
-                        <div class="absolute -top-24 -right-24 w-52 h-52 bg-[#22C55E]/15 rounded-full blur-3xl pointer-events-none"></div>
-
-                        <!-- Pure Text Category Label (No Pill, No Badge, No Dot) -->
-                        <div class="space-y-3 mb-6 relative z-10">
-                            <div>
-                                <span class="text-xs font-black tracking-widest text-[#22C55E] uppercase">
-                                    WHY CHOOSE US
-                                </span>
+            <!-- Voucher Cards Container (Strictly 1 Active Card Rendered at a time) -->
+            <div class="max-w-4xl mx-auto">
+                @foreach($promotionalCoupons as $idx => $coupon)
+                    <div id="coupon-card-{{ $idx }}"
+                        class="coupon-deal-card {{ $idx === 0 ? 'block' : 'hidden' }} transition-opacity duration-300">
+                        <div
+                            class="relative rounded-3xl sm:rounded-[36px] border border-white/20 bg-white/[0.08] backdrop-blur-2xl shadow-2xl shadow-black/70 ring-1 ring-white/10 overflow-hidden flex flex-col lg:flex-row">
+                            <!-- Top Specular Highlight Edge -->
+                            <div
+                                class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/50 to-transparent pointer-events-none">
+                            </div>
+                            <!-- Soft Ambient Emerald Glow inside Card -->
+                            <div
+                                class="absolute -right-20 -top-20 w-56 h-56 bg-[#22C55E]/15 rounded-full blur-3xl pointer-events-none">
                             </div>
 
-                            <h2
-                                class="text-2xl sm:text-3xl lg:text-4xl font-black text-white tracking-tight font-heading leading-tight drop-shadow-sm">
-                                Why Select Us for Your Journey
-                            </h2>
+                            <!-- Left: Voucher Core Details (62% width on desktop) -->
+                            <div class="p-6 sm:p-8 lg:p-10 flex-1 flex flex-col justify-between relative z-10">
+                                <div>
+                                    <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+                                        <div class="flex items-center gap-2">
+                                            <span
+                                                class="inline-flex items-center px-3 py-1 rounded-full text-xs font-black bg-[#22C55E]/20 text-[#22C55E] border border-[#22C55E]/40 uppercase tracking-wider backdrop-blur-md">
+                                                {{ $coupon['tag'] }}
+                                            </span>
+                                            <span class="text-xs font-semibold text-slate-300 hidden sm:inline-block">
+                                                {{ $coupon['route_tag'] }}
+                                            </span>
+                                        </div>
+                                        <span class="text-xs font-bold text-slate-400 font-mono">
+                                            Deal {{ $idx + 1 }} of {{ count($promotionalCoupons) }}
+                                        </span>
+                                    </div>
 
-                            <p class="text-sm text-slate-200 leading-relaxed">
-                                Premium comfort, guaranteed seating, and reliable daily intercity transit.
-                            </p>
+                                    <h3
+                                        class="text-2xl sm:text-3xl font-black text-white font-heading tracking-tight drop-shadow-xs">
+                                        {{ $coupon['headline'] }}
+                                    </h3>
+                                    <p class="text-xs sm:text-sm text-slate-200 mt-2 leading-relaxed">
+                                        {{ $coupon['description'] }}
+                                    </p>
+
+                                    <!-- Price Comparison Glass Box -->
+                                    <div
+                                        class="mt-5 rounded-2xl bg-black/30 border border-white/15 p-4 flex flex-wrap items-center justify-between gap-3 shadow-inner">
+                                        <div>
+                                            <span
+                                                class="text-[10px] uppercase font-bold text-slate-400 block tracking-wider">Regular
+                                                Base Fare</span>
+                                            <del
+                                                class="text-sm sm:text-base font-semibold text-slate-400 font-mono">{{ $coupon['regular_fare'] }}</del>
+                                        </div>
+                                        <div class="text-right">
+                                            <span
+                                                class="text-[10px] uppercase font-bold text-slate-400 block tracking-wider">Promotional
+                                                Rate</span>
+                                            <span
+                                                class="text-xl sm:text-2xl font-black text-[#22C55E] font-mono tracking-tight">{{ $coupon['promo_fare'] }}</span>
+                                        </div>
+                                        <div class="w-full sm:w-auto pt-2 sm:pt-0 sm:border-l sm:border-white/15 sm:pl-4">
+                                            <span
+                                                class="inline-flex items-center px-2.5 py-1 rounded-lg bg-[#22C55E]/20 text-[#22C55E] text-xs font-black font-mono border border-[#22C55E]/30">
+                                                {{ $coupon['savings_badge'] }}
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="mt-6 pt-4 border-t border-white/15 text-xs text-slate-300 flex items-center gap-2">
+                                    <svg class="h-4 w-4 text-[#22C55E] flex-shrink-0" fill="none" viewBox="0 0 24 24"
+                                        stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                                            d="M5 13l4 4L19 7" />
+                                    </svg>
+                                    <span>{{ $coupon['terms'] }}</span>
+                                </div>
+                            </div>
+
+                            <!-- Ticket Cutout Divider (Desktop: Vertical, Mobile: Horizontal) -->
+                            <div class="relative flex lg:flex-col items-center justify-center">
+                                <!-- Mobile Horizontal Perforated Line -->
+                                <div class="w-full lg:hidden border-b-2 border-dashed border-white/20 relative">
+                                    <div
+                                        class="absolute -left-4 -top-3 w-6 h-6 rounded-full bg-[#0B0F17] border border-white/20">
+                                    </div>
+                                    <div
+                                        class="absolute -right-4 -top-3 w-6 h-6 rounded-full bg-[#0B0F17] border border-white/20">
+                                    </div>
+                                </div>
+                                <!-- Desktop Vertical Perforated Line -->
+                                <div class="hidden lg:block h-full border-r-2 border-dashed border-white/20 relative py-6">
+                                    <div
+                                        class="absolute -top-4 -left-3 w-6 h-6 rounded-full bg-[#0B0F17] border border-white/20">
+                                    </div>
+                                    <div
+                                        class="absolute -bottom-4 -left-3 w-6 h-6 rounded-full bg-[#0B0F17] border border-white/20">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Right: Voucher Redemption Action Stub (38% width on desktop) -->
+                            <div
+                                class="p-6 sm:p-8 lg:p-10 lg:w-[340px] flex flex-col justify-center gap-4 bg-white/[0.04] backdrop-blur-md relative z-10">
+                                <div>
+                                    <span
+                                        class="text-[10px] uppercase font-bold text-slate-300 block tracking-wider mb-2">Promotional
+                                        Coupon Code</span>
+                                    <div
+                                        class="rounded-2xl border-2 border-dashed border-[#22C55E]/60 bg-black/40 backdrop-blur-md p-3.5 flex items-center justify-between gap-2 shadow-inner">
+                                        <span
+                                            class="font-mono text-2xl font-black text-white tracking-widest pl-1">{{ $coupon['code'] }}</span>
+                                        <button type="button" id="copy-btn-{{ strtolower($coupon['code']) }}"
+                                            onclick="copyPromoCode('{{ $coupon['code'] }}', 'copy-btn-{{ strtolower($coupon['code']) }}')"
+                                            class="inline-flex min-h-[38px] items-center justify-center gap-1.5 rounded-xl bg-white/15 hover:bg-white/25 text-white px-3 py-1.5 text-xs font-bold transition border border-white/20 backdrop-blur-md cursor-pointer shadow-xs">
+                                            <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" />
+                                            </svg>
+                                            <span>Copy Code</span>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <button type="button" onclick="openSeatPickerWithCoupon('{{ $coupon['code'] }}')"
+                                    class="w-full inline-flex min-h-[48px] items-center justify-center gap-2 rounded-xl bg-[#22C55E] hover:bg-[#16A34A] text-white px-5 py-3 text-sm font-black transition duration-200 shadow-lg shadow-[#22C55E]/30 cursor-pointer">
+                                    <span>Apply &amp; Book Seat</span>
+                                    <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                                            d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                                    </svg>
+                                </button>
+
+                                <div class="flex items-center justify-between text-[11px] text-slate-400 px-1">
+                                    <span>Cash on boarding</span>
+                                    <span>•</span>
+                                    <span>Instant confirmation</span>
+                                </div>
+
+                                <!-- Prev/Next switcher controls for convenience -->
+                                @if(count($promotionalCoupons) > 1)
+                                    <div class="flex items-center justify-between pt-3 border-t border-white/10 mt-1">
+                                        <button type="button"
+                                            onclick="switchCoupon({{ ($idx - 1 + count($promotionalCoupons)) % count($promotionalCoupons) }})"
+                                            class="text-xs text-slate-400 hover:text-white transition flex items-center gap-1 cursor-pointer">
+                                            <span>← Previous Deal</span>
+                                        </button>
+                                        <button type="button" onclick="switchCoupon({{ ($idx + 1) % count($promotionalCoupons) }})"
+                                            class="text-xs text-[#22C55E] hover:text-emerald-400 font-bold transition flex items-center gap-1 cursor-pointer">
+                                            <span>Next Deal →</span>
+                                        </button>
+                                    </div>
+                                @endif
+                            </div>
                         </div>
-
-                        <!-- Clean Accordion List with Frosted Dividers -->
-                        <div class="mt-8 space-y-3.5 divide-y divide-white/15 relative z-10">
-
-                            <!-- Item 1: Best Rate Guarantee -->
-                            <details class="group pt-3.5 first:pt-0" open>
-                                <summary
-                                    class="flex cursor-pointer items-center justify-between text-base sm:text-lg font-bold text-white select-none py-2 hover:text-[#22C55E] transition-colors">
-                                    <div class="flex items-center gap-3.5">
-                                        <span class="text-[#22C55E] font-bold text-lg leading-none">$</span>
-                                        <span>Best Rate Guarantee</span>
-                                    </div>
-                                    <svg class="h-4 w-4 text-slate-400 group-hover:text-white transition-transform duration-200 group-open:rotate-180 flex-shrink-0 ml-3"
-                                        fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M19 9l-7 7-7-7" />
-                                    </svg>
-                                </summary>
-                                <div class="pl-7 pr-2 pt-1 pb-2.5 text-sm text-slate-300 leading-relaxed">
-                                    Guaranteed flat fare of $65 CAD per passenger per trip with zero hidden fees. Cash Payment Upon Boarding: Pay the driver directly in cash when boarding.
-                                </div>
-                            </details>
-
-                            <!-- Item 2: Insurance Protected -->
-                            <details class="group pt-3.5">
-                                <summary
-                                    class="flex cursor-pointer items-center justify-between text-base sm:text-lg font-bold text-white select-none py-2 hover:text-[#22C55E] transition-colors">
-                                    <div class="flex items-center gap-3.5">
-                                        <svg class="h-5 w-5 text-[#22C55E] flex-shrink-0" fill="none" viewBox="0 0 24 24"
-                                            stroke="currentColor" stroke-width="2">
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                                        </svg>
-                                        <span>Insurance Protected</span>
-                                    </div>
-                                    <svg class="h-4 w-4 text-slate-400 group-hover:text-white transition-transform duration-200 group-open:rotate-180 flex-shrink-0 ml-3"
-                                        fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M19 9l-7 7-7-7" />
-                                    </svg>
-                                </summary>
-                                <div class="pl-7 pr-2 pt-1 pb-2.5 text-sm text-slate-300 leading-relaxed">
-                                    Full commercial passenger insurance coverage on all trips with courteous,
-                                    experienced, and dedicated drivers.
-                                </div>
-                            </details>
-
-                            <!-- Item 3: Always Available -->
-                            <details class="group pt-3.5">
-                                <summary
-                                    class="flex cursor-pointer items-center justify-between text-base sm:text-lg font-bold text-white select-none py-2 hover:text-[#22C55E] transition-colors">
-                                    <div class="flex items-center gap-3.5">
-                                        <svg class="h-5 w-5 text-[#22C55E] flex-shrink-0" fill="none" viewBox="0 0 24 24"
-                                            stroke="currentColor" stroke-width="2">
-                                            <circle cx="12" cy="12" r="9" stroke-linecap="round" stroke-linejoin="round" />
-                                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 7v5l3 2" />
-                                        </svg>
-                                        <span>Always Available</span>
-                                    </div>
-                                    <svg class="h-4 w-4 text-slate-400 group-hover:text-white transition-transform duration-200 group-open:rotate-180 flex-shrink-0 ml-3"
-                                        fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M19 9l-7 7-7-7" />
-                                    </svg>
-                                </summary>
-                                <div class="pl-7 pr-2 pt-1 pb-2.5 text-sm text-slate-300 leading-relaxed">
-                                    Daily fixed departures 7 days a week, 365 days a year: 6:30 AM from
-                                    Montreal, 12:15 PM &amp; 1:15 PM from Toronto.
-                                </div>
-                            </details>
-
-                            <!-- Item 4: Montreal ↔ Toronto Hubs -->
-                            <details class="group pt-3.5">
-                                <summary
-                                    class="flex cursor-pointer items-center justify-between text-base sm:text-lg font-bold text-white select-none py-2 hover:text-[#22C55E] transition-colors">
-                                    <div class="flex items-center gap-3.5">
-                                        <svg class="h-5 w-5 text-[#22C55E] flex-shrink-0" fill="none" viewBox="0 0 24 24"
-                                            stroke="currentColor" stroke-width="2">
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                                        </svg>
-                                        <span>Montreal ↔ Toronto Hubs</span>
-                                    </div>
-                                    <svg class="h-4 w-4 text-slate-400 group-hover:text-white transition-transform duration-200 group-open:rotate-180 flex-shrink-0 ml-3"
-                                        fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M19 9l-7 7-7-7" />
-                                    </svg>
-                                </summary>
-                                <div class="pl-7 pr-2 pt-1 pb-2.5 text-sm text-slate-300 leading-relaxed">
-                                    Direct service connecting Station Métro Namur in Montreal with Yorkdale Mall
-                                    and Yonge Station in Toronto.
-                                </div>
-                            </details>
-
-                            <!-- Item 5: Fleet & Cabin Seating -->
-                            <details class="group pt-3.5">
-                                <summary
-                                    class="flex cursor-pointer items-center justify-between text-base sm:text-lg font-bold text-white select-none py-2 hover:text-[#22C55E] transition-colors">
-                                    <div class="flex items-center gap-3.5">
-                                        <svg class="h-5 w-5 text-[#22C55E] flex-shrink-0" fill="none" viewBox="0 0 24 24"
-                                            stroke="currentColor" stroke-width="2">
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                d="M8 7h8m-8 5h8m-8 5h8M5 3h14a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2z" />
-                                        </svg>
-                                        <span>Fleet &amp; Cabin Seating</span>
-                                    </div>
-                                    <svg class="h-4 w-4 text-slate-400 group-hover:text-white transition-transform duration-200 group-open:rotate-180 flex-shrink-0 ml-3"
-                                        fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M19 9l-7 7-7-7" />
-                                    </svg>
-                                </summary>
-                                <div class="pl-7 pr-2 pt-1 pb-2.5 text-sm text-slate-300 leading-relaxed">
-                                    Travel in our Honda Odyssey (Plate: RAJIA) featuring exactly 6 Passenger Seats, leather interior, and climate control for executive comfort.
-                                </div>
-                            </details>
-
-                        </div>
-
-                        <!-- CTA Button -->
-                        <div class="mt-8 pt-6 border-t border-white/15 relative z-10">
-                            <button type="button" onclick="handleGlobalBookNow()"
-                                class="inline-flex items-center justify-center gap-2.5 rounded-2xl bg-[#22C55E] hover:bg-[#16A34A] text-white px-8 py-3.5 text-sm sm:text-base font-bold shadow-xl shadow-[#22C55E]/30 transition-all duration-200 hover:scale-[1.02] cursor-pointer min-h-[50px]">
-                                <span>Reserve Your Seat</span>
-                                <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
-                                        d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                                </svg>
-                            </button>
-                        </div>
-
                     </div>
-                </div>
-
+                @endforeach
             </div>
         </div>
+
+        <script>
+            function switchCoupon(targetIdx) {
+                const cards = document.querySelectorAll('.coupon-deal-card');
+                const buttons = document.querySelectorAll('.coupon-tab-btn');
+                cards.forEach((card, idx) => {
+                    if (idx === targetIdx) {
+                        card.classList.remove('hidden');
+                        card.classList.add('block');
+                    } else {
+                        card.classList.remove('block');
+                        card.classList.add('hidden');
+                    }
+                });
+                buttons.forEach((btn, idx) => {
+                    const dot = btn.querySelector('.coupon-active-dot');
+                    if (idx === targetIdx) {
+                        btn.classList.add('bg-[#22C55E]/20', 'text-[#22C55E]', 'border-[#22C55E]/50', 'shadow-lg', 'shadow-[#22C55E]/10');
+                        btn.classList.remove('bg-white/[0.06]', 'text-slate-300', 'border-white/15');
+                        if (dot) dot.classList.remove('hidden');
+                    } else {
+                        btn.classList.remove('bg-[#22C55E]/20', 'text-[#22C55E]', 'border-[#22C55E]/50', 'shadow-lg', 'shadow-[#22C55E]/10');
+                        btn.classList.add('bg-white/[0.06]', 'text-slate-300', 'border-white/15');
+                        if (dot) dot.classList.add('hidden');
+                    }
+                });
+            }
+        </script>
     </section>
+    @endif
 
 
 
@@ -1164,7 +1062,7 @@
                         </span>
                     </summary>
                     <p class="mt-4 text-sm sm:text-base text-[#64748B] leading-relaxed">
-                        Payment is simple and cash-only ($65 CAD flat fare). You pay
+                        Payment is simple and cash-only (${{ number_format($regularFare, 0) }} CAD flat fare). You pay
                         the driver directly upon boarding the vehicle. No online payment or upfront credit card deposit is
                         needed.
                     </p>
@@ -1186,10 +1084,13 @@
                         </span>
                     </summary>
                     <p class="mt-4 text-sm sm:text-base text-[#64748B] leading-relaxed">
-                        We operate strictly between 3 predefined transit hubs:
-                        <strong class="text-slate-900 font-semibold">Station Métro Namur</strong> in Montreal, and <strong
-                            class="text-slate-900 font-semibold">Yorkdale Mall</strong> and
-                        <strong class="text-slate-900 font-semibold">Yonge Station</strong> in Toronto. All locations
+                        We operate strictly between {{ $locations->count() }} predefined transit hubs:
+                        <strong
+                            class="text-slate-900 font-semibold">{{ $namurLoc?->name ?? 'Station Métro Namur' }}</strong> in
+                        Montreal, and <strong
+                            class="text-slate-900 font-semibold">{{ $yorkdaleLoc?->name ?? 'Yorkdale Mall' }}</strong> and
+                        <strong class="text-slate-900 font-semibold">{{ $yongeLoc?->name ?? 'Yonge Station' }}</strong> in
+                        Toronto. All locations
                         provide seamless connections to subway lines and major highways.
                     </p>
                 </details>
@@ -1210,10 +1111,13 @@
                         </span>
                     </summary>
                     <p class="mt-4 text-sm sm:text-base text-[#64748B] leading-relaxed">
-                        <strong class="text-slate-900 font-semibold">Route A (Montreal → Toronto):</strong> Departs Station
-                        Métro Namur at 6:30 AM EST daily.<br />
-                        <strong class="text-slate-900 font-semibold">Route B (Toronto → Montreal):</strong> Pickups at
-                        Yorkdale Mall at 12:15 PM EST and Yonge Station at 1:15 PM EST, arriving in Montreal around 7:15 PM
+                        <strong class="text-slate-900 font-semibold">Route A
+                            ({{ $routeA?->name ?? 'Montreal → Toronto' }}):</strong> Departs
+                        {{ $namurLoc?->name ?? 'Station Métro Namur' }} at {{ $routeATime }} EST daily.<br />
+                        <strong class="text-slate-900 font-semibold">Route B
+                            ({{ $routeB?->name ?? 'Toronto → Montreal' }}):</strong> Pickups at
+                        {{ $yorkdaleLoc?->name ?? 'Yorkdale Mall' }} at {{ $yorkdalePickupTime }} EST and
+                        {{ $yongeLoc?->name ?? 'Yonge Station' }} at {{ $yongePickupTime }} EST, arriving in Montreal around {{ $namurArrivalTime }}
                         EST.
                     </p>
                 </details>
@@ -1234,7 +1138,8 @@
                         </span>
                     </summary>
                     <p class="mt-4 text-sm sm:text-base text-[#64748B] leading-relaxed">
-                        Yes! You can reserve from 1 to 6 seats in our Honda Odyssey. Our system provides visual seat
+                        Yes! You can reserve from 1 to {{ $passengerSeatsCount }} seats in our {{ $vehicleModel }}. Our
+                        system provides visual seat
                         selection so you and your companions sit together.
                     </p>
                 </details>
@@ -1265,90 +1170,4 @@
             </div>
         </div>
     </section>
-
-    <!-- Guest Authentication Required Modal -->
-    <div id="auth-booking-modal"
-        class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/45 backdrop-blur-md hidden transition-opacity duration-200"
-        role="dialog" aria-modal="true" aria-labelledby="auth-modal-title">
-
-        <!-- Backdrop clickable area -->
-        <div class="fixed inset-0" onclick="closeAuthModal()" aria-hidden="true">
-        </div>
-
-        <!-- Modal Card Container -->
-        <div
-            class="relative w-full max-w-md rounded-3xl bg-white p-6 sm:p-8 shadow-2xl border border-slate-100 z-10 transform transition-all">
-
-            <!-- Close Button -->
-            <button type="button" onclick="closeAuthModal()"
-                class="absolute top-5 right-5 inline-flex h-9 w-9 items-center justify-center rounded-full text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition focus:outline-none focus:ring-2 focus:ring-[#22C55E]"
-                aria-label="Close modal">
-                <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12" />
-                </svg>
-            </button>
-
-            <!-- Brand Icon -->
-            <div
-                class="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-[#F0FDF4] text-[#22C55E] mb-5 border border-[#22C55E]/20">
-                <svg class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                </svg>
-            </div>
-
-            <!-- Heading & Copy -->
-            <div class="text-center">
-                <h3 id="auth-modal-title" class="text-xl sm:text-2xl font-black text-slate-900 tracking-tight font-heading">
-                    Sign In to Book Your Seat
-                </h3>
-                <p class="mt-2.5 text-sm text-slate-600 leading-relaxed" id="auth-modal-subtitle">
-                    Please sign in to your passenger account to finalize your reserved seats. Your journey and seat selections will be preserved.
-                </p>
-            </div>
-
-            <!-- Action CTAs -->
-            <div class="mt-6 space-y-3">
-                <!-- 1-Click Fast Passenger Test Login (Dev / Fast Testing) -->
-                <form method="POST" action="{{ route('login.store') }}" class="w-full">
-                    @csrf
-                    <input type="hidden" name="email" value="passenger@olivertransport.ca">
-                    <input type="hidden" name="password" value="password">
-                    <button type="submit"
-                        class="inline-flex min-h-[46px] w-full items-center justify-center gap-2 rounded-2xl bg-[#22C55E]/15 hover:bg-[#22C55E]/25 text-[#16A34A] border-2 border-[#22C55E]/40 px-4 py-2.5 text-xs sm:text-sm font-bold transition focus:outline-none focus:ring-2 focus:ring-[#22C55E] cursor-pointer">
-                        <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 10V3L4 14h7v7l9-11h-7z" />
-                        </svg>
-                        <span>1-Click Test Passenger Sign In</span>
-                    </button>
-                </form>
-
-                <a href="{{ route('login') }}"
-                    class="inline-flex min-h-[46px] w-full items-center justify-center gap-2 rounded-2xl bg-[#22C55E] hover:bg-[#16A34A] text-white px-6 py-2.5 text-sm sm:text-base font-bold shadow-md hover:shadow-lg transition duration-200 focus:outline-none focus:ring-2 focus:ring-[#22C55E] text-center">
-                    <span>Sign In With Email</span>
-                    <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
-                            d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                    </svg>
-                </a>
-
-                <a href="{{ route('register') }}"
-                    class="inline-flex min-h-[46px] w-full items-center justify-center gap-2 rounded-2xl bg-slate-100 hover:bg-slate-200 text-slate-800 px-6 py-2.5 text-xs sm:text-sm font-bold border border-slate-200/80 transition duration-200 focus:outline-none focus:ring-2 focus:ring-slate-400 text-center">
-                    <span>Create New Account</span>
-                </a>
-            </div>
-
-            <!-- Notice in Modal -->
-            <div class="mt-6 pt-4 border-t border-slate-100 text-center">
-                <p class="text-xs text-slate-500">
-                    Pay directly in cash to the driver upon boarding ($65 CAD flat
-                    fare).
-                </p>
-            </div>
-
-        </div>
-    </div>
-
-    <!-- Interactive Vehicle Cabin Seat Selection Modal -->
-    @include('frontend.partials.seat-picker-modal')
 @endsection
