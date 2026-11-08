@@ -13,23 +13,6 @@
 <body class="flex min-h-screen min-h-[100dvh] flex-col bg-surface-subtle text-content-primary font-sans selection:bg-brand-green selection:text-white pt-[env(safe-area-inset-top)] pb-[env(safe-area-inset-bottom)] pl-[env(safe-area-inset-left)] pr-[env(safe-area-inset-right)]">
     @include('frontend.partials.header')
 
-    <!-- Flash Status Messages -->
-    @if (session('status') || session('error'))
-        <div class="relative z-50 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 pt-24">
-            @if (session('status'))
-                <div class="mb-4 rounded-xl border border-brand-green/30 bg-brand-green-subtle p-4 text-sm font-semibold text-brand-green" role="alert">
-                    {{ session('status') }}
-                </div>
-            @endif
-
-            @if (session('error'))
-                <div class="mb-4 rounded-xl border border-brand-red/30 bg-brand-red-light p-4 text-sm font-semibold text-brand-red" role="alert">
-                    {{ session('error') }}
-                </div>
-            @endif
-        </div>
-    @endif
-
     <!-- Main Page Content -->
     <main class="flex-1">
         @yield('content')
@@ -40,6 +23,7 @@
     @include('frontend.partials.auth-modal')
     @include('frontend.partials.seat-picker-modal')
     @include('frontend.partials.role-restriction-modal')
+    @include('frontend.partials.toaster')
     @include('frontend.partials.script')
 </body>
 </html>

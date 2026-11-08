@@ -6,8 +6,9 @@ test('shared unified login page renders successfully for guests', function () {
     $response = $this->get(route('login'));
 
     $response->assertOk()
-        ->assertSee('Sign in to Oliver Transport')
-        ->assertSee('One portal for Passengers, Riders, and Operators');
+        ->assertSee('Welcome back! Please enter your details to sign in.')
+        ->assertSee('Email Address')
+        ->assertSee('Password');
 });
 
 test('passenger logs in through shared login and redirects to passenger dashboard', function () {
@@ -22,7 +23,7 @@ test('passenger logs in through shared login and redirects to passenger dashboar
     ]);
 
     $this->assertAuthenticatedAs($passenger);
-    $response->assertRedirect(route('passenger.dashboard'));
+    $response->assertRedirect(route('passenger.bookings.index'));
 });
 
 test('rider logs in through shared login and redirects to rider dashboard', function () {

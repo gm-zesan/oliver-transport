@@ -63,6 +63,10 @@ class ManifestController extends Controller
         try {
             $this->riderService->recordCashCollection($trip, $payment, $request->user());
 
+            if ($request->boolean('check_in') && $payment->booking && ! $payment->booking->isCheckedIn()) {
+                $this->riderService->checkInPassenger($trip, $payment->booking, $request->user());
+            }
+
             $formattedAmount = number_format((float) $payment->amount, 2);
 
             return back()->with('status', "Cash payment of CAD \${$formattedAmount} recorded successfully.");

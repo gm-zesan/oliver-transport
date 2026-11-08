@@ -18,8 +18,8 @@ beforeEach(function () {
 
 test('unassigned rider receives 403 forbidden when accessing another drivers trip manifest (IDOR protection)', function () {
     $tripService = app(TripService::class);
-    $today = Carbon::now('America/Toronto')->toDateString();
-    $trip = $tripService->findOrCreateTripForDateAndDirection('MTL_TO_TOR', $today);
+    $testDate = Carbon::now('America/Toronto')->addDays(7)->toDateString();
+    $trip = $tripService->findOrCreateTripForDateAndDirection('MTL_TO_TOR', $testDate);
 
     // Create a second rider
     $otherRider = User::factory()->create([
@@ -39,8 +39,8 @@ test('assigned rider can view trip manifest with stop sequence, booked seats, an
     $rider = User::where('role', 'rider')->firstOrFail();
     $passenger = User::where('role', 'passenger')->firstOrFail();
 
-    $today = Carbon::now('America/Toronto')->toDateString();
-    $trip = $tripService->findOrCreateTripForDateAndDirection('MTL_TO_TOR', $today);
+    $testDate = Carbon::now('America/Toronto')->addDays(7)->toDateString();
+    $trip = $tripService->findOrCreateTripForDateAndDirection('MTL_TO_TOR', $testDate);
 
     // Book S1 for this trip
     $s1Id = $trip->vehicle->seats->where('seat_number', 'S1')->first()->id;
@@ -76,8 +76,8 @@ test('assigned rider can check in a passenger physically boarding the vehicle', 
     $rider = User::where('role', 'rider')->firstOrFail();
     $passenger = User::where('role', 'passenger')->firstOrFail();
 
-    $today = Carbon::now('America/Toronto')->toDateString();
-    $trip = $tripService->findOrCreateTripForDateAndDirection('MTL_TO_TOR', $today);
+    $testDate = Carbon::now('America/Toronto')->addDays(7)->toDateString();
+    $trip = $tripService->findOrCreateTripForDateAndDirection('MTL_TO_TOR', $testDate);
 
     $s1Id = $trip->vehicle->seats->where('seat_number', 'S1')->first()->id;
     $namurStop = $trip->route->stops->where('stop_sequence', 0)->first();
@@ -109,8 +109,8 @@ test('assigned rider can collect cash payment upon passenger boarding', function
     $rider = User::where('role', 'rider')->firstOrFail();
     $passenger = User::where('role', 'passenger')->firstOrFail();
 
-    $today = Carbon::now('America/Toronto')->toDateString();
-    $trip = $tripService->findOrCreateTripForDateAndDirection('MTL_TO_TOR', $today);
+    $testDate = Carbon::now('America/Toronto')->addDays(7)->toDateString();
+    $trip = $tripService->findOrCreateTripForDateAndDirection('MTL_TO_TOR', $testDate);
 
     $s1Id = $trip->vehicle->seats->where('seat_number', 'S1')->first()->id;
     $namurStop = $trip->route->stops->where('stop_sequence', 0)->first();
@@ -144,8 +144,8 @@ test('cannot collect cash twice on an already paid booking payment', function ()
     $rider = User::where('role', 'rider')->firstOrFail();
     $passenger = User::where('role', 'passenger')->firstOrFail();
 
-    $today = Carbon::now('America/Toronto')->toDateString();
-    $trip = $tripService->findOrCreateTripForDateAndDirection('MTL_TO_TOR', $today);
+    $testDate = Carbon::now('America/Toronto')->addDays(7)->toDateString();
+    $trip = $tripService->findOrCreateTripForDateAndDirection('MTL_TO_TOR', $testDate);
 
     $s1Id = $trip->vehicle->seats->where('seat_number', 'S1')->first()->id;
     $namurStop = $trip->route->stops->where('stop_sequence', 0)->first();
@@ -177,8 +177,8 @@ test('assigned rider can update trip lifecycle status from scheduled to in_progr
     $tripService = app(TripService::class);
     $rider = User::where('role', 'rider')->firstOrFail();
 
-    $today = Carbon::now('America/Toronto')->toDateString();
-    $trip = $tripService->findOrCreateTripForDateAndDirection('MTL_TO_TOR', $today);
+    $testDate = Carbon::now('America/Toronto')->addDays(7)->toDateString();
+    $trip = $tripService->findOrCreateTripForDateAndDirection('MTL_TO_TOR', $testDate);
 
     expect($trip->status)->toBe('scheduled');
 
@@ -208,8 +208,8 @@ test('unassigned rider cannot collect payment or check in booking on another dri
     $bookingService = app(BookingService::class);
     $passenger = User::where('role', 'passenger')->firstOrFail();
 
-    $today = Carbon::now('America/Toronto')->toDateString();
-    $trip = $tripService->findOrCreateTripForDateAndDirection('MTL_TO_TOR', $today);
+    $testDate = Carbon::now('America/Toronto')->addDays(7)->toDateString();
+    $trip = $tripService->findOrCreateTripForDateAndDirection('MTL_TO_TOR', $testDate);
 
     $s1Id = $trip->vehicle->seats->where('seat_number', 'S1')->first()->id;
     $namurStop = $trip->route->stops->where('stop_sequence', 0)->first();

@@ -33,7 +33,7 @@ class AuthenticationService
     public function redirectPathFor(User $user): string
     {
         return match ($user->role) {
-            'passenger' => route('passenger.dashboard'),
+            'passenger' => route('passenger.bookings.index'),
             'rider' => route('rider.dashboard'),
             'operator' => route('operator.dashboard'),
             default => route('login'),

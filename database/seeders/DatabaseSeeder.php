@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
             ScheduleSeeder::class,
             CouponSeeder::class,
             PricingSettingSeeder::class,
+            BookingSeeder::class,
         ]);
     }
 }

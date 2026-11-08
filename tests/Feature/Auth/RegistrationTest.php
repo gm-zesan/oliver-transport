@@ -7,7 +7,7 @@ test('passenger registration page renders successfully for guests', function () 
 
     $response->assertOk()
         ->assertSee('Create Passenger Account')
-        ->assertSee('Book and manage your Montreal ↔ Toronto shuttle seats');
+        ->assertSee('Create your passenger account to book and manage shuttle seats.');
 });
 
 test('new passenger can register and is redirected to passenger dashboard', function () {
@@ -26,7 +26,7 @@ test('new passenger can register and is redirected to passenger dashboard', func
     expect($user->name)->toBe('John Passenger');
     expect($user->phone)->toBe('647-555-1234');
 
-    $response->assertRedirect(route('passenger.dashboard'));
+    $response->assertRedirect(route('passenger.bookings.index'));
 });
 
 test('new passenger can register without phone number', function () {
@@ -43,7 +43,7 @@ test('new passenger can register without phone number', function () {
     expect($user->role)->toBe('passenger');
     expect($user->name)->toBe('Alice No Phone');
 
-    $response->assertRedirect(route('passenger.dashboard'));
+    $response->assertRedirect(route('passenger.bookings.index'));
 });
 
 test('passenger registration fails when email is already registered', function () {

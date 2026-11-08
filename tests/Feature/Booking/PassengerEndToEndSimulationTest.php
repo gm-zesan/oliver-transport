@@ -175,13 +175,9 @@ test('complete passenger end-to-end booking lifecycle simulation with real-time 
         ->assertSee('Boarding Pass')
         ->assertSee('Print Pass');
 
-    // 10. Passenger A views My Bookings list & Passenger Dashboard
+    // 10. Passenger A views My Reservations list
     $historyResponse = $this->actingAs($this->passengerA)->get(route('passenger.bookings.index'));
     $historyResponse->assertOk()
         ->assertSee($bookingRef)
         ->assertSee('$110.00 CAD');
-
-    $dashResponse = $this->actingAs($this->passengerA)->get(route('passenger.dashboard'));
-    $dashResponse->assertOk()
-        ->assertSee($bookingRef);
 });

@@ -3,19 +3,19 @@
 use App\Models\User;
 
 test('unauthenticated users are redirected to login when accessing role dashboards', function () {
-    $this->get(route('passenger.dashboard'))->assertRedirect(route('login'));
+    $this->get(route('passenger.bookings.index'))->assertRedirect(route('login'));
     $this->get(route('rider.dashboard'))->assertRedirect(route('login'));
     $this->get(route('operator.dashboard'))->assertRedirect(route('login'));
 });
 
-test('passenger can access passenger dashboard', function () {
+test('passenger can access passenger reservations', function () {
     $passenger = User::factory()->passenger()->create();
 
     $this->actingAs($passenger)
-        ->get(route('passenger.dashboard'))
+        ->get(route('passenger.bookings.index'))
         ->assertOk()
-        ->assertSee('Passenger Portal')
-        ->assertSee($passenger->name);
+        ->assertSee('My Reservations')
+        ->assertSee('Book New Journey');
 });
 
 test('passenger cannot access rider or operator dashboards', function () {
@@ -36,7 +36,6 @@ test('rider can access rider dashboard', function () {
     $this->actingAs($rider)
         ->get(route('rider.dashboard'))
         ->assertOk()
-        ->assertSee('Driver Operational Panel')
         ->assertSee('Honda Odyssey')
         ->assertSee($rider->name);
 });
@@ -45,7 +44,7 @@ test('rider cannot access passenger or operator dashboards', function () {
     $rider = User::factory()->rider()->create();
 
     $this->actingAs($rider)
-        ->get(route('passenger.dashboard'))
+        ->get(route('passenger.bookings.index'))
         ->assertForbidden();
 
     $this->actingAs($rider)
@@ -67,7 +66,7 @@ test('operator cannot access passenger or rider dashboards without explicit role
     $operator = User::factory()->operator()->create();
 
     $this->actingAs($operator)
-        ->get(route('passenger.dashboard'))
+        ->get(route('passenger.bookings.index'))
         ->assertForbidden();
 
     $this->actingAs($operator)

@@ -318,10 +318,15 @@ test('database seeder populates deterministic static configuration', function ()
     // Schedules: 2 daily recurring runs
     expect(Schedule::count())->toBe(2);
 
-    // Users: 3 default accounts for operator, rider, passenger
+    // Users: Accounts for operator, rider, and seeded passengers
     expect(User::where('role', 'operator')->count())->toBe(1)
         ->and(User::where('role', 'rider')->count())->toBe(1)
-        ->and(User::where('role', 'passenger')->count())->toBe(1);
+        ->and(User::where('role', 'passenger')->count())->toBe(7);
+
+    // Seeded Bookings & Payments
+    expect(Booking::count())->toBeGreaterThan(0)
+        ->and(BookingSeat::count())->toBeGreaterThan(0)
+        ->and(Payment::count())->toBeGreaterThan(0);
 
     // Pricing Settings: Database-driven baseline fare
     $pricing = PricingSetting::where('key', 'regular_fare')->first();

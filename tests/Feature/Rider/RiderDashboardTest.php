@@ -34,7 +34,6 @@ test('authenticated rider can access dashboard and view assigned daily runs and 
         ->get(route('rider.dashboard'));
 
     $response->assertOk()
-        ->assertSee('Driver Operational Panel')
         ->assertSee('Welcome, Jean-Luc Chauffeur')
         ->assertSee('RAJIA')
         ->assertSee('Honda Odyssey')

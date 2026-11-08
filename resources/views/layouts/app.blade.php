@@ -18,20 +18,8 @@
     <!-- Top Navigation -->
     <x-navigation />
 
-    <!-- Flash Status Messages -->
-    <div class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 mt-4">
-        @if (session('status'))
-            <div class="mb-4 rounded-xl border border-brand-green/30 bg-brand-green-subtle p-4 text-sm font-semibold text-brand-green" role="alert">
-                {{ session('status') }}
-            </div>
-        @endif
-
-        @if (session('error'))
-            <div class="mb-4 rounded-xl border border-brand-red/30 bg-brand-red-light p-4 text-sm font-semibold text-brand-red" role="alert">
-                {{ session('error') }}
-            </div>
-        @endif
-    </div>
+    <!-- Toast Notifications -->
+    @include('frontend.partials.toaster')
 
     <!-- Main Content Area -->
     <main class="flex-1">

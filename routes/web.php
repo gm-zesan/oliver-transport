@@ -7,7 +7,6 @@ use App\Http\Controllers\Frontend\ContactController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Operator\DashboardController as OperatorDashboardController;
 use App\Http\Controllers\Passenger\BookingController as PassengerBookingController;
-use App\Http\Controllers\Passenger\DashboardController as PassengerDashboardController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Rider\DashboardController as RiderDashboardController;
 use App\Http\Controllers\Rider\ManifestController as RiderManifestController;
@@ -35,9 +34,10 @@ Route::middleware(['throttle:60,1'])->prefix('api')->name('api.')->group(functio
     Route::post('/coupons/validate', [CouponController::class, 'validate'])->name('coupons.validate');
 });
 
-// Role-Protected Dashboard Portals
+// Role-Protected Portals
 Route::middleware(['auth', 'role:passenger'])->prefix('passenger')->name('passenger.')->group(function () {
-    Route::get('/dashboard', [PassengerDashboardController::class, 'index'])->name('dashboard');
+    Route::redirect('/', '/passenger/bookings');
+    Route::redirect('/dashboard', '/passenger/bookings');
     Route::get('/bookings', [PassengerBookingController::class, 'index'])->name('bookings.index');
     Route::post('/bookings', [PassengerBookingController::class, 'store'])->name('bookings.store');
     Route::get('/bookings/{booking}', [PassengerBookingController::class, 'show'])->name('bookings.show');

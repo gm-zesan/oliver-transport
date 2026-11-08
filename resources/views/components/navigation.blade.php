@@ -40,11 +40,14 @@
                 @php
                     $dashboardRoute = auth()->user()->isRider() 
                         ? route('rider.dashboard') 
-                        : (auth()->user()->isOperator() ? route('operator.dashboard') : route('passenger.dashboard'));
+                        : (auth()->user()->isOperator() ? route('operator.dashboard') : route('passenger.bookings.index'));
+                    $dashboardLabel = auth()->user()->isRider() 
+                        ? 'Driver Panel' 
+                        : (auth()->user()->isOperator() ? 'Dashboard' : 'My Reservations');
                 @endphp
                 <a href="{{ $dashboardRoute }}" 
                    class="inline-flex min-h-[44px] min-w-[44px] items-center justify-center rounded-xl bg-brand-charcoal px-4 py-2.5 text-sm font-bold text-white hover:bg-brand-charcoal-hover transition focus:outline-none focus:ring-2 focus:ring-brand-green">
-                    Dashboard
+                    {{ $dashboardLabel }}
                 </a>
                 <form method="POST" action="{{ route('logout') }}" class="inline">
                     @csrf
@@ -115,7 +118,7 @@
             @auth
                 <a href="{{ $dashboardRoute }}" 
                    class="flex min-h-[48px] items-center justify-center rounded-xl bg-brand-charcoal px-4 py-3 text-base font-bold text-white hover:bg-brand-charcoal-hover transition">
-                    Dashboard
+                    {{ $dashboardLabel }}
                 </a>
                 <form method="POST" action="{{ route('logout') }}" class="w-full">
                     @csrf

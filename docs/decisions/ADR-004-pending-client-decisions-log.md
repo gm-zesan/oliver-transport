@@ -194,3 +194,21 @@ During the requirements analysis and architectural specification of Oliver Trans
     * Telephone / SMS / WhatsApp: **647-655-1884**
     * Facebook Page: **Oliver Transport** (Verified checkmark badge)
 * **Classification:** **`[CONFIRMED]`**
+
+---
+
+### 24. Admin Panel Replaces Operator Dashboard (Deferred)
+* **Context:** Terminology and scheduling for administrative back-office interface.
+* **Specification:** The back-office oversight interface is officially designated as **Admin Panel** (replacing the provisional term "Operator Dashboard"). Implementation is explicitly deferred to later post-launch phases ("Oita aro onek pore korbo") so all immediate effort focuses on production-readiness of Passenger and Rider experiences.
+* **Classification:** **`[CONFIRMED]`**
+
+---
+
+### 25. Rider Cockpit In-Vehicle Mobile Ergonomics & Cabin Map
+* **Context:** Driver operational experience on smartphone while standing near the van or mounted on dashboard.
+* **Specification:** The Driver manifest interface is upgraded to an interactive mobile cockpit:
+  * Interactive Honda Odyssey 7-seat cabin diagram with real-time occupancy status and click-to-highlight card navigation.
+  * 1-tap cash collection with integrated Change Return Calculator ($65, $70, $80, $100 tendered options).
+  * Station filter pills for quick station-by-station passenger focusing.
+  * Direct Sunlight / High-Contrast toggle mode for outdoor car-mount visibility.
+* **Classification:** **`[CONFIRMED]`**

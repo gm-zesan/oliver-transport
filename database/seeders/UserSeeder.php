@@ -43,17 +43,57 @@ class UserSeeder extends Seeder
                 ]
             );
 
-            // 3. Passenger Account (Intercity seat booking, reservation history)
-            User::firstOrCreate(
-                ['email' => 'passenger@olivertransport.ca'],
+            // 3. Passenger Accounts (Intercity seat booking, reservation history)
+            $passengers = [
                 [
                     'name' => 'Sarah Jenkins',
+                    'email' => 'passenger@olivertransport.ca',
                     'phone' => '416-555-0144',
-                    'password' => $defaultPassword,
-                    'role' => 'passenger',
-                    'email_verified_at' => now(),
-                ]
-            );
+                ],
+                [
+                    'name' => 'Alexandre Tremblay',
+                    'email' => 'alex.tremblay@gmail.com',
+                    'phone' => '514-555-0112',
+                ],
+                [
+                    'name' => 'Emily Chen',
+                    'email' => 'emily.chen@outlook.com',
+                    'phone' => '416-555-0189',
+                ],
+                [
+                    'name' => 'Michael Ross',
+                    'email' => 'michael.ross@yahoo.com',
+                    'phone' => '647-555-0134',
+                ],
+                [
+                    'name' => 'Sophie Laurent',
+                    'email' => 'sophie.laurent@gmail.com',
+                    'phone' => '514-555-0177',
+                ],
+                [
+                    'name' => 'David Miller',
+                    'email' => 'david.miller@gmail.com',
+                    'phone' => '416-555-0163',
+                ],
+                [
+                    'name' => 'Fatima Zahra',
+                    'email' => 'fatima.zahra@gmail.com',
+                    'phone' => '514-555-0125',
+                ],
+            ];
+
+            foreach ($passengers as $p) {
+                User::firstOrCreate(
+                    ['email' => $p['email']],
+                    [
+                        'name' => $p['name'],
+                        'phone' => $p['phone'],
+                        'password' => $defaultPassword,
+                        'role' => 'passenger',
+                        'email_verified_at' => now(),
+                    ]
+                );
+            }
         });
     }
 }

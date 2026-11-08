@@ -20,8 +20,7 @@ test('homepage features authentic oliver transport branding', function () {
     $response->assertOk()
         ->assertSee('Ol')
         ->assertSee('iver')
-        ->assertSee('Transport')
-        ->assertSee('Montreal • Toronto • Montreal');
+        ->assertSee('Transport');
 });
 
 test('homepage accurately displays route a morning service details', function () {
@@ -97,8 +96,8 @@ test('homepage displays role-specific dashboard link for authenticated passenger
     $response = $this->actingAs($passenger)->get(route('home'));
 
     $response->assertOk()
-        ->assertSee(route('passenger.dashboard'))
-        ->assertSee('Dashboard')
+        ->assertSee(route('passenger.bookings.index'))
+        ->assertSee('My Reservations')
         ->assertSee(route('logout'));
 });
 

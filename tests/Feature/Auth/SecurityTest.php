@@ -12,7 +12,7 @@ test('passenger registration rejects role mass-assignment and defaults to passen
         'role' => 'operator', // Attempt privilege escalation
     ]);
 
-    $response->assertRedirect(route('passenger.dashboard'));
+    $response->assertRedirect(route('passenger.bookings.index'));
 
     $user = User::where('email', 'tester@example.com')->first();
     expect($user)->not->toBeNull()

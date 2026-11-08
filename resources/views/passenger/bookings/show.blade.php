@@ -101,10 +101,6 @@
         </svg>
         <span>Travel Date: {{ \Carbon\Carbon::parse($booking->trip->trip_date)->format('D, M j, Y') }}</span>
     </span>
-    <span class="inline-flex items-center gap-1.5 bg-white/10 text-slate-200 border border-white/15 backdrop-blur-md px-2.5 py-1 rounded-xl">
-        <span class="h-2 w-2 rounded-full bg-[#22C55E]"></span>
-        <span>Confirmed Voucher</span>
-    </span>
 @endsection
 
 @section('hero_action')
