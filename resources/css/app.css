@@ -46,6 +46,15 @@
 
 /* Custom Base layer rules */
 @layer base {
+    /* Dynamic Fluid Root Scaling:
+       Scales rem-based typography, paddings, margins, and gaps smoothly
+       from mobile phones (360px-390px at ~13.8px base) up to desktop (16px base) */
+    html {
+        font-size: clamp(13.5px, 0.80rem + 0.30vw, 16px);
+        -webkit-text-size-adjust: 100%;
+        text-size-adjust: 100%;
+    }
+
     /* Prevent double-tap zoom on buttons and links */
     a, button {
         touch-action: manipulation;
@@ -54,6 +63,18 @@
     /* Standard touch targets on interactive elements */
     button, a, input, select {
         touch-action: manipulation;
+    }
+
+    /* Prevent iOS Safari auto-zoom on form inputs by ensuring minimum 16px font-size */
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    input[type="tel"],
+    input[type="number"],
+    input[type="date"],
+    select,
+    textarea {
+        font-size: 16px !important;
     }
 }
 
