@@ -55,7 +55,7 @@ test('homepage displays confirmed standard fare of $65 cad with cash-on-boarding
         ->assertSee('$65')
         ->assertSee('CAD')
         ->assertSee('Cash Payment Upon Boarding')
-        ->assertSee('Pay the driver directly in cash when boarding');
+        ->assertSeeText('Pay the driver directly in cash when boarding');
 });
 
 test('homepage features confirmed fleet profile with honda odyssey and plate rajia', function () {

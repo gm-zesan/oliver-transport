@@ -73,8 +73,7 @@
     }
 </style>
 <header id="site-header"
-    class="fixed top-0 left-0 right-0 z-50 px-4 sm:px-6 lg:px-8 pointer-events-none transition-all duration-300 ease-out pt-4 sm:pt-6"
-    style="opacity: 0.9">
+    class="fixed top-0 left-0 right-0 z-50 px-4 sm:px-6 lg:px-8 pointer-events-none transition-all duration-300 ease-out pt-4 sm:pt-6">
     <div id="header-inner"
         class="mx-auto max-w-7xl rounded-full bg-white/0 backdrop-blur-none border border-transparent shadow-none px-3 sm:px-4 py-2.5 flex items-center justify-between pointer-events-auto transition-all duration-300 ease-out">
 
@@ -91,7 +90,7 @@
                 class="header-nav-link text-white/90 hover:text-[#22C55E] transition py-1 focus:outline-none focus:ring-2 focus:ring-[#22C55E] rounded-md">
                 Home
             </a>
-            <a href="#services"
+            <a href="{{ route('home') }}#services"
                 class="header-nav-link text-white/90 hover:text-[#22C55E] transition py-1 focus:outline-none focus:ring-2 focus:ring-[#22C55E] rounded-md">
                 Services
             </a>
@@ -233,15 +232,16 @@
         </div>
     </div>
 
-    <!-- Mobile Navigation Drawer -->
+    <!-- Mobile Navigation Drawer (100% Solid Opaque Background) -->
     <div id="mobile-menu"
-        class="hidden md:hidden mx-auto max-w-7xl mt-2 rounded-3xl border border-slate-200/90 bg-[#111827]/95 backdrop-blur-2xl p-5 space-y-3 shadow-2xl pointer-events-auto">
+        class="hidden md:hidden mx-auto max-w-7xl mt-2 rounded-3xl border border-slate-700 bg-[#111827] p-5 space-y-3 shadow-2xl shadow-black pointer-events-auto"
+        style="background-color: #111827 !important;">
         <nav class="flex flex-col space-y-1 font-semibold text-white" aria-label="Mobile Navigation">
             <a href="{{ route('home') }}"
                 class="mobile-nav-link flex items-center min-h-[44px] px-3 rounded-xl hover:bg-white/10 hover:text-[#22C55E] transition">
                 Home
             </a>
-            <a href="#services"
+            <a href="{{ route('home') }}#services"
                 class="mobile-nav-link flex items-center min-h-[44px] px-3 rounded-xl hover:bg-white/10 hover:text-[#22C55E] transition">
                 Services
             </a>

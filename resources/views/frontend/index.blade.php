@@ -12,7 +12,7 @@
                 model: @json($vehicleModel),
                 plate: @json($vehiclePlate),
                 capacity: {{ $passengerSeatsCount }}
-                    },
+                                    },
             stations: @json($clientStations),
             routes: @json($clientRoutes)
         };
@@ -29,65 +29,37 @@
                 <source src="{{ asset('videos/hero-odyssey-loop.mp4') }}" type="video/mp4">
             </video>
             <!-- Refined Lighter Cinematic Overlay for Maximum Luminous Visibility & Clarity -->
-            <div class="absolute inset-0 bg-gradient-to-r from-[#111827]/70 via-[#111827]/50 to-black/20"></div>
+            <div class="absolute inset-0 bg-gradient-to-r from-[#111827]/75 via-[#111827]/60 to-black/50"></div>
             <div class="absolute inset-0 bg-gradient-to-t from-[#111827]/70 via-transparent to-black/20"></div>
         </div>
 
         <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full z-10">
-            <div class="flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-16">
+            <div class="flex flex-col lg:flex-row items-center justify-between gap-10 lg:gap-16">
 
                 <!-- LEFT SIDE: Spacious, High-Impact Brand Messaging (approx 50%) -->
-                <div class="lg:w-[50%] w-full flex flex-col justify-center text-left">
-
-                    <!-- Mobile Corridor Highlight (Visible on Mobile/Tablet <lg only) -->
-                    <div class="mb-4 lg:hidden">
-                        <h2 class="text-2xl sm:text-3xl font-black text-white tracking-tight leading-tight font-heading">
-                            Montreal <span class="text-[#22C55E]">⇄</span> Toronto
-                        </h2>
-                        <p class="text-xs sm:text-sm text-slate-300 mt-1">
-                            Fixed daily schedule • Reserved seating • Cash on boarding
-                        </p>
-                    </div>
-
-                    <!-- Eyebrow matching Reference Image 1: Green horizontal line + uppercase text -->
-                    <div class="mb-4 sm:mb-6">
-                        <span class="text-xs sm:text-sm font-extrabold uppercase tracking-[0.22em] text-[#22C55E]">PREMIUM
-                            TRANSPORTATION SERVICE</span>
-                    </div>
+                <div
+                    class="lg:w-[50%] w-full flex flex-col justify-center items-center lg:items-start text-center lg:text-left">
 
                     <!-- Main Heading matching Reference Image 1 -->
                     <h1
-                        class="text-4xl sm:text-6xl lg:text-7xl xl:text-8xl font-black tracking-tight text-white leading-[1.04] font-heading drop-shadow-sm">
+                        class="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-black tracking-tight text-white leading-[1.05] font-heading drop-shadow-sm text-center lg:text-left">
                         Your Journey,<br />
                         <span class="text-[#22C55E]">Our Priority.</span>
                     </h1>
 
                     <!-- Subtitle matching Reference Image 1 -->
                     <p
-                        class="mt-4 sm:mt-6 text-xl sm:text-2xl lg:text-3xl font-bold text-white tracking-tight leading-snug drop-shadow-sm">
+                        class="mt-4 sm:mt-6 text-lg sm:text-2xl lg:text-3xl font-bold text-white tracking-tight leading-snug drop-shadow-sm text-center lg:text-left">
                         Travel in Comfort. Arrive in Style.
                     </p>
 
-                    <!-- Description with Green Vertical Line matching Reference Image 1 -->
-                    <div class="mt-5 sm:mt-7 flex items-stretch gap-3.5 sm:gap-4">
+                    <!-- Description with Green Vertical Line (Hidden on Mobile <lg) -->
+                    <div class="hidden lg:flex mt-7 items-stretch gap-4">
                         <span class="w-1 bg-[#22C55E] rounded-full flex-shrink-0"></span>
                         <p class="text-sm sm:text-base text-slate-200 leading-relaxed font-normal max-w-lg drop-shadow-sm">
                             Experience reliable, comfortable and<br class="hidden sm:inline" />
                             professional transportation with PickMeRoute.
                         </p>
-                    </div>
-
-                    <!-- Mobile Quick Jump Button (Visible only on mobile/tablet <lg) -->
-                    <div class="mt-6 flex items-center gap-3 lg:hidden">
-                        <a href="#booking-panel" id="mobile-quick-jump-btn"
-                            class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#22C55E] hover:bg-[#16A34A] text-slate-950 font-bold text-xs sm:text-sm tracking-wide shadow-lg shadow-[#22C55E]/20 transition-all active:scale-95">
-                            <span>Book Seats Now</span>
-                            <svg class="h-4 w-4 animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
-                                    d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-                            </svg>
-                        </a>
-                        <span class="text-xs text-slate-400">or scroll down</span>
                     </div>
                 </div>
 
@@ -484,8 +456,8 @@
                             class="absolute -top-24 -right-24 w-52 h-52 bg-[#22C55E]/15 rounded-full blur-3xl pointer-events-none">
                         </div>
 
-                        <!-- Pure Text Category Label (No Pill, No Badge, No Dot) -->
-                        <div class="space-y-3 mb-6 relative z-10">
+                        <!-- Pure Text Category Label (Centered on Phone, Left on Desktop) -->
+                        <div class="space-y-3 mb-6 relative z-10 text-center lg:text-left">
                             <div>
                                 <span class="text-xs font-black tracking-widest text-[#22C55E] uppercase">
                                     WHY CHOOSE US
@@ -493,11 +465,11 @@
                             </div>
 
                             <h2
-                                class="text-2xl sm:text-3xl lg:text-4xl font-black text-white tracking-tight font-heading leading-tight drop-shadow-sm">
+                                class="text-2xl sm:text-3xl lg:text-4xl font-black text-white tracking-tight font-heading leading-tight drop-shadow-sm text-center lg:text-left">
                                 Why Select Us for Your Journey
                             </h2>
 
-                            <p class="text-sm text-slate-200 leading-relaxed">
+                            <p class="text-sm text-slate-200 leading-relaxed text-center lg:text-left">
                                 Premium comfort, guaranteed seating, and reliable daily intercity transit.
                             </p>
                         </div>
