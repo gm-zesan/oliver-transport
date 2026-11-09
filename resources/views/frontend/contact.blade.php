@@ -3,16 +3,26 @@
 @section('title', 'Contact Us — PickMeRoute Montreal ↔ Toronto Passenger Shuttle')
 
 @section('content')
-    <!-- Contact Page Header -->
-    <section class="relative bg-[#111827] pt-32 pb-16 sm:pt-36 sm:pb-20 border-b border-slate-800 text-white overflow-hidden">
-        <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
-            <span class="inline-block text-xs font-black tracking-widest text-[#22C55E] uppercase mb-3">
-                GET IN TOUCH
-            </span>
-            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight font-heading text-white">
+    <!-- Contact Page Header with Welcoming Concierge/Fleet Hero Background -->
+    <section class="relative bg-[#0B0F17] pt-32 pb-20 sm:pt-36 sm:pb-24 lg:pt-40 lg:pb-28 border-b border-slate-800 text-white overflow-hidden bg-cover bg-center bg-no-repeat"
+        style="background-image: linear-gradient(180deg, rgba(11, 15, 23, 0.90) 0%, rgba(11, 15, 23, 0.78) 50%, rgba(11, 15, 23, 0.96) 100%), url('{{ asset('images/contact-hero-bg.jpg') }}');">
+
+        <!-- Ambient atmospheric glow -->
+        <div class="absolute top-1/4 right-1/4 w-96 h-96 bg-[#22C55E]/15 rounded-full blur-[140px] pointer-events-none" aria-hidden="true"></div>
+        <div class="absolute bottom-0 left-1/4 w-80 h-80 bg-emerald-600/10 rounded-full blur-[120px] pointer-events-none" aria-hidden="true"></div>
+
+        <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center z-10">
+            <div class="inline-flex items-center justify-center gap-3 mb-4">
+                <span class="w-6 sm:w-8 h-[1.5px] bg-[#22C55E]"></span>
+                <span class="text-xs sm:text-sm font-black tracking-widest text-[#22C55E] uppercase font-heading">
+                    GET IN TOUCH · 7 DAYS A WEEK
+                </span>
+                <span class="w-6 sm:w-8 h-[1.5px] bg-[#22C55E]"></span>
+            </div>
+            <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight font-heading text-white drop-shadow-md">
                 Contact PickMeRoute
             </h1>
-            <p class="mt-4 text-base sm:text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed">
+            <p class="mt-4 text-sm sm:text-base lg:text-lg text-slate-200 max-w-2xl mx-auto leading-relaxed drop-shadow-xs">
                 Have questions regarding our daily Montreal ↔ Toronto shuttle, booking assistance, or group charters? We are here to help.
             </p>
         </div>
