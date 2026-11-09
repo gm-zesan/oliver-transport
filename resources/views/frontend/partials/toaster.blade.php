@@ -1,6 +1,6 @@
-<!-- Modern Floating Toaster Notification Container (Small, Compact, Light Theme) -->
+<!-- Modern Floating Toaster Notification Container (Ultra-Compact Light Theme) -->
 <div id="toast-container" 
-     class="fixed top-4 right-4 sm:right-6 z-[9999] flex flex-col gap-2 pointer-events-none max-w-xs sm:max-w-sm w-full select-none"
+     class="fixed top-4 right-3 sm:right-5 z-[9999] flex flex-col gap-2 pointer-events-none w-full max-w-[260px] select-none"
      aria-live="polite" 
      aria-atomic="true">
 </div>
@@ -55,24 +55,24 @@
 
             // Create compact light toast item
             const toast = document.createElement('div');
-            toast.className = `pointer-events-auto transform transition-all duration-200 translate-x-full opacity-0 flex flex-col rounded-2xl bg-white/95 backdrop-blur-xl border border-slate-200/90 px-3.5 py-2.5 shadow-lg shadow-slate-900/10 text-slate-800 relative overflow-hidden`;
+            toast.className = `pointer-events-auto transform transition-all duration-200 translate-x-full opacity-0 flex flex-col rounded-2xl bg-white/95 backdrop-blur-xl border border-slate-200/90 px-3 py-2 shadow-lg shadow-slate-900/10 text-slate-800 relative overflow-hidden`;
 
             toast.innerHTML = `
-                <div class="flex items-center gap-2.5">
-                    <div class="p-1 rounded-lg ${style.iconBg} border flex-shrink-0">
+                <div class="flex items-start gap-2">
+                    <div class="p-1 rounded-lg ${style.iconBg} border flex-shrink-0 mt-0.5">
                         ${icons[safeType]}
                     </div>
-                    <div class="flex-1 pr-1 min-w-0">
+                    <div class="flex-1 pr-0.5 min-w-0">
                         <div class="flex items-center gap-1.5 mb-0.5">
                             <span class="inline-block px-1.5 py-0.2 rounded text-[9px] font-black uppercase tracking-wider border ${style.badgeBg}">
                                 ${defaultTitle}
                             </span>
                         </div>
-                        <p class="text-xs font-semibold text-slate-700 leading-snug break-words">
+                        <p class="text-[11px] sm:text-xs font-semibold text-slate-700 leading-snug break-words">
                             ${message}
                         </p>
                     </div>
-                    <button type="button" class="text-slate-400 hover:text-slate-600 transition p-1 rounded-lg hover:bg-slate-100 flex-shrink-0 cursor-pointer" aria-label="Dismiss">
+                    <button type="button" class="text-slate-400 hover:text-slate-600 transition p-0.5 rounded-md hover:bg-slate-100 flex-shrink-0 cursor-pointer" aria-label="Dismiss">
                         <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12" />
                         </svg>
@@ -102,14 +102,20 @@
             }
 
             // Dismiss function
+            let isDismissed = false;
+            let timer = null;
+
             const dismiss = () => {
+                if (isDismissed) return;
+                isDismissed = true;
+                if (timer) clearTimeout(timer);
                 toast.classList.remove('translate-x-0', 'opacity-100');
                 toast.classList.add('translate-x-full', 'opacity-0');
                 setTimeout(() => {
-                    if (toast.parentNode) {
+                    if (toast && toast.parentNode) {
                         toast.parentNode.removeChild(toast);
                     }
-                }, 200);
+                }, 220);
             };
 
             // Close button click
@@ -118,14 +124,8 @@
                 closeBtn.addEventListener('click', dismiss);
             }
 
-            // Auto dismiss timer
-            const timer = setTimeout(dismiss, duration);
-
-            // Pause on hover
-            toast.addEventListener('mouseenter', () => {
-                clearTimeout(timer);
-                if (progressBar) progressBar.style.animationPlayState = 'paused';
-            });
+            // Guaranteed auto dismiss timer (2.8 seconds)
+            timer = setTimeout(dismiss, duration);
         };
 
         // Auto trigger Laravel flash session toasts

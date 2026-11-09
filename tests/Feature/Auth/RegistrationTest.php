@@ -7,7 +7,7 @@ test('passenger registration page renders successfully for guests', function () 
 
     $response->assertOk()
         ->assertSee('Create Passenger Account')
-        ->assertSee('Create your passenger account to book and manage shuttle seats.');
+        ->assertSee('Create your account to book your seats.');
 });
 
 test('new passenger can register and is redirected to passenger dashboard', function () {

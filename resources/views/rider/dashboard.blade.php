@@ -31,14 +31,6 @@
                         <h1 class="text-2xl sm:text-3xl lg:text-4xl font-black font-heading text-white tracking-tight leading-tight drop-shadow-sm">
                             Welcome, {{ $user->name }}
                         </h1>
-                        
-                        <div class="pt-1.5 text-xs text-slate-300 flex flex-wrap items-center gap-2">
-                            <span>Eastern Time: <strong>{{ $today->format('l, F j, Y') }}</strong></span>
-                            <span class="text-slate-500">•</span>
-                            <span>Honda Odyssey (<strong class="font-mono text-amber-300">RAJIA</strong>)</span>
-                            <span class="hidden sm:inline text-slate-500">•</span>
-                            <span class="hidden sm:inline text-slate-300">Montreal ↔ Toronto</span>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -74,19 +66,19 @@
                 <div class="flex flex-wrap items-center gap-2">
                     <!-- Yesterday Pill -->
                     <a href="{{ route('rider.dashboard', ['date' => $today->copy()->subDay()->toDateString()]) }}" 
-                       class="inline-flex items-center px-3.5 py-2 rounded-xl text-xs font-bold transition {{ $selectedDate->isSameDay($today->copy()->subDay()) ? 'bg-slate-900 text-white shadow-xs' : 'bg-slate-100 hover:bg-slate-200 text-slate-700' }}">
+                       class="inline-flex items-center px-3.5 py-2 rounded-xl text-xs font-bold transition {{ $selectedDate->isSameDay($today->copy()->subDay()) ? 'bg-[#22C55E] text-white shadow-xs' : 'bg-slate-100 hover:bg-slate-200 text-slate-700' }}">
                         Yesterday
                     </a>
 
                     <!-- Today Pill -->
                     <a href="{{ route('rider.dashboard', ['date' => $today->toDateString()]) }}" 
-                       class="inline-flex items-center px-3.5 py-2 rounded-xl text-xs font-bold transition {{ $selectedDate->isToday() ? 'bg-emerald-600 text-white shadow-xs' : 'bg-slate-100 hover:bg-slate-200 text-slate-700' }}">
+                       class="inline-flex items-center px-3.5 py-2 rounded-xl text-xs font-bold transition {{ $selectedDate->isToday() ? 'bg-[#22C55E] text-white shadow-xs' : 'bg-slate-100 hover:bg-slate-200 text-slate-700' }}">
                         Today
                     </a>
 
                     <!-- Tomorrow Pill -->
                     <a href="{{ route('rider.dashboard', ['date' => $today->copy()->addDay()->toDateString()]) }}" 
-                       class="inline-flex items-center px-3.5 py-2 rounded-xl text-xs font-bold transition {{ $selectedDate->isSameDay($today->copy()->addDay()) ? 'bg-slate-900 text-white shadow-xs' : 'bg-slate-100 hover:bg-slate-200 text-slate-700' }}">
+                       class="inline-flex items-center px-3.5 py-2 rounded-xl text-xs font-bold transition {{ $selectedDate->isSameDay($today->copy()->addDay()) ? 'bg-[#22C55E] text-white shadow-xs' : 'bg-slate-100 hover:bg-slate-200 text-slate-700' }}">
                         Tomorrow
                     </a>
 
@@ -177,16 +169,16 @@
             </div>
 
             <!-- Assigned Runs Section Header -->
-            <div class="flex items-center justify-between pt-2">
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 pt-2">
                 <div>
                     <h2 class="text-xl font-black font-heading text-slate-900">
                         Operational Daily Runs ({{ $selectedDate->format('M j, Y') }})
                     </h2>
-                    <p class="text-xs sm:text-sm text-slate-500">
-                        Select a run below to open the Passenger Boarding Roster, view assigned cabin seats, and collect cash.
+                    <p class="text-xs sm:text-sm text-slate-500 mt-0.5">
+                        Assigned Fleet: <strong class="text-slate-800">Honda Odyssey</strong> (Plate: <strong class="font-mono text-slate-800">RAJIA</strong>) • Montreal ↔ Toronto
                     </p>
                 </div>
-                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-slate-100 text-slate-700">
+                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-slate-100 text-slate-700 w-fit">
                     <span class="h-2 w-2 rounded-full bg-emerald-500"></span>
                     <span>{{ $trips->count() }} Runs</span>
                 </span>
@@ -198,7 +190,7 @@
                     <p class="text-slate-600 font-medium">No trip runs are scheduled for {{ $selectedDate->format('l, F j, Y') }}.</p>
                 </div>
             @else
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6">
                     @foreach ($trips as $trip)
                         @php
                             $bookedSeatCount = $trip->bookings->sum('seat_count');
@@ -211,87 +203,96 @@
                             $destStop = $orderedStops->last();
                         @endphp
 
-                        <div class="rounded-3xl border border-slate-200/90 bg-white p-5 sm:p-6 shadow-xs flex flex-col justify-between hover:border-slate-300 transition">
-                            <div class="space-y-3.5">
-                                <!-- Top Row: Direction/Run Tag on Left, Status Badge on Right (Clean mobile spacing) -->
-                                <div class="flex flex-wrap items-center justify-between gap-2">
-                                    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl text-xs font-bold uppercase tracking-wider bg-slate-100 text-slate-700">
-                                        <span class="font-black text-slate-900">Run #{{ $trip->id }}</span>
-                                        <span class="text-slate-400">•</span>
-                                        <span>{{ $trip->route->service_label ?? ($trip->route->direction === 'MTL_TO_TOR' ? 'Route A • Daily Service' : 'Route B • Daily Service') }}</span>
-                                    </span>
+                        <div class="rounded-3xl border border-slate-200/90 bg-white p-4 sm:p-6 shadow-xs flex flex-col justify-between hover:border-slate-300 transition">
+                            <div class="space-y-4">
+                                <!-- Top Row: Run Identifier + Service Label on Left, Status Badge on Right -->
+                                <div class="flex items-center justify-between gap-2">
+                                    <div class="flex items-center gap-1.5 min-w-0">
+                                        <span class="inline-flex items-center px-2.5 py-1 rounded-xl text-xs font-black uppercase tracking-wider bg-slate-100 text-slate-900 whitespace-nowrap">
+                                            Run #{{ $trip->id }}
+                                        </span>
+                                        <span class="inline-flex items-center px-2.5 py-1 rounded-xl text-xs font-bold text-slate-600 bg-slate-50 border border-slate-200/60 truncate">
+                                            {{ $trip->route->service_label ?? ($trip->route->direction === 'MTL_TO_TOR' ? 'Route A • Daily Service' : 'Route B • Daily Service') }}
+                                        </span>
+                                    </div>
 
                                     @if ($trip->status === 'in_progress')
-                                        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl text-xs font-black uppercase tracking-wider bg-amber-50 text-amber-700 border border-amber-200 animate-pulse flex-shrink-0">
-                                            <span class="h-2 w-2 rounded-full bg-amber-500"></span>
+                                        <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-xl text-[11px] font-black uppercase tracking-wider bg-amber-50 text-amber-700 border border-amber-200 animate-pulse flex-shrink-0 whitespace-nowrap">
+                                            <span class="h-1.5 w-1.5 rounded-full bg-amber-500"></span>
                                             <span>IN PROGRESS</span>
                                         </span>
                                     @elseif ($trip->status === 'completed')
-                                        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl text-xs font-black uppercase tracking-wider bg-emerald-50 text-emerald-700 border border-emerald-200 flex-shrink-0">
-                                            <span class="h-2 w-2 rounded-full bg-emerald-500"></span>
+                                        <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-xl text-[11px] font-black uppercase tracking-wider bg-emerald-50 text-emerald-700 border border-emerald-200 flex-shrink-0 whitespace-nowrap">
+                                            <span class="h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
                                             <span>COMPLETED</span>
                                         </span>
                                     @else
-                                        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl text-xs font-black uppercase tracking-wider bg-sky-50 text-sky-700 border border-sky-200 flex-shrink-0">
-                                            <span class="h-2 w-2 rounded-full bg-sky-500"></span>
+                                        <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-xl text-[11px] font-black uppercase tracking-wider bg-sky-50 text-sky-700 border border-sky-200 flex-shrink-0 whitespace-nowrap">
+                                            <span class="h-1.5 w-1.5 rounded-full bg-sky-500"></span>
                                             <span>SCHEDULED</span>
                                         </span>
                                     @endif
                                 </div>
 
                                 <!-- Route Name & Departure Time Tag -->
-                                <div>
-                                    <h3 class="text-xl sm:text-2xl font-black text-slate-900 font-heading tracking-tight leading-snug">
-                                        {{ $trip->route->name }}
-                                    </h3>
-                                    <div class="mt-1.5 inline-flex items-center gap-1.5 text-xs font-bold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-lg border border-emerald-200/60">
-                                        <svg class="h-3.5 w-3.5 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                        </svg>
-                                        <span>Departs {{ $depTime }} EST</span>
+                                <div class="space-y-1.5">
+                                    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1.5">
+                                        <h3 class="text-xl sm:text-2xl font-black text-slate-900 font-heading tracking-tight leading-snug">
+                                            {{ $trip->route->name }}
+                                        </h3>
+                                        <div class="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-lg border border-emerald-200/60 w-fit flex-shrink-0">
+                                            <svg class="h-3.5 w-3.5 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                            </svg>
+                                            <span>Departs {{ $depTime }} EST</span>
+                                        </div>
                                     </div>
                                 </div>
 
-                                <!-- Route Timeline Strip -->
-                                <div class="p-3.5 rounded-2xl bg-slate-50 border border-slate-100 space-y-2">
-                                    <div class="flex items-center justify-between text-xs font-bold text-slate-600">
-                                        <span class="flex items-center gap-1.5 text-slate-900 truncate max-w-[45%]">
-                                            <span class="h-2 w-2 rounded-full bg-emerald-500 flex-shrink-0"></span>
-                                            <span class="truncate">{{ $originStop?->location?->name ?? 'Origin' }}</span>
+                                <!-- Route Stations & Operational Metrics Strip -->
+                                <div class="p-3.5 sm:p-4 rounded-2xl bg-slate-50 border border-slate-100 space-y-3">
+                                    <!-- Stations Visual Stepper -->
+                                    <div class="flex items-center justify-between text-xs font-bold text-slate-700 gap-2">
+                                        <span class="flex items-center gap-1.5 text-slate-900 min-w-0">
+                                            <span class="h-2 w-2 rounded-full bg-[#22C55E] flex-shrink-0"></span>
+                                            <span class="truncate font-bold">{{ $originStop?->location?->name ?? 'Origin' }}</span>
                                         </span>
-                                        <div class="flex-1 mx-2 flex items-center justify-center">
-                                            <div class="w-full border-t border-dashed border-slate-300"></div>
-                                            <svg class="h-3.5 w-3.5 text-slate-400 -ml-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                                                <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+
+                                        <div class="flex items-center px-1 text-slate-400 flex-shrink-0">
+                                            <svg class="h-3.5 w-3.5 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
                                             </svg>
                                         </div>
-                                        <span class="flex items-center gap-1.5 text-slate-900 truncate max-w-[45%]">
-                                            <span class="truncate">{{ $destStop?->location?->name ?? 'Destination' }}</span>
+
+                                        <span class="flex items-center gap-1.5 text-slate-900 min-w-0 justify-end text-right">
+                                            <span class="truncate font-bold">{{ $destStop?->location?->name ?? 'Destination' }}</span>
                                             <span class="h-2 w-2 rounded-full bg-slate-800 flex-shrink-0"></span>
                                         </span>
                                     </div>
 
-                                    <div class="flex items-center justify-between text-xs pt-2 border-t border-slate-200/60">
-                                        <span class="text-slate-500 font-medium">Occupancy:</span>
-                                        <strong class="font-bold {{ $isFull ? 'text-amber-600' : 'text-slate-900' }}">
-                                            {{ $bookedSeatCount }} of 6 Seats Booked {{ $isFull ? '(FULL)' : '' }}
-                                        </strong>
-                                    </div>
-
-                                    <div class="flex items-center justify-between text-xs">
-                                        <span class="text-slate-500 font-medium">Cash Collected:</span>
-                                        <strong class="font-bold text-slate-900 font-mono">
-                                            CAD ${{ number_format($collectedFare, 2) }} / ${{ number_format($expectedFare, 2) }}
-                                        </strong>
+                                    <!-- Occupancy and Cash Metrics Grid -->
+                                    <div class="pt-2.5 border-t border-slate-200/70 grid grid-cols-2 gap-2 text-xs">
+                                        <div>
+                                            <span class="text-slate-400 font-medium block text-[10px] uppercase tracking-wider">Occupancy</span>
+                                            <strong class="font-bold {{ $isFull ? 'text-amber-600' : 'text-slate-900' }}">
+                                                {{ $bookedSeatCount }} of 6 Seats {{ $isFull ? '(FULL)' : '' }}
+                                            </strong>
+                                        </div>
+                                        <div class="text-right">
+                                            <span class="text-slate-400 font-medium block text-[10px] uppercase tracking-wider">Cash Collected</span>
+                                            <strong class="font-bold text-slate-900 font-mono">
+                                                CAD ${{ number_format($collectedFare, 2) }} <span class="text-slate-400 font-normal text-[10px]">/ ${{ number_format($expectedFare, 2) }}</span>
+                                            </strong>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
 
                             <!-- Passenger Roster Action Button: Brand Green Theme (#22C55E) -->
-                            <div class="mt-5 pt-4 border-t border-slate-100">
+                            <div class="mt-4 pt-3.5 border-t border-slate-100">
                                 <a href="{{ route('rider.trips.manifest', $trip) }}" 
-                                   class="inline-flex w-full min-h-[50px] items-center justify-center gap-2 rounded-2xl bg-[#22C55E] hover:bg-[#16A34A] text-white px-5 py-3 text-sm font-bold shadow-md shadow-emerald-500/20 transition hover:scale-[1.01] focus:outline-hidden focus:ring-2 focus:ring-emerald-500 cursor-pointer">
-                                    <svg class="h-4 w-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                   class="inline-flex w-full min-h-[48px] items-center justify-center gap-2 rounded-2xl bg-[#22C55E] hover:bg-[#16A34A] active:bg-[#15803D] text-white px-5 py-3 text-sm font-bold shadow-md shadow-[#22C55E]/20 transition hover:scale-[1.01] active:scale-[0.99] focus:outline-hidden focus:ring-2 focus:ring-[#22C55E] cursor-pointer">
+                                    <svg class="h-4 w-4 text-white flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
                                     </svg>
                                     <span>Open Passenger Boarding Roster</span>
