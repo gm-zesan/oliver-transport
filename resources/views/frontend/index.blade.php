@@ -34,32 +34,32 @@
         </div>
 
         <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full z-10">
-            <div class="flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-16">
+            <div class="flex flex-col lg:flex-row items-center justify-between gap-10 lg:gap-16">
 
-                <!-- LEFT SIDE: Spacious, High-Impact Brand Messaging (approx 50%) -->
-                <div class="lg:w-[50%] w-full flex flex-col justify-center text-left">
+                <!-- BRAND MESSAGING: Order 2 on Mobile (<lg), Order 1 (Left Column) on Desktop (lg+) -->
+                <div class="lg:w-[50%] w-full flex flex-col justify-center text-left order-2 lg:order-1 pt-4 lg:pt-0">
 
-                    <!-- Eyebrow matching Reference Image 1: Green horizontal line + uppercase text -->
-                    <div class="mb-5 sm:mb-6">
+                    <!-- Eyebrow: Green horizontal line + uppercase text -->
+                    <div class="mb-4 sm:mb-6">
                         <span class="text-xs sm:text-sm font-extrabold uppercase tracking-[0.22em] text-[#22C55E]">PREMIUM
                             TRANSPORTATION SERVICE</span>
                     </div>
 
-                    <!-- Main Heading matching Reference Image 1 -->
-                    <h1
-                        class="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-black tracking-tight text-white leading-[1.04] font-heading drop-shadow-sm">
+                    <!-- Main Heading -->
+                    <h2
+                        class="text-4xl sm:text-5xl lg:text-7xl xl:text-8xl font-black tracking-tight text-white leading-[1.06] font-heading drop-shadow-sm">
                         Your Journey,<br />
                         <span class="text-[#22C55E]">Our Priority.</span>
-                    </h1>
+                    </h2>
 
-                    <!-- Subtitle matching Reference Image 1 -->
+                    <!-- Subtitle -->
                     <p
-                        class="mt-5 sm:mt-6 text-xl sm:text-2xl lg:text-3xl font-bold text-white tracking-tight leading-snug drop-shadow-sm">
+                        class="mt-4 sm:mt-6 text-lg sm:text-2xl lg:text-3xl font-bold text-white tracking-tight leading-snug drop-shadow-sm">
                         Travel in Comfort. Arrive in Style.
                     </p>
 
-                    <!-- Description with Green Vertical Line matching Reference Image 1 -->
-                    <div class="mt-6 sm:mt-7 flex items-stretch gap-3.5 sm:gap-4">
+                    <!-- Description with Green Vertical Line -->
+                    <div class="mt-5 sm:mt-7 flex items-stretch gap-3.5 sm:gap-4">
                         <span class="w-1 bg-[#22C55E] rounded-full flex-shrink-0"></span>
                         <p class="text-sm sm:text-base text-slate-200 leading-relaxed font-normal max-w-lg drop-shadow-sm">
                             Experience reliable, comfortable and<br class="hidden sm:inline" />
@@ -68,8 +68,19 @@
                     </div>
                 </div>
 
-                <!-- RIGHT SIDE: Translucent Glass Booking Form -->
-                <div class="lg:w-[46%] w-full flex justify-center lg:justify-end">
+                <!-- BOOKING FORM WRAPPER: Order 1 (Top) on Mobile (<lg), Order 2 (Right Column) on Desktop (lg+) -->
+                <div class="lg:w-[46%] w-full flex flex-col items-center lg:items-end justify-center order-1 lg:order-2">
+
+                    <!-- Mobile Compact Heading (Visible on Mobile/Tablet <lg only) -->
+                    <div class="w-full max-w-md mb-3 sm:mb-4 text-left lg:hidden">
+                        <h1 class="text-2xl sm:text-3xl font-black text-white tracking-tight leading-tight font-heading">
+                            Montreal <span class="text-[#22C55E]">⇄</span> Toronto
+                        </h1>
+                        <p class="text-xs sm:text-sm text-slate-300 mt-1">
+                            Fixed daily schedule • Reserved seating • Cash on boarding
+                        </p>
+                    </div>
+
                     <div id="booking-panel"
                         class="w-full max-w-md rounded-3xl p-6 sm:p-7 shadow-2xl shadow-black/50 border border-white/15 bg-[#111827]/50 backdrop-blur-2xl transition duration-200">
 
