@@ -1,27 +1,31 @@
 @props([
     'inverted' => false,
     'size' => 'md',
+    'showSubtitle' => true,
 ])
 
 @php
     $sizeConfig = match ($size) {
         'sm' => [
-            'icon' => 'h-10 w-auto',
-            'title' => 'text-lg sm:text-xl',
-            'badge' => 'text-[14px] tracking-[0.28em]',
-            'gap' => 'gap-2.5',
+            'icon' => 'h-9 md:h-11 w-auto',
+            'title' => 'text-[20px] md:text-[25px]',
+            'badge' => 'text-[10px] md:text-[12.5px]',
+            'gap' => 'gap-2.5 md:gap-3',
+            'offset' => 'mt-0.5 md:mt-1',
         ],
         'lg' => [
-            'icon' => 'h-12 w-auto',
+            'icon' => 'h-12 sm:h-14 w-auto',
             'title' => 'text-3xl sm:text-4xl',
-            'badge' => 'text-md tracking-[0.32em]',
-            'gap' => 'gap-3.5',
+            'badge' => 'text-[15px] sm:text-[18px]',
+            'gap' => 'gap-3.5 sm:gap-4',
+            'offset' => 'mt-1 sm:mt-1.5',
         ],
         default => [
-            'icon' => 'h-10 sm:h-9 w-auto',
-            'title' => 'text-2xl sm:text-[26px]',
-            'badge' => 'text-[16px] tracking-[0.30em]',
+            'icon' => 'h-10 md:h-11 w-auto',
+            'title' => 'text-2xl md:text-[26px]',
+            'badge' => 'text-[11.5px] md:text-[13px]',
             'gap' => 'gap-3',
+            'offset' => 'mt-0.5 md:mt-1',
         ],
     };
 
@@ -43,14 +47,19 @@
     </svg>
 
     <!-- Company Name & Subtext -->
-    <div class="flex flex-col items-start leading-none">
+    <div class="inline-flex flex-col items-stretch leading-none">
         <span
-            class="{{ $sizeConfig['title'] }} font-black tracking-tight uppercase font-heading {{ $nameColor }} leading-none">
-            Pick<span class="text-[#22C55E]">Me</span>
+            class="{{ $sizeConfig['title'] }} font-black tracking-[0.04em] uppercase font-heading {{ $nameColor }} leading-none whitespace-nowrap brand-name">
+            Pick<span class="brand-accent text-[#22C55E]">Me</span>
         </span>
-        <span
-            class="font-extrabold uppercase {{ $sizeConfig['badge'] }} text-[#22C55E] tracking-[0.32em] mt-1 leading-none">
-            Route
-        </span>
+        <div
+            class="{{ $sizeConfig['badge'] }} flex justify-between w-full font-heading font-extrabold uppercase text-[#22C55E] {{ $sizeConfig['offset'] }} leading-none brand-subtext"
+            aria-hidden="true">
+            <span>R</span>
+            <span>O</span>
+            <span>U</span>
+            <span>T</span>
+            <span>E</span>
+        </div>
     </div>
 </div>

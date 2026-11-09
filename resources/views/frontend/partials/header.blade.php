@@ -65,11 +65,22 @@
         color: #16A34A !important;
     }
 
-    #site-header.is-scrolled #header-brand-logo .font-heading,
-    #header-inner.header-scrolled #header-brand-logo .font-heading,
-    .is-scrolled #header-brand-logo .font-heading,
-    .header-scrolled #header-brand-logo .font-heading {
+    #site-header.is-scrolled #header-brand-logo .brand-name,
+    #header-inner.header-scrolled #header-brand-logo .brand-name,
+    .is-scrolled #header-brand-logo .brand-name,
+    .header-scrolled #header-brand-logo .brand-name {
         color: #111827 !important;
+    }
+
+    #site-header.is-scrolled #header-brand-logo .brand-name .brand-accent,
+    #header-inner.header-scrolled #header-brand-logo .brand-name .brand-accent,
+    .is-scrolled #header-brand-logo .brand-name .brand-accent,
+    .header-scrolled #header-brand-logo .brand-name .brand-accent,
+    #site-header.is-scrolled #header-brand-logo .brand-subtext,
+    #header-inner.header-scrolled #header-brand-logo .brand-subtext,
+    .is-scrolled #header-brand-logo .brand-subtext,
+    .header-scrolled #header-brand-logo .brand-subtext {
+        color: #22C55E !important;
     }
 </style>
 <header id="site-header"

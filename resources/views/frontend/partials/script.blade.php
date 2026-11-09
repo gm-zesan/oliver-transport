@@ -19,7 +19,7 @@
             const userProfileBtn = document.getElementById('user-profile-btn');
             const userProfileName = document.getElementById('user-profile-name');
             const userProfileChevron = document.getElementById('user-profile-chevron');
-            const brandTitle = document.querySelector('#header-brand-logo .font-heading') || document.querySelector('#header-inner .font-heading');
+            const brandTitle = document.querySelector('#header-brand-logo .brand-name') || document.querySelector('#header-brand-logo .font-heading') || document.querySelector('#header-inner .font-heading');
 
             if (scrolled || isMenuOpen) {
                 siteHeader.className = 'fixed top-0 left-0 right-0 z-50 px-4 sm:px-6 lg:px-8 pointer-events-none transition-all duration-300 ease-out pt-2.5 sm:pt-3.5 is-scrolled';
