@@ -1,5 +1,5 @@
 @props([
-    'title' => 'Sign In — Oliver Transport',
+    'title' => 'Sign In — PickMeRoute',
     'hideFloatingLogo' => false,
 ])
 <!DOCTYPE html>
@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ $title ?? 'Sign In — Oliver Transport' }}</title>
+    <title>{{ $title ?? 'Sign In — PickMeRoute' }}</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
@@ -58,7 +58,7 @@
 
     <!-- High-Quality Scenic Background (Generated Intercity Highway Corridor) -->
     <div class="fixed inset-0 z-0 select-none pointer-events-none overflow-hidden" aria-hidden="true">
-        <img src="{{ asset('images/login-corridor-bg.jpg') }}" alt="Oliver Transport Corridor"
+        <img src="{{ asset('images/login-corridor-bg.jpg') }}" alt="PickMeRoute Corridor"
             class="w-full h-full object-cover object-center filter brightness-[1.02] contrast-[1.02] scale-105" />
         <!-- Subtle Translucent Day Veil for Contrast -->
         <div class="absolute inset-0 bg-slate-900/15"></div>

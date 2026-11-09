@@ -1,7 +1,7 @@
 <header class="sticky top-0 z-50 border-b border-surface-border bg-white/95 backdrop-blur-md shadow-xs">
     <div class="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8 py-3">
         <!-- Brand Logo Area -->
-        <a href="{{ route('home') }}" class="group flex items-center min-h-[44px] min-w-[44px] py-1 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-green" aria-label="Oliver Transport Homepage">
+        <a href="{{ route('home') }}" class="group flex items-center min-h-[44px] min-w-[44px] py-1 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-green" aria-label="PickMeRoute Homepage">
             <x-brand-logo size="md" />
         </a>
 
@@ -17,7 +17,7 @@
                 How It Works
             </a>
             <a href="#why-us" class="hover:text-brand-green transition py-2 focus:outline-none focus:ring-2 focus:ring-brand-green rounded-md">
-                Why Oliver
+                Why PickMeRoute
             </a>
             <a href="#contact" class="hover:text-brand-green transition py-2 focus:outline-none focus:ring-2 focus:ring-brand-green rounded-md">
                 Contact
@@ -107,7 +107,7 @@
                 How It Works
             </a>
             <a href="#why-us" class="mobile-nav-link flex items-center min-h-[44px] px-3 rounded-lg hover:bg-surface-subtle hover:text-brand-green transition">
-                Why Oliver
+                Why PickMeRoute
             </a>
             <a href="#contact" class="mobile-nav-link flex items-center min-h-[44px] px-3 rounded-lg hover:bg-surface-subtle hover:text-brand-green transition">
                 Contact

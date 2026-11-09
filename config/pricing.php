@@ -7,7 +7,7 @@ return [
     |--------------------------------------------------------------------------
     | Currency Standard
     |--------------------------------------------------------------------------
-    | Oliver Transport operates strictly in Canadian Dollars (CAD).
+    | PickMeRoute operates strictly in Canadian Dollars (CAD).
     */
     'currency' => 'CAD',
 ];

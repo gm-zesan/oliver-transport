@@ -1,9 +1,9 @@
 <x-layouts.guest :hide-floating-logo="true">
-    <x-slot:title>Sign In — Oliver Transport</x-slot:title>
+    <x-slot:title>Sign In — PickMeRoute</x-slot:title>
 
     <!-- Brand Logo & Welcome Text inside Card -->
     <div class="mb-6 text-center">
-        <a href="{{ route('home') }}" class="inline-block transition hover:opacity-90 drop-shadow-sm focus:outline-none focus:ring-2 focus:ring-[#22C55E] rounded-xl" aria-label="Oliver Transport Home">
+        <a href="{{ route('home') }}" class="inline-block transition hover:opacity-90 drop-shadow-sm focus:outline-none focus:ring-2 focus:ring-[#22C55E] rounded-xl" aria-label="PickMeRoute Home">
             <x-brand-logo size="lg" :show-subtitle="true" />
         </a>
         <p class="mt-3 text-xs sm:text-sm text-slate-600 font-medium">
@@ -30,7 +30,7 @@
                    required 
                    value="{{ old('email') }}"
                    class="block w-full min-h-[48px] rounded-xl border border-white/80 bg-white/80 backdrop-blur-md px-3.5 py-2.5 text-base text-[16px] text-slate-900 placeholder-slate-400 shadow-xs focus:border-[#22C55E] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#22C55E] @error('email') border-red-500 focus:border-red-500 focus:ring-red-500 @enderror"
-                   placeholder="e.g. passenger@olivertransport.ca">
+                   placeholder="e.g. passenger@pickmeroute.com">
             @error('email')
                 <p class="mt-1.5 text-xs text-red-600 font-medium">{{ $message }}</p>
             @enderror

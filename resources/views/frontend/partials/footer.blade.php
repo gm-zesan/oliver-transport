@@ -18,10 +18,10 @@
                 <div class="pt-2 flex items-center gap-3">
                     <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" 
                        class="h-10 w-10 rounded-full bg-slate-800 hover:bg-[#22C55E] hover:text-white text-slate-300 flex items-center justify-center transition" 
-                       aria-label="Facebook: Oliver Transport">
+                       aria-label="Facebook: PickMeRoute">
                         <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
                     </a>
-                    <span class="text-xs sm:text-sm text-slate-400 font-medium">Facebook: <strong class="text-white">Oliver Transport</strong></span>
+                    <span class="text-xs sm:text-sm text-slate-400 font-medium">Facebook: <strong class="text-white">PickMeRoute</strong></span>
                 </div>
             </div>
 
@@ -56,7 +56,7 @@
                         </svg>
                         <div>
                             <span class="block text-slate-500 text-xs uppercase tracking-wider font-semibold">Email</span>
-                            <a href="mailto:info@olivertransport.ca" class="text-white hover:text-[#22C55E] transition">info@olivertransport.ca</a>
+                            <a href="mailto:info@pickmeroute.com" class="text-white hover:text-[#22C55E] transition">info@pickmeroute.com</a>
                         </div>
                     </li>
                     <li class="flex items-start gap-2.5">
@@ -78,7 +78,7 @@
                 <div class="rounded-2xl bg-gradient-to-br from-[#22C55E]/15 to-[#22C55E]/5 border border-[#22C55E]/30 p-6 sm:p-7 flex flex-col justify-between h-full shadow-lg">
                     <div>
                         <span class="inline-block text-[11px] font-black uppercase tracking-widest text-[#22C55E] mb-1">
-                            Oliver Transport
+                            PickMeRoute
                         </span>
                         <h4 class="text-lg sm:text-xl font-black text-white leading-snug font-heading">
                             Ready for Your Next Journey?
@@ -126,7 +126,7 @@
         <!-- Bottom Row: Copyright & Legal Links -->
         <div class="mt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
             <div>
-                © {{ date('Y') }} Oliver Transport. All rights reserved.
+                © {{ date('Y') }} PickMeRoute. All rights reserved.
             </div>
 
             <div class="flex items-center gap-6 text-slate-400">

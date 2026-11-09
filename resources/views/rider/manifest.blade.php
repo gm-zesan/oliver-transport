@@ -1,6 +1,6 @@
 @extends('frontend.layout.app')
 
-@section('title', 'Passenger Boarding Roster — Run #' . $trip->id . ' — Oliver Transport')
+@section('title', 'Passenger Boarding Roster — Run #' . $trip->id . ' — PickMeRoute')
 
 @section('content')
     @php
@@ -50,7 +50,7 @@
         <!-- Fleet Background Image with High Contrast Gradients -->
         <div class="absolute inset-0 select-none pointer-events-none overflow-hidden" aria-hidden="true">
             <img src="{{ asset('images/honda-odyssey-fleet-raw.jpg') }}" 
-                 alt="Oliver Transport Fleet" 
+                 alt="PickMeRoute Fleet" 
                  class="w-full h-full object-cover object-center scale-105 filter brightness-[0.70] contrast-[1.10] saturate-110" />
             <!-- Balanced Luminous Cinematic Gradients for Crisp Text Contrast -->
             <div class="absolute inset-0 bg-gradient-to-r from-slate-950/92 via-slate-950/70 to-slate-950/45"></div>

@@ -38,6 +38,6 @@ class RegisteredUserController extends Controller
         $request->session()->regenerate();
 
         return redirect()->route('passenger.bookings.index')
-            ->with('status', 'Welcome to Oliver Transport! Your passenger account has been created.');
+            ->with('status', 'Welcome to PickMeRoute! Your passenger account has been created.');
     }
 }

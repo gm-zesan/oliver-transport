@@ -1,5 +1,5 @@
 <x-layouts.guest>
-    <x-slot:title>Confirm Password — Oliver Transport</x-slot:title>
+    <x-slot:title>Confirm Password — PickMeRoute</x-slot:title>
 
     <div class="mb-6 text-center">
         <h2 class="text-xl font-bold tracking-tight text-slate-900 font-heading">

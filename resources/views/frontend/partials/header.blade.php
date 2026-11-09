@@ -81,7 +81,7 @@
         <!-- Brand Wordmark (Automotive Motion Logo) -->
         <a href="{{ route('home') }}"
             class="group flex items-center min-h-[44px] py-1 rounded-full focus:outline-none focus:ring-2 focus:ring-[#22C55E]"
-            aria-label="Oliver Transport Homepage">
+            aria-label="PickMeRoute Homepage">
             <x-brand-logo size="sm" :inverted="true" id="header-brand-logo" />
         </a>
 

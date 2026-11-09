@@ -1,11 +1,11 @@
 <x-layouts.guest :hide-floating-logo="true">
-    <x-slot:title>Register — Oliver Transport</x-slot:title>
+    <x-slot:title>Register — PickMeRoute</x-slot:title>
 
     <!-- Brand Logo & Welcome Text inside Card (Matching Login Page) -->
     <div class="mb-6 text-center">
         <a href="{{ route('home') }}"
             class="inline-block transition hover:opacity-90 drop-shadow-sm focus:outline-none focus:ring-2 focus:ring-[#22C55E] rounded-xl"
-            aria-label="Oliver Transport Home">
+            aria-label="PickMeRoute Home">
             <x-brand-logo size="lg" :show-subtitle="true" />
         </a>
         <p class="mt-3 text-xs sm:text-sm text-slate-600 font-medium">

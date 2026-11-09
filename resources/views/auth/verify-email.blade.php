@@ -1,12 +1,12 @@
 <x-layouts.guest>
-    <x-slot:title>Verify Email — Oliver Transport</x-slot:title>
+    <x-slot:title>Verify Email — PickMeRoute</x-slot:title>
 
     <div class="mb-6 text-center">
         <h2 class="text-xl font-bold tracking-tight text-slate-900 font-heading">
             Verify Email Address
         </h2>
         <p class="mt-2 text-xs text-slate-500">
-            Thanks for signing up with Oliver Transport! Please click the verification link we sent to your email to activate all passenger features.
+            Thanks for signing up with PickMeRoute! Please click the verification link we sent to your email to activate all passenger features.
         </p>
     </div>
 

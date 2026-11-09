@@ -21,9 +21,9 @@ class UserSeeder extends Seeder
 
             // 1. Operator Account (Administration, schedules, manifests, fleet)
             User::firstOrCreate(
-                ['email' => 'operator@olivertransport.ca'],
+                ['email' => 'operator@pickmeroute.com'],
                 [
-                    'name' => 'Oliver Dispatch Operator',
+                    'name' => 'PickMeRoute Dispatch Operator',
                     'phone' => '647-655-1884',
                     'password' => $defaultPassword,
                     'role' => 'operator',
@@ -33,7 +33,7 @@ class UserSeeder extends Seeder
 
             // 2. Rider / Driver Account (Trip manifest, passenger check-in, cash collection)
             User::firstOrCreate(
-                ['email' => 'rider@olivertransport.ca'],
+                ['email' => 'rider@pickmeroute.com'],
                 [
                     'name' => 'Jean-Luc Chauffeur',
                     'phone' => '514-555-0199',
@@ -47,7 +47,7 @@ class UserSeeder extends Seeder
             $passengers = [
                 [
                     'name' => 'Sarah Jenkins',
-                    'email' => 'passenger@olivertransport.ca',
+                    'email' => 'passenger@pickmeroute.com',
                     'phone' => '416-555-0144',
                 ],
                 [

@@ -1,6 +1,6 @@
 @extends('layouts.passenger')
 
-@section('title', 'Boarding Pass ' . $booking->booking_reference . ' — Oliver Transport')
+@section('title', 'Boarding Pass ' . $booking->booking_reference . ' — PickMeRoute')
 
 @push('styles')
 <style>
@@ -134,7 +134,7 @@
                         <div>
                             <div class="flex items-center gap-3">
                                 <span class="text-xs font-black uppercase tracking-widest text-[#22C55E]">
-                                    Oliver Transport Express
+                                    PickMeRoute Express
                                 </span>
                                 <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-black uppercase tracking-wider bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
                                     {{ ucfirst($booking->status) }}

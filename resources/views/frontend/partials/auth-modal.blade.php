@@ -44,7 +44,7 @@
                 <!-- 1-Click Fast Passenger Test Login (Dev / Fast Testing) -->
                 <form method="POST" action="{{ route('login.store') }}" class="w-full">
                     @csrf
-                    <input type="hidden" name="email" value="passenger@olivertransport.ca">
+                    <input type="hidden" name="email" value="passenger@pickmeroute.com">
                     <input type="hidden" name="password" value="password">
                     <button type="submit"
                         class="inline-flex min-h-[46px] w-full items-center justify-center gap-2 rounded-2xl bg-[#22C55E]/15 hover:bg-[#22C55E]/25 text-[#16A34A] border-2 border-[#22C55E]/40 px-4 py-2.5 text-xs sm:text-sm font-bold transition focus:outline-none focus:ring-2 focus:ring-[#22C55E] cursor-pointer">

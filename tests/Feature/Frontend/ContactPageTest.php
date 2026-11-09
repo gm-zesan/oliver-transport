@@ -6,9 +6,9 @@ test('contact page loads successfully with 200 OK', function () {
     $response = $this->get(route('contact'));
 
     $response->assertOk()
-        ->assertSee('Contact Oliver Transport')
+        ->assertSee('Contact PickMeRoute')
         ->assertSee('647-655-1884')
-        ->assertSee('info@olivertransport.ca')
+        ->assertSee('info@pickmeroute.com')
         ->assertSee('Station Métro Namur')
         ->assertSee('Yorkdale Mall')
         ->assertSee('Yonge Station')

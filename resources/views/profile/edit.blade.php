@@ -1,6 +1,6 @@
 @extends('layouts.passenger')
 
-@section('title', 'Profile Settings — Oliver Transport')
+@section('title', 'Profile Settings — PickMeRoute')
 
 @section('hero_title', 'Profile & Security Settings')
 

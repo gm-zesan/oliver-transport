@@ -135,7 +135,7 @@ class BookingSeeder extends Seeder
         }
 
         // Booking 6: Sarah Jenkins (Seat S3) -> Boarding at Yonge, Unchecked & Unpaid
-        $sarah = User::where('email', 'passenger@olivertransport.ca')->first();
+        $sarah = User::where('email', 'passenger@pickmeroute.com')->first();
         if ($sarah && $yongeStopB && $namurStopB) {
             $this->createReservation([
                 'user' => $sarah,

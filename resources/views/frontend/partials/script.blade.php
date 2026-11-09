@@ -168,7 +168,7 @@
         });
 
         // Restore pending booking state if user just logged in (Deferred Auth Flow)
-        const pendingRaw = sessionStorage.getItem('oliver_pending_booking');
+        const pendingRaw = sessionStorage.getItem('pickme_pending_booking') || sessionStorage.getItem('oliver_pending_booking');
         if (pendingRaw) {
             @auth
                 @if(auth()->user()->isPassenger())
@@ -311,7 +311,8 @@
             label: 'Yonge Station (Toronto)',
         }
     };
-    const CORRIDOR_STATIONS = (window.OLIVER_CONFIG && window.OLIVER_CONFIG.stations) ? window.OLIVER_CONFIG.stations : DEFAULT_CORRIDOR_STATIONS;
+    const appConfig = window.PICKME_CONFIG || window.OLIVER_CONFIG;
+    const CORRIDOR_STATIONS = (appConfig && appConfig.stations) ? appConfig.stations : DEFAULT_CORRIDOR_STATIONS;
 
     function getValidDropoffs(pickupCode) {
         if (pickupCode === 'namur') {
@@ -470,7 +471,7 @@
     ];
     let selectedSeatNumbers = [];
     let seatMapData = [...DEFAULT_HONDA_ODYSSEY_SEATS];
-    let baseUnitFare = (window.OLIVER_CONFIG && window.OLIVER_CONFIG.regularFare) ? parseFloat(window.OLIVER_CONFIG.regularFare) : 65.00;
+    let baseUnitFare = (appConfig && appConfig.regularFare) ? parseFloat(appConfig.regularFare) : 65.00;
     let appliedCoupon = null;
     let currentBoardingStopId = null;
     let currentDropoffStopId = null;
@@ -806,7 +807,7 @@
 
                 clearSeatPickerError();
                 currentTrip = data.trips[0];
-                baseUnitFare = parseFloat(currentTrip.unit_fare || (window.OLIVER_CONFIG ? window.OLIVER_CONFIG.regularFare : 65.00));
+                baseUnitFare = parseFloat(currentTrip.unit_fare || (appConfig ? appConfig.regularFare : 65.00));
 
                 const rateIndicator = document.getElementById('step1-rate-indicator') || document.getElementById('modal-current-rate-indicator');
                 if (rateIndicator) {
@@ -1177,6 +1178,7 @@
         };
 
         try {
+            sessionStorage.setItem('pickme_pending_booking', JSON.stringify(pending));
             sessionStorage.setItem('oliver_pending_booking', JSON.stringify(pending));
         } catch (e) {
             console.error('sessionStorage error', e);
@@ -1233,6 +1235,7 @@
             const data = await res.json();
             if (res.status === 201 && data.redirect_url) {
                 // Clear pending session storage on successful booking
+                sessionStorage.removeItem('pickme_pending_booking');
                 sessionStorage.removeItem('oliver_pending_booking');
                 stopSeatHoldTimer();
                 window.location.href = data.redirect_url;

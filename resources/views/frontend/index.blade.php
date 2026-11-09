@@ -1,10 +1,10 @@
 @extends('frontend.layout.app')
 
-@section('title', 'Oliver Transport — Daily Montreal ↔ Toronto Passenger Shuttle')
+@section('title', 'PickMeRoute — Daily Montreal ↔ Toronto Passenger Shuttle')
 
 @section('content')
     <script>
-        window.OLIVER_CONFIG = {
+        window.PICKME_CONFIG = window.OLIVER_CONFIG = {
             regularFare: {{ $regularFare }},
             promotionalFare: {{ $promotionalFare }},
             currency: 'CAD',
@@ -63,7 +63,7 @@
                         <span class="w-1 bg-[#22C55E] rounded-full flex-shrink-0"></span>
                         <p class="text-sm sm:text-base text-slate-200 leading-relaxed font-normal max-w-lg drop-shadow-sm">
                             Experience reliable, comfortable and<br class="hidden sm:inline" />
-                            professional transportation with Oliver Transport.
+                            professional transportation with PickMeRoute.
                         </p>
                     </div>
                 </div>
@@ -353,7 +353,7 @@
                         class="group relative rounded-3xl bg-white p-6 sm:p-7 flex flex-col sm:flex-row items-stretch gap-6 border border-slate-200/80 shadow-sm hover:shadow-2xl hover:shadow-[#22C55E]/10 hover:border-[#22C55E]/50 transition-all duration-300">
                         <div
                             class="w-full sm:w-[46%] h-56 sm:h-auto min-h-[220px] rounded-2xl overflow-hidden flex-shrink-0 bg-slate-900">
-                            <img src="{{ $routeItem['image_path'] }}" alt="Oliver Transport {{ $routeItem['name'] }} Shuttle"
+                            <img src="{{ $routeItem['image_path'] }}" alt="PickMeRoute {{ $routeItem['name'] }} Shuttle"
                                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out" />
                         </div>
                         <div class="w-full sm:w-[54%] flex flex-col justify-between py-1">
@@ -682,7 +682,7 @@
                     <!-- Image Frame -->
                     <div class="w-full h-64 sm:h-72 rounded-2xl overflow-hidden shadow-md bg-slate-900 relative">
                         <img src="{{ asset('images/service-intercity.jpg') }}"
-                            alt="Select route and date for Oliver Transport shuttle"
+                            alt="Select route and date for PickMeRoute shuttle"
                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out" />
                         <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent">
                         </div>

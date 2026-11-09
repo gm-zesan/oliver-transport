@@ -1,6 +1,6 @@
 @extends('frontend.layout.app')
 
-@section('title', 'Contact Us — Oliver Transport Montreal ↔ Toronto Passenger Shuttle')
+@section('title', 'Contact Us — PickMeRoute Montreal ↔ Toronto Passenger Shuttle')
 
 @section('content')
     <!-- Contact Page Header -->
@@ -10,7 +10,7 @@
                 GET IN TOUCH
             </span>
             <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight font-heading text-white">
-                Contact Oliver Transport
+                Contact PickMeRoute
             </h1>
             <p class="mt-4 text-base sm:text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed">
                 Have questions regarding our daily Montreal ↔ Toronto shuttle, booking assistance, or group charters? We are here to help.
@@ -54,8 +54,8 @@
                         </div>
                         <div>
                             <span class="text-xs font-bold uppercase tracking-wider text-[#64748B] block">Official Email</span>
-                            <a href="mailto:info@olivertransport.ca" class="text-base sm:text-lg font-bold text-[#111827] hover:text-[#22C55E] transition mt-0.5 block">
-                                info@olivertransport.ca
+                            <a href="mailto:info@pickmeroute.com" class="text-base sm:text-lg font-bold text-[#111827] hover:text-[#22C55E] transition mt-0.5 block">
+                                info@pickmeroute.com
                             </a>
                             <span class="text-xs text-slate-500 mt-1 block">Inquiries, charters, and booking support</span>
                         </div>
@@ -102,7 +102,7 @@
                             Fill out the form below and our dispatch coordinator will respond promptly.
                         </p>
 
-                        <form action="javascript:void(0);" onsubmit="alert('Thank you for contacting Oliver Transport! Our dispatch team will reach out to you shortly.')" class="space-y-5">
+                        <form action="javascript:void(0);" onsubmit="alert('Thank you for contacting PickMeRoute! Our dispatch team will reach out to you shortly.')" class="space-y-5">
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
                                 <div>
                                     <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-2">Your Name</label>

@@ -1,12 +1,12 @@
 <x-layouts.guest>
-    <x-slot:title>Reset Password — Oliver Transport</x-slot:title>
+    <x-slot:title>Reset Password — PickMeRoute</x-slot:title>
 
     <div class="mb-6 text-center">
         <h2 class="text-2xl font-black tracking-tight text-slate-900 font-heading">
             Set New Password
         </h2>
         <p class="mt-1 text-xs sm:text-sm text-slate-500">
-            Enter your new password to regain access to your Oliver Transport account.
+            Enter your new password to regain access to your PickMeRoute account.
         </p>
     </div>
 

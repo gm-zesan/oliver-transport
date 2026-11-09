@@ -1,6 +1,6 @@
 @extends('layouts.passenger')
 
-@section('title', 'My Reservations — Oliver Transport')
+@section('title', 'My Reservations — PickMeRoute')
 
 @section('hero_title', 'My Reservations')
 

@@ -1,5 +1,5 @@
 <x-layouts.app>
-    <x-slot:title>Operator Portal — Oliver Transport</x-slot:title>
+    <x-slot:title>Operator Portal — PickMeRoute</x-slot:title>
 
     <div class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
         <!-- Header Banner -->

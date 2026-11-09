@@ -8,19 +8,19 @@
         'sm' => [
             'icon' => 'h-10 w-auto',
             'title' => 'text-lg sm:text-xl',
-            'badge' => 'text-[8px] tracking-[0.28em]',
+            'badge' => 'text-[14px] tracking-[0.28em]',
             'gap' => 'gap-2.5',
         ],
         'lg' => [
             'icon' => 'h-12 w-auto',
             'title' => 'text-3xl sm:text-4xl',
-            'badge' => 'text-xs tracking-[0.32em]',
+            'badge' => 'text-md tracking-[0.32em]',
             'gap' => 'gap-3.5',
         ],
         default => [
             'icon' => 'h-10 sm:h-9 w-auto',
             'title' => 'text-2xl sm:text-[26px]',
-            'badge' => 'text-[9px] tracking-[0.30em]',
+            'badge' => 'text-[16px] tracking-[0.30em]',
             'gap' => 'gap-3',
         ],
     };
@@ -45,12 +45,12 @@
     <!-- Company Name & Subtext -->
     <div class="flex flex-col items-start leading-none">
         <span
-            class="{{ $sizeConfig['title'] }} font-black tracking-wider uppercase font-heading {{ $nameColor }} leading-none">
-            Ol<span class="text-[#22C55E]">iver</span>
+            class="{{ $sizeConfig['title'] }} font-black tracking-tight uppercase font-heading {{ $nameColor }} leading-none">
+            Pick<span class="text-[#22C55E]">Me</span>
         </span>
         <span
-            class="font-extrabold uppercase {{ $sizeConfig['badge'] }} text-[#22C55E] tracking-[0.30em] mt-1 leading-none">
-            Transport
+            class="font-extrabold uppercase {{ $sizeConfig['badge'] }} text-[#22C55E] tracking-[0.32em] mt-1 leading-none">
+            Route
         </span>
     </div>
 </div>

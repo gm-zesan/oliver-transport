@@ -14,13 +14,13 @@ test('homepage returns 200 OK and renders semantic layout', function () {
         ->assertSee('instrument-sans');
 });
 
-test('homepage features authentic oliver transport branding', function () {
+test('homepage features authentic pickmeroute branding', function () {
     $response = $this->get(route('home'));
 
     $response->assertOk()
-        ->assertSee('Ol')
-        ->assertSee('iver')
-        ->assertSee('Transport');
+        ->assertSee('Pick')
+        ->assertSee('Me')
+        ->assertSee('Route');
 });
 
 test('homepage accurately displays route a morning service details', function () {
@@ -72,7 +72,7 @@ test('homepage publishes confirmed public contact channels', function () {
 
     $response->assertOk()
         ->assertSee('647-655-1884')
-        ->assertSee('Oliver Transport');
+        ->assertSee('PickMeRoute');
 });
 
 test('homepage renders guest authentication call to actions for guests', function () {

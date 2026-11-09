@@ -1,8 +1,8 @@
-# Oliver Transport — Antigravity Permanent Operating Manual
+# PickMeRoute (pickmeroute.com) — Antigravity Permanent Operating Manual
 
 ## 1. Project Identity & Operational Baseline
 
-Oliver Transport is a scheduled intercity passenger shuttle service operating between **Montreal and Toronto, Canada**. The business provides daily, fixed-schedule, reserved-seat transportation connecting predefined stations in Montreal and Toronto with cash settlement upon boarding.
+PickMeRoute (domain: `pickmeroute.com`, formerly referenced during planning as Oliver Transport) is a scheduled intercity passenger shuttle service operating between **Montreal and Toronto, Canada**. The business provides daily, fixed-schedule, reserved-seat transportation connecting predefined stations in Montreal and Toronto with cash settlement upon boarding.
 
 - **Primary Corridor**: Montreal (Station Métro Namur) ↔ Toronto (Yorkdale Mall & Yonge Station).
 - **Exact 3 Stations**:
@@ -19,9 +19,11 @@ Oliver Transport is a scheduled intercity passenger shuttle service operating be
 - **In-App Cancellation & Booking Cutoff**: Strictly **excluded from MVP**. No in-app cancellation routes or cutoff deadlines exist for passengers.
 - **Language**: English first for MVP launch. French localization deferred to Phase 2. Clean translation structure in `lang/en/`.
 - **Confirmed Brand Assets**:
-  - Logo: "Oliver" with dark charcoal "Ol" and vivid grass green "iver", uppercase "TRANSPORT", and subtitle "MONTREAL • TORONTO • MONTREAL".
-  - Palette: Deep Obsidian (`#0B0F17`), Dark Slate (`#111827`), Oliver Green (`#22C55E`), Crisp White (`#FFFFFF`), Accent Red (`#EF4444`), Warning Gold (`#FBBF24`).
-  - Contact: Phone/SMS/WhatsApp `647-655-1884` | Facebook: `Oliver Transport` (Verified).
+  - Domain: `pickmeroute.com`
+  - Name: **PickMeRoute**
+  - Logo: "PickMe" with dark charcoal "Pick" and vivid grass green "Me", with uppercase "ROUTE" (`#22C55E`) below.
+  - Palette: Deep Obsidian (`#0B0F17`), Dark Slate (`#111827`), Brand Green (`#22C55E`), Crisp White (`#FFFFFF`), Accent Red (`#EF4444`), Warning Gold (`#FBBF24`).
+  - Contact: Phone/SMS/WhatsApp `647-655-1884` | Email: `info@pickmeroute.com` | Facebook: `PickMeRoute`.
 
 ---
 

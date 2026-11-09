@@ -25,7 +25,7 @@ test('unassigned rider receives 403 forbidden when accessing another drivers tri
     $otherRider = User::factory()->create([
         'role' => 'rider',
         'name' => 'Marc Chauffeur',
-        'email' => 'marc.driver@olivertransport.ca',
+        'email' => 'marc.driver@pickmeroute.com',
     ]);
 
     $this->actingAs($otherRider)
@@ -225,7 +225,7 @@ test('unassigned rider cannot collect payment or check in booking on another dri
     $otherRider = User::factory()->create([
         'role' => 'rider',
         'name' => 'Foreign Driver',
-        'email' => 'foreign.driver@olivertransport.ca',
+        'email' => 'foreign.driver@pickmeroute.com',
     ]);
 
     // Check-in rejected
