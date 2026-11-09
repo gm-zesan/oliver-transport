@@ -34,6 +34,7 @@
                         <li><a href="{{ route('home') }}" class="hover:text-[#22C55E] transition">Home</a></li>
                         <li><a href="{{ route('home') }}#services" class="hover:text-[#22C55E] transition">Services</a></li>
                         <li><a href="{{ route('home') }}#promotions" class="hover:text-[#22C55E] transition">Promotions</a></li>
+                        <li><a href="{{ route('faq') }}" class="hover:text-[#22C55E] transition">FAQ</a></li>
                         <li><a href="{{ route('contact') }}" class="hover:text-[#22C55E] transition">Contact</a></li>
                         <li><a href="{{ route('login') }}" class="hover:text-[#22C55E] transition">Sign In</a></li>
                     </ul>

@@ -1298,155 +1298,58 @@
 
 
 
-    <section id="faq" class="relative py-24 lg:py-32 bg-[#F8FAFC] border-b border-slate-200/70 overflow-hidden">
-        <!-- Ambient FAQ Atmosphere -->
-        <div class="absolute top-0 left-1/3 w-96 h-96 bg-[#22C55E]/[0.03] rounded-full blur-3xl pointer-events-none"
+    <!-- Pre-Footer Action Banner (Light Section maintaining Dark-Light-Dark rhythm) -->
+    <section id="help-and-booking" class="relative py-14 sm:py-20 lg:py-24 bg-[#F8FAFC] border-b border-slate-200/70 overflow-hidden">
+        <!-- Ambient Atmosphere -->
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-[#22C55E]/[0.04] rounded-full blur-3xl pointer-events-none"
             aria-hidden="true"></div>
-        <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
 
-            <!-- Section Header: Standardized Centered with Eyebrow, Title & Subtitle -->
-            <div class="text-center max-w-3xl mx-auto mb-16 sm:mb-20 space-y-3">
-                <div>
-                    <span class="text-xs font-black tracking-widest text-[#16A34A] uppercase">
-                        HELP &amp; CORRIDOR GUIDE
-                    </span>
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
+            <!-- Pre-Footer Action Banner with FAQ Link & Fast Reservation Button -->
+            <div class="rounded-3xl bg-gradient-to-br from-[#111827] to-[#0B0F17] text-white p-7 sm:p-10 lg:p-12 border border-slate-800 shadow-2xl relative overflow-hidden">
+                <div class="absolute -right-20 -bottom-20 w-72 h-72 bg-[#22C55E]/15 rounded-full blur-3xl pointer-events-none"></div>
+
+                <div class="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-8">
+                    <div class="text-center lg:text-left space-y-2.5 max-w-xl">
+                        <span class="text-xs font-black tracking-widest text-[#22C55E] uppercase block">
+                            HELP CENTER &amp; RESERVATION
+                        </span>
+                        <h3 class="text-2xl sm:text-3xl lg:text-4xl font-black font-heading tracking-tight leading-tight">
+                            Have Questions Before Traveling?
+                        </h3>
+                        <p class="text-sm sm:text-base text-slate-300 leading-relaxed">
+                            Read our complete FAQ guide covering cash payment upon boarding, luggage rules, and vehicle amenities, or reserve your seat instantly.
+                        </p>
+                        <div class="pt-2">
+                            <a href="{{ route('faq') }}"
+                                class="inline-flex items-center gap-2 text-sm font-bold text-[#22C55E] hover:text-[#16A34A] transition group">
+                                <span>Read Full FAQ &amp; Policy Guide</span>
+                                <svg class="h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col sm:flex-row items-center gap-3.5 w-full lg:w-auto">
+                        <a href="{{ route('faq') }}"
+                            class="w-full sm:w-auto inline-flex min-h-[48px] items-center justify-center gap-2 rounded-2xl bg-white/10 hover:bg-white/20 text-white px-6 py-3 text-sm font-bold border border-white/20 transition cursor-pointer">
+                            <span>Browse All FAQs</span>
+                        </a>
+                        <button type="button" onclick="handleGlobalBookNow()"
+                            class="w-full sm:w-auto inline-flex min-h-[48px] items-center justify-center gap-2 rounded-2xl bg-[#22C55E] hover:bg-[#16A34A] text-white px-7 py-3 text-sm font-bold shadow-lg shadow-[#22C55E]/30 transition cursor-pointer">
+                            <span>Reserve Your Seat</span>
+                            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                            </svg>
+                        </button>
+                    </div>
                 </div>
-                <h2
-                    class="text-3xl sm:text-4xl lg:text-5xl font-black text-[#111827] tracking-tight font-heading leading-tight">
-                    Frequently Asked Questions
-                </h2>
-                <p class="text-base sm:text-lg text-[#64748B] leading-relaxed max-w-2xl mx-auto">
-                    Everything you need to know about our daily Montreal ↔ Toronto
-                    passenger
-                    shuttle, stations, and cash settlement.
-                </p>
             </div>
 
-            <!-- FAQ Accordion List -->
-            <div class="space-y-4">
-                <!-- FAQ 1 -->
-                <details
-                    class="group rounded-2xl border border-slate-200/80 bg-white p-6 open:border-[#22C55E]/50 open:shadow-lg open:shadow-[#22C55E]/5 hover:border-[#22C55E]/40 hover:shadow-sm transition-all duration-200">
-                    <summary
-                        class="flex cursor-pointer items-center justify-between text-base sm:text-lg font-bold text-[#111827] select-none">
-                        <span>How do I pay for my trip?</span>
-                        <span
-                            class="ml-4 flex h-7 w-7 items-center justify-center rounded-full bg-slate-200/70 text-slate-700 group-open:bg-[#22C55E] group-open:text-white transition">
-                            <svg class="h-4 w-4 transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24"
-                                stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
-                                    d="M19 9l-7 7-7-7" />
-                            </svg>
-                        </span>
-                    </summary>
-                    <p class="mt-4 text-sm sm:text-base text-[#64748B] leading-relaxed">
-                        Payment is simple and cash-only (${{ number_format($regularFare, 0) }} CAD flat fare). You pay
-                        the driver directly upon boarding the vehicle. No online payment or upfront credit card deposit is
-                        needed.
-                    </p>
-                </details>
+        </div>
+    </section>
 
-                <!-- FAQ 2 -->
-                <details
-                    class="group rounded-2xl border border-slate-200/80 bg-white p-6 open:border-[#22C55E]/50 open:shadow-lg open:shadow-[#22C55E]/5 hover:border-[#22C55E]/40 hover:shadow-sm transition-all duration-200">
-                    <summary
-                        class="flex cursor-pointer items-center justify-between text-base sm:text-lg font-bold text-[#111827] select-none">
-                        <span>Where are the exact pickup and drop-off stations?</span>
-                        <span
-                            class="ml-4 flex h-7 w-7 items-center justify-center rounded-full bg-slate-200/70 text-slate-700 group-open:bg-[#22C55E] group-open:text-white transition">
-                            <svg class="h-4 w-4 transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24"
-                                stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
-                                    d="M19 9l-7 7-7-7" />
-                            </svg>
-                        </span>
-                    </summary>
-                    <p class="mt-4 text-sm sm:text-base text-[#64748B] leading-relaxed">
-                        We operate strictly between {{ $locations->count() }} predefined transit hubs:
-                        <strong
-                            class="text-slate-900 font-semibold">{{ $namurLoc?->name ?? 'Station Métro Namur' }}</strong> in
-                        Montreal, and <strong
-                            class="text-slate-900 font-semibold">{{ $yorkdaleLoc?->name ?? 'Yorkdale Mall' }}</strong> and
-                        <strong class="text-slate-900 font-semibold">{{ $yongeLoc?->name ?? 'Yonge Station' }}</strong> in
-                        Toronto. All locations
-                        provide seamless connections to subway lines and major highways.
-                    </p>
-                </details>
-
-                <!-- FAQ 3 -->
-                <details
-                    class="group rounded-2xl border border-slate-200/80 bg-white p-6 open:border-[#22C55E]/50 open:shadow-lg open:shadow-[#22C55E]/5 hover:border-[#22C55E]/40 hover:shadow-sm transition-all duration-200">
-                    <summary
-                        class="flex cursor-pointer items-center justify-between text-base sm:text-lg font-bold text-[#111827] select-none">
-                        <span>What are the daily departure times?</span>
-                        <span
-                            class="ml-4 flex h-7 w-7 items-center justify-center rounded-full bg-slate-200/70 text-slate-700 group-open:bg-[#22C55E] group-open:text-white transition">
-                            <svg class="h-4 w-4 transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24"
-                                stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
-                                    d="M19 9l-7 7-7-7" />
-                            </svg>
-                        </span>
-                    </summary>
-                    <p class="mt-4 text-sm sm:text-base text-[#64748B] leading-relaxed">
-                        <strong class="text-slate-900 font-semibold">Route A
-                            ({{ $routeA?->name ?? 'Montreal → Toronto' }}):</strong> Departs
-                        {{ $namurLoc?->name ?? 'Station Métro Namur' }} at {{ $routeATime }} EST daily.<br />
-                        <strong class="text-slate-900 font-semibold">Route B
-                            ({{ $routeB?->name ?? 'Toronto → Montreal' }}):</strong> Pickups at
-                        {{ $yorkdaleLoc?->name ?? 'Yorkdale Mall' }} at {{ $yorkdalePickupTime }} EST and
-                        {{ $yongeLoc?->name ?? 'Yonge Station' }} at {{ $yongePickupTime }} EST, arriving in Montreal around
-                        {{ $namurArrivalTime }}
-                        EST.
-                    </p>
-                </details>
-
-                <!-- FAQ 4 -->
-                <details
-                    class="group rounded-2xl border border-slate-200/80 bg-white p-6 open:border-[#22C55E]/50 open:shadow-lg open:shadow-[#22C55E]/5 hover:border-[#22C55E]/40 hover:shadow-sm transition-all duration-200">
-                    <summary
-                        class="flex cursor-pointer items-center justify-between text-base sm:text-lg font-bold text-[#111827] select-none">
-                        <span>Can I book multiple seats or choose my seat?</span>
-                        <span
-                            class="ml-4 flex h-7 w-7 items-center justify-center rounded-full bg-slate-200/70 text-slate-700 group-open:bg-[#22C55E] group-open:text-white transition">
-                            <svg class="h-4 w-4 transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24"
-                                stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
-                                    d="M19 9l-7 7-7-7" />
-                            </svg>
-                        </span>
-                    </summary>
-                    <p class="mt-4 text-sm sm:text-base text-[#64748B] leading-relaxed">
-                        Yes! You can reserve from 1 to {{ $passengerSeatsCount }} seats in our {{ $vehicleModel }}. Our
-                        system provides visual seat
-                        selection so you and your companions sit together.
-                    </p>
-                </details>
-
-                <!-- FAQ 5 -->
-                <details
-                    class="group rounded-2xl border border-slate-200/80 bg-white p-6 open:border-[#22C55E]/50 open:shadow-lg open:shadow-[#22C55E]/5 hover:border-[#22C55E]/40 hover:shadow-sm transition-all duration-200">
-                    <summary
-                        class="flex cursor-pointer items-center justify-between text-base sm:text-lg font-bold text-[#111827] select-none">
-                        <span>How can I reach customer support?</span>
-                        <span
-                            class="ml-4 flex h-7 w-7 items-center justify-center rounded-full bg-slate-200/70 text-slate-700 group-open:bg-[#22C55E] group-open:text-white transition">
-                            <svg class="h-4 w-4 transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24"
-                                stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
-                                    d="M19 9l-7 7-7-7" />
-                            </svg>
-                        </span>
-                    </summary>
-                    <p class="mt-4 text-sm sm:text-base text-[#64748B] leading-relaxed">
-                        You can reach us directly via telephone, SMS, or WhatsApp at
-                        <strong class="font-mono text-slate-900 font-bold">647-655-1884</strong> or visit our dedicated <a
-                            href="{{ route('contact') }}"
-                            class="text-[#16A34A] underline font-bold hover:text-[#15803D]">Contact Page</a>.
-                    </p>
-                </details>
-
-            </div>
         </div>
     </section>
 @endsection

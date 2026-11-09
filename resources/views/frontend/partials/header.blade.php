@@ -98,6 +98,10 @@
                 class="header-nav-link text-white/90 hover:text-[#22C55E] transition py-1 focus:outline-none focus:ring-2 focus:ring-[#22C55E] rounded-md">
                 Promotions
             </a>
+            <a href="{{ route('faq') }}"
+                class="header-nav-link text-white/90 hover:text-[#22C55E] transition py-1 focus:outline-none focus:ring-2 focus:ring-[#22C55E] rounded-md">
+                FAQ
+            </a>
             <a href="{{ route('contact') }}"
                 class="header-nav-link text-white/90 hover:text-[#22C55E] transition py-1 focus:outline-none focus:ring-2 focus:ring-[#22C55E] rounded-md">
                 Contact
@@ -248,6 +252,10 @@
             <a href="{{ route('home') }}#promotions"
                 class="mobile-nav-link flex items-center min-h-[44px] px-3 rounded-xl hover:bg-white/10 hover:text-[#22C55E] transition">
                 Promotions
+            </a>
+            <a href="{{ route('faq') }}"
+                class="mobile-nav-link flex items-center min-h-[44px] px-3 rounded-xl hover:bg-white/10 hover:text-[#22C55E] transition">
+                FAQ
             </a>
             <a href="{{ route('contact') }}"
                 class="mobile-nav-link flex items-center min-h-[44px] px-3 rounded-xl hover:bg-white/10 hover:text-[#22C55E] transition">
