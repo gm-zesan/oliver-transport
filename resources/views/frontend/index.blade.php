@@ -12,7 +12,7 @@
                 model: @json($vehicleModel),
                 plate: @json($vehiclePlate),
                 capacity: {{ $passengerSeatsCount }}
-                },
+                    },
             stations: @json($clientStations),
             routes: @json($clientRoutes)
         };
@@ -34,31 +34,41 @@
         </div>
 
         <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full z-10">
-            <div class="flex flex-col lg:flex-row items-center justify-between gap-10 lg:gap-16">
+            <div class="flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-16">
 
-                <!-- BRAND MESSAGING: Order 2 on Mobile (<lg), Order 1 (Left Column) on Desktop (lg+) -->
-                <div class="lg:w-[50%] w-full flex flex-col justify-center text-left order-2 lg:order-1 pt-4 lg:pt-0">
+                <!-- LEFT SIDE: Spacious, High-Impact Brand Messaging (approx 50%) -->
+                <div class="lg:w-[50%] w-full flex flex-col justify-center text-left">
 
-                    <!-- Eyebrow: Green horizontal line + uppercase text -->
+                    <!-- Mobile Corridor Highlight (Visible on Mobile/Tablet <lg only) -->
+                    <div class="mb-4 lg:hidden">
+                        <h2 class="text-2xl sm:text-3xl font-black text-white tracking-tight leading-tight font-heading">
+                            Montreal <span class="text-[#22C55E]">⇄</span> Toronto
+                        </h2>
+                        <p class="text-xs sm:text-sm text-slate-300 mt-1">
+                            Fixed daily schedule • Reserved seating • Cash on boarding
+                        </p>
+                    </div>
+
+                    <!-- Eyebrow matching Reference Image 1: Green horizontal line + uppercase text -->
                     <div class="mb-4 sm:mb-6">
                         <span class="text-xs sm:text-sm font-extrabold uppercase tracking-[0.22em] text-[#22C55E]">PREMIUM
                             TRANSPORTATION SERVICE</span>
                     </div>
 
-                    <!-- Main Heading -->
-                    <h2
-                        class="text-4xl sm:text-5xl lg:text-7xl xl:text-8xl font-black tracking-tight text-white leading-[1.06] font-heading drop-shadow-sm">
+                    <!-- Main Heading matching Reference Image 1 -->
+                    <h1
+                        class="text-4xl sm:text-6xl lg:text-7xl xl:text-8xl font-black tracking-tight text-white leading-[1.04] font-heading drop-shadow-sm">
                         Your Journey,<br />
                         <span class="text-[#22C55E]">Our Priority.</span>
-                    </h2>
+                    </h1>
 
-                    <!-- Subtitle -->
+                    <!-- Subtitle matching Reference Image 1 -->
                     <p
-                        class="mt-4 sm:mt-6 text-lg sm:text-2xl lg:text-3xl font-bold text-white tracking-tight leading-snug drop-shadow-sm">
+                        class="mt-4 sm:mt-6 text-xl sm:text-2xl lg:text-3xl font-bold text-white tracking-tight leading-snug drop-shadow-sm">
                         Travel in Comfort. Arrive in Style.
                     </p>
 
-                    <!-- Description with Green Vertical Line -->
+                    <!-- Description with Green Vertical Line matching Reference Image 1 -->
                     <div class="mt-5 sm:mt-7 flex items-stretch gap-3.5 sm:gap-4">
                         <span class="w-1 bg-[#22C55E] rounded-full flex-shrink-0"></span>
                         <p class="text-sm sm:text-base text-slate-200 leading-relaxed font-normal max-w-lg drop-shadow-sm">
@@ -66,23 +76,25 @@
                             professional transportation with PickMeRoute.
                         </p>
                     </div>
+
+                    <!-- Mobile Quick Jump Button (Visible only on mobile/tablet <lg) -->
+                    <div class="mt-6 flex items-center gap-3 lg:hidden">
+                        <a href="#booking-panel" id="mobile-quick-jump-btn"
+                            class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#22C55E] hover:bg-[#16A34A] text-slate-950 font-bold text-xs sm:text-sm tracking-wide shadow-lg shadow-[#22C55E]/20 transition-all active:scale-95">
+                            <span>Book Seats Now</span>
+                            <svg class="h-4 w-4 animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                                    d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                            </svg>
+                        </a>
+                        <span class="text-xs text-slate-400">or scroll down</span>
+                    </div>
                 </div>
 
-                <!-- BOOKING FORM WRAPPER: Order 1 (Top) on Mobile (<lg), Order 2 (Right Column) on Desktop (lg+) -->
-                <div class="lg:w-[46%] w-full flex flex-col items-center lg:items-end justify-center order-1 lg:order-2">
-
-                    <!-- Mobile Compact Heading (Visible on Mobile/Tablet <lg only) -->
-                    <div class="w-full max-w-md mb-3 sm:mb-4 text-left lg:hidden">
-                        <h1 class="text-2xl sm:text-3xl font-black text-white tracking-tight leading-tight font-heading">
-                            Montreal <span class="text-[#22C55E]">⇄</span> Toronto
-                        </h1>
-                        <p class="text-xs sm:text-sm text-slate-300 mt-1">
-                            Fixed daily schedule • Reserved seating • Cash on boarding
-                        </p>
-                    </div>
-
+                <!-- RIGHT SIDE: Translucent Glass Booking Form -->
+                <div class="lg:w-[46%] w-full flex justify-center lg:justify-end">
                     <div id="booking-panel"
-                        class="w-full max-w-md rounded-3xl p-6 sm:p-7 shadow-2xl shadow-black/50 border border-white/15 bg-[#111827]/50 backdrop-blur-2xl transition duration-200">
+                        class="w-full max-w-md rounded-3xl p-6 sm:p-7 shadow-2xl shadow-black/50 border border-white/15 bg-[#111827]/50 backdrop-blur-2xl transition duration-200 scroll-mt-20 sm:scroll-mt-24">
 
                         <!-- Top Auto-Detected Route & Scheduled Time Header -->
                         <div class="flex items-center justify-between pb-3.5 border-b border-white/10">
@@ -508,7 +520,9 @@
                                     </svg>
                                 </summary>
                                 <div class="pl-7 pr-2 pt-1 pb-2.5 text-sm text-slate-300 leading-relaxed">
-                                    Guaranteed flat fare of ${{ number_format($regularFare, 0) }} CAD per passenger per trip with zero hidden fees. Cash Payment Upon Boarding: Pay the driver directly in cash when boarding.
+                                    Guaranteed flat fare of ${{ number_format($regularFare, 0) }} CAD per passenger per trip
+                                    with zero hidden fees. Cash Payment Upon Boarding: Pay the driver directly in cash when
+                                    boarding.
                                 </div>
                             </details>
 
@@ -799,234 +813,234 @@
     <!-- ========================================== -->
 
     @if(!empty($promotionalCoupons))
-    <section id="promotions"
-        class="relative py-20 lg:py-28 bg-[#0B0F17] text-white overflow-hidden border-b border-slate-800 bg-cover bg-center"
-        style="background-image: linear-gradient(180deg, rgba(11, 15, 23, 0.94) 0%, rgba(11, 15, 23, 0.86) 50%, rgba(11, 15, 23, 0.96) 100%), url('{{ asset('images/honda-odyssey-fleet-raw.jpg') }}');">
+        <section id="promotions"
+            class="relative py-20 lg:py-28 bg-[#0B0F17] text-white overflow-hidden border-b border-slate-800 bg-cover bg-center"
+            style="background-image: linear-gradient(180deg, rgba(11, 15, 23, 0.94) 0%, rgba(11, 15, 23, 0.86) 50%, rgba(11, 15, 23, 0.96) 100%), url('{{ asset('images/honda-odyssey-fleet-raw.jpg') }}');">
 
-        <!-- Ambient Atmospheric Glows for Luminous Glass Effect -->
-        <div class="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-[#22C55E]/12 rounded-full blur-[140px] pointer-events-none"
-            aria-hidden="true"></div>
-        <div class="absolute bottom-1/4 right-1/4 w-[450px] h-[450px] bg-emerald-600/10 rounded-full blur-[120px] pointer-events-none"
-            aria-hidden="true"></div>
+            <!-- Ambient Atmospheric Glows for Luminous Glass Effect -->
+            <div class="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-[#22C55E]/12 rounded-full blur-[140px] pointer-events-none"
+                aria-hidden="true"></div>
+            <div class="absolute bottom-1/4 right-1/4 w-[450px] h-[450px] bg-emerald-600/10 rounded-full blur-[120px] pointer-events-none"
+                aria-hidden="true"></div>
 
-        <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 z-10">
-            <!-- Section Header -->
-            <div class="text-center max-w-3xl mx-auto mb-10 space-y-3">
-                <span class="text-xs font-black tracking-widest text-[#22C55E] uppercase">
-                    PROMOTIONS &amp; DISCOUNT CODES
-                </span>
-                <h2
-                    class="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight font-heading leading-tight drop-shadow-sm">
-                    Exclusive Travel Deals &amp; Discounts
-                </h2>
-                <p class="text-sm sm:text-base text-slate-300 leading-relaxed max-w-2xl mx-auto">
-                    Our standard regular flat rate is ${{ number_format($regularFare, 2) }} CAD. Apply active promotional
-                    coupon codes during booking to enjoy our introductory launch rate of only
-                    ${{ number_format($promotionalFare, 2) }} CAD!
-                </p>
-            </div>
-
-            <!-- Multi-Coupon Interactive Switcher Tabs (Displays 1 coupon at a time) -->
-            @if(count($promotionalCoupons) > 1)
-                <div class="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-8 max-w-xl mx-auto">
-                    @foreach($promotionalCoupons as $idx => $coupon)
-                        <button type="button" onclick="switchCoupon({{ $idx }})" id="coupon-tab-btn-{{ $idx }}"
-                            class="coupon-tab-btn inline-flex min-h-[44px] items-center gap-2 px-4 sm:px-5 py-2.5 rounded-2xl text-xs sm:text-sm font-bold transition-all duration-200 border cursor-pointer {{ $idx === 0 ? 'bg-[#22C55E]/20 text-[#22C55E] border-[#22C55E]/50 shadow-lg shadow-[#22C55E]/10' : 'bg-white/[0.06] text-slate-300 border-white/15 hover:bg-white/[0.12] hover:text-white' }}">
-                            <span>{{ $coupon['tab_label'] }}</span>
-                            <span
-                                class="coupon-active-dot flex h-2 w-2 rounded-full bg-[#22C55E] {{ $idx === 0 ? '' : 'hidden' }}"></span>
-                        </button>
-                    @endforeach
+            <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 z-10">
+                <!-- Section Header -->
+                <div class="text-center max-w-3xl mx-auto mb-10 space-y-3">
+                    <span class="text-xs font-black tracking-widest text-[#22C55E] uppercase">
+                        PROMOTIONS &amp; DISCOUNT CODES
+                    </span>
+                    <h2
+                        class="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight font-heading leading-tight drop-shadow-sm">
+                        Exclusive Travel Deals &amp; Discounts
+                    </h2>
+                    <p class="text-sm sm:text-base text-slate-300 leading-relaxed max-w-2xl mx-auto">
+                        Our standard regular flat rate is ${{ number_format($regularFare, 2) }} CAD. Apply active promotional
+                        coupon codes during booking to enjoy our introductory launch rate of only
+                        ${{ number_format($promotionalFare, 2) }} CAD!
+                    </p>
                 </div>
-            @endif
 
-            <!-- Voucher Cards Container (Strictly 1 Active Card Rendered at a time) -->
-            <div class="max-w-4xl mx-auto">
-                @foreach($promotionalCoupons as $idx => $coupon)
-                    <div id="coupon-card-{{ $idx }}"
-                        class="coupon-deal-card {{ $idx === 0 ? 'block' : 'hidden' }} transition-opacity duration-300">
-                        <div
-                            class="relative rounded-3xl sm:rounded-[36px] border border-white/20 bg-white/[0.08] backdrop-blur-2xl shadow-2xl shadow-black/70 ring-1 ring-white/10 overflow-hidden flex flex-col lg:flex-row">
-                            <!-- Top Specular Highlight Edge -->
+                <!-- Multi-Coupon Interactive Switcher Tabs (Displays 1 coupon at a time) -->
+                @if(count($promotionalCoupons) > 1)
+                    <div class="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-8 max-w-xl mx-auto">
+                        @foreach($promotionalCoupons as $idx => $coupon)
+                            <button type="button" onclick="switchCoupon({{ $idx }})" id="coupon-tab-btn-{{ $idx }}"
+                                class="coupon-tab-btn inline-flex min-h-[44px] items-center gap-2 px-4 sm:px-5 py-2.5 rounded-2xl text-xs sm:text-sm font-bold transition-all duration-200 border cursor-pointer {{ $idx === 0 ? 'bg-[#22C55E]/20 text-[#22C55E] border-[#22C55E]/50 shadow-lg shadow-[#22C55E]/10' : 'bg-white/[0.06] text-slate-300 border-white/15 hover:bg-white/[0.12] hover:text-white' }}">
+                                <span>{{ $coupon['tab_label'] }}</span>
+                                <span
+                                    class="coupon-active-dot flex h-2 w-2 rounded-full bg-[#22C55E] {{ $idx === 0 ? '' : 'hidden' }}"></span>
+                            </button>
+                        @endforeach
+                    </div>
+                @endif
+
+                <!-- Voucher Cards Container (Strictly 1 Active Card Rendered at a time) -->
+                <div class="max-w-4xl mx-auto">
+                    @foreach($promotionalCoupons as $idx => $coupon)
+                        <div id="coupon-card-{{ $idx }}"
+                            class="coupon-deal-card {{ $idx === 0 ? 'block' : 'hidden' }} transition-opacity duration-300">
                             <div
-                                class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/50 to-transparent pointer-events-none">
-                            </div>
-                            <!-- Soft Ambient Emerald Glow inside Card -->
-                            <div
-                                class="absolute -right-20 -top-20 w-56 h-56 bg-[#22C55E]/15 rounded-full blur-3xl pointer-events-none">
-                            </div>
+                                class="relative rounded-3xl sm:rounded-[36px] border border-white/20 bg-white/[0.08] backdrop-blur-2xl shadow-2xl shadow-black/70 ring-1 ring-white/10 overflow-hidden flex flex-col lg:flex-row">
+                                <!-- Top Specular Highlight Edge -->
+                                <div
+                                    class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/50 to-transparent pointer-events-none">
+                                </div>
+                                <!-- Soft Ambient Emerald Glow inside Card -->
+                                <div
+                                    class="absolute -right-20 -top-20 w-56 h-56 bg-[#22C55E]/15 rounded-full blur-3xl pointer-events-none">
+                                </div>
 
-                            <!-- Left: Voucher Core Details (62% width on desktop) -->
-                            <div class="p-6 sm:p-8 lg:p-10 flex-1 flex flex-col justify-between relative z-10">
-                                <div>
-                                    <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
-                                        <div class="flex items-center gap-2">
-                                            <span
-                                                class="inline-flex items-center px-3 py-1 rounded-full text-xs font-black bg-[#22C55E]/20 text-[#22C55E] border border-[#22C55E]/40 uppercase tracking-wider backdrop-blur-md">
-                                                {{ $coupon['tag'] }}
-                                            </span>
-                                            <span class="text-xs font-semibold text-slate-300 hidden sm:inline-block">
-                                                {{ $coupon['route_tag'] }}
-                                            </span>
-                                        </div>
-                                        <span class="text-xs font-bold text-slate-400 font-mono">
-                                            Deal {{ $idx + 1 }} of {{ count($promotionalCoupons) }}
-                                        </span>
-                                    </div>
-
-                                    <h3
-                                        class="text-2xl sm:text-3xl font-black text-white font-heading tracking-tight drop-shadow-xs">
-                                        {{ $coupon['headline'] }}
-                                    </h3>
-                                    <p class="text-xs sm:text-sm text-slate-200 mt-2 leading-relaxed">
-                                        {{ $coupon['description'] }}
-                                    </p>
-
-                                    <!-- Price Comparison Glass Box -->
-                                    <div
-                                        class="mt-5 rounded-2xl bg-black/30 border border-white/15 p-4 flex flex-wrap items-center justify-between gap-3 shadow-inner">
-                                        <div>
-                                            <span
-                                                class="text-[10px] uppercase font-bold text-slate-400 block tracking-wider">Regular
-                                                Base Fare</span>
-                                            <del
-                                                class="text-sm sm:text-base font-semibold text-slate-400 font-mono">{{ $coupon['regular_fare'] }}</del>
-                                        </div>
-                                        <div class="text-right">
-                                            <span
-                                                class="text-[10px] uppercase font-bold text-slate-400 block tracking-wider">Promotional
-                                                Rate</span>
-                                            <span
-                                                class="text-xl sm:text-2xl font-black text-[#22C55E] font-mono tracking-tight">{{ $coupon['promo_fare'] }}</span>
-                                        </div>
-                                        <div class="w-full sm:w-auto pt-2 sm:pt-0 sm:border-l sm:border-white/15 sm:pl-4">
-                                            <span
-                                                class="inline-flex items-center px-2.5 py-1 rounded-lg bg-[#22C55E]/20 text-[#22C55E] text-xs font-black font-mono border border-[#22C55E]/30">
-                                                {{ $coupon['savings_badge'] }}
+                                <!-- Left: Voucher Core Details (62% width on desktop) -->
+                                <div class="p-6 sm:p-8 lg:p-10 flex-1 flex flex-col justify-between relative z-10">
+                                    <div>
+                                        <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+                                            <div class="flex items-center gap-2">
+                                                <span
+                                                    class="inline-flex items-center px-3 py-1 rounded-full text-xs font-black bg-[#22C55E]/20 text-[#22C55E] border border-[#22C55E]/40 uppercase tracking-wider backdrop-blur-md">
+                                                    {{ $coupon['tag'] }}
+                                                </span>
+                                                <span class="text-xs font-semibold text-slate-300 hidden sm:inline-block">
+                                                    {{ $coupon['route_tag'] }}
+                                                </span>
+                                            </div>
+                                            <span class="text-xs font-bold text-slate-400 font-mono">
+                                                Deal {{ $idx + 1 }} of {{ count($promotionalCoupons) }}
                                             </span>
                                         </div>
+
+                                        <h3
+                                            class="text-2xl sm:text-3xl font-black text-white font-heading tracking-tight drop-shadow-xs">
+                                            {{ $coupon['headline'] }}
+                                        </h3>
+                                        <p class="text-xs sm:text-sm text-slate-200 mt-2 leading-relaxed">
+                                            {{ $coupon['description'] }}
+                                        </p>
+
+                                        <!-- Price Comparison Glass Box -->
+                                        <div
+                                            class="mt-5 rounded-2xl bg-black/30 border border-white/15 p-4 flex flex-wrap items-center justify-between gap-3 shadow-inner">
+                                            <div>
+                                                <span
+                                                    class="text-[10px] uppercase font-bold text-slate-400 block tracking-wider">Regular
+                                                    Base Fare</span>
+                                                <del
+                                                    class="text-sm sm:text-base font-semibold text-slate-400 font-mono">{{ $coupon['regular_fare'] }}</del>
+                                            </div>
+                                            <div class="text-right">
+                                                <span
+                                                    class="text-[10px] uppercase font-bold text-slate-400 block tracking-wider">Promotional
+                                                    Rate</span>
+                                                <span
+                                                    class="text-xl sm:text-2xl font-black text-[#22C55E] font-mono tracking-tight">{{ $coupon['promo_fare'] }}</span>
+                                            </div>
+                                            <div class="w-full sm:w-auto pt-2 sm:pt-0 sm:border-l sm:border-white/15 sm:pl-4">
+                                                <span
+                                                    class="inline-flex items-center px-2.5 py-1 rounded-lg bg-[#22C55E]/20 text-[#22C55E] text-xs font-black font-mono border border-[#22C55E]/30">
+                                                    {{ $coupon['savings_badge'] }}
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="mt-6 pt-4 border-t border-white/15 text-xs text-slate-300 flex items-center gap-2">
+                                        <svg class="h-4 w-4 text-[#22C55E] flex-shrink-0" fill="none" viewBox="0 0 24 24"
+                                            stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                                                d="M5 13l4 4L19 7" />
+                                        </svg>
+                                        <span>{{ $coupon['terms'] }}</span>
                                     </div>
                                 </div>
 
-                                <div class="mt-6 pt-4 border-t border-white/15 text-xs text-slate-300 flex items-center gap-2">
-                                    <svg class="h-4 w-4 text-[#22C55E] flex-shrink-0" fill="none" viewBox="0 0 24 24"
-                                        stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
-                                            d="M5 13l4 4L19 7" />
-                                    </svg>
-                                    <span>{{ $coupon['terms'] }}</span>
+                                <!-- Ticket Cutout Divider (Desktop: Vertical, Mobile: Horizontal) -->
+                                <div class="relative flex lg:flex-col items-center justify-center">
+                                    <!-- Mobile Horizontal Perforated Line -->
+                                    <div class="w-full lg:hidden border-b-2 border-dashed border-white/20 relative">
+                                        <div
+                                            class="absolute -left-4 -top-3 w-6 h-6 rounded-full bg-[#0B0F17] border border-white/20">
+                                        </div>
+                                        <div
+                                            class="absolute -right-4 -top-3 w-6 h-6 rounded-full bg-[#0B0F17] border border-white/20">
+                                        </div>
+                                    </div>
+                                    <!-- Desktop Vertical Perforated Line -->
+                                    <div class="hidden lg:block h-full border-r-2 border-dashed border-white/20 relative py-6">
+                                        <div
+                                            class="absolute -top-4 -left-3 w-6 h-6 rounded-full bg-[#0B0F17] border border-white/20">
+                                        </div>
+                                        <div
+                                            class="absolute -bottom-4 -left-3 w-6 h-6 rounded-full bg-[#0B0F17] border border-white/20">
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
 
-                            <!-- Ticket Cutout Divider (Desktop: Vertical, Mobile: Horizontal) -->
-                            <div class="relative flex lg:flex-col items-center justify-center">
-                                <!-- Mobile Horizontal Perforated Line -->
-                                <div class="w-full lg:hidden border-b-2 border-dashed border-white/20 relative">
-                                    <div
-                                        class="absolute -left-4 -top-3 w-6 h-6 rounded-full bg-[#0B0F17] border border-white/20">
-                                    </div>
-                                    <div
-                                        class="absolute -right-4 -top-3 w-6 h-6 rounded-full bg-[#0B0F17] border border-white/20">
-                                    </div>
-                                </div>
-                                <!-- Desktop Vertical Perforated Line -->
-                                <div class="hidden lg:block h-full border-r-2 border-dashed border-white/20 relative py-6">
-                                    <div
-                                        class="absolute -top-4 -left-3 w-6 h-6 rounded-full bg-[#0B0F17] border border-white/20">
-                                    </div>
-                                    <div
-                                        class="absolute -bottom-4 -left-3 w-6 h-6 rounded-full bg-[#0B0F17] border border-white/20">
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Right: Voucher Redemption Action Stub (38% width on desktop) -->
-                            <div
-                                class="p-6 sm:p-8 lg:p-10 lg:w-[340px] flex flex-col justify-center gap-4 bg-white/[0.04] backdrop-blur-md relative z-10">
-                                <div>
-                                    <span
-                                        class="text-[10px] uppercase font-bold text-slate-300 block tracking-wider mb-2">Promotional
-                                        Coupon Code</span>
-                                    <div
-                                        class="rounded-2xl border-2 border-dashed border-[#22C55E]/60 bg-black/40 backdrop-blur-md p-3.5 flex items-center justify-between gap-2 shadow-inner">
+                                <!-- Right: Voucher Redemption Action Stub (38% width on desktop) -->
+                                <div
+                                    class="p-6 sm:p-8 lg:p-10 lg:w-[340px] flex flex-col justify-center gap-4 bg-white/[0.04] backdrop-blur-md relative z-10">
+                                    <div>
                                         <span
-                                            class="font-mono text-2xl font-black text-white tracking-widest pl-1">{{ $coupon['code'] }}</span>
-                                        <button type="button" id="copy-btn-{{ strtolower($coupon['code']) }}"
-                                            onclick="copyPromoCode('{{ $coupon['code'] }}', 'copy-btn-{{ strtolower($coupon['code']) }}')"
-                                            class="inline-flex min-h-[38px] items-center justify-center gap-1.5 rounded-xl bg-white/15 hover:bg-white/25 text-white px-3 py-1.5 text-xs font-bold transition border border-white/20 backdrop-blur-md cursor-pointer shadow-xs">
-                                            <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                    d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" />
-                                            </svg>
-                                            <span>Copy Code</span>
-                                        </button>
+                                            class="text-[10px] uppercase font-bold text-slate-300 block tracking-wider mb-2">Promotional
+                                            Coupon Code</span>
+                                        <div
+                                            class="rounded-2xl border-2 border-dashed border-[#22C55E]/60 bg-black/40 backdrop-blur-md p-3.5 flex items-center justify-between gap-2 shadow-inner">
+                                            <span
+                                                class="font-mono text-2xl font-black text-white tracking-widest pl-1">{{ $coupon['code'] }}</span>
+                                            <button type="button" id="copy-btn-{{ strtolower($coupon['code']) }}"
+                                                onclick="copyPromoCode('{{ $coupon['code'] }}', 'copy-btn-{{ strtolower($coupon['code']) }}')"
+                                                class="inline-flex min-h-[38px] items-center justify-center gap-1.5 rounded-xl bg-white/15 hover:bg-white/25 text-white px-3 py-1.5 text-xs font-bold transition border border-white/20 backdrop-blur-md cursor-pointer shadow-xs">
+                                                <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                        d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" />
+                                                </svg>
+                                                <span>Copy Code</span>
+                                            </button>
+                                        </div>
                                     </div>
-                                </div>
 
-                                <button type="button" onclick="openSeatPickerWithCoupon('{{ $coupon['code'] }}')"
-                                    class="w-full inline-flex min-h-[48px] items-center justify-center gap-2 rounded-xl bg-[#22C55E] hover:bg-[#16A34A] text-white px-5 py-3 text-sm font-black transition duration-200 shadow-lg shadow-[#22C55E]/30 cursor-pointer">
-                                    <span>Apply &amp; Book Seat</span>
-                                    <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
-                                            d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                                    </svg>
-                                </button>
+                                    <button type="button" onclick="openSeatPickerWithCoupon('{{ $coupon['code'] }}')"
+                                        class="w-full inline-flex min-h-[48px] items-center justify-center gap-2 rounded-xl bg-[#22C55E] hover:bg-[#16A34A] text-white px-5 py-3 text-sm font-black transition duration-200 shadow-lg shadow-[#22C55E]/30 cursor-pointer">
+                                        <span>Apply &amp; Book Seat</span>
+                                        <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                                                d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                                        </svg>
+                                    </button>
 
-                                <div class="flex items-center justify-between text-[11px] text-slate-400 px-1">
-                                    <span>Cash on boarding</span>
-                                    <span>•</span>
-                                    <span>Instant confirmation</span>
-                                </div>
-
-                                <!-- Prev/Next switcher controls for convenience -->
-                                @if(count($promotionalCoupons) > 1)
-                                    <div class="flex items-center justify-between pt-3 border-t border-white/10 mt-1">
-                                        <button type="button"
-                                            onclick="switchCoupon({{ ($idx - 1 + count($promotionalCoupons)) % count($promotionalCoupons) }})"
-                                            class="text-xs text-slate-400 hover:text-white transition flex items-center gap-1 cursor-pointer">
-                                            <span>← Previous Deal</span>
-                                        </button>
-                                        <button type="button" onclick="switchCoupon({{ ($idx + 1) % count($promotionalCoupons) }})"
-                                            class="text-xs text-[#22C55E] hover:text-emerald-400 font-bold transition flex items-center gap-1 cursor-pointer">
-                                            <span>Next Deal →</span>
-                                        </button>
+                                    <div class="flex items-center justify-between text-[11px] text-slate-400 px-1">
+                                        <span>Cash on boarding</span>
+                                        <span>•</span>
+                                        <span>Instant confirmation</span>
                                     </div>
-                                @endif
+
+                                    <!-- Prev/Next switcher controls for convenience -->
+                                    @if(count($promotionalCoupons) > 1)
+                                        <div class="flex items-center justify-between pt-3 border-t border-white/10 mt-1">
+                                            <button type="button"
+                                                onclick="switchCoupon({{ ($idx - 1 + count($promotionalCoupons)) % count($promotionalCoupons) }})"
+                                                class="text-xs text-slate-400 hover:text-white transition flex items-center gap-1 cursor-pointer">
+                                                <span>← Previous Deal</span>
+                                            </button>
+                                            <button type="button" onclick="switchCoupon({{ ($idx + 1) % count($promotionalCoupons) }})"
+                                                class="text-xs text-[#22C55E] hover:text-emerald-400 font-bold transition flex items-center gap-1 cursor-pointer">
+                                                <span>Next Deal →</span>
+                                            </button>
+                                        </div>
+                                    @endif
+                                </div>
                             </div>
                         </div>
-                    </div>
-                @endforeach
+                    @endforeach
+                </div>
             </div>
-        </div>
 
-        <script>
-            function switchCoupon(targetIdx) {
-                const cards = document.querySelectorAll('.coupon-deal-card');
-                const buttons = document.querySelectorAll('.coupon-tab-btn');
-                cards.forEach((card, idx) => {
-                    if (idx === targetIdx) {
-                        card.classList.remove('hidden');
-                        card.classList.add('block');
-                    } else {
-                        card.classList.remove('block');
-                        card.classList.add('hidden');
-                    }
-                });
-                buttons.forEach((btn, idx) => {
-                    const dot = btn.querySelector('.coupon-active-dot');
-                    if (idx === targetIdx) {
-                        btn.classList.add('bg-[#22C55E]/20', 'text-[#22C55E]', 'border-[#22C55E]/50', 'shadow-lg', 'shadow-[#22C55E]/10');
-                        btn.classList.remove('bg-white/[0.06]', 'text-slate-300', 'border-white/15');
-                        if (dot) dot.classList.remove('hidden');
-                    } else {
-                        btn.classList.remove('bg-[#22C55E]/20', 'text-[#22C55E]', 'border-[#22C55E]/50', 'shadow-lg', 'shadow-[#22C55E]/10');
-                        btn.classList.add('bg-white/[0.06]', 'text-slate-300', 'border-white/15');
-                        if (dot) dot.classList.add('hidden');
-                    }
-                });
-            }
-        </script>
-    </section>
+            <script>
+                function switchCoupon(targetIdx) {
+                    const cards = document.querySelectorAll('.coupon-deal-card');
+                    const buttons = document.querySelectorAll('.coupon-tab-btn');
+                    cards.forEach((card, idx) => {
+                        if (idx === targetIdx) {
+                            card.classList.remove('hidden');
+                            card.classList.add('block');
+                        } else {
+                            card.classList.remove('block');
+                            card.classList.add('hidden');
+                        }
+                    });
+                    buttons.forEach((btn, idx) => {
+                        const dot = btn.querySelector('.coupon-active-dot');
+                        if (idx === targetIdx) {
+                            btn.classList.add('bg-[#22C55E]/20', 'text-[#22C55E]', 'border-[#22C55E]/50', 'shadow-lg', 'shadow-[#22C55E]/10');
+                            btn.classList.remove('bg-white/[0.06]', 'text-slate-300', 'border-white/15');
+                            if (dot) dot.classList.remove('hidden');
+                        } else {
+                            btn.classList.remove('bg-[#22C55E]/20', 'text-[#22C55E]', 'border-[#22C55E]/50', 'shadow-lg', 'shadow-[#22C55E]/10');
+                            btn.classList.add('bg-white/[0.06]', 'text-slate-300', 'border-white/15');
+                            if (dot) dot.classList.add('hidden');
+                        }
+                    });
+                }
+            </script>
+        </section>
     @endif
 
 
@@ -1128,7 +1142,8 @@
                         <strong class="text-slate-900 font-semibold">Route B
                             ({{ $routeB?->name ?? 'Toronto → Montreal' }}):</strong> Pickups at
                         {{ $yorkdaleLoc?->name ?? 'Yorkdale Mall' }} at {{ $yorkdalePickupTime }} EST and
-                        {{ $yongeLoc?->name ?? 'Yonge Station' }} at {{ $yongePickupTime }} EST, arriving in Montreal around {{ $namurArrivalTime }}
+                        {{ $yongeLoc?->name ?? 'Yonge Station' }} at {{ $yongePickupTime }} EST, arriving in Montreal around
+                        {{ $namurArrivalTime }}
                         EST.
                     </p>
                 </details>

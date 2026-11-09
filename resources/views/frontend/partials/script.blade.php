@@ -112,6 +112,89 @@
         window.addEventListener('scroll', onScroll, { passive: true });
         updateHeaderStyles(window.scrollY > 20);
 
+        // Mobile-Only Scroll Assist to Booking Panel
+        // When on a mobile viewport (<1024px), a slight initial scroll/swipe downward smoothly brings #booking-panel into view.
+        // Once snapped, normal scrolling is 100% free and uninterrupted for the rest of the page.
+        const bookingPanelEl = document.getElementById('booking-panel');
+        const mobileQuickJumpBtn = document.getElementById('mobile-quick-jump-btn');
+
+        if (bookingPanelEl) {
+            let hasSnappedToBooking = window.scrollY > 150;
+            let isAutoScrolling = false;
+            let touchStartY = 0;
+
+            const smoothScrollToBooking = () => {
+                if (isAutoScrolling) return;
+                hasSnappedToBooking = true;
+                isAutoScrolling = true;
+
+                const headerOffset = 76;
+                const panelTop = bookingPanelEl.getBoundingClientRect().top + window.pageYOffset;
+                const targetY = Math.max(0, panelTop - headerOffset);
+
+                window.scrollTo({
+                    top: targetY,
+                    behavior: 'smooth'
+                });
+
+                setTimeout(() => {
+                    isAutoScrolling = false;
+                }, 750);
+            };
+
+            // Touch start detection on mobile screens
+            window.addEventListener('touchstart', (e) => {
+                if (window.innerWidth >= 1024) return;
+                if (e.touches && e.touches.length === 1) {
+                    touchStartY = e.touches[0].clientY;
+                }
+            }, { passive: true });
+
+            // Touch move detection: slight downward drag from top hero area triggers smooth snap
+            window.addEventListener('touchmove', (e) => {
+                if (window.innerWidth >= 1024) return;
+                if (hasSnappedToBooking || isAutoScrolling) return;
+                if (window.location.hash && window.location.hash !== '#booking-panel') return;
+
+                if (e.touches && e.touches.length === 1) {
+                    const currentTouchY = e.touches[0].clientY;
+                    const diffY = touchStartY - currentTouchY; // positive = dragging upward = scrolling downward
+
+                    if (window.scrollY < 60 && diffY > 20) {
+                        smoothScrollToBooking();
+                    }
+                }
+            }, { passive: true });
+
+            // Scroll listener for trackpad, wheel, or browser fling
+            window.addEventListener('scroll', () => {
+                if (window.innerWidth >= 1024) return;
+
+                const currentY = window.scrollY;
+
+                // Reset assist if user scrolls back to the very top
+                if (currentY <= 15) {
+                    hasSnappedToBooking = false;
+                    return;
+                }
+
+                if (window.location.hash && window.location.hash !== '#booking-panel') return;
+
+                // Trigger smooth snap when user begins scrolling down from top
+                if (!hasSnappedToBooking && !isAutoScrolling && currentY > 25 && currentY < 220) {
+                    smoothScrollToBooking();
+                }
+            }, { passive: true });
+
+            // Direct tap on mobile quick jump button
+            if (mobileQuickJumpBtn) {
+                mobileQuickJumpBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    smoothScrollToBooking();
+                });
+            }
+        }
+
         // Mobile Navigation Toggle
         if (toggleBtn && menu) {
             toggleBtn.addEventListener('click', function () {
