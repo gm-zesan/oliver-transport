@@ -105,17 +105,29 @@ class HomeService
                 ? 'Save $'.(int) $discVal.' CAD / Seat'
                 : (int) $discVal.'% Instant Savings';
 
+            $headline = $coupon->code === 'LAUNCH10'
+                ? 'Ride for Only $55 CAD'
+                : ($coupon->headline ?: "Save with code {$coupon->code}");
+
+            $description = $coupon->code === 'LAUNCH10'
+                ? 'Save $10 CAD per seat on daily departures between Montreal and Toronto.'
+                : ($coupon->description ?: "Special rate of {$promoFareStr} with promotional code {$coupon->code}.");
+
+            $terms = $coupon->code === 'LAUNCH10'
+                ? 'Valid on all daily departures · Min booking $50 CAD · Cash settlement on boarding'
+                : ($coupon->terms ?: 'Valid on all daily departures · Min booking $50 CAD · Cash settlement on boarding');
+
             return [
                 'code' => $coupon->code,
                 'tab_label' => $coupon->tab_label ?: ($isFixed ? "🔥 \${$discVal} OFF Special" : "👥 {$discVal}% OFF Saver"),
-                'tag' => $coupon->tag ?: 'Active Promotion',
+                'tag' => $coupon->tag ?: 'Active Launch Special',
                 'route_tag' => $coupon->route_tag ?: 'Montreal ↔ Toronto Corridor',
-                'headline' => $coupon->headline ?: "Save with code {$coupon->code}",
-                'description' => $coupon->description ?: "Special rate of {$promoFareStr} with promotional code {$coupon->code}.",
-                'regular_fare' => '$'.number_format($regularFare, 2).' CAD',
-                'promo_fare' => $promoFareStr,
+                'headline' => $headline,
+                'description' => $description,
+                'regular_fare' => '$'.number_format($regularFare, 0).' CAD',
+                'promo_fare' => $isFixed ? '$'.number_format(max(0, $regularFare - $discVal), 0).' CAD' : $promoFareStr,
                 'savings_badge' => $savingsBadge,
-                'terms' => $coupon->terms ?: 'Valid on daily departures • Cash settlement upon boarding',
+                'terms' => $terms,
                 'accent_color' => $coupon->accent_color ?: '#22C55E',
             ];
         })->toArray();

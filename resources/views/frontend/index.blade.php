@@ -12,7 +12,7 @@
                 model: @json($vehicleModel),
                 plate: @json($vehiclePlate),
                 capacity: {{ $passengerSeatsCount }}
-                                    },
+                                        },
             stations: @json($clientStations),
             routes: @json($clientRoutes)
         };
@@ -326,7 +326,7 @@
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 
             <!-- Section Header: Standardized Centered with Eyebrow, Title & Subtitle -->
-            <div class="text-center max-w-3xl mx-auto mb-16 sm:mb-20 space-y-3">
+            <div class="text-center max-w-3xl mx-auto mb-8 sm:mb-14 md:mb-16 lg:mb-20 space-y-2.5 sm:space-y-3">
                 <div>
                     <span class="text-xs font-black tracking-widest text-[#16A34A] uppercase">
                         OUR CORE ROUTES
@@ -345,81 +345,123 @@
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
                 @foreach($routesViewData as $routeItem)
                     <div
-                        class="group relative rounded-3xl bg-white p-6 sm:p-7 flex flex-col sm:flex-row items-stretch gap-6 border border-slate-200/80 shadow-sm hover:shadow-2xl hover:shadow-[#22C55E]/10 hover:border-[#22C55E]/50 transition-all duration-300">
+                        class="group relative rounded-3xl bg-white p-0 sm:p-7 flex flex-col sm:flex-row items-stretch gap-0 sm:gap-6 border border-slate-200/80 shadow-sm hover:shadow-2xl hover:shadow-[#22C55E]/10 hover:border-[#22C55E]/50 transition-all duration-300 overflow-hidden">
                         <div
-                            class="w-full sm:w-[46%] h-56 sm:h-auto min-h-[220px] rounded-2xl overflow-hidden flex-shrink-0 bg-slate-900">
+                            class="w-full sm:w-[46%] h-[210px] sm:h-auto min-h-[210px] sm:min-h-[220px] rounded-none sm:rounded-2xl overflow-hidden flex-shrink-0 bg-slate-900">
                             <img src="{{ $routeItem['image_path'] }}" alt="PickMeRoute {{ $routeItem['name'] }} Shuttle"
-                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out" />
+                                class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 ease-out" />
                         </div>
-                        <div class="w-full sm:w-[54%] flex flex-col justify-between py-1">
+                        <div class="w-full sm:w-[54%] flex flex-col justify-between p-5 sm:p-0 sm:py-1">
                             <div>
-                                <div class="flex items-baseline justify-between gap-3 mb-2">
-                                    <span class="text-xs font-bold uppercase tracking-wider text-[#16A34A]">
+                                <div class="flex items-center justify-between gap-2 mb-1.5 sm:mb-2">
+                                    <span class="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-[#16A34A]">
                                         {{ $routeItem['service_label'] }}
                                     </span>
-                                    <span class="text-sm font-black text-slate-900 font-mono">
+                                    <span class="text-base sm:text-sm font-black text-slate-900 font-mono">
                                         ${{ number_format($routeItem['regular_fare'], 0) }} <span
-                                            class="text-xs font-semibold text-slate-500">CAD</span>
+                                            class="text-xs font-semibold text-slate-500 font-sans">CAD</span>
                                     </span>
                                 </div>
 
                                 <h3
-                                    class="text-2xl font-bold text-[#111827] tracking-tight font-heading group-hover:text-[#16A34A] transition-colors">
+                                    class="text-xl sm:text-2xl font-bold text-[#111827] tracking-tight font-heading group-hover:text-[#16A34A] transition-colors">
                                     {{ $routeItem['name'] }}
                                 </h3>
 
-                                <div class="mt-4 space-y-2.5 text-xs sm:text-sm text-slate-700">
-                                    <div class="flex items-center gap-2.5">
+                                <div class="mt-3.5 sm:mt-4 space-y-3 sm:space-y-2.5 text-xs sm:text-sm text-slate-700">
+                                    <div class="flex items-start gap-2.5">
+                                        <span class="flex sm:hidden text-[#16A34A] flex-shrink-0 mt-0.5">
+                                            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                                                stroke-width="2">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                            </svg>
+                                        </span>
                                         <span
-                                            class="flex h-5 w-5 items-center justify-center rounded-full bg-[#22C55E]/15 text-[#16A34A] flex-shrink-0">
+                                            class="hidden sm:flex h-5 w-5 items-center justify-center rounded-full bg-[#22C55E]/15 text-[#16A34A] flex-shrink-0">
                                             <svg class="h-3 w-3" fill="currentColor" viewBox="0 0 20 20">
                                                 <path fill-rule="evenodd"
                                                     d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
                                                     clip-rule="evenodd" />
                                             </svg>
                                         </span>
-                                        <span><strong>{{ $routeItem['pickup_label'] }}</strong>
-                                            {{ $routeItem['pickup_text'] }}</span>
+                                        <span class="leading-relaxed">
+                                            <strong class="font-bold text-slate-900">{{ $routeItem['pickup_label'] }}</strong>
+                                            <span class="font-normal text-slate-600">{{ $routeItem['pickup_text'] }}</span>
+                                        </span>
                                     </div>
-                                    <div class="flex items-center gap-2.5">
+                                    <div class="flex items-start gap-2.5">
+                                        <span class="flex sm:hidden text-[#16A34A] flex-shrink-0 mt-0.5">
+                                            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                                                stroke-width="2">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                            </svg>
+                                        </span>
                                         <span
-                                            class="flex h-5 w-5 items-center justify-center rounded-full bg-[#22C55E]/15 text-[#16A34A] flex-shrink-0">
+                                            class="hidden sm:flex h-5 w-5 items-center justify-center rounded-full bg-[#22C55E]/15 text-[#16A34A] flex-shrink-0">
                                             <svg class="h-3 w-3" fill="currentColor" viewBox="0 0 20 20">
                                                 <path fill-rule="evenodd"
                                                     d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
                                                     clip-rule="evenodd" />
                                             </svg>
                                         </span>
-                                        <span><strong>{{ $routeItem['dropoff_label'] }}</strong>
-                                            {{ $routeItem['dropoff_text'] }}</span>
+                                        <span class="leading-relaxed">
+                                            <strong class="font-bold text-slate-900">{{ $routeItem['dropoff_label'] }}</strong>
+                                            <span class="font-normal text-slate-600">{{ $routeItem['dropoff_text'] }}</span>
+                                        </span>
                                     </div>
-                                    <div class="flex items-center gap-2.5">
+                                    <div class="flex items-start gap-2.5">
+                                        <span class="flex sm:hidden text-[#16A34A] flex-shrink-0 mt-0.5">
+                                            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                                                stroke-width="2">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                            </svg>
+                                        </span>
                                         <span
-                                            class="flex h-5 w-5 items-center justify-center rounded-full bg-[#22C55E]/15 text-[#16A34A] flex-shrink-0">
+                                            class="hidden sm:flex h-5 w-5 items-center justify-center rounded-full bg-[#22C55E]/15 text-[#16A34A] flex-shrink-0">
                                             <svg class="h-3 w-3" fill="currentColor" viewBox="0 0 20 20">
                                                 <path fill-rule="evenodd"
                                                     d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
                                                     clip-rule="evenodd" />
                                             </svg>
                                         </span>
-                                        <span>Cash payment upon boarding with driver
-                                            (${{ number_format($routeItem['regular_fare'], 0) }} CAD)</span>
+                                        <span class="leading-relaxed font-normal text-slate-600 sm:text-slate-700">
+                                            <span class="sm:hidden">Cash payment upon boarding with driver</span>
+                                            <span class="hidden sm:inline">Cash payment upon boarding with driver
+                                                ({{ '$' . number_format($routeItem['regular_fare'], 0) }} CAD)</span>
+                                        </span>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="mt-6 pt-4 border-t border-slate-200/70 flex items-center justify-between">
-                                <a href="javascript:void(0)" onclick="handleGlobalBookNow('{{ $routeItem['btn_key'] }}')"
-                                    class="inline-flex min-h-[44px] items-center gap-2 rounded-xl bg-[#22C55E] hover:bg-[#16A34A] text-white px-5 py-2.5 text-xs sm:text-sm font-bold transition duration-200 shadow-sm hover:shadow-md cursor-pointer">
-                                    <span>Book
-                                        {{ $routeItem['direction_code'] === 'MTL_TO_TOR' ? 'Route A' : 'Route B' }}</span>
-                                    <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
-                                            d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                                    </svg>
-                                </a>
-                                <span class="text-xs font-semibold text-slate-500">{{ $routeItem['seats_count'] }} Passenger
-                                    Seats</span>
+                            <div
+                                class="mt-4 sm:mt-6 pt-0 sm:pt-4 sm:border-t sm:border-slate-200/70 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-0">
+                                <div class="order-1 sm:order-2 self-start sm:self-auto">
+                                    <span
+                                        class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#E8FBF0] text-[#16A34A] text-xs font-semibold sm:bg-transparent sm:p-0 sm:text-slate-500">
+                                        <svg class="w-3.5 h-3.5 text-[#16A34A] sm:hidden flex-shrink-0" fill="none"
+                                            viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z" />
+                                        </svg>
+                                        <span>{{ $routeItem['seats_count'] }} Passenger Seats</span>
+                                    </span>
+                                </div>
+
+                                <div class="order-2 sm:order-1 w-full sm:w-auto">
+                                    <a href="javascript:void(0)" onclick="handleGlobalBookNow('{{ $routeItem['btn_key'] }}')"
+                                        class="flex sm:inline-flex w-full sm:w-auto min-h-[48px] sm:min-h-[44px] items-center justify-center gap-2 rounded-2xl sm:rounded-xl bg-[#22C55E] hover:bg-[#16A34A] text-white px-5 py-3 sm:py-2.5 text-sm font-bold transition duration-200 shadow-md sm:shadow-sm hover:shadow-lg cursor-pointer">
+                                        <span>Book
+                                            {{ $routeItem['direction_code'] === 'MTL_TO_TOR' ? 'Route A' : 'Route B' }}</span>
+                                        <svg class="h-4 w-4 sm:h-3.5 sm:w-3.5" fill="none" viewBox="0 0 24 24"
+                                            stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                                                d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                                        </svg>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -628,152 +670,265 @@
         <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 
             <!-- Section Header: Standardized Centered with Eyebrow, Title & Subtitle -->
-            <div class="text-center max-w-3xl mx-auto mb-16 sm:mb-20 space-y-3">
-                <div>
+            <div class="text-center max-w-3xl mx-auto mb-8 sm:mb-14 md:mb-16 lg:mb-20 space-y-2.5 sm:space-y-3">
+                <div class="flex items-center justify-center gap-3">
+                    <span class="w-8 h-[1.5px] bg-[#16A34A]/60 hidden sm:inline-block"></span>
                     <span class="text-xs font-black tracking-widest text-[#16A34A] uppercase">
                         SIMPLE 3-STEP PROCESS
                     </span>
+                    <span class="w-8 h-[1.5px] bg-[#16A34A]/60 hidden sm:inline-block"></span>
                 </div>
                 <h2
                     class="text-3xl sm:text-4xl lg:text-5xl font-black text-[#111827] tracking-tight font-heading leading-tight">
                     How It Works
                 </h2>
-                <p class="text-base sm:text-lg text-[#64748B] leading-relaxed max-w-2xl mx-auto">
+                <p class="text-sm sm:text-base lg:text-lg text-[#64748B] leading-relaxed max-w-2xl mx-auto px-2">
                     Booking your reserved seat between Montreal and Toronto is fast, transparent, and hassle-free.
                 </p>
             </div>
 
-            <!-- Stepper Timeline: Continuous Line with Centered Step Numbers -->
-            <div class="hidden md:block relative mb-8">
-                <!-- Continuous connecting line passing through center of all 3 columns -->
-                <div class="absolute top-1/2 left-[16.666%] right-[16.666%] h-0.5 bg-slate-200/90 -translate-y-1/2 z-0"
-                    aria-hidden="true"></div>
+            <!-- ============================================================ -->
+            <!-- MOBILE ONLY (<md): Tailored Card Layout Matching Reference   -->
+            <!-- ============================================================ -->
+            <div class="md:hidden space-y-4">
 
-                <!-- 3 Centered Number Nodes with White Background masking the line -->
-                <div class="grid grid-cols-3 gap-8 relative z-10">
-                    <div class="flex justify-center">
-                        <span
-                            class="px-5 bg-[#F8FAFC] text-5xl lg:text-6xl font-black font-heading text-slate-300 select-none tracking-tight">01</span>
+                <!-- Mobile Card 1 -->
+                <div
+                    class="w-full rounded-3xl bg-white border border-slate-200/90 shadow-lg shadow-slate-900/5 overflow-hidden transition">
+                    <div class="w-full overflow-hidden bg-slate-900">
+                        <img src="{{ asset('images/how-it-works-step1.jpg') }}" alt="Choose Your Route - PickMeRoute"
+                            class="w-full h-auto object-cover block" />
                     </div>
-                    <div class="flex justify-center">
-                        <span
-                            class="px-5 bg-[#F8FAFC] text-5xl lg:text-6xl font-black font-heading text-slate-300 select-none tracking-tight">02</span>
+
+                    <div class="p-4 sm:p-5 flex items-center justify-between gap-3 sm:gap-4 bg-white">
+                        <div
+                            class="w-11 h-11 rounded-full bg-[#E8FBF0] text-[#16A34A] flex items-center justify-center flex-shrink-0 shadow-xs">
+                            <svg class="w-5 h-5 text-[#16A34A]" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                                stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                            </svg>
+                        </div>
+
+                        <div class="flex-1 min-w-0">
+                            <h3 class="text-base sm:text-lg font-bold text-[#111827] font-heading leading-snug">
+                                Choose Your Route
+                            </h3>
+                            <p class="text-xs sm:text-[13px] text-slate-500 leading-relaxed mt-0.5">
+                                Select your route and travel date. Choose Montreal to Toronto or Toronto to Montreal.
+                            </p>
+                        </div>
+
+                        <div
+                            class="w-8 h-8 rounded-full bg-[#E8FBF0] text-[#16A34A] flex items-center justify-center flex-shrink-0">
+                            <svg class="w-4 h-4 text-[#16A34A]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7" />
+                            </svg>
+                        </div>
                     </div>
-                    <div class="flex justify-center">
-                        <span
-                            class="px-5 bg-[#F8FAFC] text-5xl lg:text-6xl font-black font-heading text-slate-300 select-none tracking-tight">03</span>
+                </div>
+
+                <!-- Mobile Card 2 -->
+                <div
+                    class="w-full rounded-3xl bg-white border border-slate-200/90 shadow-lg shadow-slate-900/5 overflow-hidden transition">
+                    <div class="w-full overflow-hidden bg-slate-900">
+                        <img src="{{ asset('images/how-it-works-step2.jpg') }}" alt="Book with Ease - PickMeRoute"
+                            class="w-full h-auto object-cover block" />
                     </div>
+
+                    <div class="p-4 sm:p-5 flex items-center justify-between gap-3 sm:gap-4 bg-white">
+                        <div
+                            class="w-11 h-11 rounded-full bg-[#E8FBF0] text-[#16A34A] flex items-center justify-center flex-shrink-0 shadow-xs">
+                            <svg class="w-5 h-5 text-[#16A34A]" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M7 11V4a3 3 0 0 1 3-3h4a3 3 0 0 1 3 3v7h1a3 3 0 0 1 3 3v4a2 2 0 0 1-2 2h-1v2a1 1 0 0 1-2 0v-2H8v2a1 1 0 0 1-2 0v-2H5a2 2 0 0 1-2-2v-4a3 3 0 0 1 3-3h1zm2 0h6V4a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v7zm-4 4a1 1 0 0 0-1 1v2h16v-2a1 1 0 0 0-1-1H5z" />
+                            </svg>
+                        </div>
+
+                        <div class="flex-1 min-w-0">
+                            <h3 class="text-base sm:text-lg font-bold text-[#111827] font-heading leading-snug">
+                                Book with Ease
+                            </h3>
+                            <p class="text-xs sm:text-[13px] text-slate-500 leading-relaxed mt-0.5">
+                                Choose your preferred passenger seat and complete your reservation in a few easy steps.
+                            </p>
+                        </div>
+
+                        <div
+                            class="w-8 h-8 rounded-full bg-[#E8FBF0] text-[#16A34A] flex items-center justify-center flex-shrink-0">
+                            <svg class="w-4 h-4 text-[#16A34A]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mobile Card 3 -->
+                <div
+                    class="w-full rounded-3xl bg-white border border-slate-200/90 shadow-lg shadow-slate-900/5 overflow-hidden transition">
+                    <div class="w-full overflow-hidden bg-slate-900">
+                        <img src="{{ asset('images/how-it-works-step3.jpg') }}" alt="Ride & Pay Cash - PickMeRoute"
+                            class="w-full h-auto object-cover block" />
+                    </div>
+
+                    <div class="p-4 sm:p-5 flex items-center justify-between gap-3 sm:gap-4 bg-white">
+                        <div
+                            class="w-11 h-11 rounded-full bg-[#E8FBF0] text-[#16A34A] flex items-center justify-center flex-shrink-0 shadow-xs">
+                            <svg class="w-5 h-5 text-[#16A34A]" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                                stroke-width="2.5">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                        </div>
+
+                        <div class="flex-1 min-w-0">
+                            <h3 class="text-base sm:text-lg font-bold text-[#111827] font-heading leading-snug">
+                                Ride &amp; Pay Cash
+                            </h3>
+                            <p class="text-xs sm:text-[13px] text-slate-500 leading-relaxed mt-0.5">
+                                Enjoy a comfortable journey and pay your driver directly when boarding.
+                            </p>
+                        </div>
+
+                        <div
+                            class="w-8 h-8 rounded-full bg-[#E8FBF0] text-[#16A34A] flex items-center justify-center flex-shrink-0">
+                            <svg class="w-4 h-4 text-[#16A34A]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mobile Action CTA Button -->
+                <div class="pt-2">
+                    <button type="button" onclick="handleGlobalBookNow()"
+                        class="w-full min-h-[52px] rounded-full bg-[#16A34A] hover:bg-[#15803D] active:scale-[0.98] text-white font-bold text-base flex items-center justify-center gap-2 shadow-lg shadow-[#16A34A]/25 transition cursor-pointer">
+                        <span>Reserve Your Seat Now</span>
+                        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                                d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                        </svg>
+                    </button>
                 </div>
             </div>
 
-            <!-- 3 Step Cards with Overlapping Info Boxes Matching Reference Image -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8 pb-4">
+            <!-- ============================================================ -->
+            <!-- DESKTOP ONLY (md+): 100% Preserved Original Desktop Layout   -->
+            <!-- ============================================================ -->
+            <div class="hidden md:block">
+                <!-- Stepper Timeline: Continuous Line with Centered Step Numbers -->
+                <div class="relative mb-8">
+                    <!-- Continuous connecting line passing through center of all 3 columns -->
+                    <div class="absolute top-1/2 left-[16.666%] right-[16.666%] h-0.5 bg-slate-200/90 -translate-y-1/2 z-0"
+                        aria-hidden="true"></div>
 
-                <!-- Step 1 Card -->
-                <div class="group relative flex flex-col items-center">
-                    <!-- Mobile Number Indicator -->
-                    <div class="md:hidden flex items-center justify-center mb-3">
-                        <span class="text-4xl font-black font-heading text-slate-300">01</span>
-                    </div>
-
-                    <!-- Image Frame -->
-                    <div class="w-full h-64 sm:h-72 rounded-2xl overflow-hidden shadow-md bg-slate-900 relative">
-                        <img src="{{ asset('images/service-intercity.jpg') }}"
-                            alt="Select route and date for PickMeRoute shuttle"
-                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out" />
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent">
+                    <!-- 3 Centered Number Nodes with White Background masking the line -->
+                    <div class="grid grid-cols-3 gap-8 relative z-10">
+                        <div class="flex justify-center">
+                            <span
+                                class="px-5 bg-[#F8FAFC] text-5xl lg:text-6xl font-black font-heading text-slate-300 select-none tracking-tight">01</span>
                         </div>
-                    </div>
-
-                    <!-- Overlapping White Floating Card (Matching Reference Image) -->
-                    <div
-                        class="-mt-12 w-[88%] sm:w-[84%] rounded-2xl bg-white p-6 sm:p-7 shadow-xl shadow-slate-900/5 border border-slate-200/80 text-center relative z-10 group-hover:border-[#22C55E]/50 group-hover:shadow-2xl group-hover:shadow-[#22C55E]/10 transition-all duration-300">
-                        <h3
-                            class="text-lg sm:text-xl font-bold text-[#111827] font-heading tracking-tight group-hover:text-[#16A34A] transition-colors">
-                            Choose Your Route
-                        </h3>
-                        <p class="mt-2 text-xs sm:text-sm text-[#64748B] leading-relaxed">
-                            Select Route A ({{ $routeA?->name ?? 'Montreal → Toronto' }}) or Route B
-                            ({{ $routeB?->name ?? 'Toronto → Montreal' }}) and pick your travel
-                            date.
-                        </p>
+                        <div class="flex justify-center">
+                            <span
+                                class="px-5 bg-[#F8FAFC] text-5xl lg:text-6xl font-black font-heading text-slate-300 select-none tracking-tight">02</span>
+                        </div>
+                        <div class="flex justify-center">
+                            <span
+                                class="px-5 bg-[#F8FAFC] text-5xl lg:text-6xl font-black font-heading text-slate-300 select-none tracking-tight">03</span>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Step 2 Card -->
-                <div class="group relative flex flex-col items-center">
-                    <!-- Mobile Number Indicator -->
-                    <div class="md:hidden flex items-center justify-center mb-3">
-                        <span class="text-4xl font-black font-heading text-slate-300">02</span>
-                    </div>
+                <!-- 3 Step Cards with Overlapping Info Boxes Matching Reference Image -->
+                <div class="grid grid-cols-3 gap-8 pb-4">
 
-                    <!-- Image Frame -->
-                    <div class="w-full h-64 sm:h-72 rounded-2xl overflow-hidden shadow-md bg-slate-900 relative">
-                        <img src="{{ asset('images/service-airport.jpg') }}"
-                            alt="Reserve your seat with interactive cabin diagram"
-                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out" />
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent">
+                    <!-- Step 1 Card -->
+                    <div class="group relative flex flex-col items-center">
+                        <div class="w-full h-64 sm:h-72 rounded-2xl overflow-hidden shadow-md bg-slate-900 relative">
+                            <img src="{{ asset('images/service-intercity.jpg') }}"
+                                alt="Select route and date for PickMeRoute shuttle"
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out" />
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent">
+                            </div>
+                        </div>
+
+                        <div
+                            class="-mt-12 w-[88%] sm:w-[84%] rounded-2xl bg-white p-6 sm:p-7 shadow-xl shadow-slate-900/5 border border-slate-200/80 text-center relative z-10 group-hover:border-[#22C55E]/50 group-hover:shadow-2xl group-hover:shadow-[#22C55E]/10 transition-all duration-300">
+                            <h3
+                                class="text-lg sm:text-xl font-bold text-[#111827] font-heading tracking-tight group-hover:text-[#16A34A] transition-colors">
+                                Choose Your Route
+                            </h3>
+                            <p class="mt-2 text-xs sm:text-sm text-[#64748B] leading-relaxed">
+                                Select Route A ({{ $routeA?->name ?? 'Montreal → Toronto' }}) or Route B
+                                ({{ $routeB?->name ?? 'Toronto → Montreal' }}) and pick your travel
+                                date.
+                            </p>
                         </div>
                     </div>
 
-                    <!-- Overlapping White Floating Card (Matching Reference Image) -->
-                    <div
-                        class="-mt-12 w-[88%] sm:w-[84%] rounded-2xl bg-white p-6 sm:p-7 shadow-xl shadow-slate-900/5 border border-slate-200/80 text-center relative z-10 group-hover:border-[#22C55E]/50 group-hover:shadow-2xl group-hover:shadow-[#22C55E]/10 transition-all duration-300">
-                        <h3
-                            class="text-lg sm:text-xl font-bold text-[#111827] font-heading tracking-tight group-hover:text-[#16A34A] transition-colors">
-                            Book with Ease
-                        </h3>
-                        <p class="mt-2 text-xs sm:text-sm text-[#64748B] leading-relaxed">
-                            Pick your exact seat (S1–S{{ $passengerSeatsCount }}) on our visual cabin diagram and receive
-                            instant booking
-                            confirmation.
-                        </p>
-                    </div>
-                </div>
+                    <!-- Step 2 Card -->
+                    <div class="group relative flex flex-col items-center">
+                        <div class="w-full h-64 sm:h-72 rounded-2xl overflow-hidden shadow-md bg-slate-900 relative">
+                            <img src="{{ asset('images/service-airport.jpg') }}"
+                                alt="Reserve your seat with interactive cabin diagram"
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out" />
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent">
+                            </div>
+                        </div>
 
-                <!-- Step 3 Card -->
-                <div class="group relative flex flex-col items-center">
-                    <!-- Mobile Number Indicator -->
-                    <div class="md:hidden flex items-center justify-center mb-3">
-                        <span class="text-4xl font-black font-heading text-slate-300">03</span>
-                    </div>
-
-                    <!-- Image Frame -->
-                    <div class="w-full h-64 sm:h-72 rounded-2xl overflow-hidden shadow-md bg-slate-900 relative">
-                        <img src="{{ asset('images/service-corporate.jpg') }}"
-                            alt="Travel comfortably in Honda Odyssey with cash on boarding"
-                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out" />
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent">
+                        <div
+                            class="-mt-12 w-[88%] sm:w-[84%] rounded-2xl bg-white p-6 sm:p-7 shadow-xl shadow-slate-900/5 border border-slate-200/80 text-center relative z-10 group-hover:border-[#22C55E]/50 group-hover:shadow-2xl group-hover:shadow-[#22C55E]/10 transition-all duration-300">
+                            <h3
+                                class="text-lg sm:text-xl font-bold text-[#111827] font-heading tracking-tight group-hover:text-[#16A34A] transition-colors">
+                                Book with Ease
+                            </h3>
+                            <p class="mt-2 text-xs sm:text-sm text-[#64748B] leading-relaxed">
+                                Pick your exact seat (S1–S{{ $passengerSeatsCount }}) on our visual cabin diagram and
+                                receive
+                                instant booking
+                                confirmation.
+                            </p>
                         </div>
                     </div>
 
-                    <!-- Overlapping White Floating Card (Matching Reference Image) -->
-                    <div
-                        class="-mt-12 w-[88%] sm:w-[84%] rounded-2xl bg-white p-6 sm:p-7 shadow-xl shadow-slate-900/5 border border-slate-200/80 text-center relative z-10 group-hover:border-[#22C55E]/50 group-hover:shadow-2xl group-hover:shadow-[#22C55E]/10 transition-all duration-300">
-                        <h3
-                            class="text-lg sm:text-xl font-bold text-[#111827] font-heading tracking-tight group-hover:text-[#16A34A] transition-colors">
-                            Ride &amp; Pay Cash
-                        </h3>
-                        <p class="mt-2 text-xs sm:text-sm text-[#64748B] leading-relaxed">
-                            Board at your predefined transit hub, pay the driver directly in cash
-                            (${{ number_format($regularFare, 0) }} CAD), and enjoy
-                            the journey.
-                        </p>
+                    <!-- Step 3 Card -->
+                    <div class="group relative flex flex-col items-center">
+                        <div class="w-full h-64 sm:h-72 rounded-2xl overflow-hidden shadow-md bg-slate-900 relative">
+                            <img src="{{ asset('images/service-corporate.jpg') }}"
+                                alt="Travel comfortably in Honda Odyssey with cash on boarding"
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out" />
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent">
+                            </div>
+                        </div>
+
+                        <div
+                            class="-mt-12 w-[88%] sm:w-[84%] rounded-2xl bg-white p-6 sm:p-7 shadow-xl shadow-slate-900/5 border border-slate-200/80 text-center relative z-10 group-hover:border-[#22C55E]/50 group-hover:shadow-2xl group-hover:shadow-[#22C55E]/10 transition-all duration-300">
+                            <h3
+                                class="text-lg sm:text-xl font-bold text-[#111827] font-heading tracking-tight group-hover:text-[#16A34A] transition-colors">
+                                Ride &amp; Pay Cash
+                            </h3>
+                            <p class="mt-2 text-xs sm:text-sm text-[#64748B] leading-relaxed">
+                                Board at your predefined transit hub, pay the driver directly in cash
+                                (${{ number_format($regularFare, 0) }} CAD), and enjoy
+                                the journey.
+                            </p>
+                        </div>
                     </div>
+
                 </div>
 
-            </div>
-
-            <!-- Bottom Action CTA -->
-            <div class="mt-16 text-center">
-                <button type="button" onclick="handleGlobalBookNow()"
-                    class="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-xl bg-[#22C55E] hover:bg-[#16A34A] text-white px-8 py-3.5 text-sm sm:text-base font-bold shadow-md hover:shadow-lg transition focus:outline-none focus:ring-2 focus:ring-[#22C55E] cursor-pointer">
-                    <span>Reserve Your Seat Now</span>
-                    <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
-                            d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                    </svg>
-                </button>
+                <!-- Desktop Action CTA -->
+                <div class="mt-16 text-center">
+                    <button type="button" onclick="handleGlobalBookNow()"
+                        class="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-xl bg-[#22C55E] hover:bg-[#16A34A] text-white px-8 py-3.5 text-sm sm:text-base font-bold shadow-md hover:shadow-lg transition focus:outline-none focus:ring-2 focus:ring-[#22C55E] cursor-pointer">
+                        <span>Reserve Your Seat Now</span>
+                        <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                                d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                        </svg>
+                    </button>
+                </div>
             </div>
 
         </div>
@@ -797,7 +952,7 @@
 
             <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 z-10">
                 <!-- Section Header -->
-                <div class="text-center max-w-3xl mx-auto mb-10 space-y-3">
+                <div class="text-center max-w-3xl mx-auto mb-8 sm:mb-14 md:mb-16 lg:mb-20 space-y-2.5 sm:space-y-3">
                     <span class="text-xs font-black tracking-widest text-[#22C55E] uppercase">
                         PROMOTIONS &amp; DISCOUNT CODES
                     </span>
@@ -831,8 +986,144 @@
                     @foreach($promotionalCoupons as $idx => $coupon)
                         <div id="coupon-card-{{ $idx }}"
                             class="coupon-deal-card {{ $idx === 0 ? 'block' : 'hidden' }} transition-opacity duration-300">
+
+                            <!-- Mobile Compact Card Layout (Strictly 1:1 with media_1794218806234_669a0ee9.png) -->
                             <div
-                                class="relative rounded-3xl sm:rounded-[36px] border border-white/20 bg-white/[0.08] backdrop-blur-2xl shadow-2xl shadow-black/70 ring-1 ring-white/10 overflow-hidden flex flex-col lg:flex-row">
+                                class="block lg:hidden relative rounded-3xl border border-white/20 bg-white/[0.08] backdrop-blur-2xl p-5 sm:p-6 shadow-2xl shadow-black/70 ring-1 ring-white/10 overflow-hidden">
+                                <!-- Top Specular Highlight Edge -->
+                                <div
+                                    class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/50 to-transparent pointer-events-none">
+                                </div>
+                                <!-- Soft Ambient Emerald Glow -->
+                                <div
+                                    class="absolute -right-16 -top-16 w-48 h-48 bg-[#22C55E]/15 rounded-full blur-3xl pointer-events-none">
+                                </div>
+
+                                <div class="relative z-10">
+                                    <!-- 1. Header: Active Launch Special + Deal Index -->
+                                    <div class="flex items-center justify-between gap-3 mb-2">
+                                        <span
+                                            class="inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-black bg-[#22C55E]/20 text-[#22C55E] border border-[#22C55E]/40 uppercase tracking-wider backdrop-blur-md">
+                                            {{ $coupon['tag'] }}
+                                        </span>
+                                        <span class="text-xs font-bold text-slate-400 font-mono">
+                                            Deal {{ $idx + 1 }} of {{ count($promotionalCoupons) }}
+                                        </span>
+                                    </div>
+
+                                    <!-- 2. Headline -->
+                                    <h3
+                                        class="text-2xl sm:text-3xl font-black text-white font-heading tracking-tight drop-shadow-xs mt-2">
+                                        {{ $coupon['headline'] }}
+                                    </h3>
+
+                                    <!-- 3. Short Description (User requirement #3) -->
+                                    <p class="text-xs sm:text-sm text-slate-300 mt-2 leading-relaxed">
+                                        {{ $coupon['description'] }}
+                                    </p>
+
+                                    <!-- 4. Price Comparison Box (User requirement #2 & #4) -->
+                                    <div class="mt-4 rounded-2xl bg-black/40 border border-white/15 p-4 shadow-inner">
+                                        <div class="flex items-start justify-between gap-3">
+                                            <!-- Left: Regular Fare + Savings Badge below it -->
+                                            <div>
+                                                <span
+                                                    class="text-[10px] uppercase font-bold text-slate-400 block tracking-wider mb-0.5">Regular
+                                                    Fare</span>
+                                                <del
+                                                    class="text-base sm:text-lg font-bold text-slate-400 font-mono">{{ $coupon['regular_fare'] }}</del>
+                                                <div class="mt-2">
+                                                    <span
+                                                        class="inline-flex items-center px-2.5 py-0.5 rounded-full bg-[#22C55E]/20 border border-[#22C55E]/30 text-[#22C55E] text-xs font-black font-mono">
+                                                        {{ $coupon['savings_badge'] }}
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <!-- Right: Promo Rate ($55 CAD prominent) -->
+                                            <div class="text-right">
+                                                <span
+                                                    class="text-[10px] uppercase font-bold text-slate-400 block tracking-wider mb-0.5">Promo
+                                                    Rate</span>
+                                                <span
+                                                    class="text-3xl font-black text-[#22C55E] font-mono tracking-tight block">{{ $coupon['promo_fare'] }}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 5. Terms & Conditions (User requirement #6) -->
+                                    <div
+                                        class="mt-3.5 flex items-center gap-2 text-[11px] sm:text-xs text-slate-300 font-medium leading-tight">
+                                        <span
+                                            class="flex h-4 w-4 items-center justify-center rounded-full bg-[#22C55E]/20 text-[#22C55E] flex-shrink-0">
+                                            <svg class="h-2.5 w-2.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                                                stroke-width="3">
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                                            </svg>
+                                        </span>
+                                        <span>{{ $coupon['terms'] }}</span>
+                                    </div>
+
+                                    <!-- Divider -->
+                                    <div class="my-4 border-t border-white/10"></div>
+
+                                    <!-- 6. Coupon Code Area (User requirement #5) -->
+                                    <div>
+                                        <span
+                                            class="text-[10px] uppercase font-bold text-slate-400 block tracking-wider mb-2">Your
+                                            Promo Code</span>
+                                        <div
+                                            class="rounded-2xl border-2 border-dashed border-[#22C55E] bg-black/50 p-3 sm:p-3.5 flex items-center justify-between gap-3 shadow-inner">
+                                            <span
+                                                class="font-mono text-2xl sm:text-3xl font-black text-white tracking-widest pl-1">{{ $coupon['code'] }}</span>
+                                            <button type="button" id="copy-btn-mob-{{ strtolower($coupon['code']) }}"
+                                                onclick="copyPromoCode('{{ $coupon['code'] }}', 'copy-btn-mob-{{ strtolower($coupon['code']) }}')"
+                                                class="inline-flex min-h-[38px] items-center justify-center gap-1.5 rounded-xl bg-white/10 hover:bg-white/20 active:scale-95 text-white px-3.5 py-2 text-xs font-bold transition border border-white/20 cursor-pointer shadow-xs flex-shrink-0">
+                                                <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                                                    stroke-width="2">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" />
+                                                </svg>
+                                                <span>Copy Code</span>
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <!-- 7. CTA Button -->
+                                    <button type="button" onclick="openSeatPickerWithCoupon('{{ $coupon['code'] }}')"
+                                        class="w-full inline-flex min-h-[48px] items-center justify-center gap-2 rounded-2xl bg-[#22C55E] hover:bg-[#16A34A] active:scale-[0.99] text-white px-5 py-3 text-sm sm:text-base font-bold transition duration-200 shadow-lg shadow-[#22C55E]/30 cursor-pointer mt-3.5">
+                                        <span>Apply Code &amp; Book Now</span>
+                                        <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                                                d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                                        </svg>
+                                    </button>
+
+                                    <!-- 8. Trust indicators -->
+                                    <div class="flex items-center justify-between text-xs text-slate-400 px-1 mt-3">
+                                        <span>Cash on boarding</span>
+                                        <span>Instant confirmation</span>
+                                    </div>
+
+                                    <!-- Multi-coupon switcher controls if > 1 -->
+                                    @if(count($promotionalCoupons) > 1)
+                                        <div class="flex items-center justify-between pt-3 border-t border-white/10 mt-3">
+                                            <button type="button"
+                                                onclick="switchCoupon({{ ($idx - 1 + count($promotionalCoupons)) % count($promotionalCoupons) }})"
+                                                class="text-xs text-slate-400 hover:text-white transition flex items-center gap-1 cursor-pointer">
+                                                <span>← Previous Deal</span>
+                                            </button>
+                                            <button type="button" onclick="switchCoupon({{ ($idx + 1) % count($promotionalCoupons) }})"
+                                                class="text-xs text-[#22C55E] hover:text-emerald-400 font-bold transition flex items-center gap-1 cursor-pointer">
+                                                <span>Next Deal →</span>
+                                            </button>
+                                        </div>
+                                    @endif
+                                </div>
+                            </div>
+
+                            <!-- Desktop 2-Column Voucher with Ticket Cutout -->
+                            <div
+                                class="hidden lg:flex relative rounded-[36px] border border-white/20 bg-white/[0.08] backdrop-blur-2xl shadow-2xl shadow-black/70 ring-1 ring-white/10 overflow-hidden flex-row">
                                 <!-- Top Specular Highlight Edge -->
                                 <div
                                     class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/50 to-transparent pointer-events-none">
@@ -843,15 +1134,15 @@
                                 </div>
 
                                 <!-- Left: Voucher Core Details (62% width on desktop) -->
-                                <div class="p-6 sm:p-8 lg:p-10 flex-1 flex flex-col justify-between relative z-10">
+                                <div class="p-8 lg:p-10 flex-1 flex flex-col justify-between relative z-10">
                                     <div>
-                                        <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+                                        <div class="flex items-center justify-between gap-3 mb-4">
                                             <div class="flex items-center gap-2">
                                                 <span
                                                     class="inline-flex items-center px-3 py-1 rounded-full text-xs font-black bg-[#22C55E]/20 text-[#22C55E] border border-[#22C55E]/40 uppercase tracking-wider backdrop-blur-md">
                                                     {{ $coupon['tag'] }}
                                                 </span>
-                                                <span class="text-xs font-semibold text-slate-300 hidden sm:inline-block">
+                                                <span class="text-xs font-semibold text-slate-300">
                                                     {{ $coupon['route_tag'] }}
                                                 </span>
                                             </div>
@@ -870,31 +1161,32 @@
 
                                         <!-- Price Comparison Glass Box -->
                                         <div
-                                            class="mt-5 rounded-2xl bg-black/30 border border-white/15 p-4 flex flex-wrap items-center justify-between gap-3 shadow-inner">
+                                            class="mt-5 rounded-2xl bg-black/30 border border-white/15 p-4 flex items-center justify-between gap-4 shadow-inner">
                                             <div>
                                                 <span
-                                                    class="text-[10px] uppercase font-bold text-slate-400 block tracking-wider">Regular
+                                                    class="text-[10px] uppercase font-bold text-slate-400 block tracking-wider mb-0.5">Regular
                                                     Base Fare</span>
                                                 <del
-                                                    class="text-sm sm:text-base font-semibold text-slate-400 font-mono">{{ $coupon['regular_fare'] }}</del>
+                                                    class="text-base font-semibold text-slate-400 font-mono">{{ $coupon['regular_fare'] }}</del>
+                                                <div class="mt-1.5">
+                                                    <span
+                                                        class="inline-flex items-center px-2.5 py-0.5 rounded-full bg-[#22C55E]/20 text-[#22C55E] text-xs font-black font-mono border border-[#22C55E]/30">
+                                                        {{ $coupon['savings_badge'] }}
+                                                    </span>
+                                                </div>
                                             </div>
                                             <div class="text-right">
                                                 <span
-                                                    class="text-[10px] uppercase font-bold text-slate-400 block tracking-wider">Promotional
+                                                    class="text-[10px] uppercase font-bold text-slate-400 block tracking-wider mb-0.5">Promotional
                                                     Rate</span>
                                                 <span
-                                                    class="text-xl sm:text-2xl font-black text-[#22C55E] font-mono tracking-tight">{{ $coupon['promo_fare'] }}</span>
-                                            </div>
-                                            <div class="w-full sm:w-auto pt-2 sm:pt-0 sm:border-l sm:border-white/15 sm:pl-4">
-                                                <span
-                                                    class="inline-flex items-center px-2.5 py-1 rounded-lg bg-[#22C55E]/20 text-[#22C55E] text-xs font-black font-mono border border-[#22C55E]/30">
-                                                    {{ $coupon['savings_badge'] }}
-                                                </span>
+                                                    class="text-3xl font-black text-[#22C55E] font-mono tracking-tight">{{ $coupon['promo_fare'] }}</span>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <div class="mt-6 pt-4 border-t border-white/15 text-xs text-slate-300 flex items-center gap-2">
+                                    <div
+                                        class="mt-6 pt-4 border-t border-white/15 text-xs text-slate-300 flex items-center gap-2">
                                         <svg class="h-4 w-4 text-[#22C55E] flex-shrink-0" fill="none" viewBox="0 0 24 24"
                                             stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
@@ -904,44 +1196,34 @@
                                     </div>
                                 </div>
 
-                                <!-- Ticket Cutout Divider (Desktop: Vertical, Mobile: Horizontal) -->
-                                <div class="relative flex lg:flex-col items-center justify-center">
-                                    <!-- Mobile Horizontal Perforated Line -->
-                                    <div class="w-full lg:hidden border-b-2 border-dashed border-white/20 relative">
-                                        <div
-                                            class="absolute -left-4 -top-3 w-6 h-6 rounded-full bg-[#0B0F17] border border-white/20">
-                                        </div>
-                                        <div
-                                            class="absolute -right-4 -top-3 w-6 h-6 rounded-full bg-[#0B0F17] border border-white/20">
-                                        </div>
+                                <!-- Desktop Vertical Perforated Line -->
+                                <div
+                                    class="h-full border-r-2 border-dashed border-white/20 relative py-6 flex flex-col justify-between items-center">
+                                    <div
+                                        class="absolute -top-4 -left-3 w-6 h-6 rounded-full bg-[#0B0F17] border border-white/20">
                                     </div>
-                                    <!-- Desktop Vertical Perforated Line -->
-                                    <div class="hidden lg:block h-full border-r-2 border-dashed border-white/20 relative py-6">
-                                        <div
-                                            class="absolute -top-4 -left-3 w-6 h-6 rounded-full bg-[#0B0F17] border border-white/20">
-                                        </div>
-                                        <div
-                                            class="absolute -bottom-4 -left-3 w-6 h-6 rounded-full bg-[#0B0F17] border border-white/20">
-                                        </div>
+                                    <div
+                                        class="absolute -bottom-4 -left-3 w-6 h-6 rounded-full bg-[#0B0F17] border border-white/20">
                                     </div>
                                 </div>
 
                                 <!-- Right: Voucher Redemption Action Stub (38% width on desktop) -->
                                 <div
-                                    class="p-6 sm:p-8 lg:p-10 lg:w-[340px] flex flex-col justify-center gap-4 bg-white/[0.04] backdrop-blur-md relative z-10">
+                                    class="p-8 lg:p-10 lg:w-[340px] flex flex-col justify-center gap-4 bg-white/[0.04] backdrop-blur-md relative z-10">
                                     <div>
                                         <span
                                             class="text-[10px] uppercase font-bold text-slate-300 block tracking-wider mb-2">Promotional
                                             Coupon Code</span>
                                         <div
-                                            class="rounded-2xl border-2 border-dashed border-[#22C55E]/60 bg-black/40 backdrop-blur-md p-3.5 flex items-center justify-between gap-2 shadow-inner">
+                                            class="rounded-2xl border-2 border-dashed border-[#22C55E] bg-black/40 backdrop-blur-md p-3.5 flex items-center justify-between gap-2 shadow-inner">
                                             <span
                                                 class="font-mono text-2xl font-black text-white tracking-widest pl-1">{{ $coupon['code'] }}</span>
-                                            <button type="button" id="copy-btn-{{ strtolower($coupon['code']) }}"
-                                                onclick="copyPromoCode('{{ $coupon['code'] }}', 'copy-btn-{{ strtolower($coupon['code']) }}')"
-                                                class="inline-flex min-h-[38px] items-center justify-center gap-1.5 rounded-xl bg-white/15 hover:bg-white/25 text-white px-3 py-1.5 text-xs font-bold transition border border-white/20 backdrop-blur-md cursor-pointer shadow-xs">
-                                                <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            <button type="button" id="copy-btn-desk-{{ strtolower($coupon['code']) }}"
+                                                onclick="copyPromoCode('{{ $coupon['code'] }}', 'copy-btn-desk-{{ strtolower($coupon['code']) }}')"
+                                                class="inline-flex min-h-[38px] items-center justify-center gap-1.5 rounded-xl bg-white/15 hover:bg-white/25 active:scale-95 text-white px-3 py-1.5 text-xs font-bold transition border border-white/20 backdrop-blur-md cursor-pointer shadow-xs">
+                                                <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                                                    stroke-width="2">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
                                                         d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" />
                                                 </svg>
                                                 <span>Copy Code</span>
@@ -950,17 +1232,16 @@
                                     </div>
 
                                     <button type="button" onclick="openSeatPickerWithCoupon('{{ $coupon['code'] }}')"
-                                        class="w-full inline-flex min-h-[48px] items-center justify-center gap-2 rounded-xl bg-[#22C55E] hover:bg-[#16A34A] text-white px-5 py-3 text-sm font-black transition duration-200 shadow-lg shadow-[#22C55E]/30 cursor-pointer">
-                                        <span>Apply &amp; Book Seat</span>
+                                        class="w-full inline-flex min-h-[48px] items-center justify-center gap-2 rounded-2xl bg-[#22C55E] hover:bg-[#16A34A] active:scale-[0.99] text-white px-5 py-3 text-sm font-black transition duration-200 shadow-lg shadow-[#22C55E]/30 cursor-pointer">
+                                        <span>Apply Code &amp; Book Now</span>
                                         <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
                                                 d="M14 5l7 7m0 0l-7 7m7-7H3" />
                                         </svg>
                                     </button>
 
-                                    <div class="flex items-center justify-between text-[11px] text-slate-400 px-1">
+                                    <div class="flex items-center justify-between text-xs text-slate-400 px-1">
                                         <span>Cash on boarding</span>
-                                        <span>•</span>
                                         <span>Instant confirmation</span>
                                     </div>
 

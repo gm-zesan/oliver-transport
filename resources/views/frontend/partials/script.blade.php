@@ -324,21 +324,51 @@
         handleGlobalBookNow(null, promoCode);
     }
 
-    // Copy Promo Code to Clipboard with Feedback
+    // Copy Promo Code to Clipboard with Visual Feedback
     function copyPromoCode(code, btnId) {
-        if (navigator.clipboard) {
-            navigator.clipboard.writeText(code).then(() => {
-                const btn = document.getElementById(btnId);
-                if (btn) {
-                    const originalText = btn.innerHTML;
-                    btn.innerHTML = '<span>Copied! ✓</span>';
-                    btn.classList.add('bg-[#16A34A]');
-                    setTimeout(() => {
-                        btn.innerHTML = originalText;
-                        btn.classList.remove('bg-[#16A34A]');
-                    }, 2000);
-                }
+        function showFeedback() {
+            const btn = document.getElementById(btnId);
+            if (!btn) return;
+            const originalHtml = btn.innerHTML;
+            btn.innerHTML = `
+                <svg class="h-3.5 w-3.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+                <span>Copied!</span>
+            `;
+            btn.classList.add('bg-[#16A34A]', 'border-[#22C55E]');
+            btn.classList.remove('bg-white/10', 'bg-white/15');
+            setTimeout(() => {
+                btn.innerHTML = originalHtml;
+                btn.classList.remove('bg-[#16A34A]', 'border-[#22C55E]');
+                btn.classList.add('bg-white/10');
+            }, 2000);
+        }
+
+        if (navigator.clipboard && window.isSecureContext) {
+            navigator.clipboard.writeText(code).then(showFeedback).catch(() => {
+                fallbackCopyText(code, showFeedback);
             });
+        } else {
+            fallbackCopyText(code, showFeedback);
+        }
+    }
+
+    function fallbackCopyText(text, callback) {
+        try {
+            const textArea = document.createElement("textarea");
+            textArea.value = text;
+            textArea.style.position = "fixed";
+            textArea.style.left = "-999999px";
+            textArea.style.top = "-999999px";
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textArea);
+            if (callback) callback();
+        } catch (e) {
+            if (callback) callback();
         }
     }
 
