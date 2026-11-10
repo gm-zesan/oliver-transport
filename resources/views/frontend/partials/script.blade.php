@@ -329,19 +329,21 @@
         function showFeedback() {
             const btn = document.getElementById(btnId);
             if (!btn) return;
+            if (btn.dataset.copying === '1') return;
+            btn.dataset.copying = '1';
             const originalHtml = btn.innerHTML;
+            const originalClass = btn.className;
             btn.innerHTML = `
                 <svg class="h-3.5 w-3.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
-                <span>Copied!</span>
+                <span class="text-white">Copied!</span>
             `;
-            btn.classList.add('bg-[#16A34A]', 'border-[#22C55E]');
-            btn.classList.remove('bg-white/10', 'bg-white/15');
+            btn.className = 'inline-flex min-h-[38px] items-center justify-center gap-1.5 rounded-xl bg-[#16A34A] text-white px-3.5 py-2 text-xs font-bold transition border border-[#22C55E] cursor-pointer shadow-xs flex-shrink-0 whitespace-nowrap';
             setTimeout(() => {
                 btn.innerHTML = originalHtml;
-                btn.classList.remove('bg-[#16A34A]', 'border-[#22C55E]');
-                btn.classList.add('bg-white/10');
+                btn.className = originalClass;
+                delete btn.dataset.copying;
             }, 2000);
         }
 
