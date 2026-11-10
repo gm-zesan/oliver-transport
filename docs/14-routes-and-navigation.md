@@ -86,6 +86,9 @@ graph TD
 |---|---|---|---|---|---|---|
 | `GET` | `/login` | `login` | `Auth\AuthenticatedSessionController@create` | N/A | `web`, `guest` | Unified Shared Login Form |
 | `POST` | `/login` | `login.store` | `Auth\AuthenticatedSessionController@store` | `LoginRequest` | `web`, `guest`, `throttle:5,1` | Authenticates and triggers role redirection |
+| `GET` | `/auth/google` | `auth.google` | `Auth\GoogleAuthController@redirectToGoogle` | N/A | `web`, `guest`, `throttle:20,1` | Redirects guest to Google OAuth 2.0 consent screen |
+| `GET` | `/auth/google/redirect` | `auth.google.redirect` | `Auth\GoogleAuthController@redirectToGoogle` | N/A | `web`, `guest`, `throttle:20,1` | Alias route redirecting guest to Google OAuth consent |
+| `GET` | `/auth/google/callback` | `auth.google.callback` | `Auth\GoogleAuthController@handleGoogleCallback` | N/A | `web`, `guest`, `throttle:20,1` | Handles Google OAuth callback, links/creates user & redirects by role |
 | `GET` | `/register` | `register` | `Auth\RegisterController@create` | N/A | `web`, `guest` | Passenger self-registration form |
 | `POST` | `/register` | `register.store` | `Auth\RegisterController@store` | `RegisterPassengerRequest` | `web`, `guest`, `throttle:5,1` | Registers passenger and redirects |
 | `POST` | `/logout` | `logout` | `Auth\AuthenticatedSessionController@destroy` | N/A | `web`, `auth` | Invalidates session and redirects to `/login` |

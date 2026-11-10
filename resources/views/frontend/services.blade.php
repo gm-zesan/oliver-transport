@@ -64,8 +64,7 @@
                     Select Your Daily Route
                 </h2>
                 <p class="text-base sm:text-lg text-[#64748B] leading-relaxed max-w-2xl mx-auto">
-                    Operating 7 days a week, 365 days a year between Montreal and Toronto. Flat rate of
-                    ${{ number_format($regularFare, 0) }} CAD with cash settlement on boarding.
+                    Operating 7 days a week, 365 days a year between Montreal and Toronto. Flat rate of ${{ number_format($regularFare, 0) }} CAD with cash settlement on boarding.
                 </p>
             </div>
 

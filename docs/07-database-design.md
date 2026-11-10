@@ -60,6 +60,8 @@ erDiagram
         bigint id PK
         string name
         string email UK
+        string google_id UK "NULL (OAuth)"
+        string avatar "NULL"
         string phone
         string password
         string role "passenger | rider | operator"
@@ -227,7 +229,9 @@ erDiagram
 | `id` | `BIGINT UNSIGNED` | No | Auto Inc | Primary Key |
 | `name` | `VARCHAR(255)` | No | | Full passenger or rider name |
 | `email` | `VARCHAR(255)` | No | | Unique customer email address (`UNIQUE`) |
-| `phone` | `VARCHAR(30)` | No | | Contact telephone number |
+| `google_id` | `VARCHAR(255)` | Yes | `NULL` | Google OAuth 2.0 subject identifier (`UNIQUE`) |
+| `avatar` | `VARCHAR(255)` | Yes | `NULL` | Google profile avatar URL |
+| `phone` | `VARCHAR(30)` | No | `''` | Contact telephone number (empty string default for OAuth registrations) |
 | `email_verified_at`| `TIMESTAMP` | Yes | `NULL` | Verification timestamp |
 | `password` | `VARCHAR(255)` | No | | Bcrypt password hash (Cost 12) |
 | `role` | `VARCHAR(20)` | No | `'passenger'` | User role: `'passenger'`, `'rider'`, `'operator'` (Indexed) |
@@ -235,7 +239,7 @@ erDiagram
 | `created_at` | `TIMESTAMP` | Yes | `NULL` | Standard timestamp |
 | `updated_at` | `TIMESTAMP` | Yes | `NULL` | Standard timestamp |
 
-* **Indexes:** `PRIMARY KEY (id)`, `UNIQUE KEY users_email_unique (email)`, `INDEX idx_users_role (role)`.
+* **Indexes:** `PRIMARY KEY (id)`, `UNIQUE KEY users_email_unique (email)`, `UNIQUE KEY users_google_id_unique (google_id)`, `INDEX idx_users_role (role)`.
 
 ---
 
