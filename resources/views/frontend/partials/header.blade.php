@@ -61,8 +61,17 @@
     #site-header.is-scrolled .header-nav-link:hover,
     #header-inner.header-scrolled .header-nav-link:hover,
     .is-scrolled .header-nav-link:hover,
-    .header-scrolled .header-nav-link:hover {
+    .header-scrolled .header-nav-link:hover,
+    .header-nav-link.is-active,
+    #site-header.is-scrolled .header-nav-link.is-active,
+    #header-inner.header-scrolled .header-nav-link.is-active,
+    .is-scrolled .header-nav-link.is-active,
+    .header-scrolled .header-nav-link.is-active {
         color: #16A34A !important;
+    }
+
+    #site-header:not(.is-scrolled) .header-nav-link.is-active {
+        color: #22C55E !important;
     }
 
     #site-header.is-scrolled #header-brand-logo .brand-name,
@@ -95,26 +104,22 @@
             <x-brand-logo size="sm" :inverted="true" id="header-brand-logo" />
         </a>
 
-        <!-- Desktop Navigation Links: Home, Services, About, Contact -->
+        <!-- Desktop Navigation Links: Home, About, Services, Contact -->
         <nav class="hidden md:flex items-center gap-7 lg:gap-9 text-sm font-semibold" aria-label="Primary Navigation">
             <a href="{{ route('home') }}"
-                class="header-nav-link text-white/90 hover:text-[#22C55E] transition py-1 focus:outline-none focus:ring-2 focus:ring-[#22C55E] rounded-md">
+                class="header-nav-link {{ request()->routeIs('home') ? 'is-active text-[#22C55E]' : 'text-white/90' }} hover:text-[#22C55E] transition py-1 focus:outline-none focus:ring-2 focus:ring-[#22C55E] rounded-md">
                 Home
             </a>
-            <a href="{{ route('home') }}#services"
-                class="header-nav-link text-white/90 hover:text-[#22C55E] transition py-1 focus:outline-none focus:ring-2 focus:ring-[#22C55E] rounded-md">
+            <a href="{{ route('about') }}"
+                class="header-nav-link {{ request()->routeIs('about') ? 'is-active text-[#22C55E]' : 'text-white/90' }} hover:text-[#22C55E] transition py-1 focus:outline-none focus:ring-2 focus:ring-[#22C55E] rounded-md">
+                About
+            </a>
+            <a href="{{ route('services') }}"
+                class="header-nav-link {{ request()->routeIs('services') ? 'is-active text-[#22C55E]' : 'text-white/90' }} hover:text-[#22C55E] transition py-1 focus:outline-none focus:ring-2 focus:ring-[#22C55E] rounded-md">
                 Services
             </a>
-            <a href="{{ route('home') }}#promotions"
-                class="header-nav-link text-white/90 hover:text-[#22C55E] transition py-1 focus:outline-none focus:ring-2 focus:ring-[#22C55E] rounded-md">
-                Promotions
-            </a>
-            <a href="{{ route('faq') }}"
-                class="header-nav-link text-white/90 hover:text-[#22C55E] transition py-1 focus:outline-none focus:ring-2 focus:ring-[#22C55E] rounded-md">
-                FAQ
-            </a>
             <a href="{{ route('contact') }}"
-                class="header-nav-link text-white/90 hover:text-[#22C55E] transition py-1 focus:outline-none focus:ring-2 focus:ring-[#22C55E] rounded-md">
+                class="header-nav-link {{ request()->routeIs('contact') ? 'is-active text-[#22C55E]' : 'text-white/90' }} hover:text-[#22C55E] transition py-1 focus:outline-none focus:ring-2 focus:ring-[#22C55E] rounded-md">
                 Contact
             </a>
         </nav>
@@ -253,23 +258,19 @@
         style="background-color: #111827 !important;">
         <nav class="flex flex-col space-y-1 font-semibold text-white" aria-label="Mobile Navigation">
             <a href="{{ route('home') }}"
-                class="mobile-nav-link flex items-center min-h-[44px] px-3 rounded-xl hover:bg-white/10 hover:text-[#22C55E] transition">
+                class="mobile-nav-link flex items-center min-h-[44px] px-3 rounded-xl {{ request()->routeIs('home') ? 'bg-white/10 text-[#22C55E]' : 'hover:bg-white/10 hover:text-[#22C55E]' }} transition">
                 Home
             </a>
-            <a href="{{ route('home') }}#services"
-                class="mobile-nav-link flex items-center min-h-[44px] px-3 rounded-xl hover:bg-white/10 hover:text-[#22C55E] transition">
+            <a href="{{ route('about') }}"
+                class="mobile-nav-link flex items-center min-h-[44px] px-3 rounded-xl {{ request()->routeIs('about') ? 'bg-white/10 text-[#22C55E]' : 'hover:bg-white/10 hover:text-[#22C55E]' }} transition">
+                About
+            </a>
+            <a href="{{ route('services') }}"
+                class="mobile-nav-link flex items-center min-h-[44px] px-3 rounded-xl {{ request()->routeIs('services') ? 'bg-white/10 text-[#22C55E]' : 'hover:bg-white/10 hover:text-[#22C55E]' }} transition">
                 Services
             </a>
-            <a href="{{ route('home') }}#promotions"
-                class="mobile-nav-link flex items-center min-h-[44px] px-3 rounded-xl hover:bg-white/10 hover:text-[#22C55E] transition">
-                Promotions
-            </a>
-            <a href="{{ route('faq') }}"
-                class="mobile-nav-link flex items-center min-h-[44px] px-3 rounded-xl hover:bg-white/10 hover:text-[#22C55E] transition">
-                FAQ
-            </a>
             <a href="{{ route('contact') }}"
-                class="mobile-nav-link flex items-center min-h-[44px] px-3 rounded-xl hover:bg-white/10 hover:text-[#22C55E] transition">
+                class="mobile-nav-link flex items-center min-h-[44px] px-3 rounded-xl {{ request()->routeIs('contact') ? 'bg-white/10 text-[#22C55E]' : 'hover:bg-white/10 hover:text-[#22C55E]' }} transition">
                 Contact
             </a>
         </nav>

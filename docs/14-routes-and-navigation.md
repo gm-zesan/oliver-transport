@@ -66,10 +66,11 @@ graph TD
 
 | Method | URI Path | Route Name | Controller Action | Middleware | Description |
 |---|---|---|---|---|---|
-| `GET` | `/` | `home` | `PublicPageController@home` | `web` | Marketing homepage with booking widget |
-| `GET` | `/about` | `about` | `PublicPageController@about` | `web` | About Oliver Transport |
-| `GET` | `/contact` | `contact` | `PublicPageController@contact` | `web` | Contact details, phone, station hubs |
-| `GET` | `/faq` | `faq` | `PublicPageController@faq` | `web` | Frequently asked customer questions |
+| `GET` | `/` | `home` | `Frontend\HomeController@index` | `web` | Marketing homepage with Hero, How It Works, Discount Coupons & Footer |
+| `GET` | `/services` | `services` | `Frontend\ServicesController@index` | `web` | Daily Montreal ↔ Toronto routes, cabin amenities & charter services |
+| `GET` | `/about` | `about` | `Frontend\AboutController@index` | `web` | About PickMeRoute, Honda Odyssey fleet & Why Choose Us |
+| `GET` | `/contact` | `contact` | `Frontend\ContactController@index` | `web` | Contact details, phone, station hubs |
+| `GET` | `/faq` | `faq` | `Frontend\FaqController@index` | `web` | Frequently asked customer questions |
 | `GET` | `/terms` | `terms` | `PublicPageController@terms` | `web` | Terms and conditions |
 | `GET` | `/privacy` | `privacy` | `PublicPageController@privacy` | `web` | Privacy policy and data protection |
 | `POST` | `/locale/{lang}` | `locale.switch` | `LocaleController@switch` | `web` | Switch language between EN and FR |

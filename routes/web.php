@@ -3,9 +3,11 @@
 use App\Http\Controllers\Api\CouponController;
 use App\Http\Controllers\Api\SeatAvailabilityController;
 use App\Http\Controllers\Api\TripSearchController;
+use App\Http\Controllers\Frontend\AboutController;
 use App\Http\Controllers\Frontend\ContactController;
 use App\Http\Controllers\Frontend\FaqController;
 use App\Http\Controllers\Frontend\HomeController;
+use App\Http\Controllers\Frontend\ServicesController;
 use App\Http\Controllers\Operator\DashboardController as OperatorDashboardController;
 use App\Http\Controllers\Passenger\BookingController as PassengerBookingController;
 use App\Http\Controllers\ProfileController;
@@ -26,6 +28,8 @@ use Illuminate\Support\Facades\Route;
 
 // Public Frontend Marketing & Information Routes
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/services', [ServicesController::class, 'index'])->name('services');
+Route::get('/about', [AboutController::class, 'index'])->name('about');
 Route::get('/faq', [FaqController::class, 'index'])->name('faq');
 Route::get('/contact', [ContactController::class, 'index'])->name('contact');
 

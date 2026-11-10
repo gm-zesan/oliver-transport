@@ -88,7 +88,20 @@ test('homepage dynamically updates regular fare when database pricing setting ch
 
     $response->assertOk()
         ->assertSee('$75 CAD')
-        ->assertSee('Guaranteed flat fare of $75 CAD per passenger per trip');
+        ->assertSee('$75.00 CAD');
+});
+
+test('homepage only includes hero, how it works, promotions, and footer sections', function (): void {
+    $response = $this->get(route('home'));
+
+    $response->assertOk()
+        ->assertSee('id="booking-panel"', false)
+        ->assertSee('id="how-it-works"', false)
+        ->assertSee('id="promotions"', false)
+        ->assertSee('<footer', false)
+        ->assertDontSee('id="services"', false)
+        ->assertDontSee('id="why-us"', false)
+        ->assertDontSee('id="help-and-booking"', false);
 });
 
 test('homepage dynamically renders promotional coupons from database when is_show is true', function (): void {

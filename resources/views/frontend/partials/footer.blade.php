@@ -32,7 +32,8 @@
                     <h4 class="text-sm font-bold text-white tracking-wider uppercase font-heading">Quick Links</h4>
                     <ul class="space-y-3 text-sm text-slate-400">
                         <li><a href="{{ route('home') }}" class="hover:text-[#22C55E] transition">Home</a></li>
-                        <li><a href="{{ route('home') }}#services" class="hover:text-[#22C55E] transition">Services</a></li>
+                        <li><a href="{{ route('services') }}" class="hover:text-[#22C55E] transition">Services</a></li>
+                        <li><a href="{{ route('about') }}" class="hover:text-[#22C55E] transition">About Us</a></li>
                         <li><a href="{{ route('home') }}#promotions" class="hover:text-[#22C55E] transition">Promotions</a></li>
                         <li><a href="{{ route('faq') }}" class="hover:text-[#22C55E] transition">FAQ</a></li>
                         <li><a href="{{ route('contact') }}" class="hover:text-[#22C55E] transition">Contact</a></li>
@@ -134,8 +135,8 @@
             </div>
 
             <div class="flex items-center gap-6 text-slate-400">
-                <a href="#about" class="hover:text-white transition">Privacy Policy</a>
-                <a href="#services" class="hover:text-white transition">Terms &amp; Conditions</a>
+                <a href="{{ route('about') }}" class="hover:text-white transition">About PickMeRoute</a>
+                <a href="{{ route('services') }}" class="hover:text-white transition">Corridor Services</a>
             </div>
         </div>
 
