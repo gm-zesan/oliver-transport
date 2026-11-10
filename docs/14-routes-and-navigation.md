@@ -92,8 +92,6 @@ graph TD
 | `GET` | `/register` | `register` | `Auth\RegisterController@create` | N/A | `web`, `guest` | Passenger self-registration form |
 | `POST` | `/register` | `register.store` | `Auth\RegisterController@store` | `RegisterPassengerRequest` | `web`, `guest`, `throttle:5,1` | Registers passenger and redirects |
 | `POST` | `/logout` | `logout` | `Auth\AuthenticatedSessionController@destroy` | N/A | `web`, `auth` | Invalidates session and redirects to `/login` |
-| `GET` | `/forgot-password`| `password.request` | `Auth\PasswordResetController@create` | N/A | `web`, `guest` | Request password reset token |
-| `POST` | `/forgot-password`| `password.email` | `Auth\PasswordResetController@store` | N/A | `web`, `guest` | Dispatch password reset email token |
 
 ---
 

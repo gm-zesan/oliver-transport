@@ -47,16 +47,9 @@
 
         <!-- Password -->
         <div>
-            <div class="flex items-center justify-between mb-1.5">
-                <label for="password" class="block text-xs sm:text-sm font-bold text-slate-700">
-                    Password
-                </label>
-                @if (Route::has('password.request'))
-                    <a href="{{ route('password.request') }}" class="text-xs font-semibold text-[#16A34A] hover:underline focus:outline-none focus:ring-2 focus:ring-[#22C55E] rounded">
-                        Forgot password?
-                    </a>
-                @endif
-            </div>
+            <label for="password" class="block text-xs sm:text-sm font-bold text-slate-700 mb-1.5">
+                Password
+            </label>
             <input id="password" 
                    name="password" 
                    type="password" 
