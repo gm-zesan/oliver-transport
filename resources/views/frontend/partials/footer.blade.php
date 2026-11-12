@@ -11,7 +11,7 @@
                 </a>
 
                 <p class="text-sm text-slate-400 leading-relaxed max-w-sm">
-                    Scheduled intercity passenger shuttle connecting Montreal and Toronto with guaranteed reserved seating, well-maintained vehicles, and cash settlement upon boarding.
+                    {{ __('Scheduled intercity passenger shuttle connecting Montreal and Toronto with guaranteed reserved seating, well-maintained vehicles, and cash settlement upon boarding.') }}
                 </p>
 
                 <!-- Social Links -->
@@ -29,28 +29,28 @@
             <div class="lg:col-span-5 grid grid-cols-12 gap-5 sm:gap-8">
                 <!-- Column 2: Quick Links -->
                 <div class="col-span-5 lg:col-span-5 space-y-4">
-                    <h4 class="text-sm font-bold text-white tracking-wider uppercase font-heading">Quick Links</h4>
+                    <h4 class="text-sm font-bold text-white tracking-wider uppercase font-heading">{{ __('Quick Links') }}</h4>
                     <ul class="space-y-3 text-sm text-slate-400">
-                        <li><a href="{{ route('home') }}" class="hover:text-[#22C55E] transition">Home</a></li>
-                        <li><a href="{{ route('services') }}" class="hover:text-[#22C55E] transition">Services</a></li>
-                        <li><a href="{{ route('about') }}" class="hover:text-[#22C55E] transition">About Us</a></li>
-                        <li><a href="{{ route('home') }}#promotions" class="hover:text-[#22C55E] transition">Promotions</a></li>
-                        <li><a href="{{ route('faq') }}" class="hover:text-[#22C55E] transition">FAQ</a></li>
-                        <li><a href="{{ route('contact') }}" class="hover:text-[#22C55E] transition">Contact</a></li>
-                        <li><a href="{{ route('login') }}" class="hover:text-[#22C55E] transition">Sign In</a></li>
+                        <li><a href="{{ route('home') }}" class="hover:text-[#22C55E] transition">{{ __('Home') }}</a></li>
+                        <li><a href="{{ route('services') }}" class="hover:text-[#22C55E] transition">{{ __('Services') }}</a></li>
+                        <li><a href="{{ route('about') }}" class="hover:text-[#22C55E] transition">{{ __('About Us') }}</a></li>
+                        <li><a href="{{ route('home') }}#promotions" class="hover:text-[#22C55E] transition">{{ __('Promotions') }}</a></li>
+                        <li><a href="{{ route('faq') }}" class="hover:text-[#22C55E] transition">{{ __('FAQ') }}</a></li>
+                        <li><a href="{{ route('contact') }}" class="hover:text-[#22C55E] transition">{{ __('Contact') }}</a></li>
+                        <li><a href="{{ route('login') }}" class="hover:text-[#22C55E] transition">{{ __('Sign In') }}</a></li>
                     </ul>
                 </div>
 
                 <!-- Column 3: Contact Us -->
                 <div class="col-span-7 lg:col-span-7 space-y-4">
-                    <h4 class="text-sm font-bold text-white tracking-wider uppercase font-heading">Contact Us</h4>
+                    <h4 class="text-sm font-bold text-white tracking-wider uppercase font-heading">{{ __('Contact Us') }}</h4>
                     <ul class="space-y-3.5 text-xs sm:text-sm text-slate-400">
                         <li class="flex items-start gap-2">
                             <svg class="h-4 w-4 text-[#22C55E] flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                             </svg>
                             <div class="min-w-0">
-                                <span class="block text-slate-500 text-[10px] sm:text-xs uppercase tracking-wider font-semibold">Phone / SMS / WhatsApp</span>
+                                <span class="block text-slate-500 text-[10px] sm:text-xs uppercase tracking-wider font-semibold">{{ __('Phone / SMS / WhatsApp') }}</span>
                                 <a href="tel:6476551884" class="text-white font-bold hover:text-[#22C55E] transition text-xs sm:text-sm">647-655-1884</a>
                             </div>
                         </li>
@@ -59,7 +59,7 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                             </svg>
                             <div class="min-w-0">
-                                <span class="block text-slate-500 text-[10px] sm:text-xs uppercase tracking-wider font-semibold">Email</span>
+                                <span class="block text-slate-500 text-[10px] sm:text-xs uppercase tracking-wider font-semibold">{{ __('Email Inquiries') }}</span>
                                 <a href="mailto:info@pickmeroute.com" class="text-white hover:text-[#22C55E] transition truncate block text-xs sm:text-sm">info@pickmeroute.com</a>
                             </div>
                         </li>
@@ -69,9 +69,9 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                             </svg>
                             <div class="min-w-0">
-                                <span class="block text-slate-500 text-[10px] sm:text-xs uppercase tracking-wider font-semibold">Predefined Station Hubs</span>
-                                <span class="text-white block text-xs sm:text-sm">Station Métro Namur (Montreal)</span>
-                                <span class="text-slate-400 block text-[11px] sm:text-xs">Yorkdale Mall &amp; Yonge Station (Toronto)</span>
+                                <span class="block text-slate-500 text-[10px] sm:text-xs uppercase tracking-wider font-semibold">{{ __('Predefined Station Hubs') }}</span>
+                                <span class="text-white block text-xs sm:text-sm">{{ __('Station Métro Namur') }} ({{ __('Montreal') }})</span>
+                                <span class="text-slate-400 block text-[11px] sm:text-xs">{{ __('Yorkdale Mall') }} &amp; {{ __('Yonge Station') }} ({{ __('Toronto') }})</span>
                             </div>
                         </li>
                     </ul>
@@ -86,10 +86,10 @@
                             PickMeRoute
                         </span>
                         <h4 class="text-lg sm:text-xl font-black text-white leading-snug font-heading">
-                            Ready for Your Next Journey?
+                            {{ __('Ready for Your Next Journey?') }}
                         </h4>
                         <p class="mt-2 text-sm text-slate-300 leading-relaxed">
-                            Book your seat today and travel in comfort between Montreal and Toronto.
+                            {{ __('Book your seat today and travel in comfort between Montreal and Toronto.') }}
                         </p>
                     </div>
 
@@ -98,7 +98,7 @@
                             @if(auth()->user()->isPassenger())
                                 <button type="button" onclick="handleGlobalBookNow()"
                                    class="inline-flex min-h-[48px] w-full items-center justify-center rounded-xl bg-[#22C55E] hover:bg-[#16A34A] text-white px-5 py-3 text-sm font-bold shadow-md hover:shadow-xl transition duration-200 text-center cursor-pointer">
-                                    Book Now
+                                    {{ __('Book Now') }}
                                 </button>
                             @else
                                 @php
@@ -108,17 +108,17 @@
                                 @endphp
                                 <a href="{{ $dashboardRoute }}" 
                                    class="inline-flex min-h-[48px] w-full items-center justify-center rounded-xl bg-[#22C55E] hover:bg-[#16A34A] text-white px-5 py-3 text-sm font-bold shadow-md hover:shadow-xl transition duration-200 text-center">
-                                    Go to Dashboard
+                                    {{ __('Dashboard') }}
                                 </a>
                             @endif
                         @else
                             <button type="button" onclick="handleGlobalBookNow()" 
                                class="inline-flex min-h-[48px] w-full items-center justify-center rounded-xl bg-[#22C55E] hover:bg-[#16A34A] text-white px-5 py-3 text-sm font-bold shadow-md hover:shadow-xl transition duration-200 text-center cursor-pointer">
-                                Book Now
+                                {{ __('Book Now') }}
                             </button>
                             <div class="mt-2 text-center">
                                 <button type="button" onclick="handleGlobalBookNow()" class="text-xs text-slate-400 hover:text-[#22C55E] underline cursor-pointer">
-                                    Select Seats &amp; Reserve
+                                    {{ __('Select Seats & Reserve') }}
                                 </button>
                             </div>
                         @endauth
@@ -131,12 +131,12 @@
         <!-- Bottom Row: Copyright & Legal Links -->
         <div class="mt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
             <div>
-                © {{ date('Y') }} PickMeRoute. All rights reserved.
+                © {{ date('Y') }} PickMeRoute. {{ __('All rights reserved.') }}
             </div>
 
             <div class="flex items-center gap-6 text-slate-400">
-                <a href="{{ route('about') }}" class="hover:text-white transition">About PickMeRoute</a>
-                <a href="{{ route('services') }}" class="hover:text-white transition">Corridor Services</a>
+                <a href="{{ route('about') }}" class="hover:text-white transition">{{ __('About Us') }}</a>
+                <a href="{{ route('services') }}" class="hover:text-white transition">{{ __('Services') }}</a>
             </div>
         </div>
 

@@ -8,6 +8,7 @@ use App\Http\Controllers\Frontend\ContactController;
 use App\Http\Controllers\Frontend\FaqController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\ServicesController;
+use App\Http\Controllers\LocaleController;
 use App\Http\Controllers\Operator\DashboardController as OperatorDashboardController;
 use App\Http\Controllers\Passenger\BookingController as PassengerBookingController;
 use App\Http\Controllers\ProfileController;
@@ -25,6 +26,9 @@ use Illuminate\Support\Facades\Route;
 | Zero business logic, zero direct database queries, zero closures.
 |
 */
+
+// Language Localization Switcher
+Route::get('/locale/{locale}', [LocaleController::class, 'switch'])->name('locale.switch');
 
 // Public Frontend Marketing & Information Routes
 Route::get('/', [HomeController::class, 'index'])->name('home');

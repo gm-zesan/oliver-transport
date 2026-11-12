@@ -17,6 +17,7 @@ return new class extends Migration
             $table->decimal('amount', 10, 2);
             $table->string('currency', 3)->default('CAD');
             $table->string('description')->nullable();
+            $table->string('description_fr')->nullable();
             $table->boolean('is_active')->default(true);
             $table->timestamps();
         });

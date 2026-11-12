@@ -102,26 +102,24 @@ class HomeService
                 : 'From $'.number_format(max(0, $regularFare * (1 - ($discVal / 100))), 2).' CAD';
 
             $savingsBadge = $isFixed
-                ? 'Save $'.(int) $discVal.' CAD / Seat'
-                : (int) $discVal.'% Instant Savings';
+                ? __('Save $10 CAD / Seat')
+                : (int) $discVal.'% '.__('Instant Savings');
 
-            $headline = $coupon->code === 'LAUNCH10'
-                ? 'Ride for Only $55 CAD'
-                : ($coupon->headline ?: "Save with code {$coupon->code}");
+            $headline = $coupon->localized_headline ?: ($coupon->code === 'LAUNCH10'
+                ? __('Ride for Only $55 CAD')
+                : "Save with code {$coupon->code}");
 
-            $description = $coupon->code === 'LAUNCH10'
-                ? 'Save $10 CAD per seat on daily departures between Montreal and Toronto.'
-                : ($coupon->description ?: "Special rate of {$promoFareStr} with promotional code {$coupon->code}.");
+            $description = $coupon->localized_description ?: ($coupon->code === 'LAUNCH10'
+                ? __('Save $10 CAD per seat on daily departures between Montreal and Toronto.')
+                : "Special rate of {$promoFareStr} with promotional code {$coupon->code}.");
 
-            $terms = $coupon->code === 'LAUNCH10'
-                ? 'Valid on all daily departures · Min booking $50 CAD · Cash settlement on boarding'
-                : ($coupon->terms ?: 'Valid on all daily departures · Min booking $50 CAD · Cash settlement on boarding');
+            $terms = $coupon->localized_terms ?: __('Valid on all daily departures · Min booking $50 CAD · Cash settlement on boarding');
 
             return [
                 'code' => $coupon->code,
-                'tab_label' => $coupon->tab_label ?: ($isFixed ? "🔥 \${$discVal} OFF Special" : "👥 {$discVal}% OFF Saver"),
-                'tag' => $coupon->tag ?: 'Active Launch Special',
-                'route_tag' => $coupon->route_tag ?: 'Montreal ↔ Toronto Corridor',
+                'tab_label' => $coupon->localized_tab_label ?: ($isFixed ? "🔥 \${$discVal} ".__('OFF Special') : "👥 {$discVal}% ".__('OFF Saver')),
+                'tag' => $coupon->localized_tag ?: __('Active Launch Special'),
+                'route_tag' => $coupon->localized_route_tag ?: __('Montreal ↔ Toronto Corridor'),
                 'headline' => $headline,
                 'description' => $description,
                 'regular_fare' => '$'.number_format($regularFare, 0).' CAD',
@@ -151,20 +149,20 @@ class HomeService
 
             $loc->pickup_time = $pickupTime;
             $loc->dropoff_time = $dropoffTime;
-            $loc->dropoff_subtitle = $loc->dropoff_subtitle ?: "{$loc->city} • Drop-off";
+            $loc->dropoff_subtitle = $loc->localized_dropoff_subtitle ?: "{$loc->localized_city} • ".__('Drop-off');
 
             $clientStations[$loc->code ?? (string) $loc->id] = [
                 'id' => $loc->id,
                 'code' => $loc->code,
-                'name' => $loc->name,
-                'city' => $loc->city,
+                'name' => $loc->localized_name,
+                'city' => $loc->localized_city,
                 'province' => $loc->province,
-                'address' => $loc->address,
-                'subtitle' => $loc->subtitle,
-                'dropoff_subtitle' => $loc->dropoff_subtitle,
+                'address' => $loc->localized_address,
+                'subtitle' => $loc->localized_subtitle,
+                'dropoff_subtitle' => $loc->localized_dropoff_subtitle,
                 'departTime' => $pickupTime,
                 'arrivalTime' => $dropoffTime,
-                'label' => "{$loc->name} ({$loc->city})",
+                'label' => "{$loc->localized_name} ({$loc->localized_city})",
             ];
         }
 
@@ -210,9 +208,9 @@ class HomeService
 
             return [
                 'id' => $route->id,
-                'name' => $route->name,
+                'name' => $route->localized_name,
                 'direction_code' => $route->direction_code,
-                'service_label' => $route->service_label ?: ($isRouteA ? 'Route A • Daily Service' : 'Route B • Daily Service'),
+                'service_label' => $route->localized_service_label ?: ($isRouteA ? __('Route A • Daily Service') : __('Route B • Daily Service')),
                 'image_path' => asset($route->image_path ?: ($isRouteA ? 'images/service-intercity.jpg' : 'images/service-corporate.jpg')),
                 'btn_key' => $route->btn_key ?: ($isRouteA ? 'route-a' : 'route-b'),
                 'regular_fare' => $regularFare,

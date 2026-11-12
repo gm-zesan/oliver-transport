@@ -1,5 +1,5 @@
 <x-layouts.guest :hide-floating-logo="true">
-    <x-slot:title>Register — PickMeRoute</x-slot:title>
+    <x-slot:title>{{ __('Register') }} — PickMeRoute</x-slot:title>
 
     <!-- Brand Logo & Welcome Text inside Card (Matching Login Page) -->
     <div class="mb-6 text-center">
@@ -9,7 +9,7 @@
             <x-brand-logo size="lg" :show-subtitle="true" />
         </a>
         <p class="mt-3 text-xs sm:text-sm text-slate-600 font-medium">
-            Create your account to book your seats.
+            {{ __('Create your account to book your seats.') }}
         </p>
     </div>
 
@@ -31,13 +31,13 @@
             <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z" />
             <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z" />
         </svg>
-        <span>Continue with Google</span>
+        <span>{{ __('Continue with Google') }}</span>
     </a>
 
     <!-- Divider -->
     <div class="relative my-5 flex items-center">
         <div class="flex-grow border-t border-slate-200/90"></div>
-        <span class="mx-3 flex-shrink-0 text-xs font-semibold uppercase tracking-wider text-slate-500">or register with email</span>
+        <span class="mx-3 flex-shrink-0 text-xs font-semibold uppercase tracking-wider text-slate-500">{{ __('or register with email') }}</span>
         <div class="flex-grow border-t border-slate-200/90"></div>
     </div>
 
@@ -48,7 +48,7 @@
         <!-- Full Name -->
         <div>
             <label for="name" class="block text-xs sm:text-sm font-bold text-slate-700 mb-1.5">
-                Full Name
+                {{ __('Full Name') }}
             </label>
             <input id="name" name="name" type="text" autocomplete="name" required value="{{ old('name') }}"
                 class="block w-full min-h-[48px] rounded-xl border border-white/80 bg-white/80 backdrop-blur-md px-3.5 py-2.5 text-base text-[16px] text-slate-900 placeholder-slate-400 shadow-xs focus:border-[#22C55E] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#22C55E] @error('name') border-red-500 focus:border-red-500 focus:ring-red-500 @enderror"
@@ -61,7 +61,7 @@
         <!-- Email Address -->
         <div>
             <label for="email" class="block text-xs sm:text-sm font-bold text-slate-700 mb-1.5">
-                Email Address
+                {{ __('Email Address') }}
             </label>
             <input id="email" name="email" type="email" autocomplete="email" autocapitalize="none" autocorrect="off"
                 spellcheck="false" required value="{{ old('email') }}"
@@ -75,7 +75,7 @@
         <!-- Password -->
         <div>
             <label for="password" class="block text-xs sm:text-sm font-bold text-slate-700 mb-1.5">
-                Password
+                {{ __('Password') }}
             </label>
             <input id="password" name="password" type="password" autocomplete="new-password" required
                 class="block w-full min-h-[48px] rounded-xl border border-white/80 bg-white/80 backdrop-blur-md px-3.5 py-2.5 text-base text-[16px] text-slate-900 placeholder-slate-400 shadow-xs focus:border-[#22C55E] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#22C55E] @error('password') border-red-500 focus:border-red-500 focus:ring-red-500 @enderror"
@@ -88,7 +88,7 @@
         <!-- Password Confirmation -->
         <div>
             <label for="password_confirmation" class="block text-xs sm:text-sm font-bold text-slate-700 mb-1.5">
-                Confirm Password
+                {{ __('Confirm Password') }}
             </label>
             <input id="password_confirmation" name="password_confirmation" type="password" autocomplete="new-password"
                 required
@@ -100,7 +100,7 @@
         <div class="pt-2">
             <button type="submit"
                 class="flex w-full min-h-[48px] items-center justify-center gap-2 rounded-xl bg-[#22C55E] hover:bg-[#16A34A] px-5 py-3 text-sm sm:text-base font-bold text-white shadow-lg shadow-[#22C55E]/20 transition focus:outline-none focus:ring-2 focus:ring-[#22C55E] focus:ring-offset-2 cursor-pointer touch-manipulation">
-                <span>Create Passenger Account</span>
+                <span>{{ __('Create Passenger Account') }}</span>
                 <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
                         d="M14 5l7 7m0 0l-7 7m7-7H3" />
@@ -112,10 +112,10 @@
     <!-- Sign In Link -->
     <div class="mt-6 border-t border-slate-200/80 pt-4 text-center">
         <p class="text-xs sm:text-sm text-slate-600">
-            Already registered?
+            {{ __('Already registered?') }}
             <a href="{{ route('login') }}"
                 class="font-bold text-[#16A34A] hover:underline focus:outline-none focus:ring-2 focus:ring-[#22C55E] rounded px-1">
-                Sign In here →
+                {{ __('Sign In here →') }}
             </a>
         </p>
     </div>

@@ -1,6 +1,6 @@
 @extends('frontend.layout.app')
 
-@section('title', 'About Us — PickMeRoute Montreal ↔ Toronto Passenger Shuttle')
+@section('title', __('About Us — PickMeRoute Montreal ↔ Toronto Passenger Shuttle'))
 
 @section('content')
     <script>
@@ -30,15 +30,15 @@
             <div class="inline-flex items-center justify-center gap-3 mb-4">
                 <span class="w-6 sm:w-8 h-[1.5px] bg-[#22C55E]"></span>
                 <span class="text-xs sm:text-sm font-black tracking-widest text-[#22C55E] uppercase font-heading">
-                    ABOUT PICKMEROUTE
+                    {{ __('ABOUT PICKMEROUTE') }}
                 </span>
                 <span class="w-6 sm:w-8 h-[1.5px] bg-[#22C55E]"></span>
             </div>
             <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight font-heading text-white drop-shadow-md">
-                Redefining Montreal ↔ Toronto Travel
+                {{ __('Redefining Montreal ↔ Toronto Travel') }}
             </h1>
             <p class="mt-4 text-sm sm:text-base lg:text-lg text-slate-200 max-w-2xl mx-auto leading-relaxed drop-shadow-xs">
-                Founded to offer a clean, punctual, and personal alternative to crowded coach buses, PickMeRoute connects Quebec and Ontario daily with guaranteed reserved seating.
+                {{ __('Founded to offer a clean, punctual, and personal alternative to crowded coach buses, PickMeRoute connects Quebec and Ontario daily with guaranteed reserved seating.') }}
             </p>
         </div>
     </section>
@@ -51,31 +51,31 @@
                 <!-- Left: Our Story & Philosophy (7 cols) -->
                 <div class="lg:col-span-7 space-y-6">
                     <span class="text-xs font-black tracking-widest text-[#16A34A] uppercase block">
-                        OUR STORY &amp; PURPOSE
+                        {{ __('OUR STORY & PURPOSE') }}
                     </span>
                     <h2 class="text-3xl sm:text-4xl font-black text-[#111827] tracking-tight font-heading leading-tight">
-                        Built Around Punctuality, Transparency, and Executive Comfort
+                        {{ __('Built Around Punctuality, Transparency, and Executive Comfort') }}
                     </h2>
                     <p class="text-base text-[#64748B] leading-relaxed">
-                        Traveling between Montreal and Toronto should never feel stressful, overcrowded, or unpredictable. PickMeRoute operates a dedicated daily intercity corridor designed specifically for commuters, students, families, and business travelers who value guaranteed seating and straightforward service.
+                        {{ __('Traveling between Montreal and Toronto should never feel stressful, overcrowded, or unpredictable. PickMeRoute operates a dedicated daily intercity corridor designed specifically for commuters, students, families, and business travelers who value guaranteed seating and straightforward service.') }}
                     </p>
                     <p class="text-base text-[#64748B] leading-relaxed">
-                        Instead of confusing multi-stop bus terminals or unreliable last-minute ride-shares, we operate strictly on fixed daily schedules connecting three highly accessible transit hubs: <strong class="text-slate-800">{{ $namurLoc?->name ?? 'Station Métro Namur' }}</strong> in Montreal, and <strong class="text-slate-800">{{ $yorkdaleLoc?->name ?? 'Yorkdale Mall' }}</strong> &amp; <strong class="text-slate-800">{{ $yongeLoc?->name ?? 'Yonge Station' }}</strong> in Toronto.
+                        {{ __('Instead of confusing multi-stop bus terminals or unreliable last-minute ride-shares, we operate strictly on fixed daily schedules connecting three highly accessible transit hubs: :namur in Montreal, and :yorkdale & :yonge in Toronto.', ['namur' => $namurLoc?->localized_name ?? 'Station Métro Namur', 'yorkdale' => $yorkdaleLoc?->localized_name ?? 'Yorkdale Mall', 'yonge' => $yongeLoc?->localized_name ?? 'Yonge Station']) }}
                     </p>
 
                     <!-- Key Highlights Row -->
                     <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 pt-4">
                         <div class="rounded-2xl bg-[#F8FAFC] border border-slate-200/80 p-4">
                             <span class="text-2xl sm:text-3xl font-black text-[#16A34A] font-mono block">365</span>
-                            <span class="text-xs font-bold text-slate-600 mt-1 block">Days/Year Service</span>
+                            <span class="text-xs font-bold text-slate-600 mt-1 block">{{ __('Days/Year Service') }}</span>
                         </div>
                         <div class="rounded-2xl bg-[#F8FAFC] border border-slate-200/80 p-4">
                             <span class="text-2xl sm:text-3xl font-black text-[#16A34A] font-mono block">{{ $passengerSeatsCount }}</span>
-                            <span class="text-xs font-bold text-slate-600 mt-1 block">Reserved Seats Max</span>
+                            <span class="text-xs font-bold text-slate-600 mt-1 block">{{ __('Reserved Seats Max') }}</span>
                         </div>
                         <div class="col-span-2 sm:col-span-1 rounded-2xl bg-[#F8FAFC] border border-slate-200/80 p-4">
                             <span class="text-2xl sm:text-3xl font-black text-[#16A34A] font-mono block">${{ number_format($regularFare, 0) }}</span>
-                            <span class="text-xs font-bold text-slate-600 mt-1 block">CAD Flat Rate</span>
+                            <span class="text-xs font-bold text-slate-600 mt-1 block">{{ __('CAD Flat Rate') }}</span>
                         </div>
                     </div>
                 </div>
@@ -88,35 +88,35 @@
                                 class="w-full h-full object-cover" />
                             <div class="absolute inset-0 bg-gradient-to-t from-[#111827] via-transparent to-transparent"></div>
                             <span class="absolute top-4 right-4 px-3 py-1 rounded-full bg-[#22C55E] text-white text-xs font-black tracking-wider uppercase shadow-md">
-                                Active Fleet
+                                {{ __('Active Fleet') }}
                             </span>
                         </div>
                         <div class="p-7 space-y-4">
                             <div>
-                                <span class="text-xs font-bold uppercase tracking-wider text-[#22C55E] block">Commercial Passenger Minivan</span>
+                                <span class="text-xs font-bold uppercase tracking-wider text-[#22C55E] block">{{ __('Commercial Passenger Minivan') }}</span>
                                 <h3 class="text-2xl font-black font-heading text-white mt-1">
                                     Silver {{ $vehicleModel }}
                                 </h3>
-                                <p class="text-xs text-slate-400 font-mono mt-0.5">Ontario License Plate: {{ $vehiclePlate }}</p>
+                                <p class="text-xs text-slate-400 font-mono mt-0.5">{{ __('Ontario License Plate: :plate', ['plate' => $vehiclePlate]) }}</p>
                             </div>
                             <ul class="space-y-2.5 text-sm text-slate-300 border-t border-slate-800 pt-4">
                                 <li class="flex items-center gap-2.5">
                                     <svg class="h-4 w-4 text-[#22C55E] flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
                                     </svg>
-                                    <span>1 Front Window Seat (S1) + 5 Rear Cabin Seats (S2–S6)</span>
+                                    <span>{{ __('1 Front Window Seat (S1) + 5 Rear Cabin Seats (S2–S6)') }}</span>
                                 </li>
                                 <li class="flex items-center gap-2.5">
                                     <svg class="h-4 w-4 text-[#22C55E] flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
                                     </svg>
-                                    <span>Leather Interior, Dual Climate &amp; Privacy Tinting</span>
+                                    <span>{{ __('Leather Interior, Dual Climate & Privacy Tinting') }}</span>
                                 </li>
                                 <li class="flex items-center gap-2.5">
                                     <svg class="h-4 w-4 text-[#22C55E] flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
                                     </svg>
-                                    <span>Routine Safety Maintenance &amp; Commercial Coverage</span>
+                                    <span>{{ __('Routine Safety Maintenance & Commercial Coverage') }}</span>
                                 </li>
                             </ul>
                         </div>
@@ -150,16 +150,16 @@
                         <div class="space-y-3 mb-6 relative z-10 text-center lg:text-left">
                             <div>
                                 <span class="text-xs font-black tracking-widest text-[#22C55E] uppercase">
-                                    WHY CHOOSE US
+                                    {{ __('WHY CHOOSE US') }}
                                 </span>
                             </div>
 
                             <h2 class="text-2xl sm:text-3xl lg:text-4xl font-black text-white tracking-tight font-heading leading-tight drop-shadow-sm text-center lg:text-left">
-                                Why Select Us for Your Journey
+                                {{ __('Why Select Us for Your Journey') }}
                             </h2>
 
                             <p class="text-sm text-slate-200 leading-relaxed text-center lg:text-left">
-                                Premium comfort, guaranteed seating, and reliable daily intercity transit.
+                                {{ __('Premium comfort, guaranteed seating, and reliable daily intercity transit.') }}
                             </p>
                         </div>
 
@@ -171,14 +171,14 @@
                                 <summary class="flex cursor-pointer items-center justify-between text-base sm:text-lg font-bold text-white select-none py-2 hover:text-[#22C55E] transition-colors">
                                     <div class="flex items-center gap-3.5">
                                         <span class="text-[#22C55E] font-bold text-lg leading-none">$</span>
-                                        <span>Best Rate Guarantee</span>
+                                        <span>{{ __('Best Rate Guarantee') }}</span>
                                     </div>
                                     <svg class="h-4 w-4 text-slate-400 group-hover:text-white transition-transform duration-200 group-open:rotate-180 flex-shrink-0 ml-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                                     </svg>
                                 </summary>
                                 <div class="pl-7 pr-2 pt-1 pb-2.5 text-sm text-slate-300 leading-relaxed">
-                                    Guaranteed flat fare of ${{ number_format($regularFare, 0) }} CAD per passenger per trip with zero hidden fees. Cash Payment Upon Boarding: Pay the driver directly in cash when boarding.
+                                    {{ __('Guaranteed flat fare of $:fare CAD per passenger per trip with zero hidden fees. Cash Payment Upon Boarding: Pay the driver directly in cash when boarding.', ['fare' => number_format($regularFare, 0)]) }}
                                 </div>
                             </details>
 
@@ -189,14 +189,14 @@
                                         <svg class="h-5 w-5 text-[#22C55E] flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                             <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                                         </svg>
-                                        <span>Insurance Protected</span>
+                                        <span>{{ __('Insurance Protected') }}</span>
                                     </div>
                                     <svg class="h-4 w-4 text-slate-400 group-hover:text-white transition-transform duration-200 group-open:rotate-180 flex-shrink-0 ml-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                                     </svg>
                                 </summary>
                                 <div class="pl-7 pr-2 pt-1 pb-2.5 text-sm text-slate-300 leading-relaxed">
-                                    Full commercial passenger insurance coverage on all trips with courteous, experienced, and dedicated drivers.
+                                    {{ __('Full commercial passenger insurance coverage on all trips with courteous, experienced, and dedicated drivers.') }}
                                 </div>
                             </details>
 
@@ -208,14 +208,14 @@
                                             <circle cx="12" cy="12" r="9" stroke-linecap="round" stroke-linejoin="round" />
                                             <path stroke-linecap="round" stroke-linejoin="round" d="M12 7v5l3 2" />
                                         </svg>
-                                        <span>Always Available</span>
+                                        <span>{{ __('Always Available') }}</span>
                                     </div>
                                     <svg class="h-4 w-4 text-slate-400 group-hover:text-white transition-transform duration-200 group-open:rotate-180 flex-shrink-0 ml-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                                     </svg>
                                 </summary>
                                 <div class="pl-7 pr-2 pt-1 pb-2.5 text-sm text-slate-300 leading-relaxed">
-                                    Daily fixed departures 7 days a week, 365 days a year: {{ $routeATime }} from Montreal, {{ $yorkdalePickupTime }} &amp; {{ $yongePickupTime }} from Toronto.
+                                    {{ __('Daily fixed departures 7 days a week, 365 days a year: :routeA from Montreal, :yorkdale & :yonge from Toronto.', ['routeA' => $routeATime, 'yorkdale' => $yorkdalePickupTime, 'yonge' => $yongePickupTime]) }}
                                 </div>
                             </details>
 
@@ -227,14 +227,14 @@
                                             <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                                             <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                                         </svg>
-                                        <span>Montreal ↔ Toronto Hubs</span>
+                                        <span>{{ __('Montreal ↔ Toronto Hubs') }}</span>
                                     </div>
                                     <svg class="h-4 w-4 text-slate-400 group-hover:text-white transition-transform duration-200 group-open:rotate-180 flex-shrink-0 ml-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                                     </svg>
                                 </summary>
                                 <div class="pl-7 pr-2 pt-1 pb-2.5 text-sm text-slate-300 leading-relaxed">
-                                    Direct service connecting {{ $namurLoc?->name ?? 'Station Métro Namur' }} in Montreal with {{ $yorkdaleLoc?->name ?? 'Yorkdale Mall' }} and {{ $yongeLoc?->name ?? 'Yonge Station' }} in Toronto.
+                                    {{ __('Direct service connecting :namur in Montreal with :yorkdale and :yonge in Toronto.', ['namur' => $namurLoc?->localized_name ?? 'Station Métro Namur', 'yorkdale' => $yorkdaleLoc?->localized_name ?? 'Yorkdale Mall', 'yonge' => $yongeLoc?->localized_name ?? 'Yonge Station']) }}
                                 </div>
                             </details>
 
@@ -245,14 +245,14 @@
                                         <svg class="h-5 w-5 text-[#22C55E] flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                             <path stroke-linecap="round" stroke-linejoin="round" d="M8 7h8m-8 5h8m-8 5h8M5 3h14a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2z" />
                                         </svg>
-                                        <span>Fleet &amp; Cabin Seating</span>
+                                        <span>{{ __('Fleet & Cabin Seating') }}</span>
                                     </div>
                                     <svg class="h-4 w-4 text-slate-400 group-hover:text-white transition-transform duration-200 group-open:rotate-180 flex-shrink-0 ml-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                                     </svg>
                                 </summary>
                                 <div class="pl-7 pr-2 pt-1 pb-2.5 text-sm text-slate-300 leading-relaxed">
-                                    Travel in our {{ $vehicleModel }} (Plate: {{ $vehiclePlate }}) featuring exactly {{ $passengerSeatsCount }} Passenger Seats, leather interior, and climate control for executive comfort.
+                                    {{ __('Travel in our :model (Plate: :plate) featuring exactly :seats Passenger Seats, leather interior, and climate control for executive comfort.', ['model' => $vehicleModel, 'plate' => $vehiclePlate, 'seats' => $passengerSeatsCount]) }}
                                 </div>
                             </details>
 
@@ -262,7 +262,7 @@
                         <div class="mt-8 pt-6 border-t border-white/15 relative z-10">
                             <button type="button" onclick="handleGlobalBookNow()"
                                 class="inline-flex items-center justify-center gap-2.5 rounded-2xl bg-[#22C55E] hover:bg-[#16A34A] text-white px-8 py-3.5 text-sm sm:text-base font-bold shadow-xl shadow-[#22C55E]/30 transition-all duration-200 hover:scale-[1.02] cursor-pointer min-h-[50px]">
-                                <span>Reserve Your Seat</span>
+                                <span>{{ __('Reserve Your Seat') }}</span>
                                 <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
                                 </svg>
@@ -281,13 +281,13 @@
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto mb-14 space-y-3">
                 <span class="text-xs font-black tracking-widest text-[#16A34A] uppercase">
-                    FIXED TRANSIT LOCATIONS
+                    {{ __('FIXED TRANSIT LOCATIONS') }}
                 </span>
                 <h2 class="text-3xl sm:text-4xl font-black text-[#111827] tracking-tight font-heading leading-tight">
-                    Our 3 Corridor Station Hubs
+                    {{ __('Our 3 Corridor Station Hubs') }}
                 </h2>
                 <p class="text-base text-[#64748B] leading-relaxed">
-                    Every stop is selected for maximum metro/subway convenience, safe passenger loading, and quick highway access.
+                    {{ __('Every stop is selected for maximum metro/subway convenience, safe passenger loading, and quick highway access.') }}
                 </p>
             </div>
 
@@ -295,36 +295,36 @@
                 <!-- Hub 1 -->
                 <div class="rounded-3xl bg-white border border-slate-200/80 p-7 shadow-xs">
                     <div class="flex items-center justify-between mb-4">
-                        <span class="px-3 py-1 rounded-full bg-[#E8FBF0] text-[#16A34A] text-xs font-black uppercase tracking-wider">Montreal Hub</span>
+                        <span class="px-3 py-1 rounded-full bg-[#E8FBF0] text-[#16A34A] text-xs font-black uppercase tracking-wider">{{ __('Montreal Hub') }}</span>
                         <span class="text-xs font-mono font-bold text-slate-400">QC</span>
                     </div>
-                    <h3 class="text-xl font-bold text-slate-900 font-heading">{{ $namurLoc?->name ?? 'Station Métro Namur' }}</h3>
+                    <h3 class="text-xl font-bold text-slate-900 font-heading">{{ $namurLoc?->localized_name ?? 'Station Métro Namur' }}</h3>
                     <p class="mt-2 text-sm text-slate-600 leading-relaxed">
-                        Conveniently positioned right at the Orange Line metro exit. Serves as our Route A morning boarding ({{ $routeATime }}) and Route B evening destination ({{ $namurArrivalTime }} EST).
+                        {{ __('Conveniently positioned right at the Orange Line metro exit. Serves as our Route A morning boarding (:time) and Route B evening destination (:arrival EST).', ['time' => $routeATime, 'arrival' => $namurArrivalTime]) }}
                     </p>
                 </div>
 
                 <!-- Hub 2 -->
                 <div class="rounded-3xl bg-white border border-slate-200/80 p-7 shadow-xs">
                     <div class="flex items-center justify-between mb-4">
-                        <span class="px-3 py-1 rounded-full bg-[#E8FBF0] text-[#16A34A] text-xs font-black uppercase tracking-wider">Toronto Hub 1</span>
+                        <span class="px-3 py-1 rounded-full bg-[#E8FBF0] text-[#16A34A] text-xs font-black uppercase tracking-wider">{{ __('Toronto Hub 1') }}</span>
                         <span class="text-xs font-mono font-bold text-slate-400">ON</span>
                     </div>
-                    <h3 class="text-xl font-bold text-slate-900 font-heading">{{ $yorkdaleLoc?->name ?? 'Yorkdale Mall' }}</h3>
+                    <h3 class="text-xl font-bold text-slate-900 font-heading">{{ $yorkdaleLoc?->localized_name ?? 'Yorkdale Mall' }}</h3>
                     <p class="mt-2 text-sm text-slate-600 leading-relaxed">
-                        Easy access from Highway 401 and TTC Line 1. Serves as Route A's first Toronto drop-off and Route B's afternoon primary pickup ({{ $yorkdalePickupTime }}).
+                        {{ __('Easy access from Highway 401 and TTC Line 1. Serves as Route A\'s first Toronto drop-off and Route B\'s afternoon primary pickup (:time).', ['time' => $yorkdalePickupTime]) }}
                     </p>
                 </div>
 
                 <!-- Hub 3 -->
                 <div class="rounded-3xl bg-white border border-slate-200/80 p-7 shadow-xs">
                     <div class="flex items-center justify-between mb-4">
-                        <span class="px-3 py-1 rounded-full bg-[#E8FBF0] text-[#16A34A] text-xs font-black uppercase tracking-wider">Toronto Hub 2</span>
+                        <span class="px-3 py-1 rounded-full bg-[#E8FBF0] text-[#16A34A] text-xs font-black uppercase tracking-wider">{{ __('Toronto Hub 2') }}</span>
                         <span class="text-xs font-mono font-bold text-slate-400">ON</span>
                     </div>
-                    <h3 class="text-xl font-bold text-slate-900 font-heading">{{ $yongeLoc?->name ?? 'Yonge Station' }}</h3>
+                    <h3 class="text-xl font-bold text-slate-900 font-heading">{{ $yongeLoc?->localized_name ?? 'Yonge Station' }}</h3>
                     <p class="mt-2 text-sm text-slate-600 leading-relaxed">
-                        Central North York / Midtown transit access with direct TTC subway connection. Serves as Route A's final drop-off and Route B's second pickup ({{ $yongePickupTime }}).
+                        {{ __('Central North York / Midtown transit access with direct TTC subway connection. Serves as Route A\'s final drop-off and Route B\'s second pickup (:time).', ['time' => $yongePickupTime]) }}
                     </p>
                 </div>
             </div>
@@ -339,31 +339,30 @@
 
                 <div class="relative z-10 text-center lg:text-left space-y-2.5 max-w-xl">
                     <span class="text-xs font-black tracking-widest text-[#22C55E] uppercase block">
-                        HAVE QUESTIONS OR READY TO BOOK?
+                        {{ __('HAVE QUESTIONS OR READY TO BOOK?') }}
                     </span>
                     <h3 class="text-2xl sm:text-3xl lg:text-4xl font-black font-heading tracking-tight leading-tight">
-                        Travel Between Montreal &amp; Toronto With Confidence
+                        {{ __('Travel Between Montreal & Toronto With Confidence') }}
                     </h3>
                     <p class="text-sm sm:text-base text-slate-300 leading-relaxed">
-                        Reserve your visual cabin seat online now and pay cash upon boarding, or reach out to our team 7 days a week.
+                        {{ __('Reserve your visual cabin seat online now and pay cash upon boarding, or reach out to our team 7 days a week.') }}
                     </p>
                 </div>
 
                 <div class="relative z-10 flex flex-col sm:flex-row items-center gap-3.5 w-full lg:w-auto">
                     <button type="button" onclick="handleGlobalBookNow()"
                         class="w-full sm:w-auto inline-flex min-h-[48px] items-center justify-center gap-2 rounded-2xl bg-[#22C55E] hover:bg-[#16A34A] text-white px-7 py-3 text-sm font-bold shadow-lg shadow-[#22C55E]/30 transition cursor-pointer">
-                        <span>Reserve Your Seat</span>
+                        <span>{{ __('Reserve Your Seat') }}</span>
                         <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
                         </svg>
                     </button>
                     <a href="{{ route('services') }}"
                         class="w-full sm:w-auto inline-flex min-h-[48px] items-center justify-center gap-2 rounded-2xl bg-white/10 hover:bg-white/20 text-white px-6 py-3 text-sm font-bold border border-white/20 transition cursor-pointer">
-                        <span>View Daily Services</span>
+                        <span>{{ __('View Daily Services') }}</span>
                     </a>
                 </div>
             </div>
         </div>
     </section>
 @endsection
-

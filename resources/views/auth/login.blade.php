@@ -1,5 +1,5 @@
 <x-layouts.guest :hide-floating-logo="true">
-    <x-slot:title>Sign In — PickMeRoute</x-slot:title>
+    <x-slot:title>{{ __('Sign In') }} — PickMeRoute</x-slot:title>
 
     <!-- Brand Logo & Welcome Text inside Card -->
     <div class="mb-6 text-center">
@@ -7,7 +7,7 @@
             <x-brand-logo size="lg" :show-subtitle="true" />
         </a>
         <p class="mt-3 text-xs sm:text-sm text-slate-600 font-medium">
-            Welcome back! Please enter your details to sign in.
+            {{ __('Welcome back! Please enter your details to sign in.') }}
         </p>
     </div>
 
@@ -27,7 +27,7 @@
         <!-- Email Address -->
         <div>
             <label for="email" class="block text-xs sm:text-sm font-bold text-slate-700 mb-1.5">
-                Email Address
+                {{ __('Email Address') }}
             </label>
             <input id="email" 
                    name="email" 
@@ -48,7 +48,7 @@
         <!-- Password -->
         <div>
             <label for="password" class="block text-xs sm:text-sm font-bold text-slate-700 mb-1.5">
-                Password
+                {{ __('Password') }}
             </label>
             <input id="password" 
                    name="password" 
@@ -69,7 +69,7 @@
                        name="remember" 
                        id="remember"
                        class="h-4 w-4 rounded border-slate-300 text-[#22C55E] focus:ring-[#22C55E] cursor-pointer">
-                <span class="text-xs sm:text-sm font-medium text-slate-600">Keep me signed in</span>
+                <span class="text-xs sm:text-sm font-medium text-slate-600">{{ __('Keep me signed in') }}</span>
             </label>
         </div>
 
@@ -77,7 +77,7 @@
         <div class="pt-1">
             <button type="submit" 
                     class="flex w-full min-h-[48px] items-center justify-center gap-2 rounded-xl bg-[#22C55E] hover:bg-[#16A34A] px-5 py-3 text-sm sm:text-base font-bold text-white shadow-lg shadow-[#22C55E]/20 transition focus:outline-none focus:ring-2 focus:ring-[#22C55E] focus:ring-offset-2 cursor-pointer touch-manipulation">
-                <span>Sign In to Account</span>
+                <span>{{ __('Sign In to Account') }}</span>
                 <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
                 </svg>
@@ -88,7 +88,7 @@
     <!-- Social Authentication Divider -->
     <div class="relative my-5 flex items-center">
         <div class="flex-grow border-t border-slate-200/90"></div>
-        <span class="mx-3 flex-shrink-0 text-xs font-semibold uppercase tracking-wider text-slate-500">or continue with</span>
+        <span class="mx-3 flex-shrink-0 text-xs font-semibold uppercase tracking-wider text-slate-500">{{ __('or continue with') }}</span>
         <div class="flex-grow border-t border-slate-200/90"></div>
     </div>
 
@@ -101,15 +101,15 @@
             <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z" />
             <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z" />
         </svg>
-        <span>Continue with Google</span>
+        <span>{{ __('Continue with Google') }}</span>
     </a>
 
     <!-- Passenger Registration Link -->
     <div class="mt-6 border-t border-slate-200/80 pt-4 text-center">
         <p class="text-xs sm:text-sm text-slate-600">
-            Don't have an account yet? 
+            {{ __("Don't have an account yet?") }} 
             <a href="{{ route('register') }}" class="font-bold text-[#16A34A] hover:underline focus:outline-none focus:ring-2 focus:ring-[#22C55E] rounded px-1">
-                Register here →
+                {{ __('Register here →') }}
             </a>
         </p>
     </div>

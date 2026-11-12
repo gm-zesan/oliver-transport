@@ -20,6 +20,7 @@ class PricingSettingSeeder extends Seeder
                 'amount' => 65.00,
                 'currency' => 'CAD',
                 'description' => 'Regular ticket base fare per seat in CAD',
+                'description_fr' => 'Tarif de base régulier par siège en CAD',
                 'is_active' => true,
             ]
         );

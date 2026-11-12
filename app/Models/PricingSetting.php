@@ -23,8 +23,17 @@ class PricingSetting extends Model
         'amount',
         'currency',
         'description',
+        'description_fr',
         'is_active',
     ];
+
+    /**
+     * Localized description according to active locale.
+     */
+    public function getLocalizedDescriptionAttribute(): ?string
+    {
+        return (app()->getLocale() === 'fr' && ! empty($this->description_fr)) ? $this->description_fr : $this->description;
+    }
 
     /**
      * Get the attributes that should be cast.

@@ -22,11 +22,17 @@ class Coupon extends Model
     protected $fillable = [
         'code',
         'tab_label',
+        'tab_label_fr',
         'tag',
+        'tag_fr',
         'route_tag',
+        'route_tag_fr',
         'headline',
+        'headline_fr',
         'description',
+        'description_fr',
         'terms',
+        'terms_fr',
         'accent_color',
         'discount_type',
         'discount_value',
@@ -40,6 +46,54 @@ class Coupon extends Model
         'is_active',
         'is_show',
     ];
+
+    /**
+     * Localized tab label.
+     */
+    public function getLocalizedTabLabelAttribute(): ?string
+    {
+        return (app()->getLocale() === 'fr' && ! empty($this->tab_label_fr)) ? $this->tab_label_fr : $this->tab_label;
+    }
+
+    /**
+     * Localized badge tag.
+     */
+    public function getLocalizedTagAttribute(): ?string
+    {
+        return (app()->getLocale() === 'fr' && ! empty($this->tag_fr)) ? $this->tag_fr : $this->tag;
+    }
+
+    /**
+     * Localized corridor route tag.
+     */
+    public function getLocalizedRouteTagAttribute(): ?string
+    {
+        return (app()->getLocale() === 'fr' && ! empty($this->route_tag_fr)) ? $this->route_tag_fr : $this->route_tag;
+    }
+
+    /**
+     * Localized promo headline.
+     */
+    public function getLocalizedHeadlineAttribute(): ?string
+    {
+        return (app()->getLocale() === 'fr' && ! empty($this->headline_fr)) ? $this->headline_fr : $this->headline;
+    }
+
+    /**
+     * Localized coupon description.
+     */
+    public function getLocalizedDescriptionAttribute(): ?string
+    {
+        return (app()->getLocale() === 'fr' && ! empty($this->description_fr)) ? $this->description_fr : $this->description;
+    }
+
+    /**
+     * Localized terms & conditions note.
+     */
+    public function getLocalizedTermsAttribute(): ?string
+    {
+        return (app()->getLocale() === 'fr' && ! empty($this->terms_fr)) ? $this->terms_fr : $this->terms;
+    }
 
     /**
      * Get the attributes that should be cast.

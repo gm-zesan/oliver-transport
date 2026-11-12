@@ -1,6 +1,6 @@
 @extends('frontend.layout.app')
 
-@section('title', 'Contact Us — PickMeRoute Montreal ↔ Toronto Passenger Shuttle')
+@section('title', __('Contact Us') . ' — PickMeRoute ' . __('Montreal ↔ Toronto'))
 
 @section('content')
     <!-- Contact Page Header with Welcoming Concierge/Fleet Hero Background -->
@@ -15,15 +15,15 @@
             <div class="inline-flex items-center justify-center gap-3 mb-4">
                 <span class="w-6 sm:w-8 h-[1.5px] bg-[#22C55E]"></span>
                 <span class="text-xs sm:text-sm font-black tracking-widest text-[#22C55E] uppercase font-heading">
-                    GET IN TOUCH · 7 DAYS A WEEK
+                    {{ __('GET IN TOUCH · 7 DAYS A WEEK') }}
                 </span>
                 <span class="w-6 sm:w-8 h-[1.5px] bg-[#22C55E]"></span>
             </div>
             <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight font-heading text-white drop-shadow-md">
-                Contact PickMeRoute
+                {{ __('Contact PickMeRoute') }}
             </h1>
             <p class="mt-4 text-sm sm:text-base lg:text-lg text-slate-200 max-w-2xl mx-auto leading-relaxed drop-shadow-xs">
-                Have questions regarding our daily Montreal ↔ Toronto shuttle, booking assistance, or group charters? We are here to help.
+                {{ __('Have questions regarding our daily Montreal ↔ Toronto shuttle, booking assistance, or group charters? We are here to help.') }}
             </p>
         </div>
     </section>
@@ -46,11 +46,11 @@
                             </svg>
                         </div>
                         <div>
-                            <span class="text-xs font-bold uppercase tracking-wider text-[#64748B] block">Direct Telephone / SMS / WhatsApp</span>
+                            <span class="text-xs font-bold uppercase tracking-wider text-[#64748B] block">{{ __('Direct Telephone / SMS / WhatsApp') }}</span>
                             <a href="tel:6476551884" class="text-xl sm:text-2xl font-black text-[#111827] hover:text-[#22C55E] transition font-mono mt-0.5 block">
                                 647-655-1884
                             </a>
-                            <span class="text-xs text-slate-500 mt-1 block">Live 7 days a week: 6:00 AM – 9:00 PM EST</span>
+                            <span class="text-xs text-slate-500 mt-1 block">{{ __('Live 7 days a week: 6:00 AM – 9:00 PM EST') }}</span>
                         </div>
                     </div>
 
@@ -63,37 +63,37 @@
                             </svg>
                         </div>
                         <div>
-                            <span class="text-xs font-bold uppercase tracking-wider text-[#64748B] block">Official Email</span>
+                            <span class="text-xs font-bold uppercase tracking-wider text-[#64748B] block">{{ __('Official Email') }}</span>
                             <a href="mailto:info@pickmeroute.com" class="text-base sm:text-lg font-bold text-[#111827] hover:text-[#22C55E] transition mt-0.5 block">
                                 info@pickmeroute.com
                             </a>
-                            <span class="text-xs text-slate-500 mt-1 block">Inquiries, charters, and booking support</span>
+                            <span class="text-xs text-slate-500 mt-1 block">{{ __('Inquiries, charters, and booking support') }}</span>
                         </div>
                     </div>
 
                     <!-- Station Hubs Summary Card -->
                     <div class="rounded-3xl border border-slate-200/80 bg-white p-6 shadow-xs space-y-4">
-                        <span class="text-xs font-bold uppercase tracking-wider text-[#64748B] block">Fixed Corridor Hubs</span>
+                        <span class="text-xs font-bold uppercase tracking-wider text-[#64748B] block">{{ __('Fixed Corridor Hubs') }}</span>
                         
                         <div class="space-y-3">
                             <div class="flex items-start gap-3">
                                 <span class="h-6 w-6 rounded-full bg-[#22C55E]/15 text-[#16A34A] flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">1</span>
                                 <div>
-                                    <h4 class="text-sm font-bold text-slate-900">Station Métro Namur (Montreal)</h4>
+                                    <h4 class="text-sm font-bold text-slate-900">Station Métro Namur ({{ __('Montreal') }})</h4>
                                     <p class="text-xs text-slate-500">Route A pickup (6:30 AM EST) &amp; Route B final drop-off (~7:15 PM EST)</p>
                                 </div>
                             </div>
                             <div class="flex items-start gap-3">
                                 <span class="h-6 w-6 rounded-full bg-[#22C55E]/15 text-[#16A34A] flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">2</span>
                                 <div>
-                                    <h4 class="text-sm font-bold text-slate-900">Yorkdale Mall (Toronto)</h4>
+                                    <h4 class="text-sm font-bold text-slate-900">{{ __('Yorkdale Mall') }} ({{ __('Toronto') }})</h4>
                                     <p class="text-xs text-slate-500">Route A 1st drop-off &amp; Route B 1st pickup (12:15 PM EST)</p>
                                 </div>
                             </div>
                             <div class="flex items-start gap-3">
                                 <span class="h-6 w-6 rounded-full bg-[#22C55E]/15 text-[#16A34A] flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">3</span>
                                 <div>
-                                    <h4 class="text-sm font-bold text-slate-900">Yonge Station (Toronto)</h4>
+                                    <h4 class="text-sm font-bold text-slate-900">{{ __('Yonge Station') }} ({{ __('Toronto') }})</h4>
                                     <p class="text-xs text-slate-500">Route A 2nd drop-off &amp; Route B 2nd pickup (1:15 PM EST)</p>
                                 </div>
                             </div>
@@ -106,46 +106,46 @@
                 <div class="lg:col-span-7">
                     <div class="rounded-3xl border border-slate-200/80 bg-white p-8 sm:p-10 shadow-sm">
                         <h3 class="text-2xl font-black text-[#111827] tracking-tight font-heading mb-2">
-                            Send Us an Inquiry
+                            {{ __('Send Us an Inquiry') }}
                         </h3>
                         <p class="text-xs sm:text-sm text-[#64748B] mb-8">
-                            Fill out the form below and our dispatch coordinator will respond promptly.
+                            {{ __('Fill out the form below and our dispatch coordinator will respond promptly.') }}
                         </p>
 
                         <form action="javascript:void(0);" onsubmit="alert('Thank you for contacting PickMeRoute! Our dispatch team will reach out to you shortly.')" class="space-y-5">
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
                                 <div>
-                                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-2">Your Name</label>
+                                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-2">{{ __('Your Name') }}</label>
                                     <input type="text" required placeholder="John Doe" class="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3.5 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-[#22C55E] focus:bg-white transition" />
                                 </div>
                                 <div>
-                                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-2">Phone Number</label>
+                                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-2">{{ __('Phone Number') }}</label>
                                     <input type="tel" required placeholder="647-xxx-xxxx" class="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3.5 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-[#22C55E] focus:bg-white transition" />
                                 </div>
                             </div>
 
                             <div>
-                                <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-2">Email Address</label>
+                                <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-2">{{ __('Email Address') }}</label>
                                 <input type="email" required placeholder="john@example.com" class="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3.5 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-[#22C55E] focus:bg-white transition" />
                             </div>
 
                             <div>
-                                <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-2">Preferred Route / Service</label>
+                                <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-2">{{ __('Preferred Route / Service') }}</label>
                                 <select class="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3.5 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-[#22C55E] focus:bg-white transition">
-                                    <option value="route-a">Route A: Montreal → Toronto (6:30 AM)</option>
-                                    <option value="route-b">Route B: Toronto → Montreal (12:15 PM &amp; 1:15 PM)</option>
-                                    <option value="private-charter">Private Full Van Charter (All 6 Seats)</option>
-                                    <option value="general">General Inquiry</option>
+                                    <option value="route-a">{{ __('Route A: Montreal → Toronto (6:30 AM)') }}</option>
+                                    <option value="route-b">{{ __('Route B: Toronto → Montreal (12:15 PM & 1:15 PM)') }}</option>
+                                    <option value="private-charter">{{ __('Private Full Van Charter (All 6 Seats)') }}</option>
+                                    <option value="general">{{ __('General Inquiry') }}</option>
                                 </select>
                             </div>
 
                             <div>
-                                <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-2">Your Message</label>
+                                <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-2">{{ __('Your Message') }}</label>
                                 <textarea rows="4" required placeholder="Let us know your travel date, passenger count, or questions..." class="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3.5 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-[#22C55E] focus:bg-white transition"></textarea>
                             </div>
 
                             <button type="submit" class="w-full rounded-2xl bg-[#22C55E] hover:bg-[#16A34A] text-white py-4 text-sm font-bold shadow-md hover:shadow-lg transition cursor-pointer">
-                                Submit Inquiry
+                                {{ __('Submit Inquiry') }}
                             </button>
                         </form>
                     </div>

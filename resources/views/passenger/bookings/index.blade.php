@@ -1,15 +1,15 @@
 @extends('layouts.passenger')
 
-@section('title', 'My Reservations — PickMeRoute')
+@section('title', __('My Reservations — PickMeRoute'))
 
-@section('hero_title', 'My Reservations')
+@section('hero_title', __('My Reservations'))
 
 @section('hero_meta')
     <span class="inline-flex items-center gap-1.5 bg-white/10 text-slate-200 border border-white/15 backdrop-blur-md px-2.5 py-1 rounded-xl">
         <svg class="h-3.5 w-3.5 text-[#22C55E]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a2 2 0 110 4v3a2 2 0 002 2h14a2 2 0 002-2v-3a2 2 0 110-4V7a2 2 0 00-2-2H5z" />
         </svg>
-        <span>Confirmed Passes &amp; Boarding Vouchers ({{ $bookings->total() }})</span>
+        <span>{{ __('Confirmed Passes & Boarding Vouchers') }} ({{ $bookings->total() }})</span>
     </span>
 @endsection
 
@@ -23,15 +23,15 @@
                     </svg>
                 </div>
                 <h2 class="text-xl sm:text-2xl font-black text-slate-900 tracking-tight font-heading">
-                    No Active Reservations Yet
+                    {{ __('No Active Reservations Yet') }}
                 </h2>
                 <p class="mt-2 text-xs sm:text-sm text-slate-500 leading-relaxed max-w-md mx-auto">
-                    You have not placed any seat bookings. Book your seat between Montreal and Toronto with guaranteed reserved seating and cash settlement on boarding.
+                    {{ __('You have not placed any seat bookings. Book your seat between Montreal and Toronto with guaranteed reserved seating and cash settlement on boarding.') }}
                 </p>
                 <div class="mt-6">
                     <button type="button" onclick="handleGlobalBookNow()" 
                        class="inline-flex min-h-[46px] items-center justify-center gap-2 rounded-xl bg-[#22C55E] hover:bg-[#16A34A] text-white px-6 py-2.5 text-xs sm:text-sm font-bold shadow-md shadow-[#22C55E]/20 transition cursor-pointer">
-                        <span>Reserve a Seat Now</span>
+                        <span>{{ __('Reserve a Seat Now') }}</span>
                         <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
                         </svg>
@@ -53,28 +53,28 @@
                                         {{ ucfirst($b->status) }}
                                     </span>
                                     <span class="text-xs font-semibold text-slate-600">
-                                        • Cash Due: <strong class="text-slate-900 font-mono">${{ number_format((float) $b->final_fare, 2) }} CAD</strong>
+                                        • {{ __('Cash Due:') }} <strong class="text-slate-900 font-mono">${{ number_format((float) $b->final_fare, 2) }} CAD</strong>
                                     </span>
                                     <span class="text-[11px] text-slate-400">
-                                        (Pay to Driver on Boarding)
+                                        {{ __('(Pay to Driver on Boarding)') }}
                                     </span>
                                 </div>
 
                                 <h3 class="text-lg sm:text-xl font-black text-slate-900 font-heading">
-                                    {{ $b->boardingStop->location->name }} → {{ $b->dropoffStop->location->name }}
+                                    {{ $b->boardingStop->location->localized_name }} → {{ $b->dropoffStop->location->localized_name }}
                                 </h3>
 
                                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs text-slate-600 pt-1">
                                     <div>
-                                        <span class="text-slate-400 block text-[11px] font-medium">Travel Date:</span>
+                                        <span class="text-slate-400 block text-[11px] font-medium">{{ __('Travel Date:') }}</span>
                                         <strong class="text-slate-900 font-semibold">{{ \Carbon\Carbon::parse($b->trip->trip_date)->format('D, M j, Y') }}</strong>
                                     </div>
                                     <div>
-                                        <span class="text-slate-400 block text-[11px] font-medium">Boarding Time:</span>
+                                        <span class="text-slate-400 block text-[11px] font-medium">{{ __('Boarding Time:') }}</span>
                                         <strong class="text-[#16A34A] font-mono font-bold">{{ substr($b->boardingStop->scheduled_time ?? $b->trip->scheduled_departure_time, 0, 5) }}</strong>
                                     </div>
                                     <div>
-                                        <span class="text-slate-400 block text-[11px] font-medium">Assigned Seats:</span>
+                                        <span class="text-slate-400 block text-[11px] font-medium">{{ __('Assigned Seats:') }}</span>
                                         <div class="flex flex-wrap gap-1 mt-0.5">
                                             @foreach($b->bookingSeats as $bs)
                                                 <span class="inline-block px-2 py-0.5 rounded-md bg-[#F0FDF4] border border-emerald-200 text-[#16A34A] font-black font-mono text-[11px]">
@@ -92,7 +92,7 @@
                                     <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a2 2 0 110 4v3a2 2 0 002 2h14a2 2 0 002-2v-3a2 2 0 110-4V7a2 2 0 00-2-2H5z" />
                                     </svg>
-                                    <span>Digital Boarding Pass</span>
+                                    <span>{{ __('Digital Boarding Pass') }}</span>
                                     <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7" />
                                     </svg>

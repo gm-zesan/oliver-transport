@@ -20,12 +20,30 @@ class Route extends Model
      */
     protected $fillable = [
         'name',
+        'name_fr',
         'direction_code',
         'is_active',
         'service_label',
+        'service_label_fr',
         'image_path',
         'btn_key',
     ];
+
+    /**
+     * Localized route name according to active locale.
+     */
+    public function getLocalizedNameAttribute(): string
+    {
+        return (app()->getLocale() === 'fr' && ! empty($this->name_fr)) ? $this->name_fr : $this->name;
+    }
+
+    /**
+     * Localized service label according to active locale.
+     */
+    public function getLocalizedServiceLabelAttribute(): ?string
+    {
+        return (app()->getLocale() === 'fr' && ! empty($this->service_label_fr)) ? $this->service_label_fr : $this->service_label;
+    }
 
     /**
      * Get the attributes that should be cast.

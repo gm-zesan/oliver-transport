@@ -71,6 +71,16 @@
 
     @include('frontend.partials.toaster')
 
+    <!-- Language Switcher in Guest Layout (Top Right) -->
+    <div class="fixed top-4 right-4 z-30 flex items-center rounded-full border border-slate-300/80 bg-white/85 backdrop-blur-md p-0.5 text-xs font-bold shadow-xs">
+        <a href="{{ route('locale.switch', 'en') }}"
+            class="px-2.5 py-1 rounded-full transition {{ app()->getLocale() === 'en' ? 'bg-[#22C55E] text-white shadow-xs' : 'text-slate-700 hover:text-slate-900' }}"
+            title="English">EN</a>
+        <a href="{{ route('locale.switch', 'fr') }}"
+            class="px-2.5 py-1 rounded-full transition {{ app()->getLocale() === 'fr' ? 'bg-[#22C55E] text-white shadow-xs' : 'text-slate-700 hover:text-slate-900' }}"
+            title="Français">FR</a>
+    </div>
+
     <!-- Frosted Glassmorphism Form Card (Authentic Glass Pane with Sharp Mobile Readability) -->
     <div class="sm:mx-auto sm:w-full sm:max-w-md relative z-10">
         <div

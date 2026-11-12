@@ -19,7 +19,9 @@ class RouteSeeder extends Seeder
             [
                 'direction_code' => 'MTL_TO_TOR',
                 'name' => 'Montreal → Toronto',
+                'name_fr' => 'Montréal → Toronto',
                 'service_label' => 'Route A • Daily Service',
+                'service_label_fr' => 'Trajet A • Service quotidien',
                 'image_path' => 'images/service-intercity.jpg',
                 'btn_key' => 'route-a',
                 'is_active' => true,
@@ -47,7 +49,9 @@ class RouteSeeder extends Seeder
             [
                 'direction_code' => 'TOR_TO_MTL',
                 'name' => 'Toronto → Montreal',
+                'name_fr' => 'Toronto → Montréal',
                 'service_label' => 'Route B • Daily Service',
+                'service_label_fr' => 'Trajet B • Service quotidien',
                 'image_path' => 'images/service-corporate.jpg',
                 'btn_key' => 'route-b',
                 'is_active' => true,
@@ -79,7 +83,9 @@ class RouteSeeder extends Seeder
                 ['direction_code' => $routeData['direction_code']],
                 [
                     'name' => $routeData['name'],
+                    'name_fr' => $routeData['name_fr'],
                     'service_label' => $routeData['service_label'],
+                    'service_label_fr' => $routeData['service_label_fr'],
                     'image_path' => $routeData['image_path'],
                     'btn_key' => $routeData['btn_key'],
                     'is_active' => $routeData['is_active'],

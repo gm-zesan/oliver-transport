@@ -15,11 +15,17 @@ return new class extends Migration
             $table->id();
             $table->string('code', 50)->unique();
             $table->string('tab_label', 100)->nullable();
+            $table->string('tab_label_fr', 100)->nullable();
             $table->string('tag', 100)->nullable();
+            $table->string('tag_fr', 100)->nullable();
             $table->string('route_tag', 150)->nullable();
+            $table->string('route_tag_fr', 150)->nullable();
             $table->string('headline', 255)->nullable();
+            $table->string('headline_fr', 255)->nullable();
             $table->text('description')->nullable();
+            $table->text('description_fr')->nullable();
             $table->string('terms', 255)->nullable();
+            $table->string('terms_fr', 255)->nullable();
             $table->string('accent_color', 20)->nullable()->default('#22C55E');
             $table->string('discount_type', 20);
             $table->decimal('discount_value', 10, 2);

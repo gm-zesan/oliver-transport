@@ -43,22 +43,21 @@
                     <!-- Main Heading matching Reference Image 1 -->
                     <h1
                         class="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-black tracking-tight text-white leading-[1.05] font-heading drop-shadow-sm text-center lg:text-left">
-                        Your Journey,<br />
-                        <span class="text-[#22C55E]">Our Priority.</span>
+                        {{ __('Your Journey,') }}<br />
+                        <span class="text-[#22C55E]">{{ __('Our Priority.') }}</span>
                     </h1>
 
                     <!-- Subtitle matching Reference Image 1 -->
                     <p
                         class="mt-4 sm:mt-6 text-lg sm:text-2xl lg:text-3xl font-bold text-white tracking-tight leading-snug drop-shadow-sm text-center lg:text-left">
-                        Travel in Comfort. Arrive in Style.
+                        {{ __('Travel in Comfort. Arrive in Style.') }}
                     </p>
 
                     <!-- Description with Green Vertical Line (Hidden on Mobile <lg) -->
                     <div class="hidden lg:flex mt-7 items-stretch gap-4">
                         <span class="w-1 bg-[#22C55E] rounded-full flex-shrink-0"></span>
                         <p class="text-sm sm:text-base text-slate-200 leading-relaxed font-normal max-w-lg drop-shadow-sm">
-                            Experience reliable, comfortable and<br class="hidden sm:inline" />
-                            professional transportation with PickMeRoute.
+                            {{ __('Experience reliable, comfortable and professional transportation with PickMeRoute.') }}
                         </p>
                     </div>
                 </div>
@@ -72,7 +71,7 @@
                         <div class="flex items-center justify-between pb-3.5 border-b border-white/10">
                             <div class="flex items-center gap-2">
                                 <span id="hero-route-badge" class="text-xs sm:text-sm font-bold text-white tracking-wide">
-                                    {{ $routeA?->name ?? 'Montreal → Toronto' }}
+                                    {{ $routeA?->localized_name ?? __('Montreal → Toronto') }}
                                 </span>
                             </div>
                             <div
@@ -83,7 +82,7 @@
                                         d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                                 </svg>
                                 <span id="hero-schedule-badge" class="text-xs font-black text-white">
-                                    {{ $routeATime }} Daily
+                                    {{ $routeATime }} {{ __('Daily') }}
                                 </span>
                             </div>
                         </div>
@@ -106,11 +105,11 @@
                                     <div class="flex-1 min-w-0">
                                         <span id="label-pickup"
                                             class="block text-[11px] font-bold uppercase tracking-wider text-slate-400 leading-none mb-1">
-                                            Pickup address
+                                            {{ __('Pickup address') }}
                                         </span>
                                         <span id="pickup-display-text"
                                             class="block text-sm sm:text-base font-medium text-slate-300 truncate leading-snug">
-                                            Select pickup location
+                                            {{ __('Select pickup location') }}
                                         </span>
                                         <input type="hidden" name="from" id="pickup_location" value="">
                                     </div>
@@ -129,7 +128,7 @@
 
                                     <div
                                         class="px-4 py-2 bg-slate-900 text-[10px] font-black uppercase tracking-wider text-slate-400">
-                                        Select Pickup Address
+                                        {{ __('Select Pickup Address') }}
                                     </div>
 
                                     @foreach($locations as $loc)
@@ -147,12 +146,12 @@
                                             <div class="flex-1 min-w-0">
                                                 <div class="flex items-center justify-between">
                                                     <span
-                                                        class="font-bold text-white text-sm sm:text-base leading-tight">{{ $loc->name }}</span>
+                                                        class="font-bold text-white text-sm sm:text-base leading-tight">{{ $loc->localized_name }}</span>
                                                     <span
                                                         class="text-[10px] font-black uppercase tracking-wider text-[#22C55E] bg-[#22C55E]/15 px-2 py-0.5 rounded-full border border-[#22C55E]/30">{{ $loc->pickup_time }}</span>
                                                 </div>
                                                 <span
-                                                    class="text-xs text-slate-400 block mt-0.5">{{ $loc->subtitle ?? "{$loc->city} • Station Hub" }}</span>
+                                                    class="text-xs text-slate-400 block mt-0.5">{{ $loc->localized_subtitle ?? "{$loc->localized_city} • Station Hub" }}</span>
                                             </div>
                                         </div>
                                     @endforeach
@@ -174,11 +173,11 @@
                                     <div class="flex-1 min-w-0">
                                         <span id="label-destination"
                                             class="block text-[11px] font-bold uppercase tracking-wider text-slate-400 leading-none mb-1">
-                                            Drop-off address
+                                            {{ __('Drop-off address') }}
                                         </span>
                                         <span id="dest-display-text"
                                             class="block text-sm sm:text-base font-medium text-slate-300 truncate leading-snug">
-                                            Select drop-off location
+                                            {{ __('Select drop-off location') }}
                                         </span>
                                         <input type="hidden" name="to" id="destination_location" value="">
                                     </div>
@@ -198,7 +197,7 @@
 
                                     <div
                                         class="px-4 py-2 bg-slate-900 text-[10px] font-black uppercase tracking-wider text-slate-400">
-                                        Select Drop-off Address
+                                        {{ __('Select Drop-off Address') }}
                                     </div>
 
                                     @foreach($locations as $loc)
@@ -214,12 +213,12 @@
                                             <div class="flex-1 min-w-0">
                                                 <div class="flex items-center justify-between">
                                                     <span
-                                                        class="font-bold text-white text-sm sm:text-base leading-tight">{{ $loc->name }}</span>
+                                                        class="font-bold text-white text-sm sm:text-base leading-tight">{{ $loc->localized_name }}</span>
                                                     <span
                                                         class="text-[10px] font-black uppercase tracking-wider text-[#22C55E] bg-[#22C55E]/15 px-2 py-0.5 rounded-full border border-[#22C55E]/30">{{ $loc->dropoff_time }}</span>
                                                 </div>
                                                 <span
-                                                    class="text-xs text-slate-400 block mt-0.5">{{ $loc->dropoff_subtitle }}</span>
+                                                    class="text-xs text-slate-400 block mt-0.5">{{ $loc->localized_dropoff_subtitle }}</span>
                                             </div>
                                         </div>
                                     @endforeach
@@ -239,7 +238,7 @@
                                 <div class="flex-1 min-w-0">
                                     <label for="travel_date" id="label-travel-date"
                                         class="block text-[11px] font-bold uppercase tracking-wider text-slate-400 leading-none mb-1">
-                                        Travel Date
+                                        {{ __('Travel Date') }}
                                     </label>
                                     <input id="travel_date" name="date" type="date" value="{{ date('Y-m-d') }}"
                                         min="{{ date('Y-m-d') }}"
@@ -260,17 +259,17 @@
                                     <div>
                                         <span id="hero-schedule-label"
                                             class="block text-[10px] font-extrabold uppercase tracking-wider text-slate-400 leading-none mb-1">
-                                            Fixed Departure Time
+                                            {{ __('Fixed Departure Time') }}
                                         </span>
                                         <span id="hero-schedule-display"
                                             class="text-sm sm:text-base font-bold text-slate-300 leading-snug">
-                                            <span id="hero-schedule-text">Select stations above</span>
+                                            <span id="hero-schedule-text">{{ __('Select stations above') }}</span>
                                         </span>
                                     </div>
                                 </div>
                                 <span id="hero-route-tag"
                                     class="rounded-full bg-[#22C55E]/15 text-[#22C55E] border border-[#22C55E]/30 px-2.5 py-1 text-[11px] font-extrabold uppercase tracking-wider">
-                                    Fixed Schedule
+                                    {{ __('Fixed Schedule') }}
                                 </span>
                             </div>
 
@@ -280,7 +279,7 @@
                                     @if(auth()->user()->isPassenger())
                                         <button type="button" onclick="openSeatPickerModal()"
                                             class="inline-flex min-h-[50px] w-full items-center justify-center gap-2 rounded-2xl bg-[#22C55E] hover:bg-[#16A34A] text-white px-6 py-3.5 text-base font-bold shadow-lg shadow-[#22C55E]/20 transition duration-200 focus:outline-none focus:ring-2 focus:ring-[#22C55E] text-center cursor-pointer">
-                                            <span>Select Seats &amp; Reserve</span>
+                                            <span>{{ __('Select Seats & Reserve') }}</span>
                                             <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
                                                     d="M14 5l7 7m0 0l-7 7m7-7H3" />
@@ -289,7 +288,7 @@
                                     @else
                                         <a href="{{ auth()->user()->isRider() ? route('rider.dashboard') : route('operator.dashboard') }}"
                                             class="inline-flex min-h-[50px] w-full items-center justify-center gap-2 rounded-2xl bg-[#22C55E] hover:bg-[#16A34A] text-white px-6 py-3.5 text-base font-bold shadow-lg shadow-[#22C55E]/20 transition duration-200 focus:outline-none focus:ring-2 focus:ring-[#22C55E] text-center">
-                                            <span>Go to Dashboard</span>
+                                            <span>{{ __('Go to Dashboard') }}</span>
                                             <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
                                                     d="M14 5l7 7m0 0l-7 7m7-7H3" />
@@ -299,7 +298,7 @@
                                 @else
                                     <button type="button" onclick="handleGlobalBookNow()"
                                         class="inline-flex min-h-[50px] w-full items-center justify-center gap-2 rounded-2xl bg-[#22C55E] hover:bg-[#16A34A] text-white px-6 py-3.5 text-base font-bold shadow-lg shadow-[#22C55E]/20 transition duration-200 focus:outline-none focus:ring-2 focus:ring-[#22C55E] text-center cursor-pointer">
-                                        <span>Select Seats &amp; Reserve</span>
+                                        <span>{{ __('Select Seats & Reserve') }}</span>
                                         <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
                                                 d="M14 5l7 7m0 0l-7 7m7-7H3" />
@@ -329,16 +328,16 @@
                 <div class="flex items-center justify-center gap-3">
                     <span class="w-8 h-[1.5px] bg-[#16A34A]/60 hidden sm:inline-block"></span>
                     <span class="text-xs font-black tracking-widest text-[#16A34A] uppercase">
-                        SIMPLE 3-STEP PROCESS
+                        {{ __('SIMPLE 3-STEP PROCESS') }}
                     </span>
                     <span class="w-8 h-[1.5px] bg-[#16A34A]/60 hidden sm:inline-block"></span>
                 </div>
                 <h2
                     class="text-3xl sm:text-4xl lg:text-5xl font-black text-[#111827] tracking-tight font-heading leading-tight">
-                    How It Works
+                    {{ __('How It Works') }}
                 </h2>
                 <p class="text-sm sm:text-base lg:text-lg text-[#64748B] leading-relaxed max-w-2xl mx-auto px-2">
-                    Booking your reserved seat between Montreal and Toronto is fast, transparent, and hassle-free.
+                    {{ __('Booking your reserved seat between Montreal and Toronto is fast, transparent, and hassle-free.') }}
                 </p>
             </div>
 
@@ -368,10 +367,10 @@
 
                         <div class="flex-1 min-w-0">
                             <h3 class="text-base sm:text-lg font-bold text-[#111827] font-heading leading-snug">
-                                Choose Your Route
+                                {{ __('Choose Your Route') }}
                             </h3>
                             <p class="text-xs sm:text-[13px] text-slate-500 leading-relaxed mt-0.5">
-                                Select your route and travel date. Choose Montreal to Toronto or Toronto to Montreal.
+                                {{ __('Select your route and travel date. Choose Montreal to Toronto or Toronto to Montreal.') }}
                             </p>
                         </div>
 
@@ -403,10 +402,10 @@
 
                         <div class="flex-1 min-w-0">
                             <h3 class="text-base sm:text-lg font-bold text-[#111827] font-heading leading-snug">
-                                Book with Ease
+                                {{ __('Book with Ease') }}
                             </h3>
                             <p class="text-xs sm:text-[13px] text-slate-500 leading-relaxed mt-0.5">
-                                Choose your preferred passenger seat and complete your reservation in a few easy steps.
+                                {{ __('Choose your preferred passenger seat and complete your reservation in a few easy steps.') }}
                             </p>
                         </div>
 
@@ -439,10 +438,10 @@
 
                         <div class="flex-1 min-w-0">
                             <h3 class="text-base sm:text-lg font-bold text-[#111827] font-heading leading-snug">
-                                Ride &amp; Pay Cash
+                                {{ __('Ride & Pay Cash') }}
                             </h3>
                             <p class="text-xs sm:text-[13px] text-slate-500 leading-relaxed mt-0.5">
-                                Enjoy a comfortable journey and pay your driver directly when boarding.
+                                {{ __('Enjoy a comfortable journey and pay your driver directly when boarding.') }}
                             </p>
                         </div>
 
@@ -459,7 +458,7 @@
                 <div class="pt-2">
                     <button type="button" onclick="handleGlobalBookNow()"
                         class="w-full min-h-[52px] rounded-full bg-[#16A34A] hover:bg-[#15803D] active:scale-[0.98] text-white font-bold text-base flex items-center justify-center gap-2 shadow-lg shadow-[#16A34A]/25 transition cursor-pointer">
-                        <span>Reserve Your Seat Now</span>
+                        <span>{{ __('Reserve Your Seat Now') }}</span>
                         <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
                                 d="M14 5l7 7m0 0l-7 7m7-7H3" />
@@ -502,7 +501,7 @@
                     <div class="group relative flex flex-col items-center">
                         <div class="w-full h-64 sm:h-72 rounded-2xl overflow-hidden shadow-md bg-slate-900 relative">
                             <img src="{{ asset('images/service-intercity.jpg') }}"
-                                alt="Select route and date for PickMeRoute shuttle"
+                                alt="{{ __('Select route and date for PickMeRoute shuttle') }}"
                                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out" />
                             <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent">
                             </div>
@@ -512,12 +511,12 @@
                             class="-mt-12 w-[88%] sm:w-[84%] rounded-2xl bg-white p-6 sm:p-7 shadow-xl shadow-slate-900/5 border border-slate-200/80 text-center relative z-10 group-hover:border-[#22C55E]/50 group-hover:shadow-2xl group-hover:shadow-[#22C55E]/10 transition-all duration-300">
                             <h3
                                 class="text-lg sm:text-xl font-bold text-[#111827] font-heading tracking-tight group-hover:text-[#16A34A] transition-colors">
-                                Choose Your Route
+                                {{ __('Choose Your Route') }}
                             </h3>
                             <p class="mt-2 text-xs sm:text-sm text-[#64748B] leading-relaxed">
-                                Select Route A ({{ $routeA?->name ?? 'Montreal → Toronto' }} · {{ $routeATime }}) or Route B
-                                ({{ $routeB?->name ?? 'Toronto → Montreal' }} · {{ $yorkdalePickupTime }} &amp;
-                                {{ $yongePickupTime }}) and pick your travel date.
+                                {{ __('Select Route A') }} ({{ $routeA?->localized_name ?? __('Montreal → Toronto') }} · {{ $routeATime }}) {{ __('or Route B') }}
+                                ({{ $routeB?->localized_name ?? __('Toronto → Montreal') }} · {{ $yorkdalePickupTime }} &amp;
+                                {{ $yongePickupTime }}) {{ __('and pick your travel date.') }}
                             </p>
                         </div>
                     </div>
@@ -526,7 +525,7 @@
                     <div class="group relative flex flex-col items-center">
                         <div class="w-full h-64 sm:h-72 rounded-2xl overflow-hidden shadow-md bg-slate-900 relative">
                             <img src="{{ asset('images/service-airport.jpg') }}"
-                                alt="Reserve your seat with interactive cabin diagram"
+                                alt="{{ __('Reserve your seat with interactive cabin diagram') }}"
                                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out" />
                             <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent">
                             </div>
@@ -536,12 +535,10 @@
                             class="-mt-12 w-[88%] sm:w-[84%] rounded-2xl bg-white p-6 sm:p-7 shadow-xl shadow-slate-900/5 border border-slate-200/80 text-center relative z-10 group-hover:border-[#22C55E]/50 group-hover:shadow-2xl group-hover:shadow-[#22C55E]/10 transition-all duration-300">
                             <h3
                                 class="text-lg sm:text-xl font-bold text-[#111827] font-heading tracking-tight group-hover:text-[#16A34A] transition-colors">
-                                Book with Ease
+                                {{ __('Book with Ease') }}
                             </h3>
                             <p class="mt-2 text-xs sm:text-sm text-[#64748B] leading-relaxed">
-                                Pick your exact seat from {{ $passengerSeatsCount }} Passenger Seats
-                                (S1–S{{ $passengerSeatsCount }}) in our {{ $vehicleModel }} ({{ $vehiclePlate }}) for
-                                instant confirmation.
+                                {{ __('Pick your exact seat from :count Passenger Seats (S1–S:count) in our :model (:plate) for instant confirmation.', ['count' => $passengerSeatsCount, 'model' => $vehicleModel, 'plate' => $vehiclePlate]) }}
                             </p>
                         </div>
                     </div>
@@ -550,7 +547,7 @@
                     <div class="group relative flex flex-col items-center">
                         <div class="w-full h-64 sm:h-72 rounded-2xl overflow-hidden shadow-md bg-slate-900 relative">
                             <img src="{{ asset('images/service-corporate.jpg') }}"
-                                alt="Travel comfortably in Honda Odyssey with cash on boarding"
+                                alt="{{ __('Travel comfortably in Honda Odyssey with cash on boarding') }}"
                                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out" />
                             <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent">
                             </div>
@@ -560,11 +557,11 @@
                             class="-mt-12 w-[88%] sm:w-[84%] rounded-2xl bg-white p-6 sm:p-7 shadow-xl shadow-slate-900/5 border border-slate-200/80 text-center relative z-10 group-hover:border-[#22C55E]/50 group-hover:shadow-2xl group-hover:shadow-[#22C55E]/10 transition-all duration-300">
                             <h3
                                 class="text-lg sm:text-xl font-bold text-[#111827] font-heading tracking-tight group-hover:text-[#16A34A] transition-colors">
-                                Ride &amp; Pay Cash
+                                {{ __('Ride & Pay Cash') }}
                             </h3>
                             <p class="mt-2 text-xs sm:text-sm text-[#64748B] leading-relaxed">
-                                Cash Payment Upon Boarding: Pay the driver directly in cash when boarding
-                                (${{ number_format($regularFare, 0) }} CAD) at your transit hub.
+                                {{ __('Cash Payment Upon Boarding') }}: {{ __('Pay the driver directly in cash when boarding') }}
+                                (${{ number_format($regularFare, 0) }} CAD) {{ __('at your transit hub.') }}
                             </p>
                         </div>
                     </div>
@@ -575,7 +572,7 @@
                 <div class="mt-16 text-center">
                     <button type="button" onclick="handleGlobalBookNow()"
                         class="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-xl bg-[#22C55E] hover:bg-[#16A34A] text-white px-8 py-3.5 text-sm sm:text-base font-bold shadow-md hover:shadow-lg transition focus:outline-none focus:ring-2 focus:ring-[#22C55E] cursor-pointer">
-                        <span>Reserve Your Seat Now</span>
+                        <span>{{ __('Reserve Your Seat Now') }}</span>
                         <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
                                 d="M14 5l7 7m0 0l-7 7m7-7H3" />
@@ -608,18 +605,16 @@
                     <div class="flex items-center justify-center gap-3">
                         <span class="w-8 h-[1.5px] bg-[#16A34A]/60 hidden sm:inline-block"></span>
                         <span class="text-xs font-black tracking-widest text-[#16A34A] uppercase">
-                            PROMOTIONS &amp; DISCOUNT CODES
+                            {{ __('PROMOTIONS & DISCOUNT CODES') }}
                         </span>
                         <span class="w-8 h-[1.5px] bg-[#16A34A]/60 hidden sm:inline-block"></span>
                     </div>
                     <h2
                         class="text-3xl sm:text-4xl lg:text-5xl font-black text-[#111827] tracking-tight font-heading leading-tight">
-                        Travel Deals &amp; Discounts
+                        {{ __('Travel Deals & Discounts') }}
                     </h2>
                     <p class="text-sm sm:text-base text-[#64748B] leading-relaxed max-w-2xl mx-auto">
-                        Our standard regular flat rate is ${{ number_format($regularFare, 2) }} CAD. Apply active promotional
-                        coupon codes during booking to enjoy our introductory launch rate of only
-                        ${{ number_format($promotionalFare, 2) }} CAD!
+                        {{ __('Our standard regular flat rate is :regular CAD. Apply active promotional coupon codes during booking to enjoy our introductory launch rate of only :promo CAD!', ['regular' => '$' . number_format($regularFare, 2), 'promo' => '$' . number_format($promotionalFare, 2)]) }}
                     </p>
                 </div>
 
@@ -675,7 +670,7 @@
                                             {{ $coupon['tag'] }}
                                         </span>
                                         <span class="text-xs font-bold text-slate-200 font-mono">
-                                            Deal {{ $idx + 1 }} of {{ count($promotionalCoupons) }}
+                                            {{ __('Deal') }} {{ $idx + 1 }} {{ __('of') }} {{ count($promotionalCoupons) }}
                                         </span>
                                     </div>
 
@@ -697,8 +692,7 @@
                                             <!-- Left: Regular Fare + Savings Badge below it -->
                                             <div>
                                                 <span
-                                                    class="text-[10px] uppercase font-bold text-slate-300 block tracking-wider mb-0.5">Regular
-                                                    Fare</span>
+                                                    class="text-[10px] uppercase font-bold text-slate-300 block tracking-wider mb-0.5">{{ __('Regular Fare') }}</span>
                                                 <del
                                                     class="text-base sm:text-lg font-bold text-slate-300 font-mono">{{ $coupon['regular_fare'] }}</del>
                                                 <div class="mt-2">
@@ -711,8 +705,7 @@
                                             <!-- Right: Promo Rate ($55 CAD prominent) -->
                                             <div class="text-right">
                                                 <span
-                                                    class="text-[10px] uppercase font-bold text-slate-300 block tracking-wider mb-0.5">Promo
-                                                    Rate</span>
+                                                    class="text-[10px] uppercase font-bold text-slate-300 block tracking-wider mb-0.5">{{ __('Promo Rate') }}</span>
                                                 <span
                                                     class="text-3xl font-black text-[#4ADE80] font-mono tracking-tight block">{{ $coupon['promo_fare'] }}</span>
                                             </div>
@@ -737,8 +730,7 @@
 
                                     <!-- 6. Coupon Code Area -->
                                     <div>
-                                        <span class="text-[10px] uppercase font-bold text-slate-200 block tracking-wider mb-2">Your
-                                            Promo Code</span>
+                                        <span class="text-[10px] uppercase font-bold text-slate-200 block tracking-wider mb-2">{{ __('Your Promo Code') }}</span>
                                         <div
                                             class="rounded-2xl border-2 border-dashed border-[#22C55E] bg-[#0B0F17]/45 backdrop-blur-md p-3 sm:p-3.5 flex items-center justify-between gap-2.5 shadow-inner overflow-hidden">
                                             <span
@@ -751,7 +743,7 @@
                                                     <path stroke-linecap="round" stroke-linejoin="round"
                                                         d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" />
                                                 </svg>
-                                                <span>Copy Code</span>
+                                                <span>{{ __('Copy Code') }}</span>
                                             </button>
                                         </div>
                                     </div>
@@ -759,7 +751,7 @@
                                     <!-- 7. CTA Button -->
                                     <button type="button" onclick="openSeatPickerWithCoupon('{{ $coupon['code'] }}')"
                                         class="w-full inline-flex min-h-[48px] items-center justify-center gap-2 rounded-2xl bg-[#22C55E] hover:bg-[#16A34A] active:scale-[0.99] text-white px-5 py-3 text-sm sm:text-base font-bold transition duration-200 shadow-lg shadow-[#22C55E]/30 cursor-pointer mt-3.5">
-                                        <span>Apply Code &amp; Book Now</span>
+                                        <span>{{ __('Apply Code & Book Now') }}</span>
                                         <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
                                                 d="M14 5l7 7m0 0l-7 7m7-7H3" />
@@ -768,8 +760,8 @@
 
                                     <!-- 8. Trust indicators -->
                                     <div class="flex items-center justify-between text-xs text-slate-200 px-1 mt-3">
-                                        <span>Cash on boarding</span>
-                                        <span>Instant confirmation</span>
+                                        <span>{{ __('Cash on boarding') }}</span>
+                                        <span>{{ __('Instant confirmation') }}</span>
                                     </div>
 
                                     <!-- Multi-coupon switcher controls if > 1 -->
@@ -778,11 +770,11 @@
                                             <button type="button"
                                                 onclick="switchCoupon({{ ($idx - 1 + count($promotionalCoupons)) % count($promotionalCoupons) }})"
                                                 class="text-xs text-slate-200 hover:text-white transition flex items-center gap-1 cursor-pointer">
-                                                <span>← Previous Deal</span>
+                                                <span>{{ __('← Previous Deal') }}</span>
                                             </button>
                                             <button type="button" onclick="switchCoupon({{ ($idx + 1) % count($promotionalCoupons) }})"
                                                 class="text-xs text-emerald-300 hover:text-emerald-200 font-bold transition flex items-center gap-1 cursor-pointer">
-                                                <span>Next Deal →</span>
+                                                <span>{{ __('Next Deal →') }}</span>
                                             </button>
                                         </div>
                                     @endif
@@ -816,7 +808,7 @@
                                                 </span>
                                             </div>
                                             <span class="text-xs font-bold text-slate-200 font-mono">
-                                                Deal {{ $idx + 1 }} of {{ count($promotionalCoupons) }}
+                                                {{ __('Deal') }} {{ $idx + 1 }} {{ __('of') }} {{ count($promotionalCoupons) }}
                                             </span>
                                         </div>
 
@@ -833,8 +825,7 @@
                                             class="mt-5 rounded-2xl bg-[#0B0F17]/40 backdrop-blur-md border border-white/20 p-4 flex items-center justify-between gap-4 shadow-inner">
                                             <div>
                                                 <span
-                                                    class="text-[10px] uppercase font-bold text-slate-300 block tracking-wider mb-0.5">Regular
-                                                    Base Fare</span>
+                                                    class="text-[10px] uppercase font-bold text-slate-300 block tracking-wider mb-0.5">{{ __('Regular Base Fare') }}</span>
                                                 <del
                                                     class="text-base font-semibold text-slate-300 font-mono">{{ $coupon['regular_fare'] }}</del>
                                                 <div class="mt-1.5">
@@ -846,8 +837,7 @@
                                             </div>
                                             <div class="text-right">
                                                 <span
-                                                    class="text-[10px] uppercase font-bold text-slate-300 block tracking-wider mb-0.5">Promotional
-                                                    Rate</span>
+                                                    class="text-[10px] uppercase font-bold text-slate-300 block tracking-wider mb-0.5">{{ __('Promotional Rate') }}</span>
                                                 <span
                                                     class="text-3xl font-black text-[#4ADE80] font-mono tracking-tight">{{ $coupon['promo_fare'] }}</span>
                                             </div>
@@ -880,8 +870,7 @@
                                     class="p-7 lg:p-8 lg:w-[376px] flex flex-col justify-center gap-4 bg-white/[0.08] backdrop-blur-xl relative z-10">
                                     <div>
                                         <span
-                                            class="text-[10px] uppercase font-bold text-slate-200 block tracking-wider mb-2">Promotional
-                                            Coupon Code</span>
+                                            class="text-[10px] uppercase font-bold text-slate-200 block tracking-wider mb-2">{{ __('Promotional Coupon Code') }}</span>
                                         <div
                                             class="rounded-2xl border-2 border-dashed border-[#22C55E] bg-[#0B0F17]/45 backdrop-blur-md p-3 flex items-center justify-between gap-2.5 shadow-inner overflow-hidden">
                                             <span
@@ -894,14 +883,14 @@
                                                     <path stroke-linecap="round" stroke-linejoin="round"
                                                         d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" />
                                                 </svg>
-                                                <span>Copy Code</span>
+                                                <span>{{ __('Copy Code') }}</span>
                                             </button>
                                         </div>
                                     </div>
 
                                     <button type="button" onclick="openSeatPickerWithCoupon('{{ $coupon['code'] }}')"
                                         class="w-full inline-flex min-h-[48px] items-center justify-center gap-2 rounded-2xl bg-[#22C55E] hover:bg-[#16A34A] active:scale-[0.99] text-white px-5 py-3 text-sm font-black transition duration-200 shadow-lg shadow-[#22C55E]/30 cursor-pointer">
-                                        <span>Apply Code &amp; Book Now</span>
+                                        <span>{{ __('Apply Code & Book Now') }}</span>
                                         <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
                                                 d="M14 5l7 7m0 0l-7 7m7-7H3" />
@@ -909,8 +898,8 @@
                                     </button>
 
                                     <div class="flex items-center justify-between text-xs text-slate-200 px-1">
-                                        <span>Cash on boarding</span>
-                                        <span>Instant confirmation</span>
+                                        <span>{{ __('Cash on boarding') }}</span>
+                                        <span>{{ __('Instant confirmation') }}</span>
                                     </div>
 
                                     <!-- Prev/Next switcher controls for convenience -->
@@ -919,11 +908,11 @@
                                             <button type="button"
                                                 onclick="switchCoupon({{ ($idx - 1 + count($promotionalCoupons)) % count($promotionalCoupons) }})"
                                                 class="text-xs text-slate-200 hover:text-white transition flex items-center gap-1 cursor-pointer">
-                                                <span>← Previous Deal</span>
+                                                <span>{{ __('← Previous Deal') }}</span>
                                             </button>
                                             <button type="button" onclick="switchCoupon({{ ($idx + 1) % count($promotionalCoupons) }})"
                                                 class="text-xs text-emerald-300 hover:text-emerald-200 font-bold transition flex items-center gap-1 cursor-pointer">
-                                                <span>Next Deal →</span>
+                                                <span>{{ __('Next Deal →') }}</span>
                                             </button>
                                         </div>
                                     @endif

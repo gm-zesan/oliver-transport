@@ -91,6 +91,17 @@
     .header-scrolled #header-brand-logo .brand-subtext {
         color: #22C55E !important;
     }
+
+    #site-header.is-scrolled .header-lang-switch,
+    #header-inner.header-scrolled .header-lang-switch {
+        border-color: #CBD5E1 !important;
+        background-color: #F1F5F9 !important;
+    }
+
+    #site-header.is-scrolled .header-lang-link:not(.is-active),
+    #header-inner.header-scrolled .header-lang-link:not(.is-active) {
+        color: #475569 !important;
+    }
 </style>
 <header id="site-header"
     class="fixed top-0 left-0 right-0 z-50 px-4 sm:px-6 lg:px-8 pointer-events-none transition-all duration-300 ease-out pt-4 sm:pt-6">
@@ -108,24 +119,38 @@
         <nav class="hidden md:flex items-center gap-7 lg:gap-9 text-sm font-semibold" aria-label="Primary Navigation">
             <a href="{{ route('home') }}"
                 class="header-nav-link {{ request()->routeIs('home') ? 'is-active text-[#22C55E]' : 'text-white/90' }} hover:text-[#22C55E] transition py-1 focus:outline-none focus:ring-2 focus:ring-[#22C55E] rounded-md">
-                Home
+                {{ __('Home') }}
             </a>
             <a href="{{ route('about') }}"
                 class="header-nav-link {{ request()->routeIs('about') ? 'is-active text-[#22C55E]' : 'text-white/90' }} hover:text-[#22C55E] transition py-1 focus:outline-none focus:ring-2 focus:ring-[#22C55E] rounded-md">
-                About
+                {{ __('About') }}
             </a>
             <a href="{{ route('services') }}"
                 class="header-nav-link {{ request()->routeIs('services') ? 'is-active text-[#22C55E]' : 'text-white/90' }} hover:text-[#22C55E] transition py-1 focus:outline-none focus:ring-2 focus:ring-[#22C55E] rounded-md">
-                Services
+                {{ __('Services') }}
             </a>
             <a href="{{ route('contact') }}"
                 class="header-nav-link {{ request()->routeIs('contact') ? 'is-active text-[#22C55E]' : 'text-white/90' }} hover:text-[#22C55E] transition py-1 focus:outline-none focus:ring-2 focus:ring-[#22C55E] rounded-md">
-                Contact
+                {{ __('Contact') }}
             </a>
         </nav>
 
-        <!-- Desktop Actions: Profile Dropdown or Sign In / Book Now -->
+        <!-- Desktop Actions: Language Toggle, Profile Dropdown or Sign In / Book Now -->
         <div class="hidden md:flex items-center gap-3">
+            <!-- Language Switcher (EN | FR) -->
+            <div class="header-lang-switch flex items-center rounded-full border border-white/20 bg-white/10 p-0.5 text-xs font-bold transition">
+                <a href="{{ route('locale.switch', 'en') }}"
+                    class="header-lang-link px-2.5 py-1 rounded-full transition {{ app()->getLocale() === 'en' ? 'bg-[#22C55E] text-white is-active shadow-xs' : 'text-white/80 hover:text-white' }}"
+                    title="English">
+                    EN
+                </a>
+                <a href="{{ route('locale.switch', 'fr') }}"
+                    class="header-lang-link px-2.5 py-1 rounded-full transition {{ app()->getLocale() === 'fr' ? 'bg-[#22C55E] text-white is-active shadow-xs' : 'text-white/80 hover:text-white' }}"
+                    title="Français">
+                    FR
+                </a>
+            </div>
+
             @auth
                 @php
                     $dashboardRoute = auth()->user()->isRider()
@@ -136,7 +161,7 @@
                 <!-- Book Now CTA Button -->
                 <button type="button" onclick="handleGlobalBookNow()"
                     class="inline-flex min-h-[44px] items-center justify-center rounded-full bg-[#22C55E] hover:bg-[#16A34A] px-5 py-2 text-xs sm:text-sm font-bold text-white shadow-xs transition focus:outline-none focus:ring-2 focus:ring-[#22C55E] cursor-pointer">
-                    Book Now
+                    {{ __('Book Now') }}
                 </button>
 
                 <!-- Profile Dropdown -->
@@ -182,7 +207,7 @@
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                             d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
                                     </svg>
-                                    <span>My Reservations</span>
+                                    <span>{{ __('My Reservations') }}</span>
                                 </a>
                             @else
                                 <a href="{{ $dashboardRoute }}"
@@ -191,7 +216,7 @@
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                             d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
                                     </svg>
-                                    <span>{{ auth()->user()->isRider() ? 'Driver Panel' : 'Dashboard' }}</span>
+                                    <span>{{ auth()->user()->isRider() ? __('Driver Panel') : __('Dashboard') }}</span>
                                 </a>
                             @endif
 
@@ -201,7 +226,7 @@
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                                 </svg>
-                                <span>Profile Settings</span>
+                                <span>{{ __('Profile Settings') }}</span>
                             </a>
                         </div>
 
@@ -215,7 +240,7 @@
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                             d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
                                     </svg>
-                                    <span>Sign Out</span>
+                                    <span>{{ __('Sign Out') }}</span>
                                 </button>
                             </form>
                         </div>
@@ -225,17 +250,29 @@
             @else
                 <a id="header-signin-link" href="{{ route('login') }}"
                     class="header-signin-link inline-flex min-h-[44px] items-center justify-center text-xs sm:text-sm font-semibold text-white/90 hover:text-[#22C55E] transition px-3 py-1">
-                    Sign In
+                    {{ __('Sign In') }}
                 </a>
                 <button type="button" onclick="handleGlobalBookNow()"
                     class="inline-flex min-h-[44px] items-center justify-center rounded-full bg-[#22C55E] hover:bg-[#16A34A] px-5 py-2 text-xs sm:text-sm font-bold text-white shadow-xs transition focus:outline-none focus:ring-2 focus:ring-[#22C55E] cursor-pointer">
-                    Book Now
+                    {{ __('Book Now') }}
                 </button>
             @endauth
         </div>
 
-        <!-- Mobile Menu Toggle Button -->
+        <!-- Mobile Menu Toggle Button & Compact Lang Pill -->
         <div class="flex md:hidden items-center gap-2">
+            <!-- Mobile Header Compact Lang Switch -->
+            <div class="header-lang-switch flex items-center rounded-full border border-white/20 bg-white/10 p-0.5 text-[11px] font-bold">
+                <a href="{{ route('locale.switch', 'en') }}"
+                    class="header-lang-link px-2 py-0.5 rounded-full transition {{ app()->getLocale() === 'en' ? 'bg-[#22C55E] text-white is-active shadow-xs' : 'text-white/80' }}">
+                    EN
+                </a>
+                <a href="{{ route('locale.switch', 'fr') }}"
+                    class="header-lang-link px-2 py-0.5 rounded-full transition {{ app()->getLocale() === 'fr' ? 'bg-[#22C55E] text-white is-active shadow-xs' : 'text-white/80' }}">
+                    FR
+                </a>
+            </div>
+
             <button id="mobile-menu-toggle" type="button"
                 class="inline-flex min-h-[40px] min-w-[40px] items-center justify-center rounded-full border border-white/20 bg-white/10 text-white hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-[#22C55E] transition"
                 aria-expanded="false" aria-controls="mobile-menu" aria-label="Toggle navigation menu">
@@ -259,19 +296,19 @@
         <nav class="flex flex-col space-y-1 font-semibold text-white" aria-label="Mobile Navigation">
             <a href="{{ route('home') }}"
                 class="mobile-nav-link flex items-center min-h-[44px] px-3 rounded-xl {{ request()->routeIs('home') ? 'bg-white/10 text-[#22C55E]' : 'hover:bg-white/10 hover:text-[#22C55E]' }} transition">
-                Home
+                {{ __('Home') }}
             </a>
             <a href="{{ route('about') }}"
                 class="mobile-nav-link flex items-center min-h-[44px] px-3 rounded-xl {{ request()->routeIs('about') ? 'bg-white/10 text-[#22C55E]' : 'hover:bg-white/10 hover:text-[#22C55E]' }} transition">
-                About
+                {{ __('About') }}
             </a>
             <a href="{{ route('services') }}"
                 class="mobile-nav-link flex items-center min-h-[44px] px-3 rounded-xl {{ request()->routeIs('services') ? 'bg-white/10 text-[#22C55E]' : 'hover:bg-white/10 hover:text-[#22C55E]' }} transition">
-                Services
+                {{ __('Services') }}
             </a>
             <a href="{{ route('contact') }}"
                 class="mobile-nav-link flex items-center min-h-[44px] px-3 rounded-xl {{ request()->routeIs('contact') ? 'bg-white/10 text-[#22C55E]' : 'hover:bg-white/10 hover:text-[#22C55E]' }} transition">
-                Contact
+                {{ __('Contact') }}
             </a>
         </nav>
 
@@ -291,41 +328,41 @@
 
                 <button type="button" onclick="handleGlobalBookNow()"
                     class="flex min-h-[44px] items-center justify-center rounded-full bg-[#22C55E] px-4 py-2.5 text-sm font-bold text-white transition cursor-pointer">
-                    Book Now
+                    {{ __('Book Now') }}
                 </button>
 
                 @if(auth()->user()->isPassenger())
                     <a href="{{ route('passenger.bookings.index') }}"
                         class="flex min-h-[44px] items-center justify-center rounded-full border border-white/20 bg-white/5 px-4 py-2 text-xs font-semibold text-white hover:bg-white/10 transition">
-                        My Reservations
+                        {{ __('My Reservations') }}
                     </a>
                 @else
                     <a href="{{ $dashboardRoute }}"
                         class="flex min-h-[44px] items-center justify-center rounded-full border border-white/20 bg-white/5 px-4 py-2 text-xs font-semibold text-white hover:bg-white/10 transition">
-                        {{ auth()->user()->isRider() ? 'Driver Panel' : 'Dashboard' }}
+                        {{ auth()->user()->isRider() ? __('Driver Panel') : __('Dashboard') }}
                     </a>
                 @endif
 
                 <a href="{{ route('profile.edit') }}"
                     class="flex min-h-[44px] items-center justify-center rounded-full border border-white/20 bg-white/5 px-4 py-2 text-xs font-semibold text-white hover:bg-white/10 transition">
-                    Profile Settings
+                    {{ __('Profile Settings') }}
                 </a>
 
                 <form method="POST" action="{{ route('logout') }}" class="w-full">
                     @csrf
                     <button type="submit"
                         class="flex w-full min-h-[40px] items-center justify-center rounded-full border border-red-500/30 bg-red-950/20 px-4 py-2 text-xs font-semibold text-red-300 hover:bg-red-950/40 transition cursor-pointer">
-                        Sign Out
+                        {{ __('Sign Out') }}
                     </button>
                 </form>
             @else
                 <button type="button" onclick="handleGlobalBookNow()"
                     class="flex min-h-[44px] items-center justify-center rounded-full bg-[#22C55E] px-5 py-2.5 text-sm font-bold text-white shadow-sm transition cursor-pointer">
-                    Book Now
+                    {{ __('Book Now') }}
                 </button>
                 <a href="{{ route('login') }}"
                     class="flex min-h-[40px] items-center justify-center rounded-full border border-white/20 bg-white/5 px-4 py-2 text-xs font-semibold text-white/80 hover:bg-white/10 transition">
-                    Sign In
+                    {{ __('Sign In') }}
                 </a>
             @endauth
         </div>

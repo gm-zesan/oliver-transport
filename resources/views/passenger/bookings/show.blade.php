@@ -1,6 +1,6 @@
 @extends('layouts.passenger')
 
-@section('title', 'Boarding Pass ' . $booking->booking_reference . ' — PickMeRoute')
+@section('title', __('Booking Voucher') . ' ' . $booking->booking_reference . ' — PickMeRoute')
 
 @push('styles')
 <style>
@@ -92,14 +92,14 @@
 </style>
 @endpush
 
-@section('hero_title', 'Boarding Pass ' . $booking->booking_reference)
+@section('hero_title', __('Booking Voucher') . ' ' . $booking->booking_reference)
 
 @section('hero_meta')
     <span class="inline-flex items-center gap-1.5 bg-white/10 text-slate-200 border border-white/15 backdrop-blur-md px-2.5 py-1 rounded-xl">
         <svg class="h-3.5 w-3.5 text-[#22C55E]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
         </svg>
-        <span>Travel Date: {{ \Carbon\Carbon::parse($booking->trip->trip_date)->format('D, M j, Y') }}</span>
+        <span>{{ __('Travel Date:') }} {{ \Carbon\Carbon::parse($booking->trip->trip_date)->format('D, M j, Y') }}</span>
     </span>
 @endsection
 
@@ -111,11 +111,11 @@
             <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
             </svg>
-            <span>Print Pass</span>
+            <span>{{ __('Print Pass') }}</span>
         </button>
         <a href="{{ route('passenger.bookings.index') }}" 
            class="inline-flex min-h-[44px] items-center justify-center gap-1.5 rounded-xl bg-[#22C55E] hover:bg-[#16A34A] text-white px-4 py-2 text-xs sm:text-sm font-bold shadow-md shadow-[#22C55E]/20 transition">
-            <span>← All Bookings</span>
+            <span>{{ __('← All Bookings') }}</span>
         </a>
     </div>
 @endsection
@@ -134,20 +134,20 @@
                         <div>
                             <div class="flex items-center gap-3">
                                 <span class="text-xs font-black uppercase tracking-widest text-[#22C55E]">
-                                    PickMeRoute Express
+                                    PickMeRoute {{ __('Express') }}
                                 </span>
                                 <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-black uppercase tracking-wider bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
                                     {{ ucfirst($booking->status) }}
                                 </span>
                             </div>
                             <h2 class="text-xl sm:text-2xl font-black tracking-tight font-heading mt-1">
-                                Passenger Boarding Voucher
+                                {{ __('Passenger Boarding Voucher') }}
                             </h2>
                         </div>
 
                         <div class="text-left sm:text-right">
                             <span class="text-[11px] font-bold text-slate-400 block uppercase tracking-wider">
-                                Booking Reference
+                                {{ __('Booking Reference') }}
                             </span>
                             <span class="font-mono text-2xl font-black text-white tracking-widest">
                                 {{ $booking->booking_reference }}
@@ -166,42 +166,42 @@
                         <div class="flex-1 space-y-1">
                             <span class="inline-flex items-center gap-1.5 text-[11px] font-black uppercase tracking-wider text-[#16A34A]">
                                 <span class="h-2 w-2 rounded-full bg-[#22C55E]"></span>
-                                <span>Boarding Station</span>
+                                <span>{{ __('Boarding Station') }}</span>
                             </span>
                             <div class="text-xl font-black text-slate-900 font-heading">
-                                {{ $booking->boardingStop->location->name }}
+                                {{ $booking->boardingStop->location->localized_name }}
                             </div>
                             <div class="text-xs text-slate-500">
-                                {{ $booking->boardingStop->location->city }}
+                                {{ $booking->boardingStop->location->localized_city }}
                             </div>
                             <div class="text-xs font-bold text-slate-700 font-mono mt-1 pt-1 border-t border-slate-200/60">
-                                Scheduled Boarding: <span class="text-[#16A34A]">{{ substr($booking->boardingStop->scheduled_time ?? $booking->trip->scheduled_departure_time, 0, 5) }} EST</span>
+                                {{ __('Scheduled Boarding:') }} <span class="text-[#16A34A]">{{ substr($booking->boardingStop->scheduled_time ?? $booking->trip->scheduled_departure_time, 0, 5) }} EST</span>
                             </div>
                         </div>
 
                         <!-- Route Graphic -->
                         <div class="flex md:flex-col items-center justify-center gap-2 text-slate-400 px-4">
-                            <span class="text-xs font-mono font-bold text-slate-500 hidden md:inline">Express</span>
+                            <span class="text-xs font-mono font-bold text-slate-500 hidden md:inline">{{ __('Express') }}</span>
                             <svg class="h-6 w-6 text-[#22C55E]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
                             </svg>
-                            <span class="text-[11px] text-slate-400 font-medium">Daily Direct</span>
+                            <span class="text-[11px] text-slate-400 font-medium">{{ __('Daily Direct') }}</span>
                         </div>
 
                         <!-- Arrival (Dropoff) -->
                         <div class="flex-1 space-y-1 text-left md:text-right">
                             <span class="inline-flex md:justify-end items-center gap-1.5 text-[11px] font-black uppercase tracking-wider text-slate-500">
                                 <span class="h-2 w-2 rounded-full bg-slate-400"></span>
-                                <span>Dropoff Station</span>
+                                <span>{{ __('Dropoff Station') }}</span>
                             </span>
                             <div class="text-xl font-black text-slate-900 font-heading">
-                                {{ $booking->dropoffStop->location->name }}
+                                {{ $booking->dropoffStop->location->localized_name }}
                             </div>
                             <div class="text-xs text-slate-500">
-                                {{ $booking->dropoffStop->location->city }}
+                                {{ $booking->dropoffStop->location->localized_city }}
                             </div>
                             <div class="text-xs font-bold text-slate-700 font-mono mt-1 pt-1 border-t border-slate-200/60">
-                                Scheduled Arrival: <span class="text-slate-900">{{ substr($booking->dropoffStop->scheduled_time ?? 'TBD', 0, 5) }} EST</span>
+                                {{ __('Scheduled Arrival:') }} <span class="text-slate-900">{{ substr($booking->dropoffStop->scheduled_time ?? 'TBD', 0, 5) }} EST</span>
                             </div>
                         </div>
 
@@ -213,7 +213,7 @@
                         <!-- Passenger Details -->
                         <div class="ticket-detail-card rounded-2xl border border-slate-200/80 bg-white p-4 shadow-2xs">
                             <span class="text-[11px] font-bold text-slate-400 uppercase tracking-wider block mb-1">
-                                Passenger Name
+                                {{ __('Passenger Name') }}
                             </span>
                             <div class="text-base font-black text-slate-900 font-heading">
                                 {{ $booking->user->name }}
@@ -231,7 +231,7 @@
                         <!-- Fleet & Vehicle Details -->
                         <div class="ticket-detail-card rounded-2xl border border-slate-200/80 bg-white p-4 shadow-2xs">
                             <span class="text-[11px] font-bold text-slate-400 uppercase tracking-wider block mb-1">
-                                Vehicle &amp; Plate
+                                {{ __('Vehicle & Plate') }}
                             </span>
                             <div class="text-base font-black text-slate-900 font-heading">
                                 Honda Odyssey
@@ -247,7 +247,7 @@
                         <!-- Assigned Seats -->
                         <div class="ticket-detail-card rounded-2xl border border-slate-200/80 bg-white p-4 shadow-2xs">
                             <span class="text-[11px] font-bold text-slate-400 uppercase tracking-wider block mb-1">
-                                Assigned Seats ({{ $booking->seat_count }})
+                                {{ __('Assigned Seats (:count)', ['count' => $booking->seat_count]) }}
                             </span>
                             <div class="flex flex-wrap gap-1.5 mt-1">
                                 @foreach($booking->bookingSeats as $bs)
@@ -257,7 +257,7 @@
                                 @endforeach
                             </div>
                             <div class="text-[11px] text-slate-500 mt-1.5">
-                                Visual cabin selection
+                                {{ __('Visual cabin selection') }}
                             </div>
                         </div>
 
@@ -271,19 +271,19 @@
                                     <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
                                     </svg>
-                                    <span>Cash Payment Settlement Upon Boarding</span>
+                                    <span>{{ __('Cash Payment Settlement Upon Boarding') }}</span>
                                 </span>
                                 <h3 class="text-base font-black text-slate-900 font-heading">
-                                    Exact Cash Settlement Required
+                                    {{ __('Exact Cash Settlement Required') }}
                                 </h3>
                                 <p class="text-xs text-slate-600 mt-0.5">
-                                    Please present this voucher and hand the exact cash fare to the Rider (driver) upon boarding the vehicle.
+                                    {{ __('Please present this voucher and hand the exact cash fare to the Rider (driver) upon boarding the vehicle.') }}
                                 </p>
                             </div>
 
                             <div class="text-left sm:text-right flex-shrink-0">
                                 <span class="text-[11px] font-bold text-slate-500 block uppercase tracking-wider">
-                                    Total Cash Due
+                                    {{ __('Total Cash Due') }}
                                 </span>
                                 <span class="text-2xl sm:text-3xl font-black font-mono text-slate-900">
                                     ${{ number_format((float) $booking->final_fare, 2) }} CAD
@@ -299,11 +299,11 @@
                     <div class="print-only-signature hidden pt-4 border-t border-slate-300">
                         <div class="grid grid-cols-2 gap-8 text-xs">
                             <div>
-                                <span class="block text-slate-500 font-bold mb-8">Rider / Driver Signature:</span>
+                                <span class="block text-slate-500 font-bold mb-8">{{ __('Rider / Driver Signature:') }}</span>
                                 <div class="border-b border-slate-400"></div>
                             </div>
                             <div>
-                                <span class="block text-slate-500 font-bold mb-8">Cash Received Timestamp:</span>
+                                <span class="block text-slate-500 font-bold mb-8">{{ __('Cash Received Timestamp:') }}</span>
                                 <div class="border-b border-slate-400"></div>
                             </div>
                         </div>
@@ -312,13 +312,13 @@
                     <!-- Contact & Boarding Instructions Footnote -->
                     <div class="pt-4 border-t border-slate-100 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 text-xs text-slate-500">
                         <div>
-                            <span>Questions or running late? Contact Dispatch: </span>
+                            <span>{{ __('Questions or running late? Contact Dispatch: ') }}</span>
                             <a href="tel:6476551884" class="font-bold text-[#16A34A] hover:underline">
                                 647-655-1884
                             </a>
                         </div>
                         <div class="text-slate-400 text-[11px]">
-                            Please arrive 10 minutes prior to scheduled departure.
+                            {{ __('Please arrive 10 minutes prior to scheduled departure.') }}
                         </div>
                     </div>
 

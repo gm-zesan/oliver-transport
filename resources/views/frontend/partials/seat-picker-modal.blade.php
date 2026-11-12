@@ -30,10 +30,10 @@
                 <div>
                     <h3 id="wizard-modal-title"
                         class="text-base sm:text-lg font-black tracking-tight font-heading text-slate-900 leading-tight">
-                        Step 1 of 3 — Choose Your Journey
+                        {{ __('Step 1 of 3 — Choose Your Journey') }}
                     </h3>
                     <p class="text-[11px] text-slate-500 font-medium">
-                        Daily Montreal ↔ Toronto Shuttle • {{ $vehicle?->model ?? 'Honda Odyssey' }} (<strong
+                        {{ __('Daily Montreal ↔ Toronto Shuttle') }} • {{ $vehicle?->model ?? 'Honda Odyssey' }} (<strong
                             class="text-slate-800 font-mono">{{ $vehicle?->plate_number ?? 'RAJIA' }}</strong>)
                     </p>
                 </div>
@@ -59,7 +59,7 @@
                         1
                     </span>
                     <span id="step-label-1" class="text-xs font-bold text-[#16A34A] group-hover:underline">
-                        Journey
+                        {{ __('Journey') }}
                     </span>
                 </button>
 
@@ -74,7 +74,7 @@
                         2
                     </span>
                     <span id="step-label-2" class="text-xs font-bold text-slate-400 group-hover:text-slate-600">
-                        Seats
+                        {{ __('Seats') }}
                     </span>
                 </button>
 
@@ -89,7 +89,7 @@
                         3
                     </span>
                     <span id="step-label-3" class="text-xs font-bold text-slate-400 group-hover:text-slate-600">
-                        Review &amp; Confirm
+                        {{ __('Review & Confirm') }}
                     </span>
                 </button>
             </div>
@@ -99,9 +99,9 @@
         <div id="wizard-error-box"
             class="hidden m-4 mb-0 rounded-2xl bg-red-50 border border-red-200 p-3 text-xs text-red-700 font-semibold flex items-center justify-between gap-3"
             role="alert">
-            <span id="wizard-error-text">An error occurred. Please try again.</span>
+            <span id="wizard-error-text">{{ __('An error occurred. Please try again.') }}</span>
             <button type="button" onclick="clearSeatPickerError()"
-                class="text-red-500 hover:text-red-800 font-bold text-xs cursor-pointer">Dismiss</button>
+                class="text-red-500 hover:text-red-800 font-bold text-xs cursor-pointer">{{ __('Dismiss') }}</button>
         </div>
 
         <!-- ================================================================= -->
@@ -115,11 +115,11 @@
                     <!-- Pickup Address -->
                     <div>
                         <label for="modal-pickup-select" class="block text-xs font-bold text-slate-700 mb-1.5">
-                            Pickup Address (Boarding Station)
+                            {{ __('Pickup Address (Boarding Station)') }}
                         </label>
                         <select id="modal-pickup-select" onchange="onModalPickupChange()"
                             class="w-full rounded-xl bg-white border border-slate-200 shadow-xs px-3.5 py-2.5 text-xs sm:text-sm font-bold text-slate-900 focus:outline-none focus:ring-2 focus:ring-[#22C55E] cursor-pointer">
-                            <option value="" disabled selected>Choose Pickup Station...</option>
+                            <option value="" disabled selected>{{ __('Choose Pickup Station...') }}</option>
                             <option value="namur">Station Métro Namur (Montreal)</option>
                             <option value="yorkdale">Yorkdale Mall (Toronto)</option>
                             <option value="yonge">Yonge Station (Toronto)</option>
@@ -129,11 +129,11 @@
                     <!-- Drop-off Address (Dynamically Filtered) -->
                     <div>
                         <label for="modal-dropoff-select" class="block text-xs font-bold text-slate-700 mb-1.5">
-                            Drop-off Address (Destination)
+                            {{ __('Drop-off Address (Destination)') }}
                         </label>
                         <select id="modal-dropoff-select" onchange="onModalDropoffChange()"
                             class="w-full rounded-xl bg-white border border-slate-200 shadow-xs px-3.5 py-2.5 text-xs sm:text-sm font-bold text-slate-900 focus:outline-none focus:ring-2 focus:ring-[#22C55E] cursor-pointer">
-                            <option value="" disabled selected>Choose Drop-off Station...</option>
+                            <option value="" disabled selected>{{ __('Choose Drop-off Station...') }}</option>
                         </select>
                     </div>
                 </div>
@@ -141,7 +141,7 @@
                 <!-- Travel Date -->
                 <div>
                     <label for="modal-date-picker" class="block text-xs font-bold text-slate-700 mb-1.5">
-                        Travel Date (Past dates locked)
+                        {{ __('Travel Date (Past dates locked)') }}
                     </label>
                     <input type="date" id="modal-date-picker" onchange="onModalDateChange()" value="{{ date('Y-m-d') }}"
                         min="{{ date('Y-m-d') }}"
@@ -152,19 +152,19 @@
             <!-- Route Timetable Status Banner -->
             <div class="rounded-2xl bg-white border border-slate-200 shadow-xs p-4 space-y-3">
                 <div class="flex items-center justify-between text-xs">
-                    <span class="text-slate-500 font-medium">Corridor Route:</span>
+                    <span class="text-slate-500 font-medium">{{ __('Corridor Route:') }}</span>
                     <span class="font-bold text-slate-900" id="step1-route-display">
-                        Montreal → Toronto
+                        {{ __('Montreal → Toronto') }}
                     </span>
                 </div>
                 <div class="grid grid-cols-2 gap-3 pt-3 border-t border-slate-100 text-xs">
                     <div>
-                        <span class="text-slate-500 block text-[11px] font-medium">Scheduled Boarding Time:</span>
+                        <span class="text-slate-500 block text-[11px] font-medium">{{ __('Scheduled Boarding Time:') }}</span>
                         <strong class="text-[#16A34A] text-sm font-mono block mt-0.5"
                             id="step1-pickup-time-display">6:30 AM</strong>
                     </div>
                     <div>
-                        <span class="text-slate-500 block text-[11px] font-medium">Estimated Arrival Time:</span>
+                        <span class="text-slate-500 block text-[11px] font-medium">{{ __('Estimated Arrival Time:') }}</span>
                         <strong class="text-slate-800 text-sm font-mono block mt-0.5" id="step1-dropoff-time-display">~12:15
                             PM</strong>
                     </div>
@@ -175,7 +175,7 @@
             <div class="pt-2">
                 <button type="button" onclick="goToWizardStep(2)"
                     class="inline-flex min-h-[48px] w-full items-center justify-center gap-2 rounded-2xl bg-[#22C55E] hover:bg-[#16A34A] text-white px-6 py-3 text-base font-bold shadow-lg shadow-[#22C55E]/20 transition cursor-pointer">
-                    <span>Continue to Seat Selection</span>
+                    <span>{{ __('Continue to Seat Selection') }}</span>
                     <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
                             d="M14 5l7 7m0 0l-7 7m7-7H3" />
@@ -198,7 +198,7 @@
                 <div class="text-center pb-3 mb-3 border-b border-dashed border-slate-200">
                     <div class="mx-auto w-24 h-1.5 rounded-t-full bg-slate-300 mb-1"></div>
                     <span class="text-[9px] font-black uppercase tracking-widest text-slate-400">
-                        ▲ FRONT / WINDSHIELD ▲
+                        ▲ {{ __('FRONT / WINDSHIELD') }} ▲
                     </span>
                 </div>
 
@@ -216,22 +216,22 @@
                                     <path stroke-linecap="round" stroke-width="2" d="M12 3v18M3 12h18" />
                                 </svg>
                             </div>
-                            <span class="text-[11px] font-bold text-slate-600 block leading-tight">Driver</span>
-                            <span class="text-[9px] text-slate-400 block">Excluded</span>
+                            <span class="text-[11px] font-bold text-slate-600 block leading-tight">{{ __('Driver') }}</span>
+                            <span class="text-[9px] text-slate-400 block">{{ __('Excluded') }}</span>
                         </div>
 
                         <!-- Seat S1 -->
                         <button type="button" id="seat-btn-S1" onclick="toggleSeatSelection('S1')"
                             class="seat-select-btn rounded-2xl border-2 border-slate-200 bg-white hover:border-[#22C55E] hover:bg-emerald-50/40 p-2.5 text-center transition cursor-pointer select-none min-h-[56px] flex flex-col items-center justify-center shadow-xs">
                             <span class="seat-label text-xs font-bold text-slate-800 block">Seat S1</span>
-                            <span class="seat-sub text-[9px] text-slate-500 block">Front Passenger</span>
+                            <span class="seat-sub text-[9px] text-slate-500 block">{{ __('Front Passenger') }}</span>
                         </button>
                     </div>
 
                     <!-- Center Aisle Indicator -->
                     <div class="py-0.5 text-center">
                         <span class="text-[8px] uppercase tracking-widest text-slate-400 font-bold">
-                            — AISLE —
+                            — {{ __('AISLE') }} —
                         </span>
                     </div>
 
@@ -241,14 +241,14 @@
                         <button type="button" id="seat-btn-S2" onclick="toggleSeatSelection('S2')"
                             class="seat-select-btn rounded-2xl border-2 border-slate-200 bg-white hover:border-[#22C55E] hover:bg-emerald-50/40 p-2.5 text-center transition cursor-pointer select-none min-h-[56px] flex flex-col items-center justify-center shadow-xs">
                             <span class="seat-label text-xs font-bold text-slate-800 block">Seat S2</span>
-                            <span class="seat-sub text-[9px] text-slate-500 block">Row 2 Left</span>
+                            <span class="seat-sub text-[9px] text-slate-500 block">{{ __('Row 2 Left') }}</span>
                         </button>
 
                         <!-- Seat S3 -->
                         <button type="button" id="seat-btn-S3" onclick="toggleSeatSelection('S3')"
                             class="seat-select-btn rounded-2xl border-2 border-slate-200 bg-white hover:border-[#22C55E] hover:bg-emerald-50/40 p-2.5 text-center transition cursor-pointer select-none min-h-[56px] flex flex-col items-center justify-center shadow-xs">
                             <span class="seat-label text-xs font-bold text-slate-800 block">Seat S3</span>
-                            <span class="seat-sub text-[9px] text-slate-500 block">Row 2 Right</span>
+                            <span class="seat-sub text-[9px] text-slate-500 block">{{ __('Row 2 Right') }}</span>
                         </button>
                     </div>
 
@@ -258,21 +258,21 @@
                         <button type="button" id="seat-btn-S4" onclick="toggleSeatSelection('S4')"
                             class="seat-select-btn rounded-2xl border-2 border-slate-200 bg-white hover:border-[#22C55E] hover:bg-emerald-50/40 p-2 text-center transition cursor-pointer select-none min-h-[56px] flex flex-col items-center justify-center shadow-xs">
                             <span class="seat-label text-[11px] font-bold text-slate-800 block">Seat S4</span>
-                            <span class="seat-sub text-[8px] text-slate-500 block">Row 3 L</span>
+                            <span class="seat-sub text-[8px] text-slate-500 block">{{ __('Row 3 L') }}</span>
                         </button>
 
                         <!-- Seat S5 -->
                         <button type="button" id="seat-btn-S5" onclick="toggleSeatSelection('S5')"
                             class="seat-select-btn rounded-2xl border-2 border-slate-200 bg-white hover:border-[#22C55E] hover:bg-emerald-50/40 p-2 text-center transition cursor-pointer select-none min-h-[56px] flex flex-col items-center justify-center shadow-xs">
                             <span class="seat-label text-[11px] font-bold text-slate-800 block">Seat S5</span>
-                            <span class="seat-sub text-[8px] text-slate-500 block">Row 3 Mid</span>
+                            <span class="seat-sub text-[8px] text-slate-500 block">{{ __('Row 3 Mid') }}</span>
                         </button>
 
                         <!-- Seat S6 -->
                         <button type="button" id="seat-btn-S6" onclick="toggleSeatSelection('S6')"
                             class="seat-select-btn rounded-2xl border-2 border-slate-200 bg-white hover:border-[#22C55E] hover:bg-emerald-50/40 p-2 text-center transition cursor-pointer select-none min-h-[56px] flex flex-col items-center justify-center shadow-xs">
                             <span class="seat-label text-[11px] font-bold text-slate-800 block">Seat S6</span>
-                            <span class="seat-sub text-[8px] text-slate-500 block">Row 3 R</span>
+                            <span class="seat-sub text-[8px] text-slate-500 block">{{ __('Row 3 R') }}</span>
                         </button>
                     </div>
                 </div>
@@ -280,7 +280,7 @@
                 <!-- Rear Luggage Indicator -->
                 <div class="mt-3 pt-2.5 border-t border-dashed border-slate-200 text-center">
                     <span class="text-[9px] font-black uppercase tracking-widest text-slate-400">
-                        ▼ REAR LUGGAGE BAY ▼
+                        ▼ {{ __('REAR LUGGAGE BAY') }} ▼
                     </span>
                 </div>
             </div>
@@ -289,15 +289,15 @@
             <div class="flex flex-wrap items-center justify-center gap-4 text-xs text-slate-600 pt-1">
                 <div class="flex items-center gap-1.5">
                     <span class="h-3 w-3 rounded-md bg-[#22C55E] border border-[#22C55E]"></span>
-                    <span class="font-medium">Selected</span>
+                    <span class="font-medium">{{ __('Selected') }}</span>
                 </div>
                 <div class="flex items-center gap-1.5">
                     <span class="h-3 w-3 rounded-md bg-white border-2 border-slate-300"></span>
-                    <span class="font-medium">Available</span>
+                    <span class="font-medium">{{ __('Available') }}</span>
                 </div>
                 <div class="flex items-center gap-1.5">
                     <span class="h-3 w-3 rounded-md bg-slate-200 border border-slate-300 opacity-60"></span>
-                    <span class="font-medium">Occupied</span>
+                    <span class="font-medium">{{ __('Occupied') }}</span>
                 </div>
             </div>
 
@@ -309,12 +309,12 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
                             d="M10 19l-7-7m0 0l7-7m-7 7h18" />
                     </svg>
-                    <span>Back to Journey</span>
+                    <span>{{ __('Back to Journey') }}</span>
                 </button>
 
                 <button type="button" id="step2-confirm-seats-btn" onclick="goToWizardStep(3)" disabled
                     class="inline-flex min-h-[48px] flex-1 items-center justify-center gap-2 rounded-2xl bg-[#22C55E] hover:bg-[#16A34A] disabled:bg-slate-100 disabled:text-slate-400 disabled:border-slate-200 disabled:cursor-not-allowed text-white px-6 py-3 text-sm sm:text-base font-bold shadow-lg shadow-[#22C55E]/20 transition cursor-pointer">
-                    <span>Confirm Seats</span>
+                    <span>{{ __('Confirm Seats') }}</span>
                     <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
                             d="M14 5l7 7m0 0l-7 7m7-7H3" />
@@ -334,32 +334,31 @@
                 <div class="flex items-center justify-between border-b border-slate-200/70 pb-2.5">
                     <div class="flex items-center gap-2">
                         <span class="h-2 w-2 rounded-full bg-[#22C55E]"></span>
-                        <span class="text-sm font-bold text-slate-900 font-heading" id="step3-route-title">Montreal →
-                            Toronto</span>
+                        <span class="text-sm font-bold text-slate-900 font-heading" id="step3-route-title">{{ __('Montreal → Toronto') }}</span>
                     </div>
                     <button type="button" onclick="goToWizardStep(1)"
                         class="text-xs font-bold text-[#16A34A] hover:underline cursor-pointer">
-                        Edit Journey
+                        {{ __('Edit Journey') }}
                     </button>
                 </div>
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-slate-700">
                     <div>
-                        <span class="text-slate-500 block text-[11px] font-medium">Pickup Location:</span>
+                        <span class="text-slate-500 block text-[11px] font-medium">{{ __('Pickup Location:') }}</span>
                         <strong class="text-slate-900 block mt-0.5" id="step3-pickup-text">Station Métro Namur</strong>
-                        <span class="text-[#16A34A] font-bold text-[11px]" id="step3-pickup-time-text">Departure: 6:30 AM</span>
+                        <span class="text-[#16A34A] font-bold text-[11px]" id="step3-pickup-time-text">{{ __('Departure:') }} 6:30 AM</span>
                     </div>
                     <div>
-                        <span class="text-slate-500 block text-[11px] font-medium">Drop-off Location:</span>
+                        <span class="text-slate-500 block text-[11px] font-medium">{{ __('Drop-off Location:') }}</span>
                         <strong class="text-slate-900 block mt-0.5" id="step3-dropoff-text">Yorkdale Mall</strong>
-                        <span class="text-slate-700 text-[11px]" id="step3-dropoff-time-text">Arrival: ~12:15 PM</span>
+                        <span class="text-slate-700 text-[11px]" id="step3-dropoff-time-text">{{ __('Arrival:') }} ~12:15 PM</span>
                     </div>
                 </div>
 
                 <div class="pt-2 border-t border-slate-200/70 flex items-center justify-between text-xs text-slate-500">
-                    <span>Travel Date: <strong class="text-slate-900 font-mono" id="step3-date-text">November 10,
+                    <span>{{ __('Travel Date:') }} <strong class="text-slate-900 font-mono" id="step3-date-text">November 10,
                             2026</strong></span>
-                    <span>Fleet: <strong class="text-slate-900 font-mono">{{ $vehicle?->model ?? 'Honda Odyssey' }} ({{ $vehicle?->plate_number ?? 'RAJIA' }})</strong></span>
+                    <span>{{ __('Fleet:') }} <strong class="text-slate-900 font-mono">{{ $vehicle?->model ?? 'Honda Odyssey' }} ({{ $vehicle?->plate_number ?? 'RAJIA' }})</strong></span>
                 </div>
             </div>
 
@@ -367,15 +366,14 @@
             <div
                 class="rounded-2xl bg-slate-50/80 border border-slate-200/90 p-4 flex items-center justify-between gap-3">
                 <div>
-                    <span class="text-xs font-bold uppercase tracking-wider text-slate-500 block mb-1.5">Selected
-                        Seats</span>
+                    <span class="text-xs font-bold uppercase tracking-wider text-slate-500 block mb-1.5">{{ __('Selected Seats') }}</span>
                     <div id="step3-seats-badges" class="flex flex-wrap gap-1.5">
                         <!-- Populated dynamically: [Seat S1] [Seat S2] -->
                     </div>
                 </div>
                 <button type="button" onclick="goToWizardStep(2)"
                     class="text-xs font-bold text-[#16A34A] hover:underline cursor-pointer flex-shrink-0">
-                    Change Seats
+                    {{ __('Change Seats') }}
                 </button>
             </div>
 
@@ -383,7 +381,7 @@
             <div class="rounded-2xl bg-white border border-slate-200 p-3.5 space-y-2.5 shadow-xs">
                 <div class="flex items-center justify-between gap-2">
                     <span class="text-xs text-slate-700 font-semibold">
-                        Apply Promo Code:
+                        {{ __('Apply Promo Code:') }}
                     </span>
                     <button type="button" onclick="quickApplyLaunchCoupon()"
                         class="inline-flex items-center gap-1 text-[11px] font-bold text-[#16A34A] hover:text-[#22C55E] underline cursor-pointer">
@@ -396,7 +394,7 @@
                         class="flex-1 rounded-xl bg-slate-50 border border-slate-200 px-3 py-2 text-xs text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#22C55E] focus:bg-white uppercase font-mono" />
                     <button type="button" onclick="applyCouponCode()"
                         class="rounded-xl bg-slate-800 hover:bg-[#16A34A] px-4 py-2 text-xs font-bold text-white transition cursor-pointer">
-                        Apply
+                        {{ __('Apply') }}
                     </button>
                 </div>
 
@@ -405,7 +403,7 @@
 
             <!-- 4. Price Breakdown Table -->
             <div class="rounded-2xl bg-slate-50/80 border border-slate-200/90 p-4 space-y-2">
-                <div class="text-xs font-bold text-slate-800 uppercase tracking-wider mb-2">Price Breakdown</div>
+                <div class="text-xs font-bold text-slate-800 uppercase tracking-wider mb-2">{{ __('Price Breakdown') }}</div>
 
                 <div class="flex items-center justify-between text-xs text-slate-600">
                     <span id="step3-fare-calc-label">2 Seats × ${{ number_format($regularFare ?? 65, 2) }} CAD:</span>
@@ -418,7 +416,7 @@
                 </div>
 
                 <div class="pt-2 border-t border-slate-200/70 flex items-center justify-between text-xs text-slate-600">
-                    <span class="font-semibold">Subtotal:</span>
+                    <span class="font-semibold">{{ __('Subtotal:') }}</span>
                     <span id="step3-subtotal-text" class="font-mono text-slate-900 font-bold">$130.00 CAD</span>
                 </div>
             </div>
@@ -428,27 +426,27 @@
                 class="rounded-2xl border-2 border-[#22C55E]/40 bg-[#F0FDF4] p-4 sm:p-5 text-center sm:text-left flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-xs">
                 <div>
                     <span class="text-xs font-black uppercase tracking-wider text-[#16A34A] block">
-                        TOTAL TO PAY ON BOARDING
+                        {{ __('TOTAL TO PAY ON BOARDING') }}
                     </span>
                     <div class="text-2xl sm:text-3xl font-black font-mono text-slate-900 mt-0.5" id="final-total-fare-text">
                         $110.00 CAD
                     </div>
                     <p class="text-xs text-slate-700 mt-1">
-                        💵 <strong>Cash payment directly to your driver</strong> upon boarding the vehicle.
+                        💵 <strong>{{ __('Cash payment directly to your driver') }}</strong> {{ __('upon boarding the vehicle.') }}
                     </p>
                 </div>
                 <div
                     class="inline-flex items-center justify-center px-3.5 py-2 rounded-xl bg-white text-[#16A34A] text-xs font-bold border border-emerald-200 shadow-xs flex-shrink-0">
-                    No Prepayment Needed
+                    {{ __('No Prepayment Needed') }}
                 </div>
             </div>
 
             <!-- Terms & Conditions / Cancellation Policy Summary -->
             <div
                 class="rounded-xl bg-slate-50 border border-slate-200/90 p-3 text-[11px] text-slate-600 leading-relaxed space-y-1">
-                <div class="font-bold text-slate-800">Reservation Terms &amp; Policy:</div>
-                <p>• Please arrive at the station 10–15 minutes prior to scheduled departure.</p>
-                <p>• If your plans change, please notify dispatch in advance via phone, SMS, or WhatsApp at <strong
+                <div class="font-bold text-slate-800">{{ __('Reservation Terms & Policy:') }}</div>
+                <p>• {{ __('Please arrive at the station 10–15 minutes prior to scheduled departure.') }}</p>
+                <p>• {{ __('If your plans change, please notify dispatch in advance via phone, SMS, or WhatsApp at') }} <strong
                         class="text-slate-900 font-mono">647-655-1884</strong>.</p>
             </div>
 
@@ -460,7 +458,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
                             d="M10 19l-7-7m0 0l7-7m-7 7h18" />
                     </svg>
-                    <span>Back to Seats</span>
+                    <span>{{ __('Back to Seats') }}</span>
                 </button>
 
                 <!-- Final Confirmation Button: Dynamic for Logged-In Passenger vs Guest -->
@@ -468,7 +466,7 @@
                     @if(auth()->user()->isPassenger())
                         <button type="button" id="confirm-booking-btn" onclick="submitBookingReservation()"
                             class="inline-flex min-h-[48px] flex-1 items-center justify-center gap-2 rounded-2xl bg-[#22C55E] hover:bg-[#16A34A] text-white px-6 py-3 text-sm sm:text-base font-bold shadow-lg shadow-[#22C55E]/20 transition cursor-pointer">
-                            <span id="confirm-btn-text">Confirm My Reservation</span>
+                            <span id="confirm-btn-text">{{ __('Confirm My Reservation') }}</span>
                             <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
                             </svg>
@@ -479,14 +477,14 @@
                         @endphp
                         <a href="{{ $dashRoute }}"
                             class="inline-flex min-h-[48px] flex-1 items-center justify-center gap-2 rounded-2xl bg-[#22C55E] hover:bg-[#16A34A] text-white px-6 py-3 text-sm sm:text-base font-bold shadow-lg shadow-[#22C55E]/20 transition text-center">
-                            <span>Go to Dashboard</span>
+                            <span>{{ __('Go to Dashboard') }}</span>
                         </a>
                     @endif
                 @else
                     <!-- Guest: Deferred Auth Trigger (Saves State then Prompts Auth) -->
                     <button type="button" id="confirm-booking-btn" onclick="handleGuestDeferredAuth()"
                         class="inline-flex min-h-[48px] flex-1 items-center justify-center gap-2 rounded-2xl bg-[#22C55E] hover:bg-[#16A34A] text-white px-6 py-3 text-sm sm:text-base font-bold shadow-lg shadow-[#22C55E]/20 transition cursor-pointer">
-                        <span id="confirm-btn-text">Sign In &amp; Confirm Reservation →</span>
+                        <span id="confirm-btn-text">{{ __('Sign In & Confirm Reservation →') }}</span>
                         <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
                                 d="M14 5l7 7m0 0l-7 7m7-7H3" />
