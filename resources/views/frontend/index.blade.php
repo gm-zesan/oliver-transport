@@ -1,6 +1,6 @@
 @extends('frontend.layout.app')
 
-@section('title', 'PickMeRoute — Daily Montreal ↔ Toronto Passenger Shuttle')
+@section('title', 'PickMeRoute — ' . __('Daily Montreal ↔ Toronto Passenger Shuttle'))
 
 @section('content')
     <script>

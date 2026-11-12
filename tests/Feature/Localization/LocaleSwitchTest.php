@@ -100,3 +100,40 @@ test('faq page renders french translations when locale is fr', function (): void
         ->assertSee('Comment puis-je payer mon voyage ?')
         ->assertSee('Tarifs &amp; Paiement', false);
 });
+
+test('contact page renders french translations when locale is fr', function (): void {
+    $response = $this->withSession(['locale' => 'fr'])->get(route('contact'));
+
+    $response->assertOk()
+        ->assertSee('Contacter PickMeRoute')
+        ->assertSee('Envoyez-nous une demande')
+        ->assertSee('Prise en charge Route A (6h30 HNE)');
+});
+
+test('login page renders french translations when locale is fr', function (): void {
+    $response = $this->withSession(['locale' => 'fr'])->get(route('login'));
+
+    $response->assertOk()
+        ->assertSee('Garder ma session active')
+        ->assertSee('Adresse courriel')
+        ->assertSee('Mot de passe');
+});
+
+test('register page renders french translations when locale is fr', function (): void {
+    $response = $this->withSession(['locale' => 'fr'])->get(route('register'));
+
+    $response->assertOk()
+        ->assertSee('Créer un compte passager')
+        ->assertSee('Adresse courriel')
+        ->assertSee('Déjà inscrit ?');
+});
+
+test('client-side i18n dictionary is present in page script with active locale translations', function (): void {
+    $response = $this->withSession(['locale' => 'fr'])->get(route('home'));
+
+    $response->assertOk()
+        ->assertSee('window.PICKME_I18N =', false)
+        ->assertSee('Choisir les stations', false)
+        ->assertSee('Départs quotidiens', false)
+        ->assertSee('Étape 1 sur 3 — Choisissez votre trajet', false);
+});

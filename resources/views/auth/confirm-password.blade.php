@@ -1,12 +1,12 @@
 <x-layouts.guest>
-    <x-slot:title>Confirm Password — PickMeRoute</x-slot:title>
+    <x-slot:title>{{ __('Confirm Password') }} — PickMeRoute</x-slot:title>
 
     <div class="mb-6 text-center">
         <h2 class="text-xl font-bold tracking-tight text-slate-900 font-heading">
-            Security Confirmation
+            {{ __('Security Confirmation') }}
         </h2>
         <p class="mt-2 text-xs text-slate-500">
-            This is a secure action. Please confirm your account password before proceeding.
+            {{ __('This is a secure action. Please confirm your account password before proceeding.') }}
         </p>
     </div>
 

@@ -1,12 +1,12 @@
 <x-layouts.guest>
-    <x-slot:title>Forgot Password — PickMeRoute</x-slot:title>
+    <x-slot:title>{{ __('Forgot Password') }} — PickMeRoute</x-slot:title>
 
     <div class="mb-6 text-center">
         <h2 class="text-2xl font-black tracking-tight text-slate-900 font-heading">
-            Reset Password
+            {{ __('Reset Password') }}
         </h2>
         <p class="mt-1 text-xs sm:text-sm text-slate-500">
-            Enter your account email address and we will send you a password reset link.
+            {{ __('Enter your account email address and we will send you a password reset link.') }}
         </p>
     </div>
 
@@ -32,7 +32,7 @@
 
     <div class="mt-6 border-t border-slate-200/80 pt-4 text-center">
         <a href="{{ route('login') }}" class="font-bold text-xs sm:text-sm text-[#16A34A] hover:underline">
-            ← Back to Sign In
+            {{ __('← Back to Sign In') }}
         </a>
     </div>
 </x-layouts.guest>

@@ -1,5 +1,76 @@
 <!-- Interactive Frontend Scripts -->
+@php
+    $pickmeI18n = [
+        'Select Stations' => __('Select Stations'),
+        'Daily Departures' => __('Daily Departures'),
+        'Fixed Departure Time' => __('Fixed Departure Time'),
+        'Fixed Pick-up Time' => __('Fixed Pick-up Time'),
+        'Select stations above' => __('Select stations above'),
+        'Montreal ↔ Toronto Corridor' => __('Montreal ↔ Toronto Corridor'),
+        'Montreal → Toronto' => __('Montreal → Toronto'),
+        'Toronto → Montreal' => __('Toronto → Montreal'),
+        ':time Daily' => __(':time Daily'),
+        'Choose Stations Above' => __('Choose Stations Above'),
+        'Select destination station...' => __('Select destination station...'),
+        'Please choose valid and different pickup and drop-off stations.' => __('Please choose valid and different pickup and drop-off stations.'),
+        'Please tap and select at least 1 seat before proceeding.' => __('Please tap and select at least 1 seat before proceeding.'),
+        'Step 1 of 3 — Choose Your Journey' => __('Step 1 of 3 — Choose Your Journey'),
+        'Step 2 of 3 — Select Minivan Seats' => __('Step 2 of 3 — Select Minivan Seats'),
+        'Step 3 of 3 — Review & Confirm' => __('Step 3 of 3 — Review & Confirm'),
+        'Seat hold timer expired. Refreshing real-time availability.' => __('Seat hold timer expired. Refreshing real-time availability.'),
+        'No scheduled trips found for this date.' => __('No scheduled trips found for this date.'),
+        'Unable to load trip schedule. Please check your network connection.' => __('Unable to load trip schedule. Please check your network connection.'),
+        'Unable to retrieve real-time cabin seat availability.' => __('Unable to retrieve real-time cabin seat availability.'),
+        'Maximum 6 passenger seats can be selected per reservation.' => __('Maximum 6 passenger seats can be selected per reservation.'),
+        'None selected' => __('None selected'),
+        'Confirm Seats' => __('Confirm Seats'),
+        'seat' => __('seat'),
+        'seats' => __('seats'),
+        'Seat' => __('Seat'),
+        'Seats' => __('Seats'),
+        'Confirm :count :seats (:amount CAD)' => __('Confirm :count :seats (:amount CAD)'),
+        'Occupied' => __('Occupied'),
+        'Departure: :time' => __('Departure: :time'),
+        'Estimated Arrival: :time' => __('Estimated Arrival: :time'),
+        'Please select at least one seat before applying promo code.' => __('Please select at least one seat before applying promo code.'),
+        'Invalid promo code.' => __('Invalid promo code.'),
+        'Unable to validate promo code.' => __('Unable to validate promo code.'),
+        'Please select at least one seat to proceed.' => __('Please select at least one seat to proceed.'),
+        'Please select valid seats.' => __('Please select valid seats.'),
+        'Confirming Reservation...' => __('Confirming Reservation...'),
+        'Confirm My Reservation ✓' => __('Confirm My Reservation ✓'),
+        'The selected seat was just reserved by another traveler. Please pick another seat.' => __('The selected seat was just reserved by another traveler. Please pick another seat.'),
+        'Unable to confirm reservation. Please check your selections.' => __('Unable to confirm reservation. Please check your selections.'),
+        'A network error occurred while submitting your booking.' => __('A network error occurred while submitting your booking.'),
+        ':count Seat × :rate CAD:' => __(':count Seat × :rate CAD:'),
+        ':count Seats × :rate CAD:' => __(':count Seats × :rate CAD:'),
+        'Base' => __('Base'),
+        'Promo ":code" applied! You save :amount CAD.' => __('Promo ":code" applied! You save :amount CAD.'),
+        'Promo Discount' => __('Promo Discount'),
+        'Montreal' => __('Montreal'),
+        'Toronto' => __('Toronto'),
+        'Station Métro Namur' => __('Station Métro Namur'),
+        'Yorkdale Mall' => __('Yorkdale Mall'),
+        'Yonge Station' => __('Yonge Station'),
+        '1st Drop-off' => __('1st Drop-off'),
+        '2nd Drop-off' => __('2nd Drop-off'),
+        'Final Drop-off' => __('Final Drop-off'),
+        '2nd Pickup Stop' => __('2nd Pickup Stop'),
+    ];
+@endphp
 <script>
+    window.PICKME_I18N = {!! json_encode($pickmeI18n, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!};
+
+    const CURRENT_LOCALE = '{{ app()->getLocale() }}';
+
+    function __(key, replace = {}) {
+        let text = (window.PICKME_I18N && window.PICKME_I18N[key]) ? window.PICKME_I18N[key] : key;
+        for (const [k, v] of Object.entries(replace)) {
+            text = text.replace(new RegExp(':' + k, 'g'), v);
+        }
+        return text;
+    }
+
     document.addEventListener('DOMContentLoaded', function () {
         // Dynamic Header Scroll Transition (Transparent over dark hero at top, floating frosted pill on scroll)
         const siteHeader = document.getElementById('site-header');
@@ -404,26 +475,26 @@
         namur: {
             code: 'namur',
             name: 'Station Métro Namur',
-            city: 'Montreal',
+            city: __('Montreal'),
             departTime: '6:30 AM',
             arrivalTime: '~7:15 PM',
-            label: 'Station Métro Namur (Montreal)',
+            label: `Station Métro Namur (${__('Montreal')})`,
         },
         yorkdale: {
             code: 'yorkdale',
-            name: 'Yorkdale Mall',
-            city: 'Toronto',
+            name: __('Yorkdale Mall'),
+            city: __('Toronto'),
             departTime: '12:15 PM',
             arrivalTime: '~12:15 PM',
-            label: 'Yorkdale Mall (Toronto)',
+            label: `${__('Yorkdale Mall')} (${__('Toronto')})`,
         },
         yonge: {
             code: 'yonge',
-            name: 'Yonge Station',
-            city: 'Toronto',
+            name: __('Yonge Station'),
+            city: __('Toronto'),
             departTime: '1:15 PM',
             arrivalTime: '~1:15 PM',
-            label: 'Yonge Station (Toronto)',
+            label: `${__('Yonge Station')} (${__('Toronto')})`,
         }
     };
     const appConfig = window.PICKME_CONFIG || window.OLIVER_CONFIG;
@@ -432,21 +503,21 @@
     function getValidDropoffs(pickupCode) {
         if (pickupCode === 'namur') {
             return [
-                { code: 'yorkdale', name: 'Yorkdale Mall (Toronto)', time: '~12:15 PM', label: 'Yorkdale Mall • 1st Drop-off (~12:15 PM)' },
-                { code: 'yonge', name: 'Yonge Station (Toronto)', time: '~1:15 PM', label: 'Yonge Station • 2nd Drop-off (~1:15 PM)' }
+                { code: 'yorkdale', name: `${__('Yorkdale Mall')} (${__('Toronto')})`, time: '~12:15 PM', label: `${__('Yorkdale Mall')} • ${__('1st Drop-off')} (~12:15 PM)` },
+                { code: 'yonge', name: `${__('Yonge Station')} (${__('Toronto')})`, time: '~1:15 PM', label: `${__('Yonge Station')} • ${__('2nd Drop-off')} (~1:15 PM)` }
             ];
         } else if (pickupCode === 'yorkdale') {
             return [
-                { code: 'namur', name: 'Station Métro Namur (Montreal)', time: '~7:15 PM', label: 'Station Métro Namur • Final Drop-off (~7:15 PM)' },
-                { code: 'yonge', name: 'Yonge Station (Toronto)', time: '~1:15 PM', label: 'Yonge Station • 2nd Pickup Stop (~1:15 PM)' }
+                { code: 'namur', name: `Station Métro Namur (${__('Montreal')})`, time: '~7:15 PM', label: `Station Métro Namur • ${__('Final Drop-off')} (~7:15 PM)` },
+                { code: 'yonge', name: `${__('Yonge Station')} (${__('Toronto')})`, time: '~1:15 PM', label: `${__('Yonge Station')} • ${__('2nd Pickup Stop')} (~1:15 PM)` }
             ];
         } else if (pickupCode === 'yonge') {
             return [
-                { code: 'namur', name: 'Station Métro Namur (Montreal)', time: '~7:15 PM', label: 'Station Métro Namur • Final Drop-off (~7:15 PM)' }
+                { code: 'namur', name: `Station Métro Namur (${__('Montreal')})`, time: '~7:15 PM', label: `Station Métro Namur • ${__('Final Drop-off')} (~7:15 PM)` }
             ];
         }
         return [
-            { code: 'yorkdale', name: 'Yorkdale Mall (Toronto)', time: '~12:15 PM', label: 'Yorkdale Mall (Toronto)' }
+            { code: 'yorkdale', name: `${__('Yorkdale Mall')} (${__('Toronto')})`, time: '~12:15 PM', label: `${__('Yorkdale Mall')} (${__('Toronto')})` }
         ];
     }
 
@@ -519,11 +590,11 @@
         const routeTag = document.getElementById('hero-route-tag');
 
         if (!pickupVal || !destVal) {
-            if (routeBadge) routeBadge.textContent = 'Select Stations';
-            if (scheduleBadge) scheduleBadge.textContent = 'Daily Departures';
-            if (scheduleLabel) scheduleLabel.textContent = 'Fixed Departure Time';
-            if (scheduleText) scheduleText.textContent = 'Select stations above';
-            if (routeTag) routeTag.textContent = 'Montreal ↔ Toronto Corridor';
+            if (routeBadge) routeBadge.textContent = __('Select Stations');
+            if (scheduleBadge) scheduleBadge.textContent = __('Daily Departures');
+            if (scheduleLabel) scheduleLabel.textContent = __('Fixed Departure Time');
+            if (scheduleText) scheduleText.textContent = __('Select stations above');
+            if (routeTag) routeTag.textContent = __('Montreal ↔ Toronto Corridor');
             return;
         }
 
@@ -533,20 +604,20 @@
         if (direction === 'MTL_TO_TOR') {
             const departTime = pickupStation?.departTime || '6:30 AM';
             const stationName = pickupStation?.name || 'Station Métro Namur';
-            if (routeBadge) routeBadge.textContent = 'Montreal → Toronto';
-            if (scheduleBadge) scheduleBadge.textContent = `${departTime} Daily`;
-            if (scheduleLabel) scheduleLabel.textContent = 'Fixed Departure Time';
+            if (routeBadge) routeBadge.textContent = __('Montreal → Toronto');
+            if (scheduleBadge) scheduleBadge.textContent = __(':time Daily', { time: departTime });
+            if (scheduleLabel) scheduleLabel.textContent = __('Fixed Departure Time');
             if (scheduleText) scheduleText.textContent = `${departTime} (${stationName})`;
-            if (routeTag) routeTag.textContent = 'Montreal → Toronto';
+            if (routeTag) routeTag.textContent = __('Montreal → Toronto');
         } else {
-            if (routeBadge) routeBadge.textContent = 'Toronto → Montreal';
+            if (routeBadge) routeBadge.textContent = __('Toronto → Montreal');
             const defaultTime = pickupVal === 'yonge' ? '1:15 PM' : '12:15 PM';
             const departTime = pickupStation?.departTime || defaultTime;
-            const stationName = pickupStation?.name || (pickupVal === 'yonge' ? 'Yonge Station' : 'Yorkdale Mall');
-            if (scheduleBadge) scheduleBadge.textContent = `${departTime} Daily`;
-            if (scheduleLabel) scheduleLabel.textContent = 'Fixed Pick-up Time';
+            const stationName = pickupStation?.name || (pickupVal === 'yonge' ? __('Yonge Station') : __('Yorkdale Mall'));
+            if (scheduleBadge) scheduleBadge.textContent = __(':time Daily', { time: departTime });
+            if (scheduleLabel) scheduleLabel.textContent = __('Fixed Pick-up Time');
             if (scheduleText) scheduleText.textContent = `${departTime} (${stationName})`;
-            if (routeTag) routeTag.textContent = 'Toronto → Montreal';
+            if (routeTag) routeTag.textContent = __('Toronto → Montreal');
         }
     }
 
@@ -669,7 +740,7 @@
         // Validation: Step 1 -> Step 2
         if (step === 2) {
             if (!currentModalPickup || !currentModalDropoff || currentModalPickup === currentModalDropoff) {
-                showSeatPickerError('Please choose valid and different pickup and drop-off stations.');
+                showSeatPickerError(__('Please choose valid and different pickup and drop-off stations.'));
                 return;
             }
             if (!currentTrip) {
@@ -683,7 +754,7 @@
         // Validation: Step 2 -> Step 3
         if (step === 3) {
             if (selectedSeatNumbers.length === 0) {
-                showSeatPickerError('Please tap and select at least 1 seat before proceeding.');
+                showSeatPickerError(__('Please tap and select at least 1 seat before proceeding.'));
                 return;
             }
             if (!currentTrip) {
@@ -709,9 +780,9 @@
         // Update Modal Header Title
         const titleEl = document.getElementById('wizard-modal-title');
         if (titleEl) {
-            if (step === 1) titleEl.textContent = 'Step 1 of 3 — Choose Your Journey';
-            else if (step === 2) titleEl.textContent = 'Step 2 of 3 — Select Minivan Seats';
-            else if (step === 3) titleEl.textContent = 'Step 3 of 3 — Review & Confirm';
+            if (step === 1) titleEl.textContent = __('Step 1 of 3 — Choose Your Journey');
+            else if (step === 2) titleEl.textContent = __('Step 2 of 3 — Select Minivan Seats');
+            else if (step === 3) titleEl.textContent = __('Step 3 of 3 — Review & Confirm');
         }
 
         // Update Progress Indicator Tabs
@@ -763,7 +834,7 @@
             seatHoldSecondsLeft--;
             if (seatHoldSecondsLeft <= 0) {
                 stopSeatHoldTimer();
-                showSeatPickerError('Seat hold timer expired. Refreshing real-time availability.');
+                showSeatPickerError(__('Seat hold timer expired. Refreshing real-time availability.'));
                 if (currentTrip) {
                     loadSeatAvailability(currentTrip.id, currentBoardingStopId, currentDropoffStopId);
                 }
@@ -797,14 +868,14 @@
         pickupSelect.value = currentModalPickup || '';
 
         if (!currentModalPickup) {
-            dropoffSelect.innerHTML = '<option value="" disabled selected>Select destination station...</option>';
+            dropoffSelect.innerHTML = '<option value="" disabled selected>' + __('Select destination station...') + '</option>';
             dropoffSelect.value = '';
             updateModalJourneyBanner();
             return;
         }
 
         const validDropoffs = getValidDropoffs(currentModalPickup);
-        dropoffSelect.innerHTML = '<option value="" disabled' + (!currentModalDropoff ? ' selected' : '') + '>Select destination station...</option>';
+        dropoffSelect.innerHTML = '<option value="" disabled' + (!currentModalDropoff ? ' selected' : '') + '>' + __('Select destination station...') + '</option>';
         validDropoffs.forEach(d => {
             const opt = document.createElement('option');
             opt.value = d.code;
@@ -865,7 +936,7 @@
         const dropoffTimeDisplay = document.getElementById('step1-dropoff-time-display') || document.getElementById('modal-dropoff-time-display');
 
         if (!currentModalPickup || !currentModalDropoff) {
-            if (routeDisplay) routeDisplay.textContent = 'Choose Stations Above';
+            if (routeDisplay) routeDisplay.textContent = __('Choose Stations Above');
             if (pickupTimeDisplay) pickupTimeDisplay.textContent = '--:--';
             if (dropoffTimeDisplay) dropoffTimeDisplay.textContent = '--:--';
             return;
@@ -878,8 +949,8 @@
         const direction = getRouteDirection(currentModalPickup, currentModalDropoff);
         if (routeDisplay) {
             routeDisplay.textContent = (direction === 'MTL_TO_TOR')
-                ? 'Montreal → Toronto'
-                : 'Toronto → Montreal';
+                ? __('Montreal → Toronto')
+                : __('Toronto → Montreal');
         }
 
         if (pickupTimeDisplay) {
@@ -916,7 +987,7 @@
             .then(res => res.json())
             .then(data => {
                 if (!data.trips || data.trips.length === 0) {
-                    showSeatPickerError('No scheduled trips found for this date.');
+                    showSeatPickerError(__('No scheduled trips found for this date.'));
                     return;
                 }
 
@@ -926,7 +997,7 @@
 
                 const rateIndicator = document.getElementById('step1-rate-indicator') || document.getElementById('modal-current-rate-indicator');
                 if (rateIndicator) {
-                    rateIndicator.textContent = `$${baseUnitFare.toFixed(2)} CAD Base`;
+                    rateIndicator.textContent = `$${baseUnitFare.toFixed(2)} CAD ${__('Base')}`;
                 }
 
                 mapStationStopIds();
@@ -941,7 +1012,7 @@
                 }
             })
             .catch(() => {
-                showSeatPickerError('Unable to load trip schedule. Please check your network connection.');
+                showSeatPickerError(__('Unable to load trip schedule. Please check your network connection.'));
             });
     }
 
@@ -991,7 +1062,7 @@
                 }
             })
             .catch(() => {
-                showSeatPickerError('Unable to retrieve real-time cabin seat availability.');
+                showSeatPickerError(__('Unable to retrieve real-time cabin seat availability.'));
             });
     }
 
@@ -1014,7 +1085,7 @@
                 btn.disabled = true;
                 btn.className = 'seat-select-btn rounded-2xl border-2 border-slate-200 bg-slate-100 text-slate-400 p-2 text-center opacity-60 cursor-not-allowed select-none min-h-[56px] flex flex-col items-center justify-center line-through';
                 const label = btn.querySelector('.seat-label');
-                if (label) label.textContent = `${seatNum} (Occupied)`;
+                if (label) label.textContent = `${seatNum} (${__('Occupied')})`;
                 const sub = btn.querySelector('.seat-sub');
                 if (sub) sub.className = 'seat-sub text-[8px] text-slate-400 block';
             } else if (isSelected) {
@@ -1028,7 +1099,7 @@
                 btn.disabled = false;
                 btn.className = 'seat-select-btn rounded-2xl border-2 border-slate-200 bg-white hover:border-[#22C55E] hover:bg-emerald-50/40 text-slate-800 p-2 text-center transition cursor-pointer select-none min-h-[56px] flex flex-col items-center justify-center shadow-xs';
                 const label = btn.querySelector('.seat-label');
-                if (label) label.textContent = `Seat ${seatNum}`;
+                if (label) label.textContent = `${__('Seat')} ${seatNum}`;
                 const sub = btn.querySelector('.seat-sub');
                 if (sub) sub.className = 'seat-sub text-[8px] text-slate-500 block';
             }
@@ -1053,7 +1124,7 @@
             selectedSeatNumbers.splice(idx, 1);
         } else {
             if (selectedSeatNumbers.length >= 6) {
-                showSeatPickerError('Maximum 6 passenger seats can be selected per reservation.');
+                showSeatPickerError(__('Maximum 6 passenger seats can be selected per reservation.'));
                 return;
             }
             selectedSeatNumbers.push(seatNumber);
@@ -1080,16 +1151,16 @@
         const step2ConfirmBtn = document.getElementById('step2-confirm-seats-btn');
 
         if (count === 0) {
-            if (step2SeatsSummary) step2SeatsSummary.textContent = 'None selected';
+            if (step2SeatsSummary) step2SeatsSummary.textContent = __('None selected');
             if (step2GrossSummary) step2GrossSummary.textContent = '$0.00 CAD';
             if (step2ConfirmBtn) {
                 step2ConfirmBtn.disabled = true;
                 const span = step2ConfirmBtn.querySelector('span');
-                if (span) span.textContent = 'Confirm Seats';
+                if (span) span.textContent = __('Confirm Seats');
             }
         } else {
             if (step2SeatsSummary) {
-                step2SeatsSummary.textContent = `${sortedSeats.join(', ')} (${count} ${count === 1 ? 'seat' : 'seats'})`;
+                step2SeatsSummary.textContent = `${sortedSeats.join(', ')} (${count} ${count === 1 ? __('seat') : __('seats')})`;
             }
             const gross = count * baseUnitFare;
             if (step2GrossSummary) {
@@ -1098,13 +1169,13 @@
             if (step2ConfirmBtn) {
                 step2ConfirmBtn.disabled = false;
                 const span = step2ConfirmBtn.querySelector('span');
-                if (span) span.textContent = `Confirm ${count} ${count === 1 ? 'Seat' : 'Seats'} ($${gross.toFixed(0)} CAD)`;
+                if (span) span.textContent = __('Confirm :count :seats (:amount CAD)', { count: count, seats: count === 1 ? __('Seat') : __('Seats'), amount: gross.toFixed(0) });
             }
         }
 
         // Step 1 rate indicator
         const step1Rate = document.getElementById('step1-rate-indicator') || document.getElementById('modal-current-rate-indicator');
-        if (step1Rate) step1Rate.textContent = `$${baseUnitFare.toFixed(2)} CAD Base`;
+        if (step1Rate) step1Rate.textContent = `$${baseUnitFare.toFixed(2)} CAD ${__('Base')}`;
 
         // If currently viewing Step 3, refresh summary
         if (currentWizardStep === 3) {
@@ -1133,19 +1204,19 @@
         const direction = getRouteDirection(currentModalPickup, currentModalDropoff);
 
         if (routeTitle) {
-            routeTitle.textContent = (direction === 'MTL_TO_TOR') ? 'Montreal → Toronto' : 'Toronto → Montreal';
+            routeTitle.textContent = (direction === 'MTL_TO_TOR') ? __('Montreal → Toronto') : __('Toronto → Montreal');
         }
         if (pickupText) {
             pickupText.textContent = `${pickupStation.name} (${pickupStation.city})`;
         }
         if (pickupTime) {
-            pickupTime.textContent = `Departure: ${pickupStation.departTime}`;
+            pickupTime.textContent = __('Departure: :time', { time: pickupStation.departTime });
         }
         if (dropoffText) {
-            dropoffText.textContent = dropoffStation ? `${dropoffStation.name} (${currentModalDropoff === 'namur' ? 'Montreal' : 'Toronto'})` : 'Yorkdale Mall (Toronto)';
+            dropoffText.textContent = dropoffStation ? `${dropoffStation.name} (${currentModalDropoff === 'namur' ? __('Montreal') : __('Toronto')})` : `${__('Yorkdale Mall')} (${__('Toronto')})`;
         }
         if (dropoffTime) {
-            dropoffTime.textContent = `Estimated Arrival: ${dropoffStation ? dropoffStation.time : '~12:15 PM'}`;
+            dropoffTime.textContent = __('Estimated Arrival: :time', { time: dropoffStation ? dropoffStation.time : '~12:15 PM' });
         }
 
         const dateVal = document.getElementById('modal-date-picker')?.value;
@@ -1153,7 +1224,7 @@
             try {
                 const parts = dateVal.split('-');
                 const d = new Date(parts[0], parts[1] - 1, parts[2]);
-                dateText.textContent = d.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' });
+                dateText.textContent = d.toLocaleDateString(CURRENT_LOCALE === 'fr' ? 'fr-CA' : 'en-US', { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' });
             } catch (e) {
                 dateText.textContent = dateVal;
             }
@@ -1168,14 +1239,16 @@
                     <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
                     </svg>
-                    Seat ${s}
+                    ${__('Seat')} ${s}
                 </span>
             `).join('');
         }
 
         const gross = count * baseUnitFare;
         if (fareCalcLabel) {
-            fareCalcLabel.textContent = `${count} Seat${count > 1 ? 's' : ''} × $${baseUnitFare.toFixed(2)} CAD:`;
+            fareCalcLabel.textContent = count === 1
+                ? __(':count Seat × :rate CAD:', { count: count, rate: baseUnitFare.toFixed(2) })
+                : __(':count Seats × :rate CAD:', { count: count, rate: baseUnitFare.toFixed(2) });
         }
         if (grossText) {
             grossText.textContent = `$${gross.toFixed(2)} CAD`;
@@ -1221,7 +1294,7 @@
 
         if (!code) return;
         if (selectedSeatNumbers.length === 0) {
-            showSeatPickerError('Please select at least one seat before applying promo code.');
+            showSeatPickerError(__('Please select at least one seat before applying promo code.'));
             return;
         }
 
@@ -1253,7 +1326,7 @@
                 }
                 if (feedback) {
                     feedback.className = 'text-xs rounded-xl p-2.5 font-semibold bg-[#22C55E]/15 text-[#22C55E] border border-[#22C55E]/30 block';
-                    feedback.textContent = `✓ Promo "${data.code}" applied! You save $${parseFloat(data.discount_amount).toFixed(2)} CAD.`;
+                    feedback.textContent = `✓ ${__('Promo ":code" applied! You save :amount CAD.', { code: data.code, amount: '$' + parseFloat(data.discount_amount).toFixed(2) })}`;
                 }
                 clearSeatPickerError();
                 updateSelectedSeatsUI();
@@ -1262,14 +1335,14 @@
                 appliedCoupon = null;
                 if (feedback) {
                     feedback.className = 'text-xs rounded-xl p-2.5 font-semibold bg-red-50 text-red-600 border border-red-200 block';
-                    feedback.textContent = data.message || 'Invalid promo code.';
+                    feedback.textContent = data.message || __('Invalid promo code.');
                 }
                 updateSelectedSeatsUI();
                 populateStep3Review();
             }
         })
         .catch(() => {
-            showSeatPickerError('Unable to validate promo code.');
+            showSeatPickerError(__('Unable to validate promo code.'));
         });
     }
 
@@ -1305,7 +1378,7 @@
 
     function submitBookingReservation() {
         if (!currentTrip || selectedSeatNumbers.length === 0) {
-            showSeatPickerError('Please select at least one seat to proceed.');
+            showSeatPickerError(__('Please select at least one seat to proceed.'));
             return;
         }
 
@@ -1315,14 +1388,14 @@
         }).filter(id => id !== null);
 
         if (seatIds.length === 0) {
-            showSeatPickerError('Please select valid seats.');
+            showSeatPickerError(__('Please select valid seats.'));
             return;
         }
 
         const confirmBtn = document.getElementById('confirm-booking-btn');
         const confirmText = document.getElementById('confirm-btn-text');
         if (confirmBtn) confirmBtn.disabled = true;
-        if (confirmText) confirmText.textContent = 'Confirming Reservation...';
+        if (confirmText) confirmText.textContent = __('Confirming Reservation...');
 
         const idempotencyKey = (typeof crypto !== 'undefined' && crypto.randomUUID)
             ? crypto.randomUUID()
@@ -1356,23 +1429,23 @@
                 window.location.href = data.redirect_url;
             } else if (res.status === 409) {
                 // Seat conflict concurrency error
-                showSeatPickerError(data.message || 'The selected seat was just reserved by another traveler. Please pick another seat.');
+                showSeatPickerError(data.message || __('The selected seat was just reserved by another traveler. Please pick another seat.'));
                 loadSeatAvailability(currentTrip.id, currentBoardingStopId, currentDropoffStopId);
                 selectedSeatNumbers = [];
                 updateSelectedSeatsUI();
                 goToWizardStep(2);
                 if (confirmBtn) confirmBtn.disabled = true;
-                if (confirmText) confirmText.textContent = 'Confirm My Reservation ✓';
+                if (confirmText) confirmText.textContent = __('Confirm My Reservation ✓');
             } else {
-                showSeatPickerError(data.message || 'Unable to confirm reservation. Please check your selections.');
+                showSeatPickerError(data.message || __('Unable to confirm reservation. Please check your selections.'));
                 if (confirmBtn) confirmBtn.disabled = false;
-                if (confirmText) confirmText.textContent = 'Confirm My Reservation ✓';
+                if (confirmText) confirmText.textContent = __('Confirm My Reservation ✓');
             }
         })
         .catch(() => {
-            showSeatPickerError('A network error occurred while submitting your booking.');
+            showSeatPickerError(__('A network error occurred while submitting your booking.'));
             if (confirmBtn) confirmBtn.disabled = false;
-            if (confirmText) confirmText.textContent = 'Confirm My Reservation ✓';
+            if (confirmText) confirmText.textContent = __('Confirm My Reservation ✓');
         });
     }
 

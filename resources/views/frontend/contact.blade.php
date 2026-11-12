@@ -80,21 +80,21 @@
                                 <span class="h-6 w-6 rounded-full bg-[#22C55E]/15 text-[#16A34A] flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">1</span>
                                 <div>
                                     <h4 class="text-sm font-bold text-slate-900">Station Métro Namur ({{ __('Montreal') }})</h4>
-                                    <p class="text-xs text-slate-500">Route A pickup (6:30 AM EST) &amp; Route B final drop-off (~7:15 PM EST)</p>
+                                    <p class="text-xs text-slate-500">{{ __('Route A pickup (6:30 AM EST) & Route B final drop-off (~7:15 PM EST)') }}</p>
                                 </div>
                             </div>
                             <div class="flex items-start gap-3">
                                 <span class="h-6 w-6 rounded-full bg-[#22C55E]/15 text-[#16A34A] flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">2</span>
                                 <div>
                                     <h4 class="text-sm font-bold text-slate-900">{{ __('Yorkdale Mall') }} ({{ __('Toronto') }})</h4>
-                                    <p class="text-xs text-slate-500">Route A 1st drop-off &amp; Route B 1st pickup (12:15 PM EST)</p>
+                                    <p class="text-xs text-slate-500">{{ __('Route A 1st drop-off & Route B 1st pickup (12:15 PM EST)') }}</p>
                                 </div>
                             </div>
                             <div class="flex items-start gap-3">
                                 <span class="h-6 w-6 rounded-full bg-[#22C55E]/15 text-[#16A34A] flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">3</span>
                                 <div>
                                     <h4 class="text-sm font-bold text-slate-900">{{ __('Yonge Station') }} ({{ __('Toronto') }})</h4>
-                                    <p class="text-xs text-slate-500">Route A 2nd drop-off &amp; Route B 2nd pickup (1:15 PM EST)</p>
+                                    <p class="text-xs text-slate-500">{{ __('Route A 2nd drop-off & Route B 2nd pickup (1:15 PM EST)') }}</p>
                                 </div>
                             </div>
                         </div>
@@ -112,7 +112,7 @@
                             {{ __('Fill out the form below and our dispatch coordinator will respond promptly.') }}
                         </p>
 
-                        <form action="javascript:void(0);" onsubmit="alert('Thank you for contacting PickMeRoute! Our dispatch team will reach out to you shortly.')" class="space-y-5">
+                        <form action="javascript:void(0);" onsubmit="alert('{{ addslashes(__('Thank you for contacting PickMeRoute! Our dispatch team will reach out to you shortly.')) }}')" class="space-y-5">
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
                                 <div>
                                     <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-2">{{ __('Your Name') }}</label>
@@ -141,7 +141,7 @@
 
                             <div>
                                 <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-2">{{ __('Your Message') }}</label>
-                                <textarea rows="4" required placeholder="Let us know your travel date, passenger count, or questions..." class="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3.5 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-[#22C55E] focus:bg-white transition"></textarea>
+                                <textarea rows="4" required placeholder="{{ __('Let us know your travel date, passenger count, or questions...') }}" class="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3.5 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-[#22C55E] focus:bg-white transition"></textarea>
                             </div>
 
                             <button type="submit" class="w-full rounded-2xl bg-[#22C55E] hover:bg-[#16A34A] text-white py-4 text-sm font-bold shadow-md hover:shadow-lg transition cursor-pointer">

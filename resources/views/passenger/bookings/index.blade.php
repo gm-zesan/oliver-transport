@@ -50,7 +50,7 @@
                                         {{ $b->booking_reference }}
                                     </span>
                                     <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase tracking-wider bg-[#F0FDF4] text-[#16A34A] border border-emerald-200">
-                                        {{ ucfirst($b->status) }}
+                                        {{ __($b->status === 'confirmed' ? 'Confirmed' : ucfirst($b->status)) }}
                                     </span>
                                     <span class="text-xs font-semibold text-slate-600">
                                         • {{ __('Cash Due:') }} <strong class="text-slate-900 font-mono">${{ number_format((float) $b->final_fare, 2) }} CAD</strong>
@@ -67,7 +67,7 @@
                                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs text-slate-600 pt-1">
                                     <div>
                                         <span class="text-slate-400 block text-[11px] font-medium">{{ __('Travel Date:') }}</span>
-                                        <strong class="text-slate-900 font-semibold">{{ \Carbon\Carbon::parse($b->trip->trip_date)->format('D, M j, Y') }}</strong>
+                                        <strong class="text-slate-900 font-semibold">{{ \Carbon\Carbon::parse($b->trip->trip_date)->translatedFormat('D, j M Y') }}</strong>
                                     </div>
                                     <div>
                                         <span class="text-slate-400 block text-[11px] font-medium">{{ __('Boarding Time:') }}</span>

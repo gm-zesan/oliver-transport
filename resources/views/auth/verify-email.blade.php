@@ -1,12 +1,12 @@
 <x-layouts.guest>
-    <x-slot:title>Verify Email — PickMeRoute</x-slot:title>
+    <x-slot:title>{{ __('Verify Email') }} — PickMeRoute</x-slot:title>
 
     <div class="mb-6 text-center">
         <h2 class="text-xl font-bold tracking-tight text-slate-900 font-heading">
-            Verify Email Address
+            {{ __('Verify Email Address') }}
         </h2>
         <p class="mt-2 text-xs text-slate-500">
-            Thanks for signing up with PickMeRoute! Please click the verification link we sent to your email to activate all passenger features.
+            {{ __('Thanks for signing up with PickMeRoute! Please click the verification link we sent to your email to activate all passenger features.') }}
         </p>
     </div>
 
@@ -28,7 +28,7 @@
         <form method="POST" action="{{ route('logout') }}" class="text-center">
             @csrf
 
-            <button type="submit" class="inline-flex min-h-[44px] items-center text-sm font-semibold text-slate-500 hover:text-slate-900 transition">
+            <button type="submit" class="inline-flex min-h-[44px] items-center text-sm font-semibold text-slate-500 hover:text-slate-900 transition cursor-pointer">
                 {{ __('Sign Out') }}
             </button>
         </form>

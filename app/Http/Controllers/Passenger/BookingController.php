@@ -69,11 +69,11 @@ class BookingController extends Controller
                     'success' => true,
                     'booking_reference' => $booking->booking_reference,
                     'redirect_url' => $showUrl,
-                    'message' => 'Your seat reservation is confirmed!',
+                    'message' => __('Your seat reservation is confirmed!'),
                 ], 201);
             }
 
-            return redirect($showUrl)->with('success', 'Your seat reservation has been confirmed!');
+            return redirect($showUrl)->with('success', __('Your seat reservation has been confirmed!'));
         } catch (SeatUnavailableException $e) {
             if ($request->wantsJson() || $request->ajax()) {
                 return response()->json([

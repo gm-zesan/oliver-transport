@@ -99,7 +99,7 @@
         <svg class="h-3.5 w-3.5 text-[#22C55E]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
         </svg>
-        <span>{{ __('Travel Date:') }} {{ \Carbon\Carbon::parse($booking->trip->trip_date)->format('D, M j, Y') }}</span>
+        <span>{{ __('Travel Date:') }} {{ \Carbon\Carbon::parse($booking->trip->trip_date)->translatedFormat('D, j M Y') }}</span>
     </span>
 @endsection
 
@@ -137,7 +137,7 @@
                                     PickMeRoute {{ __('Express') }}
                                 </span>
                                 <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-black uppercase tracking-wider bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
-                                    {{ ucfirst($booking->status) }}
+                                    {{ __($booking->status === 'confirmed' ? 'Confirmed' : ucfirst($booking->status)) }}
                                 </span>
                             </div>
                             <h2 class="text-xl sm:text-2xl font-black tracking-tight font-heading mt-1">
@@ -237,10 +237,10 @@
                                 Honda Odyssey
                             </div>
                             <div class="text-xs font-mono font-bold text-[#16A34A] mt-0.5">
-                                License Plate: RAJIA
+                                {{ __('License Plate:') }} RAJIA
                             </div>
                             <div class="text-xs text-slate-500 mt-1">
-                                Silver Minivan • 6 Seats
+                                {{ __('Silver Minivan • 6 Seats') }}
                             </div>
                         </div>
 
@@ -289,7 +289,7 @@
                                     ${{ number_format((float) $booking->final_fare, 2) }} CAD
                                 </span>
                                 <span class="text-xs font-semibold text-[#16A34A] block mt-0.5">
-                                    Status: {{ ucfirst($booking->payment?->status ?? 'unpaid') }}
+                                    {{ __('Status:') }} {{ __($booking->payment?->status === 'paid' ? 'Paid' : 'Unpaid') }}
                                 </span>
                             </div>
                         </div>

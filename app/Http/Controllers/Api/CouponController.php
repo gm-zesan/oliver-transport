@@ -60,7 +60,7 @@ class CouponController extends Controller
                 'gross_fare' => $grossFare,
                 'final_fare' => $finalFare,
                 'trip_id' => $trip?->id,
-                'message' => 'Promotion code successfully applied.',
+                'message' => __('Promotion code successfully applied.'),
             ]);
         } catch (InvalidCouponException $e) {
             return response()->json([

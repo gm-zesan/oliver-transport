@@ -49,7 +49,7 @@
                                     <span class="flex h-7 w-7 items-center justify-center rounded-lg bg-[#22C55E]/15 text-[#16A34A] text-xs font-bold">$</span>
                                     <span>{{ __('Fares & Payment') }}</span>
                                 </div>
-                                <span class="text-xs text-slate-400 font-semibold font-mono">3 Qs</span>
+                                <span class="text-xs text-slate-400 font-semibold font-mono">3 {{ __('Questions') }}</span>
                             </a>
                             <a href="#category-stations"
                                 class="flex items-center justify-between p-3 rounded-2xl text-sm font-bold text-slate-700 hover:text-[#16A34A] hover:bg-[#E8FBF0]/60 transition">
@@ -57,7 +57,7 @@
                                     <span class="flex h-7 w-7 items-center justify-center rounded-lg bg-[#22C55E]/15 text-[#16A34A] text-xs font-bold">📍</span>
                                     <span>{{ __('Stations & Schedules') }}</span>
                                 </div>
-                                <span class="text-xs text-slate-400 font-semibold font-mono">3 Qs</span>
+                                <span class="text-xs text-slate-400 font-semibold font-mono">3 {{ __('Questions') }}</span>
                             </a>
                             <a href="#category-seating"
                                 class="flex items-center justify-between p-3 rounded-2xl text-sm font-bold text-slate-700 hover:text-[#16A34A] hover:bg-[#E8FBF0]/60 transition">
@@ -65,7 +65,7 @@
                                     <span class="flex h-7 w-7 items-center justify-center rounded-lg bg-[#22C55E]/15 text-[#16A34A] text-xs font-bold">💺</span>
                                     <span>{{ __('Seating & Amenities') }}</span>
                                 </div>
-                                <span class="text-xs text-slate-400 font-semibold font-mono">3 Qs</span>
+                                <span class="text-xs text-slate-400 font-semibold font-mono">3 {{ __('Questions') }}</span>
                             </a>
                         </nav>
                     </div>

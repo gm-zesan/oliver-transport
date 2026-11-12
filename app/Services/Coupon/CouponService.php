@@ -36,25 +36,25 @@ class CouponService
         $coupon = $query->first();
 
         if (! $coupon) {
-            throw new InvalidCouponException('The promotion code entered is invalid.');
+            throw new InvalidCouponException(__('The promotion code entered is invalid.'));
         }
 
         if (! $coupon->is_active) {
-            throw new InvalidCouponException('This coupon code is no longer active.');
+            throw new InvalidCouponException(__('This coupon code is no longer active.'));
         }
 
         $now = Carbon::now('America/Toronto');
 
         if ($coupon->starts_at && $now->lessThan($coupon->starts_at)) {
-            throw new InvalidCouponException('This coupon is not valid yet.');
+            throw new InvalidCouponException(__('This coupon is not valid yet.'));
         }
 
         if ($coupon->expires_at && $now->greaterThan($coupon->expires_at)) {
-            throw new InvalidCouponException('This coupon has expired.');
+            throw new InvalidCouponException(__('This coupon has expired.'));
         }
 
         if ($coupon->max_total_uses !== null && $coupon->current_uses >= $coupon->max_total_uses) {
-            throw new InvalidCouponException('This coupon has reached its maximum total redemptions.');
+            throw new InvalidCouponException(__('This coupon has reached its maximum total redemptions.'));
         }
 
         if ($coupon->max_uses_per_user !== null) {
@@ -64,13 +64,15 @@ class CouponService
                 ->count();
 
             if ($userUsageCount >= $coupon->max_uses_per_user) {
-                throw new InvalidCouponException('You have already reached the redemption limit for this promotion code.');
+                throw new InvalidCouponException(__('You have already reached the redemption limit for this promotion code.'));
             }
         }
 
         if ($coupon->min_booking_amount !== null && $grossBaseFare < (float) $coupon->min_booking_amount) {
             throw new InvalidCouponException(
-                sprintf('This coupon requires a minimum booking amount of $%.2f CAD.', (float) $coupon->min_booking_amount)
+                __('This coupon requires a minimum booking amount of $:amount CAD.', [
+                    'amount' => number_format((float) $coupon->min_booking_amount, 2),
+                ])
             );
         }
 

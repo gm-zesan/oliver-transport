@@ -120,9 +120,9 @@
                         <select id="modal-pickup-select" onchange="onModalPickupChange()"
                             class="w-full rounded-xl bg-white border border-slate-200 shadow-xs px-3.5 py-2.5 text-xs sm:text-sm font-bold text-slate-900 focus:outline-none focus:ring-2 focus:ring-[#22C55E] cursor-pointer">
                             <option value="" disabled selected>{{ __('Choose Pickup Station...') }}</option>
-                            <option value="namur">Station Métro Namur (Montreal)</option>
-                            <option value="yorkdale">Yorkdale Mall (Toronto)</option>
-                            <option value="yonge">Yonge Station (Toronto)</option>
+                            <option value="namur">Station Métro Namur ({{ __('Montreal') }})</option>
+                            <option value="yorkdale">{{ __('Yorkdale Mall') }} ({{ __('Toronto') }})</option>
+                            <option value="yonge">{{ __('Yonge Station') }} ({{ __('Toronto') }})</option>
                         </select>
                     </div>
 
@@ -223,7 +223,7 @@
                         <!-- Seat S1 -->
                         <button type="button" id="seat-btn-S1" onclick="toggleSeatSelection('S1')"
                             class="seat-select-btn rounded-2xl border-2 border-slate-200 bg-white hover:border-[#22C55E] hover:bg-emerald-50/40 p-2.5 text-center transition cursor-pointer select-none min-h-[56px] flex flex-col items-center justify-center shadow-xs">
-                            <span class="seat-label text-xs font-bold text-slate-800 block">Seat S1</span>
+                            <span class="seat-label text-xs font-bold text-slate-800 block">{{ __('Seat') }} S1</span>
                             <span class="seat-sub text-[9px] text-slate-500 block">{{ __('Front Passenger') }}</span>
                         </button>
                     </div>
@@ -240,14 +240,14 @@
                         <!-- Seat S2 -->
                         <button type="button" id="seat-btn-S2" onclick="toggleSeatSelection('S2')"
                             class="seat-select-btn rounded-2xl border-2 border-slate-200 bg-white hover:border-[#22C55E] hover:bg-emerald-50/40 p-2.5 text-center transition cursor-pointer select-none min-h-[56px] flex flex-col items-center justify-center shadow-xs">
-                            <span class="seat-label text-xs font-bold text-slate-800 block">Seat S2</span>
+                            <span class="seat-label text-xs font-bold text-slate-800 block">{{ __('Seat') }} S2</span>
                             <span class="seat-sub text-[9px] text-slate-500 block">{{ __('Row 2 Left') }}</span>
                         </button>
 
                         <!-- Seat S3 -->
                         <button type="button" id="seat-btn-S3" onclick="toggleSeatSelection('S3')"
                             class="seat-select-btn rounded-2xl border-2 border-slate-200 bg-white hover:border-[#22C55E] hover:bg-emerald-50/40 p-2.5 text-center transition cursor-pointer select-none min-h-[56px] flex flex-col items-center justify-center shadow-xs">
-                            <span class="seat-label text-xs font-bold text-slate-800 block">Seat S3</span>
+                            <span class="seat-label text-xs font-bold text-slate-800 block">{{ __('Seat') }} S3</span>
                             <span class="seat-sub text-[9px] text-slate-500 block">{{ __('Row 2 Right') }}</span>
                         </button>
                     </div>
@@ -257,21 +257,21 @@
                         <!-- Seat S4 -->
                         <button type="button" id="seat-btn-S4" onclick="toggleSeatSelection('S4')"
                             class="seat-select-btn rounded-2xl border-2 border-slate-200 bg-white hover:border-[#22C55E] hover:bg-emerald-50/40 p-2 text-center transition cursor-pointer select-none min-h-[56px] flex flex-col items-center justify-center shadow-xs">
-                            <span class="seat-label text-[11px] font-bold text-slate-800 block">Seat S4</span>
+                            <span class="seat-label text-[11px] font-bold text-slate-800 block">{{ __('Seat') }} S4</span>
                             <span class="seat-sub text-[8px] text-slate-500 block">{{ __('Row 3 L') }}</span>
                         </button>
 
                         <!-- Seat S5 -->
                         <button type="button" id="seat-btn-S5" onclick="toggleSeatSelection('S5')"
                             class="seat-select-btn rounded-2xl border-2 border-slate-200 bg-white hover:border-[#22C55E] hover:bg-emerald-50/40 p-2 text-center transition cursor-pointer select-none min-h-[56px] flex flex-col items-center justify-center shadow-xs">
-                            <span class="seat-label text-[11px] font-bold text-slate-800 block">Seat S5</span>
+                            <span class="seat-label text-[11px] font-bold text-slate-800 block">{{ __('Seat') }} S5</span>
                             <span class="seat-sub text-[8px] text-slate-500 block">{{ __('Row 3 Mid') }}</span>
                         </button>
 
                         <!-- Seat S6 -->
                         <button type="button" id="seat-btn-S6" onclick="toggleSeatSelection('S6')"
                             class="seat-select-btn rounded-2xl border-2 border-slate-200 bg-white hover:border-[#22C55E] hover:bg-emerald-50/40 p-2 text-center transition cursor-pointer select-none min-h-[56px] flex flex-col items-center justify-center shadow-xs">
-                            <span class="seat-label text-[11px] font-bold text-slate-800 block">Seat S6</span>
+                            <span class="seat-label text-[11px] font-bold text-slate-800 block">{{ __('Seat') }} S6</span>
                             <span class="seat-sub text-[8px] text-slate-500 block">{{ __('Row 3 R') }}</span>
                         </button>
                     </div>
@@ -385,12 +385,12 @@
                     </span>
                     <button type="button" onclick="quickApplyLaunchCoupon()"
                         class="inline-flex items-center gap-1 text-[11px] font-bold text-[#16A34A] hover:text-[#22C55E] underline cursor-pointer">
-                        <span>LAUNCH10 - Save $10/seat ($55 CAD)</span>
+                        <span>{{ __('LAUNCH10 - Save $10/seat ($55 CAD)') }}</span>
                     </button>
                 </div>
 
                 <div class="flex items-center gap-2">
-                    <input type="text" id="coupon-code-input" placeholder="Promo code (e.g. LAUNCH10)" maxlength="30"
+                    <input type="text" id="coupon-code-input" placeholder="{{ __('Promo code (e.g. LAUNCH10)') }}" maxlength="30"
                         class="flex-1 rounded-xl bg-slate-50 border border-slate-200 px-3 py-2 text-xs text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#22C55E] focus:bg-white uppercase font-mono" />
                     <button type="button" onclick="applyCouponCode()"
                         class="rounded-xl bg-slate-800 hover:bg-[#16A34A] px-4 py-2 text-xs font-bold text-white transition cursor-pointer">

@@ -51,11 +51,11 @@ class SeatAvailabilityService
         $seat = VehicleSeat::where('id', $seatId)->lockForUpdate()->first();
 
         if (! $seat) {
-            throw new SeatUnavailableException("Seat not found (ID: {$seatId}).");
+            throw new SeatUnavailableException(__('Seat not found.'));
         }
 
         if ($seat->is_driver_seat) {
-            throw new SeatUnavailableException('The driver seat is strictly excluded from passenger booking.');
+            throw new SeatUnavailableException(__('The driver seat is strictly excluded from passenger booking.'));
         }
 
         $hasConflict = DB::table('booking_seats')
@@ -69,7 +69,9 @@ class SeatAvailabilityService
 
         if ($hasConflict) {
             throw new SeatUnavailableException(
-                "Seat {$seat->seat_number} is occupied on this journey segment. Please select another seat."
+                __('Seat :seat is occupied on this journey segment. Please select another seat.', [
+                    'seat' => $seat->seat_number,
+                ])
             );
         }
 
