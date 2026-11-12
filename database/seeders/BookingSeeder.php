@@ -23,6 +23,11 @@ class BookingSeeder extends Seeder
      */
     public function run(): void
     {
+        // Never seed dummy test bookings in production environment
+        if (app()->isProduction()) {
+            return;
+        }
+
         $tripService = app(TripService::class);
         $today = Carbon::now('America/Toronto')->startOfDay();
         $yesterday = $today->copy()->subDay();

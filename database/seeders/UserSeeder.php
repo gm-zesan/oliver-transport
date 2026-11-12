@@ -19,6 +19,14 @@ class UserSeeder extends Seeder
         User::unguarded(function () {
             $defaultPassword = Hash::make('password');
 
+            // Remove legacy or outdated rider accounts
+            User::whereIn('email', [
+                'operator@olivertransport.ca',
+                'rider@olivertransport.ca',
+                'passenger@olivertransport.ca',
+                'rider@pickmeroute.com',
+            ])->delete();
+
             // 1. Operator Account (Administration, schedules, manifests, fleet)
             User::firstOrCreate(
                 ['email' => 'operator@pickmeroute.com'],
@@ -32,67 +40,69 @@ class UserSeeder extends Seeder
             );
 
             // 2. Rider / Driver Account (Trip manifest, passenger check-in, cash collection)
-            User::firstOrCreate(
-                ['email' => 'rider@pickmeroute.com'],
+            User::updateOrCreate(
+                ['email' => 'pickmeroute@gmail.com'],
                 [
                     'name' => 'Jean-Luc Chauffeur',
-                    'phone' => '514-555-0199',
-                    'password' => $defaultPassword,
+                    'phone' => '647-655-1884',
+                    'password' => Hash::make('PMR#2026@Sec'),
                     'role' => 'rider',
                     'email_verified_at' => now(),
                 ]
             );
 
-            // 3. Passenger Accounts (Intercity seat booking, reservation history)
-            $passengers = [
-                [
-                    'name' => 'Sarah Jenkins',
-                    'email' => 'passenger@pickmeroute.com',
-                    'phone' => '416-555-0144',
-                ],
-                [
-                    'name' => 'Alexandre Tremblay',
-                    'email' => 'alex.tremblay@gmail.com',
-                    'phone' => '514-555-0112',
-                ],
-                [
-                    'name' => 'Emily Chen',
-                    'email' => 'emily.chen@outlook.com',
-                    'phone' => '416-555-0189',
-                ],
-                [
-                    'name' => 'Michael Ross',
-                    'email' => 'michael.ross@yahoo.com',
-                    'phone' => '647-555-0134',
-                ],
-                [
-                    'name' => 'Sophie Laurent',
-                    'email' => 'sophie.laurent@gmail.com',
-                    'phone' => '514-555-0177',
-                ],
-                [
-                    'name' => 'David Miller',
-                    'email' => 'david.miller@gmail.com',
-                    'phone' => '416-555-0163',
-                ],
-                [
-                    'name' => 'Fatima Zahra',
-                    'email' => 'fatima.zahra@gmail.com',
-                    'phone' => '514-555-0125',
-                ],
-            ];
-
-            foreach ($passengers as $p) {
-                User::firstOrCreate(
-                    ['email' => $p['email']],
+            // 3. Passenger Accounts (Only seeded in local/testing environments)
+            if (! app()->isProduction()) {
+                $passengers = [
                     [
-                        'name' => $p['name'],
-                        'phone' => $p['phone'],
-                        'password' => $defaultPassword,
-                        'role' => 'passenger',
-                        'email_verified_at' => now(),
-                    ]
-                );
+                        'name' => 'Sarah Jenkins',
+                        'email' => 'passenger@pickmeroute.com',
+                        'phone' => '416-555-0144',
+                    ],
+                    [
+                        'name' => 'Alexandre Tremblay',
+                        'email' => 'alex.tremblay@gmail.com',
+                        'phone' => '514-555-0112',
+                    ],
+                    [
+                        'name' => 'Emily Chen',
+                        'email' => 'emily.chen@outlook.com',
+                        'phone' => '416-555-0189',
+                    ],
+                    [
+                        'name' => 'Michael Ross',
+                        'email' => 'michael.ross@yahoo.com',
+                        'phone' => '647-555-0134',
+                    ],
+                    [
+                        'name' => 'Sophie Laurent',
+                        'email' => 'sophie.laurent@gmail.com',
+                        'phone' => '514-555-0177',
+                    ],
+                    [
+                        'name' => 'David Miller',
+                        'email' => 'david.miller@gmail.com',
+                        'phone' => '416-555-0163',
+                    ],
+                    [
+                        'name' => 'Fatima Zahra',
+                        'email' => 'fatima.zahra@gmail.com',
+                        'phone' => '514-555-0125',
+                    ],
+                ];
+
+                foreach ($passengers as $p) {
+                    User::firstOrCreate(
+                        ['email' => $p['email']],
+                        [
+                            'name' => $p['name'],
+                            'phone' => $p['phone'],
+                            'password' => $defaultPassword,
+                            'role' => 'passenger',
+                            'email_verified_at' => now(),
+                        ]
+                    );
+                }
             }
         });
     }

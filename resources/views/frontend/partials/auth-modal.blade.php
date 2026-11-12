@@ -41,20 +41,6 @@
 
             <!-- Action CTAs -->
             <div class="mt-6 space-y-3">
-                <!-- 1-Click Fast Passenger Test Login (Dev / Fast Testing) -->
-                <form method="POST" action="{{ route('login.store') }}" class="w-full">
-                    @csrf
-                    <input type="hidden" name="email" value="passenger@pickmeroute.com">
-                    <input type="hidden" name="password" value="password">
-                    <button type="submit"
-                        class="inline-flex min-h-[46px] w-full items-center justify-center gap-2 rounded-2xl bg-[#22C55E]/15 hover:bg-[#22C55E]/25 text-[#16A34A] border-2 border-[#22C55E]/40 px-4 py-2.5 text-xs sm:text-sm font-bold transition focus:outline-none focus:ring-2 focus:ring-[#22C55E] cursor-pointer">
-                        <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 10V3L4 14h7v7l9-11h-7z" />
-                        </svg>
-                        <span>1-Click Test Passenger Sign In</span>
-                    </button>
-                </form>
-
                 <a href="{{ route('auth.google.redirect') }}"
                     class="inline-flex min-h-[48px] w-full items-center justify-center gap-2.5 rounded-2xl bg-white hover:bg-slate-50 text-slate-800 border border-slate-300/90 px-6 py-2.5 text-sm sm:text-base font-bold shadow-xs hover:shadow-sm transition duration-200 focus:outline-none focus:ring-2 focus:ring-[#22C55E] text-center">
                     <svg class="h-5 w-5 flex-shrink-0" viewBox="0 0 24 24" aria-hidden="true">
